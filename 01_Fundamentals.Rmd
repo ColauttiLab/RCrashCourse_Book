@@ -1,9 +1,6 @@
----
-title: "Fundamentals"
-output: pdf_document
----
+# Fundamentals
 
-# Introduction
+## Introduction
 
 This chapter provides a rapid breakdown of the core functionality of R. There is a lot to cover in a very short time. Remember that you can only learn coding through repetition.
 
@@ -17,7 +14,7 @@ Before you begin, you should have R and R Studio installed.
 
 <br>
 
-# R Basics
+## R Basics
 
 Make comments inside your code. Very important (unless you are using R markdown or R notebooks)!
 
@@ -34,7 +31,7 @@ Make comments inside your code. Very important (unless you are using R markdown 
 ```
 
 
-## Basic Math
+### Basic Math
 
 You can do basic mathematical equations in R. 
 
@@ -49,14 +46,14 @@ You can do basic mathematical equations in R.
 ```
 
 
-## Functions
+### Functions
 
 R uses **functions**. Each function has a name and is followed by brackets `function()`.
 
 Inside the brackets we can define input values and parameters. 
 
 
-## `c()
+### `c()
 
 The **concatenate** function `c()` is a very important function in R that is used to group items together:
 
@@ -65,7 +62,7 @@ c(1,2,3,5)
 ```
 
 
-## Math Functions
+### Math Functions
 
 Here are some basic mathematical functions
 
@@ -84,7 +81,7 @@ atan(0) # inverse tangent
 ```
 
 
-## Round/Truncate
+### Round/Truncate
 
 Rounding and truncating numbers 
 
@@ -96,7 +93,7 @@ signif(pi,digits=2) # round to keep 2 significant digits
 ```
 
 
-## Logic Operators
+### Logic Operators
 
 An **operator** is used to compare values. 
 
@@ -116,7 +113,7 @@ An **operator** is used to compare values.
 1 != 1 # not equal to
 ```
 
-## Group Comparison
+### Group Comparison
 
 Instead of `|`, you can us `%in%` with `c()` to check a large number of values.
 
@@ -124,7 +121,7 @@ Instead of `|`, you can us `%in%` with `c()` to check a large number of values.
 1 %in% c(1,2,3,4,5,6,7,8,9,10)
 ```
 
-## Random Numbers
+### Random Numbers
 
 It is very easy to generate some random numbers from different distributions. This is very useful for modelling and testing your code.
 
@@ -158,7 +155,7 @@ runif(5)
 runif(5)
 ```
 
-## Combining objects
+### Combining objects
 
 Use `c()` to concatenate single objects
 
@@ -189,7 +186,7 @@ rbind(1:10,10:1)
 
 <br>
 
-# Data Types
+## Data Types
 
 Programming languages like R use different data types. 
 
@@ -212,7 +209,7 @@ Note that computers cannot store irrational numbers, they have to be rounded to 
 
 <br>
 
-# Objects
+## Objects
 
 R supports **Object-Oriented Programming (OOP)**, which is a programming style that defines and manipulates **objects**
 
@@ -220,7 +217,7 @@ An **object** in R can be a lot of things, but an easy way is to think of a spre
 
 A spreadsheet has columns organized into rows and columns, and may have multiple sheets.
 
-## Cells
+### Cells
 
 The most basic object is a single value. For example, a string
 
@@ -248,7 +245,7 @@ X
 
 Generally `print()` or `paste()` are preferred over calling the object directly.
 
-## Vector 
+### Vector 
 
 A vector is a one-dimensional array of cells. This could be a row or column in our spreadsheet example.
 
@@ -265,7 +262,7 @@ Xvec
 
 > **Protip**: A common problem when importing data to R occurs when a column of numeric data includes at least one text value (e.g.  "missing" or "< 1"). R will treat the entire column as text rather than numeric values. Watch for this when working with real data!
 
-### Subset a vector
+#### Subset a vector
 
 Use square brackets `[]` to subset a vector
 
@@ -275,7 +272,7 @@ Xvec[13]
 Xvec[1:3]
 ```
 
-## Matrices 
+### Matrices 
 
 A matrix is a 2-D array of cells, equivalent to one sheet in a spreadsheet program. 
 
@@ -284,7 +281,7 @@ Xmat<-matrix(Xvec,nrow=6)
 Xmat
 ```
 
-### Subset
+#### Subset
 
 **Notice** the square brackets along the top and left side? 
 
@@ -304,7 +301,7 @@ Xmat[,3]
 ```
 
 
-## Tensors
+### Tensors
 
 **Tensors** are the general term for a grid with N dimensions. We've already seen a few different tensors:
 
@@ -343,7 +340,7 @@ Xarray[1:2,1,1,1:2,1,1]
 
 Look at the `array[]` function and compare to the 6-D tensor to understand how this works
 
-# Matrix Algebra
+## Matrix Algebra
 
 R is pretty handy for matrix calculations that are very time consuming to do by hand or in a spreadsheet program
 
@@ -374,7 +371,7 @@ diag(4) # Identity matrix, 4x4 in this case
 diag(Z) # Diagonal elements of Z 
 ```
 
-## PCA
+### PCA
 
 One example of a matrix calculation is principal components analysis. This is covered in more detail in the [PCA Tutorial](https://colauttilab.github.io/RIntroML/2_PCA.html).
 
@@ -384,7 +381,7 @@ PCA is widely used in biology, from community ecology and metagenomics to gene e
 prcomp(Z, cor=T) 
 ```
 
-# Lists 
+## Lists 
 
 Tensors generally all have the same data type and sub-dimension. For example, if you want to combine two 2-d matrices into a single tensor (3rd dimension) then the individual matrices have to have the same number of rows and columns, and the same data type.
 
@@ -397,7 +394,7 @@ MyList<-list(name="SWC",potpourri=Xvec,numbers=1:10)
 MyList
 ```
 
-## Subset
+### Subset
 
 There are a few different ways to subset a list object
 
@@ -416,7 +413,7 @@ Look carefully at the output above; notice how the `[]` includes `$numbers` but 
 2*MyList[3]
 ```
 
-## Output
+### Output
 
 > **Protip**: Many analysis functions in R output as lists (e.g. statistical packages)
 
@@ -429,7 +426,7 @@ prcomp(Z)$center
 prcomp(Z)$scale
 ```
 
-# `print()` and `paste()`
+## `print()` and `paste()`
 
 The `print` function is the go-to function for printing output to the user. The `paste` function is for combining things together. 
 
@@ -458,7 +455,7 @@ print(paste("Hello",1:10,sep="-"))
 
 This would be useful inside of a `for` loop (see below) where the output of `paste` is not shown on the screen if used inside of a loop, whereas the output of `print` is.
 
-## ? for HELP
+### ? for HELP
 
 Whenever you are learning a new function, you should use `?` and carefully read about all the parameters and outputs. The explanations can be a bit technical, which is intimidating at first. But after enough practice you will start to understand more and more of the descriptions.
 
@@ -473,11 +470,11 @@ Whenever you are learning a new function, you should use `?` and carefully read 
 <br>
 
 
-# Data
+## Data
 
 So far we've done everything within the R environment. If we quit R then everything we have made will be removed from memory and we'll have to start all over. Therefore, it can be useful to save and load data from external files.
 
-## Working Directory
+### Working Directory
 
 The **working directory** is the place where R looks to load or save your files. You can figure out what your current working directory is with the `getwd()` function
 
@@ -501,7 +498,7 @@ If you are a mac user, you can just ignore the `C:` part:
 setwd("/Users/ColauttiLab/Documents")
 ```
 
-### Relative Path
+#### Relative Path
 
 The above examples of `setwd()` us an **absolute** path. You can also use a **relative** path. For example, if we have a folder called `Data` inside our `Documents` folder, and our current working directory is one of the two examples above, we can use a relative path name to set the `Data` folder as the working directory. Before you type this out, you should make a folder called `Data` inside of your current working directory:
 
@@ -523,7 +520,7 @@ Compare the working directories. The `..` means "Go to the parent directory"
 
 The neat thing about relative directories is that it makes it easy to share code between Windows, MacOS and Linux/Unix. In fact, these commands come from Linux. You can check out the [Linux Crash Course](https://colauttilab.github.io/LinuxCrashCourse/Linux-Fundamentals.html) for more detail.
 
-## Import
+### Import
 
 Download [This Data File](https://colauttilab.github.io/RCrashCourse/FallopiaData.csv) and save in a folder called `Data` inside of your current working directory.
 
@@ -541,7 +538,7 @@ A `.csv` file is just a text file with special formatting that can be read into 
 
 **Important**: In R, objects created by `read.csv` and other `read.?` functions are special objects called `data.frame` objects.
 
-## `data.frame`
+### `data.frame`
 
 A `data.frame` is a special type of 2D matrix with additional indexing information for rows/columns of data
 
@@ -567,7 +564,7 @@ Pay careful attention to 'int' vs 'num' vs 'factor'. These are the data types, a
 
 Here's an example of data types gone rogue: In an analysis of variance (ANOVA), you want a 'factor' as a predictor. But in linear regression you want 'int' or 'num' as a predictor. If you code your factor (e.g. treatment) as a number (e.g. 1-4) then your `data.frame` will treat it as an integer. When you run a linear model, you will be running a regression rather than ANOVA.
 
-## Subset
+### Subset
 
 The `data.frame` object can be subset, just like a matrix
 
@@ -585,7 +582,7 @@ subset(MyData,Scenario=="extreme") # Subset data where the Scenario column == 'e
 levels(MyData$Scenario)
 ```
 
-## New Columns
+### New Columns
 
 It's easy to add new columns to a data frame. For example, to add a new column that is the sum of two others
 
@@ -602,11 +599,11 @@ print(MyData$Total)
 <br>
 
 
-# Other Functions
+## Other Functions
 
 There are a few more useful functions for inspecting your data.
 
-## `unique`
+### `unique`
 
 Find all the unique values within a vector using `unique`
 
@@ -614,7 +611,7 @@ Find all the unique values within a vector using `unique`
 unique(MyData$Nutrients)
 ```
 
-## `duplicated`
+### `duplicated`
 
 Look at each value in a vector and return a `TRUE` if it is duplicated and `FALSE` if it is unique
 
@@ -630,7 +627,7 @@ MyData$Nutrients[duplicated(MyData$Nutrients)]
 
 Note that only the `TRUE` values are returned (duplicated)
 
-## `aggregate`
+### `aggregate`
 
 Quickly calculate means of one vector (Total) for each value of a grouping variable (Nutrients)
 
@@ -659,7 +656,7 @@ Note that `mean` is just the `mean()` function in R. We can use other functions,
 aggregate(Total ~ Nutrients, data=MyData, sd) 
 ```
 
-## tapply
+### tapply
 
 The `tapply` function is a more general way to replicate functions. 
 
@@ -670,7 +667,7 @@ tapply(MyData$Total, list(MyData$Nutrients), mean) # calculate means
 
 Compare the two outputs with `aggregate` above
 
-## Save
+### Save
 
 Just as we can load FROM external files, we can save TO external files
 
@@ -689,7 +686,7 @@ You should see this file in your working directory.
 
 <br>
 
-# Flow control
+## Flow control
 
 Think of your data analysis as a stream flowing from the raw data at the headwaters and flowing down to the end, exiting as a full analysis with graphics, stats, and interpretation.
 
@@ -699,7 +696,6 @@ There are different ways we can control the flow of the water. The simplest is j
 A<-functionA()
 B<-functionB(A)
 C<-functionC(B)
-...
 ```
 
 But sometimes we may want to do the same function or analysis only if the input meets certain criteria. Or we may want to reiterate the same analysis multiple times on different inputs. This is where more advanced flow control comes in handy.
@@ -711,7 +707,7 @@ X<-21
 Xvec<-c(1:10,"string")
 ```
 
-## `if`
+### `if`
 
 The `if` statement uses an **operator** (see above) to asses whether the value is `TRUE` or `FALSE`:
 
@@ -733,7 +729,7 @@ Break up across multiple lines to improve readability. Note that you don't need 
 if(1 > 0){print ("yup")}
 ```
 
-## ifelse
+### ifelse
 
 The `ifelse` is a more compact version for simple comparisons. The following code does the same as above
 
@@ -742,7 +738,7 @@ ifelse(X > 100, print("X > 100"), print("X <= 100"))
 ```
 
 
-## `for` loop
+### `for` loop
 
 A loop does the same thing over and over again until some condition is met. In the case of a `for` loop, we set a 'counter' variable and loop through each value of the counter variable. Here are a few examples:
 
@@ -796,7 +792,7 @@ for(i in 1:10){
 
 Read through the outputs above carefully to make sure you understand how the loops work. When you are confident you understand, then write a new for loop and write down the predicted output. Run the loop to check if you were right.
 
-## Nested Loops
+### Nested Loops
 
 Counters are particularly valuable when you have a nested loop, which is just one loop inside of another.
 
@@ -817,7 +813,7 @@ for(i in 1:3){
 ```
 
 
-## `while` loop
+### `while` loop
 
 The `while` is another kind of loop, but instead of looping through a predefined set of variables, we iterate until some condition is met inside of the loop. This is called the **exit condition**.
 
@@ -835,7 +831,7 @@ while (count < X){
 }
 ```
 
-# Packages
+## Packages
 
 As noted above, **functions** in R use brackets `()` and generally have **input** and **output** objects as well as **parameters** that affect their behaviour.
 
@@ -847,7 +843,7 @@ A **package** in R is a set of functions grouped together. For example, the `sta
 ?cor
 ```
 
-## Installing
+### Installing
 
 Before you can use a new function from a package that isn't installed with R, you first have to install the package on your computer. You only have to do this once per computer. However, it is a good idea to update the package frequently, especially when you update your version of R. This ensures that you are using the most recent version of the package.
 
@@ -859,11 +855,11 @@ Packages are installed with `install.packages()`, with the package indicated wit
 install.packages('baRcoeR')
 ```
 
-## Loading
+### Loading
 
 Once you have installed a package, you can access it two ways. 
 
-### 1. Library
+#### 1. Library
 
 You can load the package using the `library()` function, giving you access to functions contained within it:
 
@@ -872,7 +868,7 @@ library(baRcodeR)
 make_labels()
 ```
 
-### 2. Function
+#### 2. Function
 
 You can run a function without loading the whole package:
 
@@ -892,13 +888,13 @@ pkgB::cor()
 ```
 
 
-### Library vs Package
+#### Library vs Package
 
 The terms **library** and **package** are often used interchangeably. Technically, the **package** is the collection of functions whereas the **library** is the specific folder where the R packages are stored. A library may contain more than one package.
 
 For the most part, you just need to know that a package and a library are a collection of functions.
 
-# Readable code
+## Readable code
 
 It's important to make your code readable and interpretable by collaborators, peer reviewers, and yourself 6 months from now. There are lots of opinions on this but here are a few basic suggestions:
 
@@ -923,7 +919,7 @@ It's important to make your code readable and interpretable by collaborators, pe
 
 To take your code to the next level, look into the [Tidyverse Style Guide](https://style.tidyverse.org/index.html)
 
-# TEST yourself:
+## TEST yourself:
 
 Are you ready to test your knowledge?
 

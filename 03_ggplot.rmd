@@ -1,8 +1,6 @@
----
-title: Advanced Visualizations
----
+# Advanced Visualizations
 
-# Overview
+## Overview
 
 Before following this tutorial, you should be familiar with the [qplot() tutorial](https://colauttilab.github.io/RCrashCourse/2_qplot.html), and you should have lots of practice making graphs with different formatting options using `qplot`.
 
@@ -10,7 +8,7 @@ In this self-tutorial, we look at some more advanced options for visualizations 
 
 The [ggplot cheat sheet](https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf) is a downloadable pdf that provides a good summary and quick-reference guide for advanced graphics.
 
-# Getting Started
+## Getting Started
 
 We'll load the ggplot2 library and set a custom theme as described in the [qplot Tutorial](https://colauttilab.github.io/RCrashCourse/2_qplot.html)
 
@@ -30,15 +28,15 @@ The `theme_set()` command sets our custom theme (`theme_pub`) as the default plo
 
 <br>
 
-# Rules of thumb
+## Rules of thumb
 
 Standards of practice for published graphs in professional journals can vary depending on format and discipline, but there are a number of useful 'rules of thumb' to keep in mind. These are not hard and fast rules but helpful for new researchers who aren't sure how or where to start.
 
-## 1. Minimize 'ink'
+### 1. Minimize 'ink'
 
 In the old days, when most papers were actually printed and mailed to journal subscribers, black ink was expensive and printing in colour was very expensive. Printing is still expensive but of course most research articles are available online where there is no additional cost to colour or extra ink. However, the concept of minimizing ink (or pixels) can go a long way toward keeping a graph free from clutter and unnecessary distraction.
 
-## 2. Use space wisely
+### 2. Use space wisely
 
 Empty space is not necessarily bad, but ask yourself if it is necessary and what you want the reader to take away. Consider the next two graphs:
 
@@ -60,7 +58,7 @@ qplot(X,Y) + scale_y_continuous(limits=c(0,max(100)))
 
 What are the benefits/drawbacks of scaling the axes? When might you choose to use one over ther other?
 
-## 3. Choose a colour palette
+### 3. Choose a colour palette
 
 Colour has three basic components
 
@@ -80,7 +78,7 @@ Don't underestimate the impact of choosing a good colour palette, especially for
   * Use a colour wheel to find complementary colours using [Adobe](https://color.adobe.com/create)
   * Browse some pre-made palettes or create one from a picture [colorfavs](http://www.colorfavs.com)
 
-## 4. Colours have meaning
+### 4. Colours have meaning
 
 What's wrong with this graph? 
 
@@ -95,7 +93,7 @@ Humans naturally associate colours with particular feelings. Be mindful of these
 
 Another important consideration is that not everyone sees colour the same way. About 5% to 10% of the population has colour blindness. In order to make colour graphs readable to everyone, you can use different 
 
-## 5. Maximize contrast
+### 5. Maximize contrast
 
 Colours that are too similar will be hard to distinguish
 
@@ -106,11 +104,11 @@ D<-data.frame(Lat=X,Long=Y,Precip=rnorm(100))
 qplot(Lat,Long,colour=Precip, data=D) + scale_color_gradient(high="#56B4E9", low="#56B499")
 ```
 
-## 6. Keep relevant information
+### 6. Keep relevant information
 
 Make sure to include proper axis **labels** (i.e. names) and **tick marks** (i.e. numbers or categories showing the different values). These labels, along with the figure caption, should act as a stand-alone unit. The reader should be able to understand the figure without having to read through the rest of the paper.
 
-## 7. Choose the right graph
+### 7. Choose the right graph
 
 Often the same data can be presented in different ways but some are easier to interpret than others. Think carefully about the story you want to present and the main ideas you want your reader to get from your figures. Look at these two graphs that show the same data and see which one is more intuitive
 
@@ -127,13 +125,13 @@ qplot(X,Y)
 
 <br>
 
-# Example
+## Example
 
 To get to know ggplot better, let's do a step-by-step example of a figure published in a [paper by Colautti & Lau](https://doi.org/10.1111/mec.13162) in the journal Molecular Ecology (2015)
 
-## Setup
+### Setup
 
-### Import data
+#### Import data
 
 Download selection dataset from Colautti & Lau (2015), published in the journal **Molecular Ecology**: https://doi.org/10.1111/mec.13162
 
@@ -159,7 +157,7 @@ names(SelData)<-c("Collector", "Author", "Year", "Journal", "Vol",
 ```
 
 
-## Inspect
+### Inspect
 
 Let's take a quick look at the data
 
@@ -177,7 +175,7 @@ unique(SelData$Collector)
 
 **Species** is the study species, and **Native** is its stauts as a binary yes/no variable. **N** is the sample size and **Fitness.measure** is the specific trait that defines fitness. **Trait** is the trait on which selection was measured. Finally, $s$ is the **selection differential** and $\beta$ is the **selection gradient**. Note that these are slopes in units of relative fitness per trait standard deviation. This is explained in more detail below.
 
-## Absolute Value
+### Absolute Value
 
 In this analysis, we are interested in the magnitude but not the direction of natural selection. In other words we would want to treat a slope of -4 the same as a slope of +4 because they have the same magnitude. Therefore, we can replace the $s$ column with $|s|$
 
@@ -200,7 +198,7 @@ SelData$Rgroup<-sample(c(0,1),nrow(SelData),replace=T) # Random binary value
 ```
 
 
-## Missing values
+### Missing values
 
 Note the missing data (denoted NA)
 
@@ -238,11 +236,11 @@ SelData<-SelData %>%
 
 <br>
 
-# Measuring Selection
+## Measuring Selection
 
 A simple analysis of phenotypic selection as proposed by Lande & Arnold (1983) is just a linear model with **relative fitness** on the y-axis and the **standardized trait value** on the x-axis. 
 
-## Relative Fitness
+### Relative Fitness
 
 **Fitness** can be measured in many ways, such as survival or lifetime seed or egg production. Use `unique(SelData$Fitness.measure)` to see the list of specific fitness measures used in these studies.
 
@@ -250,11 +248,11 @@ A simple analysis of phenotypic selection as proposed by Lande & Arnold (1983) i
 
 $$ \omega = W_i/\bar W $$
 
-## Trait Value
+### Trait Value
 
 A **Trait Value** is literally just the measured trait. Use `unique(SelData$Trait)` to see the list of specific traits that were measured in these studies. The **Standardized Trait Value** is the traits z-score. See the [Distributions Tutorial](https://colauttilab.github.io/RIntroStats/1_Distributions.html) for more information about z-scores. Since traits have different metrics, they are hard to compare: e.g. days to flower, egg biomass, foraging intensity, aggression. But standardizing traits to z-scores puts them all on the same scale for comparison. Specifically, the scale is in standard deviations from the mean.
 
-## $s$ vs $\beta$
+### $s$ vs $\beta$
 
 Selection differentials ($s$) and selection gradients ($\beta$) measure selection using linear models but represent slightly different measurements. Linear models are covered in the [Linear Models Tutorial](https://colauttilab.github.io/RIntroStats/3_LinearModels.html).
 
@@ -273,11 +271,11 @@ Selection gradients ($\beta$) measure selection on a trait of interest while als
 
 <br>
 
-# `ggplot`  vs  `qplot`
+## `ggplot`  vs  `qplot`
 
 We can create the same graph using qplot and ggplot, just the syntax changes.
 
-## Histogram
+### Histogram
 
 Compare this `qplot`
 
@@ -292,7 +290,7 @@ with this `ggplot`
 BarPlot <-ggplot(aes(s, fill=Native), data=SelData) 
 ```
 
-## `aes`
+### `aes`
 
 Note the use of the aesthetic funciton `aes()`. This defines the data that we want to use for our `ggplot` graph. We will see how we do this by adding layers to our plot, similar to the way old-timey cartoons were made by layering multiple clear pages of cellphane with painting on them. The `aes` function inside of the `ggplot` function defines that data that will be shared among all of the layers. In addition, we can have separate `aes` functions inside different `geom_` layers that define and restrict the plotting data to that specific layer. 
 
@@ -306,7 +304,7 @@ No data! This is one key difference between `qplot` and `ggplot`. The former has
 
 In `ggplot` we have to explictly define the geoms using `geom_NAME` where name is the specific name of the geom -- the same text that would go in quotation marks for the geom in `qplot`. The advantage of using `ggplot` is that its easier to creat multiple, overlapping layers with different geoms from types data sources.
 
-## Layers 
+### Layers 
 
 So far, we have only loaded in the data info for plotting. We have to specify which geom(s) we want
 
@@ -323,7 +321,7 @@ summary(BarPlot)
 
 This shows us the columns of data available, the mapping for our x and y axes, and our fill colours. It also shows some of the functions and parameters used to generate the graph. At the bottom we see parameters for `geom_bar` and `stat_count`. Note that there are more parameters than the ones we defined. These are the **default parameters**.
 
-## `stat_NAME`
+### `stat_NAME`
 
 If geoms are the geometry of the shapes in the plt, stats are the statistics or mathematical functions that create the geoms. In the above case, the bars in `geom_bar` are created by counting the number of observations in each bin. The `stat_count` function is responsible for this calculation, and it is called by default when we use the `geom_bar` function.
 
@@ -335,7 +333,7 @@ For more information on the parameters and stast of `geom_bar()`
 ?geom_bar
 ```
 
-## Bivariate geom
+### Bivariate geom
 
 Let's explroe a few more plotting options. Here we'll use the random normal values we generated above so that we can make a bivariate plot:
 
@@ -351,7 +349,7 @@ BivPlot<-ggplot(data=SelData, aes(x=log(s+1), y=Rpoint)) + geom_point()
 print(BivPlot)
 ```
 
-## `geom_smooth`
+### `geom_smooth`
 
 A really handy feature of `ggplot` is the `geom_smooth` function with several options for calculating and plotting a statistical model to the observations.
 
@@ -373,7 +371,7 @@ BivPlot + geom_smooth(method="lm",size=2,aes(group=Native,colour=Native))
 
 <br>
 
-# Full ggplot
+## Full ggplot
 
 Now that we've done a bit of exploration, let's try to recreate the selection histograms from Colautti & Lau:
 
@@ -381,18 +379,18 @@ Now that we've done a bit of exploration, let's try to recreate the selection hi
   2. Use a bootstrap to estimate non-parametric mean and 95% confidence intervals
   3. Plot all of the components on a single graph
 
-## Separate data
+### Separate data
 
 ```{r}
 NatSVals<-SelData$s[SelData$Native=="yes"] # s values for Native species
 IntSVals<-SelData$s[SelData$Native=="no"] # s values for Introduced species
 ```
 
-## Bootstrap
+### Bootstrap
 
 The graph includes a bootstrap model to estimate the mean and variance for each group (native=yes vs no). Bootstrapping is covered in the [Bootstrapping and Randomization Tutorial](https://colauttilab.github.io/EcologyTutorials/bootstrap.html). The example below is not the most efficient approach but it applies the flow control concepts covered in the [R Fundamentals Tutorial](https://colauttilab.github.io/RCrashCourse/1_fundamentals.html)
 
-### Data Setup
+#### Data Setup
 
 First we define the number of iterations and set up two objects to hold the data from our bootstrap loops.
 
@@ -402,7 +400,7 @@ NatSims<-{} # Dummy objects to hold output
 IntSims<-{}
 ```
 
-### `for` loop
+#### `for` loop
 
 Here we apply our `for` loop. in each round, we:
 
@@ -416,7 +414,7 @@ for (i in 1:IterN){
 }
 ```
 
-### 95% CI
+#### 95% CI
 
 Confidence Intervals (CI) are calculated from the bootstrap output.
 
@@ -438,7 +436,7 @@ CIs<-c(sort(NatSims)[round(IterN*0.025,0)], # Native, lower 2.5%
        sort(IntSims)[round(IterN*0.975,0)]) # Intro, upper 97.5%
 ```
 
-## Plot data
+### Plot data
 
 We'll combine the separate bootstrap vectors into a single data.frame object to make it easier to incorporate into our `ggplot` functions.
 
@@ -474,11 +472,11 @@ Another important point to note is that case we leave the `ggplot()` function em
 
 <br>
 
-# Multi-graph
+## Multi-graph
 
 In the [qplot Tutorial](https://colauttilab.github.io/RCrashCourse/2_qplot.html) we saw a quick and easy way to make multiple graphs for different groups using the `facets` parameter.
 
-## `facets`
+### `facets`
 
 We can also use facets with `gpplot`, just using a slightly different syntax giving a couple of options: 
 
@@ -501,7 +499,7 @@ BivPlot<-ggplot(data=SelData, aes(x=log(s+1), y=Rpoint)) +
 BivPlot + facet_wrap(vars(Year))
 ```
 
-## `grid.extra` package
+### `grid.extra` package
 
 Facets produce graphs with the same x- and y-axes. We might call these 'homogenous' plots because they use the same axes and they are all the same size. For publications though, we might want to includ 'heterogeneous' plots with different axes and different sizes. The `gridExtra` package provides options for this.
 
@@ -511,7 +509,7 @@ Install 'gridExtra' with `install.packages("gridExtra")`
 library(gridExtra)
 ```
 
-### `grid.arrange()`
+#### `grid.arrange()`
 
 Use this to combine heterogeous ggplot objects into a single multi-panel plot.
 
@@ -525,7 +523,7 @@ grid.arrange(HistPlot,BivPlot,BarPlot,nrow=2)
 
 > Note: You might get some warnings based on missing values or wrong binwidth. You will also see some weird things with different text sizes in the graphs. Normally, you would want to fix these for a final published figure but here we are just focused on showing what is possible with the layouts.
 
-## `grid` package
+### `grid` package
 
 What if we want to have graphs of different sizes? Or what if we want one figure to be inside another? We can make some even more advanced graphs using the `grid` package. 
 
@@ -553,7 +551,7 @@ print(BivPlot, vp = viewport(layout.pos.row = 1:2, layout.pos.col = 1)) # add fi
 print(BarPlot, vp = viewport(layout.pos.row = 1:2, layout.pos.col = 2))
 ```
 
-### Inset
+#### Inset
 
 We can also use `pushViewport` to set up a grid for plotting on top of an existing graph or image. This can be used to generate a figure with an inset.
 
@@ -569,7 +567,7 @@ print(BivPlot, vp = viewport(layout.pos.row = 1:2, layout.pos.col = 3:4))
 
 <br>
 
-# Further Reading
+## Further Reading
 
 The 2009 book *ggplog2: Elegant Graphics for Data Analysis* by Hadly Wickham is the definitive guide to all things ggplot. 
 

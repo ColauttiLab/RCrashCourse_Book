@@ -1,8 +1,6 @@
----
-title: Quick Visualizations
----
+# Quick Visualizations
 
-# Overview
+## Overview
 
 Visualizing data is a key step in any analysis. Whether you are just starting to understand the structure of your data or polishing off the perfect figure for publication in 'tabloid' journal like [Science](https://www.science.org/journal/science) or [Nature](https://www.nature.com/), R provides powerful and flexible graphing tools.
 
@@ -13,8 +11,6 @@ By the time you are finished these two self-tutorials, you will have all the res
 Both `qplot` and `ggplot` come from the [`ggplot2`](https://ggplot2.tidyverse.org/) package. Don't ask me what happened to ggplot1... Developed by Hadley Wickham and the same team as R Studio, `ggplot2` is part of the [Tidyverse](https://www.tidyverse.org/) group of helpful R packages. 
 
 Once you have mastered these tutorials, you might want to continue to expand your `ggplot` repertoire by reading through additional examples in the `ggplot2` documentation http://docs.ggplot2.org/current/
-
-## WARNING 
 
 > WARNING: There is a learning curve!
 
@@ -28,11 +24,11 @@ The third point is worth some extra thought. Everybody makes mistakes, whether y
 
 Now consider what happens if you add new data or find a mistake in your original data that needs to be corrected. With a point-and-click program you have to make the graph all over again. With R, you just rerun the code with new input and get the updated figure right away!
 
-## Graphical Concepts
+### Graphical Concepts
 
 There are a few universal graphing concepts that are important to understand in order to create publication-ready graphics in R.
 
-## Vector vs. Raster
+### Vector vs. Raster
 
 The first concept is to understand that there are two main **file types** that you can use to save your graphs. Once saved, you can send these to graphics programs, printers, or journal websites. 
 
@@ -52,25 +48,25 @@ In contrast, you can expand **vector** images to any size and the lines will alw
   
 The bottom line: you generally want to save your graphics as *SVG* or *PDF* files if you plan to publish them.
 
-## Resolution vs Dimension
+### Resolution vs Dimension
 
 In cases where you do need to use raster images in a publication, pay careful attention to the image's **Pixel Dimension**. We are used to thinking about resolution -- for example a 2 megapixel camera is better than a 1 megapixel camera. Or 200 dpi (dots per inch) is better than 100 dpi. But it's not just the **resolution** that matters, the image **size** also determines the quality of the final image. The **size** and **resolution** of an image jointly determine its **Pixel Dimension**.
 
 For example, an image with 200 dpi that is 1 x 3 inches will have the same pixel dimension of an image with 100 dpi that is 2 x 6 inches. These images will look exactly the same if they are printed at the same size. That's because the pixel dimension determines how an image looks on a page, and both of these have the same pixel dimension: 200 x 600 pixels.
 
-## Screen vs Print
+### Screen vs Print
 
 Another important consideration is whether your figures are intended for a computer screen or printed page (or both). Each pixel of your screen has tiny lights that determine the specific colour that is reproduced. The **emission** of different wavelengths from your screen produces the different colours. In contrast, printed images get their colour from combinatios of ink, which **absorb** different wavelengths of colour. As a result, some colours that look fine on your screen do not reproduce well in print. In print, the intensity of colours are limited by the intensity of the Cyan, Magenta and Yellow inks that are used to reproduce the images. This is called CMYK printing.
 
 Some programs like Adobe Illustrator have options to limit the colours on your screen to only display colours that can be reproduced with CMYK printing.
 
-## Accessibility
+### Accessibility
 
 There are two other important considerations for colouring your figures. First, remember that a significant portion of the population is unable to see certain colours. In addition, many scientists and students may print out your paper in black-and-white. You should try to choose colours that can be discerned in these situations.
 
 The `viridis` package is a good tool for this. See: https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html
 
-## Slides
+### Slides
 
 Some of the above information is covered and expanded in the [Introductory Slides](https://colauttilab.github.io/RCrashCourse/Graphics_small.pdf) for examples of graphical output from R, using `ggplot2` and other graphing functions. These slides cover: 
 
@@ -80,7 +76,7 @@ Some of the above information is covered and expanded in the [Introductory Slide
   4. anatomy of a `qplot`/`ggplot` graph
   
 
-# Getting Started
+## Getting Started
 
 Install the `ggplot2` package using `install.packages("ggplot2")`. Load it with the `library` function whenever you want to include a function from the `ggplot2` library in your code.. 
 
@@ -90,7 +86,7 @@ library(ggplot2)
 
 The `ggplot2` package includes two main functions, quickplot `qplot()` for fast graphs and the `ggplot()` function for more detailed, customizable graphs.
 
-## Data setup
+### Data setup
 
 We will again be working with the `FallopiaData.csv` dataset, which can be downloaded here: https://colauttilab.github.io/RCrashCourse/FallopiaData.csv, and saved to your project folder, which you can identify with the `getwd()` function. You may want to save this to a folder called 'Data', and then open the file in R:
 
@@ -119,42 +115,42 @@ The first 4 columns give information about the pot and treatments. The rest give
 
 <br>
 
-# Basic Graphs
+## Basic Graphs
 
 Think back to the [R Fundamentals Tutorial](https://colauttilab.github.io/RCrashCourse/1_fundamentals.html), and you will hopefully recall the different data types. For graphing purposes, there are two main types of data: **categorical** and **continuous** putting these together in different combinations with `plot` gives us different graphs. One nice thing is that we don't have to specify which graphs to make; `qplot` will decide which type of graph based on the type of data. Of course, we can also specify a plot type if we want something different.
 
 
-## One continuous
+### One continuous
 
 If we input one continous variable, `qplot` will produce a frequency histogram by default.
 
-#### Histogram
+##### Histogram
 
 ```{r}
 qplot(x=Total, data=MyData)
 ```
 
-## One categorical
+### One categorical
 
 If we input one categorical variable, `qplot` will produce a bar graph showing counts for each category.
 
-#### Bar Graph
+##### Bar Graph
 
 ```{r}
 qplot(x=Scenario, data=MyData)
 ```
 
-## Two continuous
+### Two continuous
 
 If we input two continuous variables, we get the classic bivariate plot a.k.a. scatterplot.
 
-#### Bivariate plot
+##### Bivariate plot
 
 ```{r}
 qplot(x=Silene, y=Total, data=MyData)
 ```
 
-## Two categorical
+### Two categorical
 
 Plotting two categorical variables just plots overlapping dots, and it's not so useful except if you want to check for representation of particular variables.
 
@@ -164,11 +160,11 @@ qplot(x=Nutrients, y=Scenario, data=MyData)
 
 In this case we can see that there is only one type of "Low" Nutrient treatment, but 4 types of "High" treatments. In other words, all of the rows with "Low" nutrient treatment also have the "Low" scenario, and NONE of the rows with "Low" in the scenario column have "Low" in the Nutrients column.
 
-## Categorical by continuous
+### Categorical by continuous
 
 If we input a combination of categorical and continuous variables, we see get a categorical scatterplot showing the spread of points along the Y or X axis.
 
-#### Categorical scatter plots
+##### Categorical scatter plots
 
 ```{r}
 qplot(x=Nutrients, y=Total, data=MyData)
@@ -184,11 +180,11 @@ Of course, you might also want to make a few quick tweaks to the look of the gra
 
 <br>
 
-# Basic customization
+## Basic customization
 
 There are a number of parameters available with `qplot()` to quickly customize a few of the basic features of your graphs. Most of these will work with `ggplot()` as well, though the syntax or context is a bit different in some cases. Refer back to these when you work through the [ggplot Tutorial](https://colauttilab.github.io/RCrashCourse/3_ggplot.html).
 
-## `binwidth`
+### `binwidth`
 
 Use this with the histogram graph to alter the size of the 'bins' along the x-axis.
 
@@ -197,7 +193,7 @@ qplot(x=Total, data=MyData, binwidth=9)
 qplot(x=Total, data=MyData, binwidth=0.5)
 ```
 
-## `size`
+### `size`
 
 This controls the size of points (usually) or sometimes lines, depending on the context.
 
@@ -220,7 +216,7 @@ You can see in the legend how the point size scales with the column called *Tota
 
 On the other hand, the identify function `I()` tells R: *I want to use this exact point size*.
 
-## `colour` or `color`
+### `colour` or `color`
 
 Another nice feature of `qplot` and `ggplot` is that you can use different spelling. You can use colour or color to colour add colour to your graphs.
 
@@ -238,7 +234,7 @@ qplot(x=Silene, y=Total, data=MyData, colour=I("purple")) # basic colour
 qplot(x=Silene, y=Total, data=MyData, colour=I(rgb(1,0,0))) # rgb = red/green/blue
 ```
 
-### Histogram
+#### Histogram
 
 Note what happens when we use the `colour` parameter for a histrogram
 
@@ -248,7 +244,7 @@ qplot(x=Total, data=MyData, group=Nutrients, colour=Nutrients)
 
 The coloured outlines might be useful but we usually will want the inside coloured.
 
-## `fill`
+### `fill`
 
 This parameter is used for boxes and other shapes that have a separate outline (`colour=`) and interior (`fill=`). 
 
@@ -256,7 +252,7 @@ This parameter is used for boxes and other shapes that have a separate outline (
 qplot(x=Total, data=MyData, group=Nutrients, fill=Nutrients)
 ```
 
-## `posit`
+### `posit`
 
 Use this to adjust the position, usually for histograms or bar graphs. For example, if we want to compare histograms on the same graph:
 
@@ -270,7 +266,7 @@ It's hard to interpret that graph, so we can shift the position using `"dodge"`.
 qplot(x=Total, data=MyData, group=Nutrients, fill=Nutrients, posit="dodge")
 ```
 
-## `alpha`
+### `alpha`
 
 Think of `alpha` as a measure of opacity, ranging from 0 to 1 with 1 being the default, solid point or line and 0 being invisible.
 
@@ -280,7 +276,7 @@ This is particularly useful for visualizing overlapping points.
 qplot(x=Silene,y=Total,data=MyData,size=I(5),alpha=I(0.3))
 ```
 
-## `shape`
+### `shape`
 
 You can also change the shape of your points, again using a column of data or the identity `I()` function.
 
@@ -318,7 +314,7 @@ You can use `fill` and `colour` to customize these separately.
 qplot(x=Silene,y=Total,data=MyData,size=I(5),shape=I(21),fill=I("yellow"),colour=I("red"))
 ```
 
-## `lab`, `xlab`, and `ylab`
+### `lab`, `xlab`, and `ylab`
 
 Use these to customize your axis labels.
 
@@ -327,7 +323,7 @@ qplot(x=Silene, y=Total, data=MyData,
       xlab="Silene Biomass",ylab="Total Biomass")
 ```
 
-## `main`
+### `main`
 
 This will add a title to your plot. Usually you wouldn't use this for a figure intended for publication, but this can be useful for reports, websites, presentations, supplementary material, appendices, etc.
 
@@ -341,13 +337,13 @@ qplot(x=Silene,y=Total,data=MyData,main="Biomass")
 
 <br>
 
-# Themes and Geoms
+## Themes and Geoms
 
 Themes determine the look and 'feel' of your graphs, while Geoms determine the geometry -- how your data are physically mapped to the graphing space. In both `qplot` and `ggplot`, themes are added with a separate function linked to the graph by using the plus sign `+`. Geoms are defined by the `geom=` paremeter inside the `qplot()` function or with a specific `geom_FUNCTION()` linked to the main `ggplot()` function by using the plus sign.
 
 These are easy to understand with a few examples.
 
-## `+ theme_NAME()`
+### `+ theme_NAME()`
 
 There are a number of available themes, defined by changing the *NAME* part. 
 
@@ -398,7 +394,7 @@ qplot(x=Silene,data=MyData) + theme_pub() # A clean format with bigger axis labe
 qplot(x=Pct_Fallopia,y=Silene,data=MyData) + theme_pub() # Bivariate plot
 ```
 
-## `theme_set`
+### `theme_set`
 
 If you want to use the same theme throughout your code, you can use this funciton.
 
@@ -407,7 +403,7 @@ theme_set(theme_pub())
 qplot(x=Silene,data=MyData) 
 ```
 
-## `geom`
+### `geom`
 
 In addition to the default genomes that `qplot` uses for different data types, there are some other options available.
 
@@ -447,11 +443,11 @@ https://ggplot2.tidyverse.org/reference/
 
 <br>
 
-# Multiple graphs
+## Multiple graphs
 
 It is often handy to plot separate graphs for different categories of a grouping variable. This can be done with `facets` in `qplot`.
 
-## `facets`
+### `facets`
 
 Facets have the general form `VERTICAL ~ HORIZONTAL`. Use the period `.` to indicate 'all data' r 'do not separate my data'.
 
@@ -467,7 +463,7 @@ qplot(x=Silene,data=MyData,facets=Taxon~Nutrients) # Both (2 column stacking)
 
 <br>
 
-# Save output
+## Save output
 
 Saving your graphs to an external file requires three important steps: 
 
@@ -489,7 +485,7 @@ dev.off() # 3. Close the file
 
 Note how the qplot command does not open in the plots window when you run this. This is because the info is sent to *SileneHist.pdf* file instead of the graphing area in your R console (e.g. *plots* tab in R Studio)
 
-# Practice
+## Practice
 
 Graphing may seem slow and tedious at first, but the more you practice, the faster you will be able to produce meaningful visualizations. 
 

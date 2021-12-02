@@ -4,6 +4,8 @@ author: "Robert I. Colautti"
 date: "`r Sys.Date()`"
 documentclass: book
 description: "A Crash Course in R for Biologists"
+editor_options: 
+  chunk_output_type: console
 ---
 
 # Preface {-}
@@ -57,6 +59,15 @@ https://cran.r-project.org/
 And then install the latest version of RStudio:
 https://rstudio.com/products/rstudio/download/#download
 
+Finally, make sure you are connected to the internet, then open RStudio and locate the 'console' tab. Then install some additional packages
+
+> WARNING! This may take a long time to run
+
+Make sure you are able to leave your computer to update for up to an hour before doing this. To install the packages, type this into your console:
+
+```{r, eval=F}
+install.packages("tidyverse")
+```
 
 
 

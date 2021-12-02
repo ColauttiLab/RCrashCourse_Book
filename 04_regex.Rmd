@@ -1,8 +1,6 @@
----
-title: Regular Expressions
----
+# Regular Expressions
 
-# Overview
+## Overview
 
 **Regular Expressions**, also known as **regex** and **regexp** is a syntax that allows for coders to run complex find-and-replace functions. I didn't learn regular expressions until I was a postdoc working at Duke University, but I wish I had learned this a lot earlier! This remains one of the most useful programming tools I have ever used. It is absolutely essential for working with any kind of large text files or large datasets.
 
@@ -14,15 +12,15 @@ Often when you work with large datasets, you will need to automate some of your 
 
 One final example, is pattern searching. This is common for the analysis of DNA, proteins or other large strings of data. You may want to find a particular sequence of data, possibly with a few variable sites: e.g. TCTA or TCAA or TCGA. This is another area where regular expressions can help.
 
-## Universal
+### Universal
 
 Regular expressions are a universal language that extends to many other programming languages, including **C/C#/C++**, **Python**, **Unix/Linux**, and **Perl**. We focus here on R but most of the syntax is mantained across programming languages.
 
-## WARNING
+> WARNING!
 
-There is a steep learning curve here, and the only way to really learn this is to drown yourself in examples. There are lots of exercises you can do for practice online. You should also try to apply these whenever you can.
+There is a very steep learning curve here, and the only way to really learn this is to drown yourself in examples. There are lots of exercises you can do for practice online. You should also try to apply these whenever you can.
 
-# Functions
+## Functions
 
 There are four main functions that use regular expressions in R. 
 
@@ -48,7 +46,7 @@ There are two other more advanced functions in R. These aren't covered in this t
 
 `gregexpr()` provides more detailed results about all matches
 
-# Examples
+### Examples
 
 Some examples can help to understand the differences among the four main functions. Let's start with a simple data frame of species names.
 
@@ -57,7 +55,7 @@ Species<-c("petiolata", "verticillatus", "salicaria", "minor")
 print(Species)
 ```
 
-## `grep()` 
+### `grep()` 
 
 This returns cell addresses matching query. Note the vector length compared to the input vector.
 
@@ -65,7 +63,7 @@ This returns cell addresses matching query. Note the vector length compared to t
 grep("a",Species)
 ```
 
-## `grepl()` 
+### `grepl()` 
 
 This returns a vector of `TRUE` (match) and `FALSE` (no match). Comapre this output with `grep()`.
 
@@ -73,7 +71,7 @@ This returns a vector of `TRUE` (match) and `FALSE` (no match). Comapre this out
 grepl("a",Species)
 ```
 
-## `sub()` 
+### `sub()` 
 
 This replaces the first match (in each cell)
 
@@ -81,7 +79,7 @@ This replaces the first match (in each cell)
 sub("l","L",Species)
 ```
 
-## `gsub()`  
+### `gsub()`  
 
 This replaces all matches (in each cell). Compere this output to `sub()`.
 
@@ -90,19 +88,19 @@ gsub("l","L",Species)
 ```
 
 
-# Wildcards
+## Wildcards
 
-## `\` escape character
+### `\` escape character
 
 The backslash is a special character. It's called the 'escape' character because it is used to 'escapes' the interpretation of the next character that occurs after it. This is easier to understand by example, as shown below.
 
-## `\\` in R
+### `\\` in R
 
 In the introduction, we discussed the universality of **regular expressions** in the sense that a similar syntax is used by many different programming langagues. But now here is one exception. In R, the double-escape is usually needed, whereas other programming languages typically use just one. The reason is a bit meta -- it's because we are running regular expressions within R object. So the first `\` is used to escape special characters in R, applying it to the second `\`, which is itself the special character that needs to be escaped to pass through the function. The second slash is followed by the 'escaped' character. Some examples are provided below.
 
 If that isn't clear. Just remember that you need two backslashes instead of one.
 
-## `\\w`
+### `\\w`
 
 Instead of finding the letter `w`, the `\\w` is a **wildcard** character that represents any letter or digits.
 
@@ -111,7 +109,7 @@ gsub("w","X","...which 1-100 words get replaced?")
 gsub("\\w","X","...which 1-100 words get replaced?")
 ```
 
-## `\\W` 
+### `\\W` 
 
 This is the inverse of `\\w` find a character that is NOT a letter or number.
 
@@ -119,7 +117,7 @@ This is the inverse of `\\w` find a character that is NOT a letter or number.
 gsub("\\W","X","...which 1-100  words get replaced?")
 ```
 
-## `\\s`
+### `\\s`
 
 This represents a space
 
@@ -127,7 +125,7 @@ This represents a space
 gsub("\\s","X","...which 1-100  words get replaced?")
 ```
 
-## `\\t` 
+### `\\t` 
 
 This is a tab character. A lot of data files stored as text are tab-delimited (.tsv) as well as comma-delimited (.csv)
 
@@ -135,7 +133,7 @@ This is a tab character. A lot of data files stored as text are tab-delimited (.
 gsub("\\t","X","...which 1-100  words get replaced?")
 ```
 
-## `\\d` 
+### `\\d` 
 
 Digit characters
 
@@ -143,7 +141,7 @@ Digit characters
 gsub("\\d","X","...which 1-100  words get replaced?")
 ```
 
-## `\\D` 
+### `\\D` 
 
 Non-digit characters
 
@@ -151,19 +149,19 @@ Non-digit characters
 gsub("\\D","X","...which 1-100  words get replaced?")
 ```
 
-# New Lines
+## New Lines
 
 There are two special characters that indicate new lines in a text file. 
 
-## `\\r`
+### `\\r`
 
 This is the 'carriage return' special character
 
-## `\\n` 
+### `\\n` 
 
 This is the 'newline' special character
 
-## Big Problem
+### Big Problem
 
 One or two of these is/are generated when you press the 'enter' key while writing a text file. These also add a source of headache and confusion when working with text files because:
 
@@ -176,13 +174,13 @@ Windows/DOS files -- lines usually end with `\\r\\n`
 This can cause problems when moving text files between Windows/DOS and Mac/Unix machines, particularly with older operating systems or when working on remote computers that use very basic Linux software.
 
 
-# Special characters
+## Special characters
 
 In addition to special characters that use the escape `\\`, there are a number of other special characters that don't use the escape, but have a special meaning.
 
 Note that if you want to search for the characters below you would have to use the escape character. E.g. `\\.` if you wanted to search for a period `.`.
 
-## `|`
+### `|`
 
 This is sometimes called the **pipe** character, and it simply means 'or'. For example, we can search for `w or e`.
 
@@ -190,7 +188,7 @@ This is sometimes called the **pipe** character, and it simply means 'or'. For e
 gsub("w|e","X","...which 1-100  words get replaced?")
 ```
 
-## `.` 
+### `.` 
 
 This means any character except new line. This includes all of the `\\w` characters but also other characters like puncutation marks.
 
@@ -204,7 +202,7 @@ So how to search for a period `.`? As noted above, we have to use the escape cha
 gsub("\\.","X","...which 1-100  words get replaced?")
 ```
 
-## `*`, `?`, `+`, `{}` 
+### `*`, `?`, `+`, `{}` 
 
 These special characters refer to details about the kind of search that we are trying to conduct. Look at these examples carefully, and remember that `sub` replaces the first match while `gsub` replaces all of the matches.
 
@@ -215,7 +213,7 @@ gsub("\\w","X","...which 1-100 words get replaced?")
 
 Now let's apply some of these special characters to see how they work.
 
-### `+`
+#### `+`
 
 Finds 1 or more matches
 
@@ -233,7 +231,7 @@ Compare this match to the one above. Notice how we have replaced groups of lette
 
 When run in the `sub` command, it does the above and then stops. When run with the `gsub` command, it continues to the next character, and then starts over.
 
-## `*` 
+### `*` 
 
 This is a 'greedy' search (match the largest possible)
 
@@ -245,7 +243,7 @@ gsub("\\w*","X","...which 1-100 words get replaced?")
 In the `sub` command, it detects a `.` as the first character, indicating no match. It replaces the 'null' or `0` match at the beginning, which has the effect of adding a character. In the `gsub` command it repeats this before each `.` until it finds the letter `w`. Then it finds a group of `\\w` matches, replacing with a single star. Then a space, which is skipped, then a `-`, which is another null match, prompting another insert.
 
 
-## `?` 
+### `?` 
 
 This means 'match zero or one time'
 
@@ -255,7 +253,7 @@ gsub("\\w?","X","...which 1-100 words get replaced?")
 ```
 Compare this to the `*` above. It behaves in a similar way, except it is not 'greedy' -- in the second example, each letter is replaced instead of entire words.
 
-##  `+?` 
+###  `+?` 
 
 This is the 'lazy' version of `+` -- note in particular the difference in `sub` which replaces on the the first letter here but the whole word when `+` is used alone. In the `gsub` example we end up replacing every letter instead of whole words. Remember, `sub` runs the algorithm once and then stops, while `gsub` repeats until it reaches the end of the line.
 
@@ -264,7 +262,7 @@ sub("\\w+?","X","...which 1-100 words get replaced?")
 gsub("\\w+?","X","...which 1-100 words get replaced?")
 ```
 
-## `*?`
+### `*?`
 
 Similarly, we can combine these characters for the 'lazy' version of `*`
 
@@ -275,11 +273,11 @@ gsub("\\w*?","X","...which 1-100 words get replaced?")
 
 > Try using `+*`. Why do you get an error message? 
 
-## `{}`
+### `{}`
 
 Curly brackets are used to specify a number of matches, expanding on the options even futher.
 
-## `{n,m}` 
+### `{n,m}` 
 
 Find between $n$ to $m$ matches
 
@@ -287,7 +285,7 @@ Find between $n$ to $m$ matches
 gsub("\\w{3,4}","X","...which 1-100 words get replaced?")
 ```
 
-## `{n}` 
+### `{n}` 
 
 Find exactly $n$ matches
 
@@ -295,7 +293,7 @@ Find exactly $n$ matches
 gsub("\\w{3}","X","...which 1-100 words get replaced?")
 ```
 
-## `{n,}`
+### `{n,}`
 
 Fomd $n$ or more matches
 
@@ -303,7 +301,7 @@ Fomd $n$ or more matches
 gsub("\\w{4,}","X","...which 1-100 words get replaced?")
 ```
 
-## {}?
+### {}?
 
 As above, we cau use `?` for the 'lazy' versions of these searches
 
@@ -312,7 +310,7 @@ gsub("\\w{4,}?","X","...which 1-100 words get replaced?")
 ```
 
 
-# `[]`
+## `[]`
 
 Square brackets allow us to find 'any' of the values listed within them. We can also use the dash `-` to specify a range of numbers or letters.
 
@@ -328,11 +326,11 @@ What if we want to find 1 or more of these characters in a row?
 gsub("[aceihw-z]+","X","...which 1-100 words get replaced?")
 ```
 
-# `^` and `$`
+## `^` and `$`
 
 Use these characters to specify searches at the start `^` or end `$` of the input string.
 
-## `^`
+### `^`
 
 Find species starting with the letter *s*
 
@@ -354,7 +352,7 @@ Replace every letter except *s*
 gsub("[^a]","X",Species)
 ```
 
-## `$`
+### `$`
 
 Find species ending with *a*
 
@@ -363,7 +361,7 @@ grep("a$",Species)
 ```
 
 
-# `()`
+## `()`
 
 Regular parentheses are used to 'capture' text, which can then be specified in the replacement string using `\\1`. Or you can capture multiple pieces of text and reorganize them by using the corresponding number -- `\\1` for the first set of`()`, `\\2` for the second set of `()`, etc. Some examples should help. 
 
@@ -385,7 +383,7 @@ Reverse first two letters of each word
 gsub("(\\w)(\\w)(\\w+)","\\2\\1\\3","...which 1-100 words get replaced?")
 ```
 
-# Scraping
+## Scraping
 
 Scraping is a method for collecting data from online sources. In R, we can use the functions `readLines` and `curl()`, both from the `curl` library, to 'scrape' data from websites. Websites with the `.html` extension are a special kind of text file. 
 
@@ -442,11 +440,11 @@ AAchain<-gsub("ATOM\\s+\\w+\\s+\\w+\\s+(\\w+).*","\\1",AAseq)
 AAchain[1:100]
 ```
 
-# Examples 
+## Examples 
 
 Let's try practicing with a couple of examples
 
-## Transect Data
+### Transect Data
 
 Regular expressions are also useful with data objects
 
@@ -459,7 +457,7 @@ head(Transect)
 
 > TIP: the object `letters` contains lower-case letter, while `LETTERS` contains upper case.
 
-### Challenge 
+#### Challenge 
 
 Use your knowledged gained above with substting data outlined in the [R Fundamentals Tutorial](https://colauttilab.github.io/RCrashCourse/1_fundamentals.html) to do the following:
 
@@ -471,7 +469,7 @@ Take the time to do this on your own. It will take you a while and you will make
 Now here is a more challenging example:
 
 
-## Genbank
+### Genbank
 
 ```{r}
 Lythrum_18S<-scan("https://colauttilab.github.io/RCrashCourse/sequence.gb",what="character",sep="\n")
@@ -485,7 +483,7 @@ print(Lythrum_18S)
 
 Notice that each line is read in as a separate cell in a vector, with sequences beginning with a number ending with 1. We can take advantage of this to extract just the sequence data
 
-### Challenge
+#### Challenge
 
 **Before proceeding** try to do the following:
 
@@ -504,9 +502,9 @@ Take the time to stuggle with this and try different combinations until you find
 A cool thing about regular expressions is that there is rarely a single right answer, especially for complicated problems. When you are ready, Continue on to see one possible solution.
 
 
-# Solutions
+## Solutions
 
-## Transects
+### Transects
 
 Imagine you have a repeated measures design. 3 transects (A-C) and 3 positions along each transect (1-3)
 
@@ -527,7 +525,7 @@ Subset the data for species "D"
 Transect[grep("1",names(Transect)),]
 ```
 
-## Genbank
+### Genbank
 
 Use `.*` with `()` to delete everything before the DNA sequence
 
@@ -570,11 +568,11 @@ gsub("(TAA|TAG|TGA)","\\1>--STOP--|",Seq)
 ```
 
 
-# More Exercises
+## More Exercises
 
 Here are some more exercises to practice your skils. No solutions are given for these, you will have to solve them on your own. Note that they may find their way onto a test, assignment or quiz.
 
-## 1. Consider a vector of email addresses scraped from the internet:
+### 1. Consider a vector of email addresses scraped from the internet:
 
   * robert 'dot' colautti 'at' queensu 'dot' ca
   * chris.eckert[at]queensu.ca
@@ -582,7 +580,7 @@ Here are some more exercises to practice your skils. No solutions are given for 
 
 Use regular expressions to convert all email addresses to the standard format: name@queensu.ca
 
-## 2. Create a random sequence of DNA:
+### 2. Create a random sequence of DNA:
 
 ```{r,results="hide"}
 My.Seq<-sample(c("A","T","G","C"),1000,replace=T)
@@ -593,11 +591,11 @@ My.Seq<-sample(c("A","T","G","C"),1000,replace=T)
     * Find all open reading frames (hint: consider each sequence beginning with AUG and ending with a stop codon; how do you know if both sequences are in the same reading frame?)
     * Count the length of bp for all open reading frames
 
-## 3. More online examples
+### 3. More online examples
 
 [http://regex.sketchengine.co.uk/extra_regexps.html](http://regex.sketchengine.co.uk/extra_regexps.html)
 
-## 4. Regex Golf
+### 4. Regex Golf
 
 Have fun! [LINK](https://alf.nu/RegexGolf)
 

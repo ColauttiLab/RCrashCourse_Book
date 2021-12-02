@@ -1,12 +1,10 @@
----
-title: Data Science Intro
----
+# Data Science Intro
 
-# Setup
+## Setup
 
 If you don't have it installed, then run `install.packages("dplyr")` -- it can take a while to download and install.
 
-# Introduction to Data Science
+## Introduction to Data Science
 
 Data Science is a relatively new field of study that merges **computer science** and **statistics** to answer questions in other domains  (e.g. business, medicine, biology, psychology). Data Science as a discipline has grown in popularity in response to the rapid rate of increase in data collection and publication. 
 
@@ -23,7 +21,7 @@ Medical records, remote sensing data (e.g. climate stations, satellite images), 
 
 In biology, it can be helpful to think of Data Science as a continuous life-cycle with multiple stages:
 
-## Data Science Life-Cycle
+### Data Science Life-Cycle
 
   1. **Hypothesize** -- Make initial observations of about the natural world, or insights from other data, that lead to testable hypotheses. Your core biology training is crucial here.
   2. **Collect** -- This may involve taking measurements yourself, manually entering data that is not yet in electronic format, requesting data from authors of published studies, or importing data from online sources. Collecting data is a crucial step that is often done poorly. Some tips on this are provided in a [paper by Wu et al](https://www.biorxiv.org/content/early/2018/10/30/457051)
@@ -37,7 +35,7 @@ In this tutorial, we focus mainly on coding in R for steps 2, 3, and 6. Step 5 r
 
 Data collection and management are crucial steps in the Data Science Life-Cycle. Read the paper by [Wu et al](https://www.biorxiv.org/content/early/2018/10/30/457051). called *baRcodeR with PyTrackDat: Open-source labelling and tracking of biological samples for repeatable science.* Pay particular attention to the '*Data Standards*' section. The *baRcodeR* and *PyTrackDat* programs and their application to current projects may also be of interest.
 
-## Data Science in R
+### Data Science in R
 
 The book [R for Data Science](http://shop.oreilly.com/product/0636920034407.do) by Hadley Wickham & Garrett Grolemund is an excellent resource using R in Data Science projects. 
 
@@ -45,7 +43,7 @@ The book [R for Data Science](http://shop.oreilly.com/product/0636920034407.do) 
 
 Here we'll be focusing on the `dplyr` packages from Wickham et al.
 
-# 2D Data Wrangling
+## 2D Data Wrangling
 
 The `dplyr` library in R has many useful features for importing and reorganizing your data for steps 2, 3 and 4 in the Data Science Life-Cycle outlined above. Don't forget to install the `dplyr` library and load it into memory.
 
@@ -70,7 +68,7 @@ This file is an example of a 2-dimensional data set, which is common in biology.
 
 Making sure your data are arranged this way will usually make it much easier to work with.
 
-## `filter()` 
+### `filter()` 
 
 Let's subset observations based on value
 
@@ -79,7 +77,7 @@ Pot1<-filter(Fallo,PotNum==1)
 head(Pot1)
 ```
 
-## `rename()`
+### `rename()`
 
 It's possible to change the names of columns in your data. In base R you can use the `names()` function with the square bracket index `[]`:
 
@@ -97,7 +95,7 @@ names(X)
 
 There is also a simple `dplyr` function to do this:
 
-## `arrange()` 
+### `arrange()` 
 
 Use the `arrange()` function to sort the *rows* of your data based on the *columns* of your data. For example, let's re-arrange our FallopiaData.csv dataset based on Taxon (a string denoting the species of Fallopia used) and Total (a float denoting the total biomass in each pot).
 
@@ -113,7 +111,7 @@ X<-arrange(Fallo, Taxon, desc(Total))
 head(X)
 ```
 
-## `select()` 
+### `select()` 
 
 The `select()` function can be used to select a subset of columns (i.e. variables) from your data.
 
@@ -153,7 +151,7 @@ X<-select(Fallo, -(PotNum:Taxon), Total)
 head(X)
 ```
 
-## `everything()`
+### `everything()`
 
 Use the `everything()` function with `select()` to rearrange your columns without losing any:
 
@@ -162,7 +160,7 @@ X<-select(Fallo, Taxon, Scenario, Nutrients, PotNum, Pct_Fallopia, everything())
 head(X)
 ```
 
-## `mutate()`
+### `mutate()`
 
 Suppose we want to make a new column (variable) to our data.frame object (dataset) that is the sum of biomass of Urtica and Geranium only. In base R you would use `$`:
 
@@ -184,7 +182,7 @@ This is a lot more readable, especially when you have complicated equations or y
 
 Which functions did you use?
 
-## `transmute()`
+### `transmute()`
 
 You can also use `transmute()` instead of `mutate()` + `select()`
 
@@ -193,7 +191,7 @@ X<-transmute(Fallo, UrtSil = Urtica + Silene)
 head(X)
 ```
 
-## `summarize()` + `group_by()`
+### `summarize()` + `group_by()`
 
 This can be useful for quickly summarizing your data, for example to find the mean or standard deviation based on a particular treatment or group.
 
@@ -202,7 +200,7 @@ TrtGrp<-group_by(Fallo,Taxon,Scenario,Nutrients)
 summarize(TrtGrp, Mean=mean(Total), SD=sd(Total))
 ```
 
-## Weighted Mean
+### Weighted Mean
 
 In our dataset, the **Taxon** column shows which of two species of *Fallopia* were used in the competition experiments. We might want to take the mean total biomass for each of the two *Fallopia* species:
 
@@ -241,7 +239,7 @@ Y3<-summarize(X3, Mean=mean(Mean))
 arrange(Y3,desc(Mean))
 ```
 
-## `%>%` (pipe)
+### `%>%` (pipe)
 
 The combination `%>%` is called 'pipe' for short. Be careful though -- in Unix, 'pipe' is slightly different and uses the vertical line (often shift-backslash): `|`
 
@@ -284,11 +282,11 @@ In both cases we get an error, but in one case we still calculate the means and 
 > A bug that produces no output is much less dangerous than an error that gives an output. Why?
 
 
-# Missing Data
+## Missing Data
 
 So far we have worked on a pristine data set that has already been edited for errors. More often datasets will contain missing values.
 
-## `NA` and `na.rm()`
+### `NA` and `na.rm()`
 
 The R language uses a special object `NA` to denote missing data. 
 
@@ -309,7 +307,7 @@ This is by design, because it is not always clear what NA means. Many functions 
 mean(Vec, na.rm=T)
 ```
 
-## `NA` vs `0`
+### `NA` vs `0`
 
 A common mistake students make is to put 0 for missing data. This can be a big problem when analyzing the data since the calculations are very different.
 
@@ -320,7 +318,7 @@ Vec2<-c(1,2,3,0,5,6,7)
 mean(Vec2, na.rm=T)
 ```
 
-## `is.na()`
+### `is.na()`
 
 In large datasets you might want to check for missing values. Let's simulate this in our *FallopiaData.csv* dataset. 
 
@@ -355,7 +353,7 @@ sum(is.na(Fallo$Total))
 
 This takes advantage of the fact that the boolean TRUE/FALSE variable is equivalent to the binary 1/0 values.
 
-# Naughty Data
+## Naughty Data
 
 Naughty data contain the same information as a standard row x column (i.e. 2-dimensional) dataset but break the rules outlined above:
 

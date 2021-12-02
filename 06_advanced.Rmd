@@ -1,8 +1,12 @@
----
-title: Advanced R
----
+# Advanced R
 
-# Getting Started
+## Introduction
+
+By now you have mastered the fundamentals of base R, visualizations, and data science! 
+
+In this tutorial, we will cover some a few of the more advanced but extremely useful topics.
+
+## Getting Started
 
 Before beginning this tutorial, make sure you have installed these packages:
 
@@ -12,7 +16,7 @@ install.packages('dplyr')
 install.packages('knitr')
 ```
 
-# R Markdown
+## R Markdown
 
 R Markdown is a powerful format for quickly making high-quality reports of your analysis. You can embed code and all kinds of output, including graphs, and output them to a Word Document, PDF or website. In fact, all of our tutorial webpages are written in R Markdown, including this one!
 
@@ -21,14 +25,14 @@ Here we'll cover just the basics, but a complete guide to R Markdown is availabl
   * [Main Colautti Lab Resources Website](https://colauttilab.github.io/) and [GitHub Repository](https://github.com/ColauttiLab/ColauttiLab.github.io)
   * [R Tutorials](https://colauttilab.github.io/RCrashCourse/1_fundamentals.html) and [GitHub Repository](https://github.com/ColauttiLab/RCrashCourse)
 
-## Cheat Sheet
+### Cheat Sheet
 
 There is a very [handy 2-page 'cheat sheet'](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) that you can print out to help you remember some of the main commands. I use R Markdown for all kinds of documents -- including course tutorials like this one -- so I have the 2-page cheat sheet printed out and taped to my wall next to my computer.
 
 You can also access cheat sheets for R Markdown and several others R Studio also includes a number of cheat sheets under the *Help* menu: `Help -> Cheatsheets`
 
 
-## Create
+### Create
 
 In RStudio: `File-> New-> R Markdown`
 
@@ -40,7 +44,7 @@ Then click `OK`
 
 Very few elements are needed for a basic markdown file, and these are provided when you create a new file.
 
-## YAML Header 
+### YAML Header 
 
 This is generated automatically when you make a new .Rmd file in RStudio. Depending on what options you choose, it might look something like this:
 
@@ -55,21 +59,21 @@ output: html_document
 
 There are other options available for YAML, and you can includes a separate `_output.yml` to set other aspects of the layoug.
 
-## Markdown
+### Markdown
 
 R Markdown is based on the [markdown language](https://en.wikipedia.org/wiki/Markdown), which was created as a quick and easy way to encode formatted websites in a simple text document.
 
 R Markdown has a few additions, including the ability to easily incorporate R code, graphs, and equations.
 
-## Basic elements:
+### Basic elements:
 
-### Plain text
+#### Plain text
 
 Plain text is converted into paragraph format. 
 
 To start a new paragraph, press *enter* twice, so to skip a line in the .Rmd file.
 
-### Formatted text
+#### Formatted text
 
 You can format text with `*` or `_`
 
@@ -81,7 +85,7 @@ Use greater-than sign for block quotes, eg. `> TIP: quote`
 
 > TIP: quote
 
-## Headers
+### Headers
 
 Add headers with up to 6x `#` -- more headers = subheadings:
 
@@ -93,7 +97,7 @@ Add headers with up to 6x `#` -- more headers = subheadings:
 
 <h4> `#### Sub-Sub-Sub Header = Header 4` </h4>
 
-## Other Elements
+### Other Elements
 
 `superscript^2` superscript^2
 
@@ -101,7 +105,7 @@ Add headers with up to 6x `#` -- more headers = subheadings:
 
 `---` for long --- dash: ---
 
-## Links
+### Links
 
 Links have a special format. The text you want the user to see goes in square brackets, followed immediately by the file or html link in regular brackets, with no space in between: 
 
@@ -115,7 +119,7 @@ You can also use this to link a file in the same project folder:
 
 [Linked jpeg file](./ColauttiLabLogo.png)
 
-## Images
+### Images
 
 Or you can embed the image directly by adding an exclamation point. You can leave the linked text blank or keep it to use as a caption.
 
@@ -123,7 +127,7 @@ Or you can embed the image directly by adding an exclamation point. You can leav
 
 ![Linked jpeg file](./ColauttiLabLogo.png)
 
-## Lists and tables
+### Lists and tables
 
 Lists are easy to create, simply start a line with `*` or `+` for _unordered_ lists or a number for _ordered_ lists. Add tab characters for sub-lists:
 
@@ -195,7 +199,7 @@ Date  | Length  | Width
 10/09/09 | 15 | 29
 11/09/09 | 16 | 31
 
-## Embed R Code
+### Embed R Code
 
 Embed R code inline using the back-tick \` character: `embedded code`
 
@@ -212,7 +216,7 @@ You can add larger blocks of code (multiple lines) using three back ticks \`  an
 
 `Ctl-Alt-i` is a nice shortcut in R Studio for adding code chunks quickly
 
-### Code Chunk Names
+#### Code Chunk Names
 
 You can name your code chunks, which becomes useful when making custom packages or other knitr uses. The name is added after the `r` separated only by spaces. The name cannot contain spaces. E.g. ````{r code-chunk-name, eval=F}`
 
@@ -221,7 +225,7 @@ You can name your code chunks, which becomes useful when making custom packages 
 ```
 
 
-### Suppress code
+#### Suppress code
 
 You can use different options for your R code chunks, as shown on the cheatsheet. Three main ones are:
 
@@ -229,7 +233,7 @@ You can use different options for your R code chunks, as shown on the cheatsheet
   * `include=F` -- run the code but don't show it and and don't produce any output, plots, messages or warnings.
   * `echo=F` -- don't show the code but run it and include any output, plots, messages and warnings.
 
-## Dynamic tables
+### Dynamic tables
 
 Making tables from data is a bit more complicated. For example, if we wanted to summarize the `FallopiaData.csv` data, we could read in the file and then summarize with dplyr as we did in the [Data Science Tutorial](5_datascience.html):
 
@@ -254,7 +258,7 @@ kable(SumTable, caption = "Summary Table")
 ```
 
 
-## Embed Graphs
+### Embed Graphs
 
 Use R code to embed graphs.
 
@@ -267,7 +271,7 @@ qplot(rnorm(100))
 ```
 
 
-## Options for header
+### Options for header
 
 ```{r eval=FALSE}
 output:
@@ -278,7 +282,7 @@ output:
       collapsed: false # Expand subsections
 ```
 
-## Content as tabs
+### Content as tabs
 
 ```{r eval=FALSE}
 ## Quarterly Results {.tabset}
@@ -294,18 +298,18 @@ output:
 
 Looks like this:
 
-## Quarterly Results {.tabset}
+### Quarterly Results {.tabset}
 
-### By Product
+#### By Product
 
 (Product tab content)
 
-### By Region
+#### By Region
 
 (Region tab content)
 
 
-## Equations
+### Equations
 
 Insert equations using LaTeX. Here is a handy [cheat sheet](./latexsheet.pdf)
 
@@ -335,17 +339,19 @@ Notice the use of special characters with the backslash `\`, along with subscrip
 
 ***
 
-# Custom Functions
+## Custom Functions
 
-## General form:
+### General form:
 ```{r,eval=FALSE}
 functionName<-function(var1=Default1,var2=Default2){
   ## Meat and potatoes script
 }
 ```
 
-## Example function
+### Example function
+
 User inputs two objects; the function outputs a list of functions applied to the inputs
+
 ```{r}
 my.function<-function(var1=0,var2=0){
   # You can make new variables within a function
@@ -359,15 +365,18 @@ my.function<-function(var1=0,var2=0){
   return(outlist)
 }
 ```
+
 Note: Nothing output when the funciton is run. This just loads the function into memory.
 
-### Run the function
+#### Run the function
+
 ```{r}
 my.function(var1=10,var2=0.1)
 my.function(var1=c(1:10),var2=c(10:1))
 ```
 
-#### Protip #1:
+> Protip #1:
+
 Consider annotating long or complex script with `cat()` to help with troubleshooting. The `cat` function is similar to `print` but lets you print directly to screen rather than passing through a data object. Note that `\n` is a 'new line` character; try removing them and compare the output.
 
 ```{r}
@@ -401,7 +410,8 @@ my.function<-function(var1=0,var2=0,verbose=FALSE){
 my.function(var1=10,var2=0.1)
 ```
 
-#### Better yet, make it an option:
+> Better yet, make it an option:
+
 ```{r}
 my.function<-function(var1=0,var2=0,verbose=FALSE){
   if (verbose==T){
@@ -445,18 +455,20 @@ my.function(var1=10,var2=0.1,verbose=TRUE)
 ```
 
 
-#### Protip #2:
+> Protip #2:
+
 If you have a custom function, theme, script, etc., that you use repeatedly:
 
   1. Save in a separate file
-  
-  * e.g. make new "myfunction.R" file containing just my.function
+
+    * e.g. make new "myfunction.R" file containing just my.function
   
   2. Load using `source("PathName.FileName.R")`
 
-  * e.g. `source("C:/Users/Colautti/Documents/RFunctions/myfunction.R")` if save
+    * e.g. `source("C:/Users/Colautti/Documents/RFunctions/myfunction.R")` if save
 
-#### Protip #3:
+> Protip #3:
+
 We have already been using functions that somebody else wrote in R.
 
 To see 'under the hood' type a function without the bracktes:
@@ -469,7 +481,7 @@ qplot
 
 *** 
 
-# 3. Custom R Package
+## Custom R Package
 
 Most of the general content can be found in Hadley Wickham's [R Packages book](http://r-pkgs.had.co.nz/). It goes into detail on almost everything you would need to know to make a package. 
 
@@ -489,7 +501,7 @@ Tutorial objectives:
   2) Make documentation for the function.
   3) Installing the package and input checking. 
 
-## Introduction
+### Introduction
 
 When should you use a function vs write a package?
 
@@ -542,7 +554,7 @@ quartic_plus<-function(x){
 }
 ```
 
-## Getting started
+### Getting started
 
 R Studio makes it easy to create your own packages for R. Once you have installed devtools (see above), create a new R package in R Studio
 
@@ -558,7 +570,7 @@ The "R" folder is for code, and there is a hello.R file in it. Save all of your 
 The "man" folder is for manual pages, the documents that show up when you use the ? for help `?some_function`.
 
 
-## Add functions
+### Add functions
 
 We are going to make a function to get public references from the Crossref API. 
 Crossref is one of the organizations for Digital Object Identifiers and is frequently the one used for scientific journals. 
@@ -568,7 +580,7 @@ We can access this information through the Crossref page.
 
 For example, the link below shows the result of a search for the title of a paper by Primack and Miller-Rushing (2011).
 
-[https://search.crossref.org/?q=Broadening+the+study+of+phenology+and+climate+change](https://search.crossref.org/?q=Broadening+the+study+of+phenology+and+climate+change)
+https://search.crossref.org/?q=Broadening+the+study+of+phenology+and+climate+change
 
 The DOI for the first paper (by Primack & Miller-Rushing) is "10.1111/j.1469-8137.2011.03773.x"
 
@@ -579,6 +591,7 @@ There's been times where we read a paper and then go through the references of t
 We can access the json file in R using the doi and using the Crossref api (documentation [LINK](https://github.com/CrossRef/rest-api-doc)).
 
 Doing this will give us a list of the citations:
+
 ```{r}
 # download jsonlite to parse json files
 library(jsonlite)
@@ -587,6 +600,7 @@ result<-fromJSON(url)
 ```
 
 `result` is a list containing a variety of information
+
 ```{r}
 names(result)
 ```
@@ -600,6 +614,7 @@ references<-as.data.frame(result$message$reference)
 This can be easily writen to csv or other formats. 
 
 But we can also make this a function for any DOI of interest. 
+
 ```
 get_work_references<-function(DOI){
   url<-paste0("https://api.crossref.org/works/",DOI)
@@ -607,6 +622,7 @@ get_work_references<-function(DOI){
   return(as.data.frame(result$message$reference))
 }
 ```
+
 We can save the script above in the R folder to make it part of the package.
 
 Of course, we would want to add more functions in order to make this a useful package.
@@ -616,14 +632,12 @@ If we want to run the function, we can use the `source()` function as described 
   1. Documentation for this function (and any other functions we add)
   2. A library that would let us load all functions using the `library()` function 
 
-## Adding documentation
+### Adding documentation
 
 The first piece of documentation is the DESCRIPTION file. There are several fields to fill in for this.
 
   1. The __package name__ is already filled automatically. 
-
   2. We should add a __title__ (ie. This Package Gets References).
-
   3. Change the `Author` to `Authors@R` and add yourself as the author and creator. 
 
 ```
@@ -644,7 +658,7 @@ Authors@R: c(person("First Name", "Last Name", email="email@email.com", role=c("
 
 Save the DESCRIPTION file.
 
-## Add a Manual
+### Add a Manual
 
 The `roxygen2` package can be used to make manuals for R packages. This greatly simplifies the writing process, which otherwise would be written in [LaTeX](https://www.latex-project.org/). The `roxygen2` package allows us to make comments directly in the script, and then `roxygen2` automatically generates the manual pages from these comments. 
 
@@ -702,13 +716,13 @@ We did not import the jsonlite package. To do this, go back to the DESCRIPTION f
 
 Another CHECK will tell you that the package `curl` is required. Add this to the imports as well. 
 
-## Installing the package
+### Installing the package
 
 Once you pass the check, click "Install and Restart" to install the package. The package should be in your "Packages" pane.
 
 Doing `?get_work_references` will bring up the help page with working links. We can successfully run the example. But if input is not a character, the function doesn't work.
 
-## Input checking
+### Input checking
 
 You cannot account for every possible scenario where the function doesn't work. Or there are certain variables you know have to be in a specific form. 
 
@@ -747,7 +761,7 @@ For details on this and more:  http://r-pkgs.had.co.nz/release.html
 
 
 
-References: 
+### References: 
 
 Hadley Wickham, 'R packages' http://r-pkgs.had.co.nz/
 
