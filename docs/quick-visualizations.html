@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Quick Visualizations | R Crash Course</title>
+  <meta name="description" content="A Crash Course in R for Biologists" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Quick Visualizations | R Crash Course" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="A Crash Course in R for Biologists" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Quick Visualizations | R Crash Course" />
+  
+  <meta name="twitter:description" content="A Crash Course in R for Biologists" />
+  
+
+<meta name="author" content="Robert I. Colautti" />
+
+
+<meta name="date" content="2021-12-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="fundamentals.html"/>
+<link rel="next" href="advanced-visualizations.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>1</b> Setup</a></li>
+<li class="chapter" data-level="2" data-path="fundamentals.html"><a href="fundamentals.html"><i class="fa fa-check"></i><b>2</b> Fundamentals</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="fundamentals.html"><a href="fundamentals.html#introduction"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="fundamentals.html"><a href="fundamentals.html#r-basics"><i class="fa fa-check"></i><b>2.2</b> R Basics</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="fundamentals.html"><a href="fundamentals.html#basic-math"><i class="fa fa-check"></i><b>2.2.1</b> Basic Math</a></li>
+<li class="chapter" data-level="2.2.2" data-path="fundamentals.html"><a href="fundamentals.html#functions"><i class="fa fa-check"></i><b>2.2.2</b> Functions</a></li>
+<li class="chapter" data-level="2.2.3" data-path="fundamentals.html"><a href="fundamentals.html#c"><i class="fa fa-check"></i><b>2.2.3</b> `c()</a></li>
+<li class="chapter" data-level="2.2.4" data-path="fundamentals.html"><a href="fundamentals.html#math-functions"><i class="fa fa-check"></i><b>2.2.4</b> Math Functions</a></li>
+<li class="chapter" data-level="2.2.5" data-path="fundamentals.html"><a href="fundamentals.html#roundtruncate"><i class="fa fa-check"></i><b>2.2.5</b> Round/Truncate</a></li>
+<li class="chapter" data-level="2.2.6" data-path="fundamentals.html"><a href="fundamentals.html#logic-operators"><i class="fa fa-check"></i><b>2.2.6</b> Logic Operators</a></li>
+<li class="chapter" data-level="2.2.7" data-path="fundamentals.html"><a href="fundamentals.html#group-comparison"><i class="fa fa-check"></i><b>2.2.7</b> Group Comparison</a></li>
+<li class="chapter" data-level="2.2.8" data-path="fundamentals.html"><a href="fundamentals.html#random-numbers"><i class="fa fa-check"></i><b>2.2.8</b> Random Numbers</a></li>
+<li class="chapter" data-level="2.2.9" data-path="fundamentals.html"><a href="fundamentals.html#combining-objects"><i class="fa fa-check"></i><b>2.2.9</b> Combining objects</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="fundamentals.html"><a href="fundamentals.html#data-types"><i class="fa fa-check"></i><b>2.3</b> Data Types</a></li>
+<li class="chapter" data-level="2.4" data-path="fundamentals.html"><a href="fundamentals.html#objects"><i class="fa fa-check"></i><b>2.4</b> Objects</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="fundamentals.html"><a href="fundamentals.html#cells"><i class="fa fa-check"></i><b>2.4.1</b> Cells</a></li>
+<li class="chapter" data-level="2.4.2" data-path="fundamentals.html"><a href="fundamentals.html#vector"><i class="fa fa-check"></i><b>2.4.2</b> Vector</a></li>
+<li class="chapter" data-level="2.4.3" data-path="fundamentals.html"><a href="fundamentals.html#matrices"><i class="fa fa-check"></i><b>2.4.3</b> Matrices</a></li>
+<li class="chapter" data-level="2.4.4" data-path="fundamentals.html"><a href="fundamentals.html#tensors"><i class="fa fa-check"></i><b>2.4.4</b> Tensors</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="fundamentals.html"><a href="fundamentals.html#matrix-algebra"><i class="fa fa-check"></i><b>2.5</b> Matrix Algebra</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="fundamentals.html"><a href="fundamentals.html#pca"><i class="fa fa-check"></i><b>2.5.1</b> PCA</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="fundamentals.html"><a href="fundamentals.html#lists"><i class="fa fa-check"></i><b>2.6</b> Lists</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="fundamentals.html"><a href="fundamentals.html#subset-1"><i class="fa fa-check"></i><b>2.6.1</b> Subset</a></li>
+<li class="chapter" data-level="2.6.2" data-path="fundamentals.html"><a href="fundamentals.html#output"><i class="fa fa-check"></i><b>2.6.2</b> Output</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="fundamentals.html"><a href="fundamentals.html#print-and-paste"><i class="fa fa-check"></i><b>2.7</b> <code>print()</code> and <code>paste()</code></a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="fundamentals.html"><a href="fundamentals.html#for-help"><i class="fa fa-check"></i><b>2.7.1</b> ? for HELP</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="fundamentals.html"><a href="fundamentals.html#data"><i class="fa fa-check"></i><b>2.8</b> Data</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="fundamentals.html"><a href="fundamentals.html#working-directory"><i class="fa fa-check"></i><b>2.8.1</b> Working Directory</a></li>
+<li class="chapter" data-level="2.8.2" data-path="fundamentals.html"><a href="fundamentals.html#import"><i class="fa fa-check"></i><b>2.8.2</b> Import</a></li>
+<li class="chapter" data-level="2.8.3" data-path="fundamentals.html"><a href="fundamentals.html#data.frame"><i class="fa fa-check"></i><b>2.8.3</b> <code>data.frame</code></a></li>
+<li class="chapter" data-level="2.8.4" data-path="fundamentals.html"><a href="fundamentals.html#subset-2"><i class="fa fa-check"></i><b>2.8.4</b> Subset</a></li>
+<li class="chapter" data-level="2.8.5" data-path="fundamentals.html"><a href="fundamentals.html#new-columns"><i class="fa fa-check"></i><b>2.8.5</b> New Columns</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="fundamentals.html"><a href="fundamentals.html#other-functions"><i class="fa fa-check"></i><b>2.9</b> Other Functions</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="fundamentals.html"><a href="fundamentals.html#unique"><i class="fa fa-check"></i><b>2.9.1</b> <code>unique</code></a></li>
+<li class="chapter" data-level="2.9.2" data-path="fundamentals.html"><a href="fundamentals.html#duplicated"><i class="fa fa-check"></i><b>2.9.2</b> <code>duplicated</code></a></li>
+<li class="chapter" data-level="2.9.3" data-path="fundamentals.html"><a href="fundamentals.html#aggregate"><i class="fa fa-check"></i><b>2.9.3</b> <code>aggregate</code></a></li>
+<li class="chapter" data-level="2.9.4" data-path="fundamentals.html"><a href="fundamentals.html#tapply"><i class="fa fa-check"></i><b>2.9.4</b> tapply</a></li>
+<li class="chapter" data-level="2.9.5" data-path="fundamentals.html"><a href="fundamentals.html#save"><i class="fa fa-check"></i><b>2.9.5</b> Save</a></li>
+</ul></li>
+<li class="chapter" data-level="2.10" data-path="fundamentals.html"><a href="fundamentals.html#flow-control"><i class="fa fa-check"></i><b>2.10</b> Flow control</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="fundamentals.html"><a href="fundamentals.html#if"><i class="fa fa-check"></i><b>2.10.1</b> <code>if</code></a></li>
+<li class="chapter" data-level="2.10.2" data-path="fundamentals.html"><a href="fundamentals.html#ifelse"><i class="fa fa-check"></i><b>2.10.2</b> ifelse</a></li>
+<li class="chapter" data-level="2.10.3" data-path="fundamentals.html"><a href="fundamentals.html#for-loop"><i class="fa fa-check"></i><b>2.10.3</b> <code>for</code> loop</a></li>
+<li class="chapter" data-level="2.10.4" data-path="fundamentals.html"><a href="fundamentals.html#nested-loops"><i class="fa fa-check"></i><b>2.10.4</b> Nested Loops</a></li>
+<li class="chapter" data-level="2.10.5" data-path="fundamentals.html"><a href="fundamentals.html#while-loop"><i class="fa fa-check"></i><b>2.10.5</b> <code>while</code> loop</a></li>
+</ul></li>
+<li class="chapter" data-level="2.11" data-path="fundamentals.html"><a href="fundamentals.html#packages"><i class="fa fa-check"></i><b>2.11</b> Packages</a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="fundamentals.html"><a href="fundamentals.html#installing"><i class="fa fa-check"></i><b>2.11.1</b> Installing</a></li>
+<li class="chapter" data-level="2.11.2" data-path="fundamentals.html"><a href="fundamentals.html#loading"><i class="fa fa-check"></i><b>2.11.2</b> Loading</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="fundamentals.html"><a href="fundamentals.html#readable-code"><i class="fa fa-check"></i><b>2.12</b> Readable code</a></li>
+<li class="chapter" data-level="2.13" data-path="fundamentals.html"><a href="fundamentals.html#test-yourself"><i class="fa fa-check"></i><b>2.13</b> TEST yourself:</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="quick-visualizations.html"><a href="quick-visualizations.html"><i class="fa fa-check"></i><b>3</b> Quick Visualizations</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="quick-visualizations.html"><a href="quick-visualizations.html#overview"><i class="fa fa-check"></i><b>3.1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="quick-visualizations.html"><a href="quick-visualizations.html#graphical-concepts"><i class="fa fa-check"></i><b>3.1.1</b> Graphical Concepts</a></li>
+<li class="chapter" data-level="3.1.2" data-path="quick-visualizations.html"><a href="quick-visualizations.html#vector-vs.-raster"><i class="fa fa-check"></i><b>3.1.2</b> Vector vs. Raster</a></li>
+<li class="chapter" data-level="3.1.3" data-path="quick-visualizations.html"><a href="quick-visualizations.html#resolution-vs-dimension"><i class="fa fa-check"></i><b>3.1.3</b> Resolution vs Dimension</a></li>
+<li class="chapter" data-level="3.1.4" data-path="quick-visualizations.html"><a href="quick-visualizations.html#screen-vs-print"><i class="fa fa-check"></i><b>3.1.4</b> Screen vs Print</a></li>
+<li class="chapter" data-level="3.1.5" data-path="quick-visualizations.html"><a href="quick-visualizations.html#accessibility"><i class="fa fa-check"></i><b>3.1.5</b> Accessibility</a></li>
+<li class="chapter" data-level="3.1.6" data-path="quick-visualizations.html"><a href="quick-visualizations.html#slides"><i class="fa fa-check"></i><b>3.1.6</b> Slides</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="quick-visualizations.html"><a href="quick-visualizations.html#getting-started"><i class="fa fa-check"></i><b>3.2</b> Getting Started</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="quick-visualizations.html"><a href="quick-visualizations.html#data-setup"><i class="fa fa-check"></i><b>3.2.1</b> Data setup</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="quick-visualizations.html"><a href="quick-visualizations.html#basic-graphs"><i class="fa fa-check"></i><b>3.3</b> Basic Graphs</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="quick-visualizations.html"><a href="quick-visualizations.html#one-continuous"><i class="fa fa-check"></i><b>3.3.1</b> One continuous</a></li>
+<li class="chapter" data-level="3.3.2" data-path="quick-visualizations.html"><a href="quick-visualizations.html#one-categorical"><i class="fa fa-check"></i><b>3.3.2</b> One categorical</a></li>
+<li class="chapter" data-level="3.3.3" data-path="quick-visualizations.html"><a href="quick-visualizations.html#two-continuous"><i class="fa fa-check"></i><b>3.3.3</b> Two continuous</a></li>
+<li class="chapter" data-level="3.3.4" data-path="quick-visualizations.html"><a href="quick-visualizations.html#two-categorical"><i class="fa fa-check"></i><b>3.3.4</b> Two categorical</a></li>
+<li class="chapter" data-level="3.3.5" data-path="quick-visualizations.html"><a href="quick-visualizations.html#categorical-by-continuous"><i class="fa fa-check"></i><b>3.3.5</b> Categorical by continuous</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="quick-visualizations.html"><a href="quick-visualizations.html#basic-customization"><i class="fa fa-check"></i><b>3.4</b> Basic customization</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="quick-visualizations.html"><a href="quick-visualizations.html#binwidth"><i class="fa fa-check"></i><b>3.4.1</b> <code>binwidth</code></a></li>
+<li class="chapter" data-level="3.4.2" data-path="quick-visualizations.html"><a href="quick-visualizations.html#size"><i class="fa fa-check"></i><b>3.4.2</b> <code>size</code></a></li>
+<li class="chapter" data-level="3.4.3" data-path="quick-visualizations.html"><a href="quick-visualizations.html#colour-or-color"><i class="fa fa-check"></i><b>3.4.3</b> <code>colour</code> or <code>color</code></a></li>
+<li class="chapter" data-level="3.4.4" data-path="quick-visualizations.html"><a href="quick-visualizations.html#fill"><i class="fa fa-check"></i><b>3.4.4</b> <code>fill</code></a></li>
+<li class="chapter" data-level="3.4.5" data-path="quick-visualizations.html"><a href="quick-visualizations.html#posit"><i class="fa fa-check"></i><b>3.4.5</b> <code>posit</code></a></li>
+<li class="chapter" data-level="3.4.6" data-path="quick-visualizations.html"><a href="quick-visualizations.html#alpha"><i class="fa fa-check"></i><b>3.4.6</b> <code>alpha</code></a></li>
+<li class="chapter" data-level="3.4.7" data-path="quick-visualizations.html"><a href="quick-visualizations.html#shape"><i class="fa fa-check"></i><b>3.4.7</b> <code>shape</code></a></li>
+<li class="chapter" data-level="3.4.8" data-path="quick-visualizations.html"><a href="quick-visualizations.html#lab-xlab-and-ylab"><i class="fa fa-check"></i><b>3.4.8</b> <code>lab</code>, <code>xlab</code>, and <code>ylab</code></a></li>
+<li class="chapter" data-level="3.4.9" data-path="quick-visualizations.html"><a href="quick-visualizations.html#main"><i class="fa fa-check"></i><b>3.4.9</b> <code>main</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="quick-visualizations.html"><a href="quick-visualizations.html#themes-and-geoms"><i class="fa fa-check"></i><b>3.5</b> Themes and Geoms</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="quick-visualizations.html"><a href="quick-visualizations.html#theme_name"><i class="fa fa-check"></i><b>3.5.1</b> <code>+ theme_NAME()</code></a></li>
+<li class="chapter" data-level="3.5.2" data-path="quick-visualizations.html"><a href="quick-visualizations.html#theme_set"><i class="fa fa-check"></i><b>3.5.2</b> <code>theme_set</code></a></li>
+<li class="chapter" data-level="3.5.3" data-path="quick-visualizations.html"><a href="quick-visualizations.html#geom"><i class="fa fa-check"></i><b>3.5.3</b> <code>geom</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="quick-visualizations.html"><a href="quick-visualizations.html#multiple-graphs"><i class="fa fa-check"></i><b>3.6</b> Multiple graphs</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="quick-visualizations.html"><a href="quick-visualizations.html#facets"><i class="fa fa-check"></i><b>3.6.1</b> <code>facets</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="quick-visualizations.html"><a href="quick-visualizations.html#save-output"><i class="fa fa-check"></i><b>3.7</b> Save output</a></li>
+<li class="chapter" data-level="3.8" data-path="quick-visualizations.html"><a href="quick-visualizations.html#practice"><i class="fa fa-check"></i><b>3.8</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html"><i class="fa fa-check"></i><b>4</b> Advanced Visualizations</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#overview-1"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
+<li class="chapter" data-level="4.2" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#getting-started-1"><i class="fa fa-check"></i><b>4.2</b> Getting Started</a></li>
+<li class="chapter" data-level="4.3" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#rules-of-thumb"><i class="fa fa-check"></i><b>4.3</b> Rules of thumb</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#minimize-ink"><i class="fa fa-check"></i><b>4.3.1</b> 1. Minimize ‘ink’</a></li>
+<li class="chapter" data-level="4.3.2" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#use-space-wisely"><i class="fa fa-check"></i><b>4.3.2</b> 2. Use space wisely</a></li>
+<li class="chapter" data-level="4.3.3" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#choose-a-colour-palette"><i class="fa fa-check"></i><b>4.3.3</b> 3. Choose a colour palette</a></li>
+<li class="chapter" data-level="4.3.4" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#colours-have-meaning"><i class="fa fa-check"></i><b>4.3.4</b> 4. Colours have meaning</a></li>
+<li class="chapter" data-level="4.3.5" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#maximize-contrast"><i class="fa fa-check"></i><b>4.3.5</b> 5. Maximize contrast</a></li>
+<li class="chapter" data-level="4.3.6" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#keep-relevant-information"><i class="fa fa-check"></i><b>4.3.6</b> 6. Keep relevant information</a></li>
+<li class="chapter" data-level="4.3.7" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#choose-the-right-graph"><i class="fa fa-check"></i><b>4.3.7</b> 7. Choose the right graph</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#example"><i class="fa fa-check"></i><b>4.4</b> Example</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#setup-1"><i class="fa fa-check"></i><b>4.4.1</b> Setup</a></li>
+<li class="chapter" data-level="4.4.2" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#inspect"><i class="fa fa-check"></i><b>4.4.2</b> Inspect</a></li>
+<li class="chapter" data-level="4.4.3" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#absolute-value"><i class="fa fa-check"></i><b>4.4.3</b> Absolute Value</a></li>
+<li class="chapter" data-level="4.4.4" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#missing-values"><i class="fa fa-check"></i><b>4.4.4</b> Missing values</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#measuring-selection"><i class="fa fa-check"></i><b>4.5</b> Measuring Selection</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#relative-fitness"><i class="fa fa-check"></i><b>4.5.1</b> Relative Fitness</a></li>
+<li class="chapter" data-level="4.5.2" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#trait-value"><i class="fa fa-check"></i><b>4.5.2</b> Trait Value</a></li>
+<li class="chapter" data-level="4.5.3" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#s-vs-beta"><i class="fa fa-check"></i><b>4.5.3</b> <span class="math inline">\(s\)</span> vs <span class="math inline">\(\beta\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#ggplot-vs-qplot"><i class="fa fa-check"></i><b>4.6</b> <code>ggplot</code> vs <code>qplot</code></a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#histogram-2"><i class="fa fa-check"></i><b>4.6.1</b> Histogram</a></li>
+<li class="chapter" data-level="4.6.2" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#aes"><i class="fa fa-check"></i><b>4.6.2</b> <code>aes</code></a></li>
+<li class="chapter" data-level="4.6.3" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#layers"><i class="fa fa-check"></i><b>4.6.3</b> Layers</a></li>
+<li class="chapter" data-level="4.6.4" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#stat_name"><i class="fa fa-check"></i><b>4.6.4</b> <code>stat_NAME</code></a></li>
+<li class="chapter" data-level="4.6.5" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#bivariate-geom"><i class="fa fa-check"></i><b>4.6.5</b> Bivariate geom</a></li>
+<li class="chapter" data-level="4.6.6" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#geom_smooth"><i class="fa fa-check"></i><b>4.6.6</b> <code>geom_smooth</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#full-ggplot"><i class="fa fa-check"></i><b>4.7</b> Full ggplot</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#separate-data"><i class="fa fa-check"></i><b>4.7.1</b> Separate data</a></li>
+<li class="chapter" data-level="4.7.2" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#bootstrap"><i class="fa fa-check"></i><b>4.7.2</b> Bootstrap</a></li>
+<li class="chapter" data-level="4.7.3" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#plot-data"><i class="fa fa-check"></i><b>4.7.3</b> Plot data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#multi-graph"><i class="fa fa-check"></i><b>4.8</b> Multi-graph</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#facets-1"><i class="fa fa-check"></i><b>4.8.1</b> <code>facets</code></a></li>
+<li class="chapter" data-level="4.8.2" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#grid.extra-package"><i class="fa fa-check"></i><b>4.8.2</b> <code>grid.extra</code> package</a></li>
+<li class="chapter" data-level="4.8.3" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#grid-package"><i class="fa fa-check"></i><b>4.8.3</b> <code>grid</code> package</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#further-reading"><i class="fa fa-check"></i><b>4.9</b> Further Reading</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="regular-expressions.html"><a href="regular-expressions.html"><i class="fa fa-check"></i><b>5</b> Regular Expressions</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="regular-expressions.html"><a href="regular-expressions.html#overview-2"><i class="fa fa-check"></i><b>5.1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="regular-expressions.html"><a href="regular-expressions.html#universal"><i class="fa fa-check"></i><b>5.1.1</b> Universal</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="regular-expressions.html"><a href="regular-expressions.html#functions-1"><i class="fa fa-check"></i><b>5.2</b> Functions</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="regular-expressions.html"><a href="regular-expressions.html#examples"><i class="fa fa-check"></i><b>5.2.1</b> Examples</a></li>
+<li class="chapter" data-level="5.2.2" data-path="regular-expressions.html"><a href="regular-expressions.html#grep"><i class="fa fa-check"></i><b>5.2.2</b> <code>grep()</code></a></li>
+<li class="chapter" data-level="5.2.3" data-path="regular-expressions.html"><a href="regular-expressions.html#grepl"><i class="fa fa-check"></i><b>5.2.3</b> <code>grepl()</code></a></li>
+<li class="chapter" data-level="5.2.4" data-path="regular-expressions.html"><a href="regular-expressions.html#sub"><i class="fa fa-check"></i><b>5.2.4</b> <code>sub()</code></a></li>
+<li class="chapter" data-level="5.2.5" data-path="regular-expressions.html"><a href="regular-expressions.html#gsub"><i class="fa fa-check"></i><b>5.2.5</b> <code>gsub()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="regular-expressions.html"><a href="regular-expressions.html#wildcards"><i class="fa fa-check"></i><b>5.3</b> Wildcards</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="regular-expressions.html"><a href="regular-expressions.html#escape-character"><i class="fa fa-check"></i><b>5.3.1</b> <code>\</code> escape character</a></li>
+<li class="chapter" data-level="5.3.2" data-path="regular-expressions.html"><a href="regular-expressions.html#in-r"><i class="fa fa-check"></i><b>5.3.2</b> <code>\\</code> in R</a></li>
+<li class="chapter" data-level="5.3.3" data-path="regular-expressions.html"><a href="regular-expressions.html#w"><i class="fa fa-check"></i><b>5.3.3</b> <code>\\w</code></a></li>
+<li class="chapter" data-level="5.3.4" data-path="regular-expressions.html"><a href="regular-expressions.html#w-1"><i class="fa fa-check"></i><b>5.3.4</b> <code>\\W</code></a></li>
+<li class="chapter" data-level="5.3.5" data-path="regular-expressions.html"><a href="regular-expressions.html#s"><i class="fa fa-check"></i><b>5.3.5</b> <code>\\s</code></a></li>
+<li class="chapter" data-level="5.3.6" data-path="regular-expressions.html"><a href="regular-expressions.html#t"><i class="fa fa-check"></i><b>5.3.6</b> <code>\\t</code></a></li>
+<li class="chapter" data-level="5.3.7" data-path="regular-expressions.html"><a href="regular-expressions.html#d"><i class="fa fa-check"></i><b>5.3.7</b> <code>\\d</code></a></li>
+<li class="chapter" data-level="5.3.8" data-path="regular-expressions.html"><a href="regular-expressions.html#d-1"><i class="fa fa-check"></i><b>5.3.8</b> <code>\\D</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="regular-expressions.html"><a href="regular-expressions.html#new-lines"><i class="fa fa-check"></i><b>5.4</b> New Lines</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="regular-expressions.html"><a href="regular-expressions.html#r"><i class="fa fa-check"></i><b>5.4.1</b> <code>\\r</code></a></li>
+<li class="chapter" data-level="5.4.2" data-path="regular-expressions.html"><a href="regular-expressions.html#n"><i class="fa fa-check"></i><b>5.4.2</b> <code>\\n</code></a></li>
+<li class="chapter" data-level="5.4.3" data-path="regular-expressions.html"><a href="regular-expressions.html#big-problem"><i class="fa fa-check"></i><b>5.4.3</b> Big Problem</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="regular-expressions.html"><a href="regular-expressions.html#special-characters"><i class="fa fa-check"></i><b>5.5</b> Special characters</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="regular-expressions.html"><a href="regular-expressions.html#section"><i class="fa fa-check"></i><b>5.5.1</b> <code>|</code></a></li>
+<li class="chapter" data-level="5.5.2" data-path="regular-expressions.html"><a href="regular-expressions.html#section-1"><i class="fa fa-check"></i><b>5.5.2</b> <code>.</code></a></li>
+<li class="chapter" data-level="5.5.3" data-path="regular-expressions.html"><a href="regular-expressions.html#section-2"><i class="fa fa-check"></i><b>5.5.3</b> <code>*</code>, <code>?</code>, <code>+</code>, <code>{}</code></a></li>
+<li class="chapter" data-level="5.5.4" data-path="regular-expressions.html"><a href="regular-expressions.html#section-4"><i class="fa fa-check"></i><b>5.5.4</b> <code>*</code></a></li>
+<li class="chapter" data-level="5.5.5" data-path="regular-expressions.html"><a href="regular-expressions.html#section-5"><i class="fa fa-check"></i><b>5.5.5</b> <code>?</code></a></li>
+<li class="chapter" data-level="5.5.6" data-path="regular-expressions.html"><a href="regular-expressions.html#section-6"><i class="fa fa-check"></i><b>5.5.6</b> <code>+?</code></a></li>
+<li class="chapter" data-level="5.5.7" data-path="regular-expressions.html"><a href="regular-expressions.html#section-7"><i class="fa fa-check"></i><b>5.5.7</b> <code>*?</code></a></li>
+<li class="chapter" data-level="5.5.8" data-path="regular-expressions.html"><a href="regular-expressions.html#section-8"><i class="fa fa-check"></i><b>5.5.8</b> <code>{}</code></a></li>
+<li class="chapter" data-level="5.5.9" data-path="regular-expressions.html"><a href="regular-expressions.html#nm"><i class="fa fa-check"></i><b>5.5.9</b> <code>{n,m}</code></a></li>
+<li class="chapter" data-level="5.5.10" data-path="regular-expressions.html"><a href="regular-expressions.html#n-1"><i class="fa fa-check"></i><b>5.5.10</b> <code>{n}</code></a></li>
+<li class="chapter" data-level="5.5.11" data-path="regular-expressions.html"><a href="regular-expressions.html#n-2"><i class="fa fa-check"></i><b>5.5.11</b> <code>{n,}</code></a></li>
+<li class="chapter" data-level="5.5.12" data-path="regular-expressions.html"><a href="regular-expressions.html#section-9"><i class="fa fa-check"></i><b>5.5.12</b> {}?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="regular-expressions.html"><a href="regular-expressions.html#section-10"><i class="fa fa-check"></i><b>5.6</b> <code>[]</code></a></li>
+<li class="chapter" data-level="5.7" data-path="regular-expressions.html"><a href="regular-expressions.html#and"><i class="fa fa-check"></i><b>5.7</b> <code>^</code> and <code>$</code></a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="regular-expressions.html"><a href="regular-expressions.html#section-11"><i class="fa fa-check"></i><b>5.7.1</b> <code>^</code></a></li>
+<li class="chapter" data-level="5.7.2" data-path="regular-expressions.html"><a href="regular-expressions.html#section-12"><i class="fa fa-check"></i><b>5.7.2</b> <code>$</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="regular-expressions.html"><a href="regular-expressions.html#section-13"><i class="fa fa-check"></i><b>5.8</b> <code>()</code></a></li>
+<li class="chapter" data-level="5.9" data-path="regular-expressions.html"><a href="regular-expressions.html#scraping"><i class="fa fa-check"></i><b>5.9</b> Scraping</a></li>
+<li class="chapter" data-level="5.10" data-path="regular-expressions.html"><a href="regular-expressions.html#examples-1"><i class="fa fa-check"></i><b>5.10</b> Examples</a>
+<ul>
+<li class="chapter" data-level="5.10.1" data-path="regular-expressions.html"><a href="regular-expressions.html#transect-data"><i class="fa fa-check"></i><b>5.10.1</b> Transect Data</a></li>
+<li class="chapter" data-level="5.10.2" data-path="regular-expressions.html"><a href="regular-expressions.html#genbank"><i class="fa fa-check"></i><b>5.10.2</b> Genbank</a></li>
+</ul></li>
+<li class="chapter" data-level="5.11" data-path="regular-expressions.html"><a href="regular-expressions.html#solutions"><i class="fa fa-check"></i><b>5.11</b> Solutions</a>
+<ul>
+<li class="chapter" data-level="5.11.1" data-path="regular-expressions.html"><a href="regular-expressions.html#transects"><i class="fa fa-check"></i><b>5.11.1</b> Transects</a></li>
+<li class="chapter" data-level="5.11.2" data-path="regular-expressions.html"><a href="regular-expressions.html#genbank-1"><i class="fa fa-check"></i><b>5.11.2</b> Genbank</a></li>
+</ul></li>
+<li class="chapter" data-level="5.12" data-path="regular-expressions.html"><a href="regular-expressions.html#more-exercises"><i class="fa fa-check"></i><b>5.12</b> More Exercises</a>
+<ul>
+<li class="chapter" data-level="5.12.1" data-path="regular-expressions.html"><a href="regular-expressions.html#consider-a-vector-of-email-addresses-scraped-from-the-internet"><i class="fa fa-check"></i><b>5.12.1</b> 1. Consider a vector of email addresses scraped from the internet:</a></li>
+<li class="chapter" data-level="5.12.2" data-path="regular-expressions.html"><a href="regular-expressions.html#create-a-random-sequence-of-dna"><i class="fa fa-check"></i><b>5.12.2</b> 2. Create a random sequence of DNA:</a></li>
+<li class="chapter" data-level="5.12.3" data-path="regular-expressions.html"><a href="regular-expressions.html#more-online-examples"><i class="fa fa-check"></i><b>5.12.3</b> 3. More online examples</a></li>
+<li class="chapter" data-level="5.12.4" data-path="regular-expressions.html"><a href="regular-expressions.html#regex-golf"><i class="fa fa-check"></i><b>5.12.4</b> 4. Regex Golf</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-science-intro.html"><a href="data-science-intro.html"><i class="fa fa-check"></i><b>6</b> Data Science Intro</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="data-science-intro.html"><a href="data-science-intro.html#setup-2"><i class="fa fa-check"></i><b>6.1</b> Setup</a></li>
+<li class="chapter" data-level="6.2" data-path="data-science-intro.html"><a href="data-science-intro.html#introduction-to-data-science"><i class="fa fa-check"></i><b>6.2</b> Introduction to Data Science</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="data-science-intro.html"><a href="data-science-intro.html#data-science-life-cycle"><i class="fa fa-check"></i><b>6.2.1</b> Data Science Life-Cycle</a></li>
+<li class="chapter" data-level="6.2.2" data-path="data-science-intro.html"><a href="data-science-intro.html#data-science-in-r"><i class="fa fa-check"></i><b>6.2.2</b> Data Science in R</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="data-science-intro.html"><a href="data-science-intro.html#d-data-wrangling"><i class="fa fa-check"></i><b>6.3</b> 2D Data Wrangling</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="data-science-intro.html"><a href="data-science-intro.html#filter"><i class="fa fa-check"></i><b>6.3.1</b> <code>filter()</code></a></li>
+<li class="chapter" data-level="6.3.2" data-path="data-science-intro.html"><a href="data-science-intro.html#rename"><i class="fa fa-check"></i><b>6.3.2</b> <code>rename()</code></a></li>
+<li class="chapter" data-level="6.3.3" data-path="data-science-intro.html"><a href="data-science-intro.html#arrange"><i class="fa fa-check"></i><b>6.3.3</b> <code>arrange()</code></a></li>
+<li class="chapter" data-level="6.3.4" data-path="data-science-intro.html"><a href="data-science-intro.html#select"><i class="fa fa-check"></i><b>6.3.4</b> <code>select()</code></a></li>
+<li class="chapter" data-level="6.3.5" data-path="data-science-intro.html"><a href="data-science-intro.html#everything"><i class="fa fa-check"></i><b>6.3.5</b> <code>everything()</code></a></li>
+<li class="chapter" data-level="6.3.6" data-path="data-science-intro.html"><a href="data-science-intro.html#mutate"><i class="fa fa-check"></i><b>6.3.6</b> <code>mutate()</code></a></li>
+<li class="chapter" data-level="6.3.7" data-path="data-science-intro.html"><a href="data-science-intro.html#transmute"><i class="fa fa-check"></i><b>6.3.7</b> <code>transmute()</code></a></li>
+<li class="chapter" data-level="6.3.8" data-path="data-science-intro.html"><a href="data-science-intro.html#summarize-group_by"><i class="fa fa-check"></i><b>6.3.8</b> <code>summarize()</code> + <code>group_by()</code></a></li>
+<li class="chapter" data-level="6.3.9" data-path="data-science-intro.html"><a href="data-science-intro.html#weighted-mean"><i class="fa fa-check"></i><b>6.3.9</b> Weighted Mean</a></li>
+<li class="chapter" data-level="6.3.10" data-path="data-science-intro.html"><a href="data-science-intro.html#pipe"><i class="fa fa-check"></i><b>6.3.10</b> <code>%&gt;%</code> (pipe)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="data-science-intro.html"><a href="data-science-intro.html#missing-data"><i class="fa fa-check"></i><b>6.4</b> Missing Data</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="data-science-intro.html"><a href="data-science-intro.html#na-and-na.rm"><i class="fa fa-check"></i><b>6.4.1</b> <code>NA</code> and <code>na.rm()</code></a></li>
+<li class="chapter" data-level="6.4.2" data-path="data-science-intro.html"><a href="data-science-intro.html#na-vs-0"><i class="fa fa-check"></i><b>6.4.2</b> <code>NA</code> vs <code>0</code></a></li>
+<li class="chapter" data-level="6.4.3" data-path="data-science-intro.html"><a href="data-science-intro.html#is.na"><i class="fa fa-check"></i><b>6.4.3</b> <code>is.na()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="data-science-intro.html"><a href="data-science-intro.html#naughty-data"><i class="fa fa-check"></i><b>6.5</b> Naughty Data</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="advanced-r.html"><a href="advanced-r.html"><i class="fa fa-check"></i><b>7</b> Advanced R</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="advanced-r.html"><a href="advanced-r.html#introduction-1"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="advanced-r.html"><a href="advanced-r.html#getting-started-2"><i class="fa fa-check"></i><b>7.2</b> Getting Started</a></li>
+<li class="chapter" data-level="7.3" data-path="advanced-r.html"><a href="advanced-r.html#r-markdown"><i class="fa fa-check"></i><b>7.3</b> R Markdown</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="advanced-r.html"><a href="advanced-r.html#cheat-sheet"><i class="fa fa-check"></i><b>7.3.1</b> Cheat Sheet</a></li>
+<li class="chapter" data-level="7.3.2" data-path="advanced-r.html"><a href="advanced-r.html#create"><i class="fa fa-check"></i><b>7.3.2</b> Create</a></li>
+<li class="chapter" data-level="7.3.3" data-path="advanced-r.html"><a href="advanced-r.html#yaml-header"><i class="fa fa-check"></i><b>7.3.3</b> YAML Header</a></li>
+<li class="chapter" data-level="7.3.4" data-path="advanced-r.html"><a href="advanced-r.html#markdown"><i class="fa fa-check"></i><b>7.3.4</b> Markdown</a></li>
+<li class="chapter" data-level="7.3.5" data-path="advanced-r.html"><a href="advanced-r.html#basic-elements"><i class="fa fa-check"></i><b>7.3.5</b> Basic elements:</a></li>
+<li class="chapter" data-level="7.3.6" data-path="advanced-r.html"><a href="advanced-r.html#headers"><i class="fa fa-check"></i><b>7.3.6</b> Headers</a></li>
+<li class="chapter" data-level="7.3.7" data-path="advanced-r.html"><a href="advanced-r.html#other-elements"><i class="fa fa-check"></i><b>7.3.7</b> Other Elements</a></li>
+<li class="chapter" data-level="7.3.8" data-path="advanced-r.html"><a href="advanced-r.html#links"><i class="fa fa-check"></i><b>7.3.8</b> Links</a></li>
+<li class="chapter" data-level="7.3.9" data-path="advanced-r.html"><a href="advanced-r.html#images"><i class="fa fa-check"></i><b>7.3.9</b> Images</a></li>
+<li class="chapter" data-level="7.3.10" data-path="advanced-r.html"><a href="advanced-r.html#lists-and-tables"><i class="fa fa-check"></i><b>7.3.10</b> Lists and tables</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="advanced-r.html"><a href="advanced-r.html#tables"><i class="fa fa-check"></i><b>7.4</b> Tables</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="advanced-r.html"><a href="advanced-r.html#embed-r-code"><i class="fa fa-check"></i><b>7.4.1</b> Embed R Code</a></li>
+<li class="chapter" data-level="7.4.2" data-path="advanced-r.html"><a href="advanced-r.html#dynamic-tables"><i class="fa fa-check"></i><b>7.4.2</b> Dynamic tables</a></li>
+<li class="chapter" data-level="7.4.3" data-path="advanced-r.html"><a href="advanced-r.html#embed-graphs"><i class="fa fa-check"></i><b>7.4.3</b> Embed Graphs</a></li>
+<li class="chapter" data-level="7.4.4" data-path="advanced-r.html"><a href="advanced-r.html#options-for-header"><i class="fa fa-check"></i><b>7.4.4</b> Options for header</a></li>
+<li class="chapter" data-level="7.4.5" data-path="advanced-r.html"><a href="advanced-r.html#content-as-tabs"><i class="fa fa-check"></i><b>7.4.5</b> Content as tabs</a></li>
+<li class="chapter" data-level="7.4.6" data-path="advanced-r.html"><a href="advanced-r.html#quarterly-results"><i class="fa fa-check"></i><b>7.4.6</b> Quarterly Results</a></li>
+<li class="chapter" data-level="7.4.7" data-path="advanced-r.html"><a href="advanced-r.html#equations"><i class="fa fa-check"></i><b>7.4.7</b> Equations</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="advanced-r.html"><a href="advanced-r.html#custom-functions"><i class="fa fa-check"></i><b>7.5</b> Custom Functions</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="advanced-r.html"><a href="advanced-r.html#general-form"><i class="fa fa-check"></i><b>7.5.1</b> General form:</a></li>
+<li class="chapter" data-level="7.5.2" data-path="advanced-r.html"><a href="advanced-r.html#example-function"><i class="fa fa-check"></i><b>7.5.2</b> Example function</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="advanced-r.html"><a href="advanced-r.html#custom-r-package"><i class="fa fa-check"></i><b>7.6</b> Custom R Package</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="advanced-r.html"><a href="advanced-r.html#introduction-2"><i class="fa fa-check"></i><b>7.6.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.6.2" data-path="advanced-r.html"><a href="advanced-r.html#getting-started-3"><i class="fa fa-check"></i><b>7.6.2</b> Getting started</a></li>
+<li class="chapter" data-level="7.6.3" data-path="advanced-r.html"><a href="advanced-r.html#add-functions"><i class="fa fa-check"></i><b>7.6.3</b> Add functions</a></li>
+<li class="chapter" data-level="7.6.4" data-path="advanced-r.html"><a href="advanced-r.html#adding-documentation"><i class="fa fa-check"></i><b>7.6.4</b> Adding documentation</a></li>
+<li class="chapter" data-level="7.6.5" data-path="advanced-r.html"><a href="advanced-r.html#add-a-manual"><i class="fa fa-check"></i><b>7.6.5</b> Add a Manual</a></li>
+<li class="chapter" data-level="7.6.6" data-path="advanced-r.html"><a href="advanced-r.html#installing-the-package"><i class="fa fa-check"></i><b>7.6.6</b> Installing the package</a></li>
+<li class="chapter" data-level="7.6.7" data-path="advanced-r.html"><a href="advanced-r.html#input-checking"><i class="fa fa-check"></i><b>7.6.7</b> Input checking</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="advanced-r.html"><a href="advanced-r.html#make-it-public"><i class="fa fa-check"></i><b>7.7</b> Make it public</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="advanced-r.html"><a href="advanced-r.html#references"><i class="fa fa-check"></i><b>7.7.1</b> References:</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Crash Course</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="quick-visualizations" class="section level1" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Quick Visualizations</h1>
+<div id="overview" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Overview</h2>
+<p>Visualizing data is a key step in any analysis. Whether you are just starting to understand the structure of your data or polishing off the perfect figure for publication in ‘tabloid’ journal like <a href="https://www.science.org/journal/science">Science</a> or <a href="https://www.nature.com/">Nature</a>, R provides powerful and flexible graphing tools.</p>
+<p>In this tutorial, you will learn how to make quick graphs with the <code>qplot</code> function, with the option of some basic formatting customization. In the <a href="https://colauttilab.github.io/RCrashCourse/3_ggplot.html">ggplot Tutorial</a> you will learn some additional tricks and resources for developing your graphing skills even further</p>
+<p>By the time you are finished these two self-tutorials, you will have all the resources you need to make <strong>publication-ready graphics</strong>! All you will really need to do is practice and apply what you have learned.</p>
+<p>Both <code>qplot</code> and <code>ggplot</code> come from the <a href="https://ggplot2.tidyverse.org/"><code>ggplot2</code></a> package. Don’t ask me what happened to ggplot1… Developed by Hadley Wickham and the same team as R Studio, <code>ggplot2</code> is part of the <a href="https://www.tidyverse.org/">Tidyverse</a> group of helpful R packages.</p>
+<p>Once you have mastered these tutorials, you might want to continue to expand your <code>ggplot</code> repertoire by reading through additional examples in the <code>ggplot2</code> documentation <a href="http://docs.ggplot2.org/current/" class="uri">http://docs.ggplot2.org/current/</a></p>
+<blockquote>
+<p>WARNING: There is a learning curve!</p>
+</blockquote>
+<p>Learning visualizations in R can feel like a struggle at first, and you may ask yourself: <em>Is it worth my time?</em> If you already have experience making figures with graphics programs, you may ask youself: <em>Why deal with all these coding errors when I can just generate a quick figure in a different program?</em> There are a few good reasons to invest the time to get over the learning curve and use R for all your graphing needs.</p>
+<ol style="list-style-type: decimal">
+<li>You will get much faster with practice</li>
+<li>You have much more control over every aspect of your figure</li>
+<li>Your visualization will be <strong>reproducible</strong>, meaning anyone with the data and the code can reproduce every aspect of your figure, from each individual data point down to the specific axis labels.</li>
+</ol>
+<p>The third point is worth some extra thought. Everybody makes mistakes, whether you are graphing with R or a point-and-click graphics program. If you make an error in R you will either get an error message telling you, or you will have reproducible code that you can have somebody check. If you make a mistake in a point-and-click program, you may produce a graph that is incorrect and no way to check!</p>
+<p>Now consider what happens if you add new data or find a mistake in your original data that needs to be corrected. With a point-and-click program you have to make the graph all over again. With R, you just rerun the code with new input and get the updated figure right away!</p>
+<div id="graphical-concepts" class="section level3" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Graphical Concepts</h3>
+<p>There are a few universal graphing concepts that are important to understand in order to create publication-ready graphics in R.</p>
+</div>
+<div id="vector-vs.-raster" class="section level3" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Vector vs. Raster</h3>
+<p>The first concept is to understand that there are two main <strong>file types</strong> that you can use to save your graphs. Once saved, you can send these to graphics programs, printers, or journal websites.</p>
+<p><strong>Raster</strong> files save graphs in a 2-dimensional grid of data corresponding to pixels. You are probably quite familiar with this format if you’ve ever worked with a digital photo or an 8-bit video game. Some popular Raster file types include <em>JPEG/JPG, PNG, TIFF, and BMP</em>.</p>
+<p><strong>Vector</strong> files save information about points, lines and curves. If you’ve ever drawn a shape in a program like Microsoft Powerpoint or Adobe Illustrator, you might have some sense of how this works. Some popular vector formats include <em>SVG, PDF, EPS, AI, PS</em>.</p>
+<blockquote>
+<p>Why does this matter?</p>
+</blockquote>
+<p>In most cases, you should save your visualizations as <strong>vector</strong> files. <em>SVG</em> is a good choice, because it can be interpreted by web browsers and it is not proprietary. <em>PDF</em> and <em>EPS</em> are commonly used by publishers. The reason for this is that <em>raster</em> files introduce artifacs when they are scaled. You may have seen some images that look ‘pixelated’ – this happens when you try to expand the size of a lower-resolution figure.</p>
+<p>In contrast, you can expand <strong>vector</strong> images to any size and the lines will always be clean and clear. This is why they are generally preferred for publication. There are a few important exceptions, however.</p>
+<ol style="list-style-type: decimal">
+<li><strong>Photographs</strong> – Photographs captured by a camera are saved in the <em>Raster</em> format and cannot be converted to vector without significant loss of information</li>
+<li><strong>Grid Data</strong> – Raster data are convenient for plotting data that occurs in a grid. This may include spatial data that is broken up into a geographic grid. However, even in these cases, you may often want to use the vector format so that the overlapping geographical features (e.g. borders, lakes, rivers) are not pixellated.</li>
+<li><strong>Large Data</strong> – With some large data applications a graph may have many millions or billions of data points or lines. In these cases, the <strong>vector</strong> file would be too big to use in publication (e.g. several gigabytes). In this case you might opt for a high-resolution <em>Raster</em> file. On the other hand, you could graph your data using a density grid with colours corresponding to the density of points. In this case, you could use the <em>vector</em> format to maintain clean lines for the graph axes and labels.</li>
+</ol>
+<p>The bottom line: you generally want to save your graphics as <em>SVG</em> or <em>PDF</em> files if you plan to publish them.</p>
+</div>
+<div id="resolution-vs-dimension" class="section level3" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> Resolution vs Dimension</h3>
+<p>In cases where you do need to use raster images in a publication, pay careful attention to the image’s <strong>Pixel Dimension</strong>. We are used to thinking about resolution – for example a 2 megapixel camera is better than a 1 megapixel camera. Or 200 dpi (dots per inch) is better than 100 dpi. But it’s not just the <strong>resolution</strong> that matters, the image <strong>size</strong> also determines the quality of the final image. The <strong>size</strong> and <strong>resolution</strong> of an image jointly determine its <strong>Pixel Dimension</strong>.</p>
+<p>For example, an image with 200 dpi that is 1 x 3 inches will have the same pixel dimension of an image with 100 dpi that is 2 x 6 inches. These images will look exactly the same if they are printed at the same size. That’s because the pixel dimension determines how an image looks on a page, and both of these have the same pixel dimension: 200 x 600 pixels.</p>
+</div>
+<div id="screen-vs-print" class="section level3" number="3.1.4">
+<h3><span class="header-section-number">3.1.4</span> Screen vs Print</h3>
+<p>Another important consideration is whether your figures are intended for a computer screen or printed page (or both). Each pixel of your screen has tiny lights that determine the specific colour that is reproduced. The <strong>emission</strong> of different wavelengths from your screen produces the different colours. In contrast, printed images get their colour from combinatios of ink, which <strong>absorb</strong> different wavelengths of colour. As a result, some colours that look fine on your screen do not reproduce well in print. In print, the intensity of colours are limited by the intensity of the Cyan, Magenta and Yellow inks that are used to reproduce the images. This is called CMYK printing.</p>
+<p>Some programs like Adobe Illustrator have options to limit the colours on your screen to only display colours that can be reproduced with CMYK printing.</p>
+</div>
+<div id="accessibility" class="section level3" number="3.1.5">
+<h3><span class="header-section-number">3.1.5</span> Accessibility</h3>
+<p>There are two other important considerations for colouring your figures. First, remember that a significant portion of the population is unable to see certain colours. In addition, many scientists and students may print out your paper in black-and-white. You should try to choose colours that can be discerned in these situations.</p>
+<p>The <code>viridis</code> package is a good tool for this. See: <a href="https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html" class="uri">https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html</a></p>
+</div>
+<div id="slides" class="section level3" number="3.1.6">
+<h3><span class="header-section-number">3.1.6</span> Slides</h3>
+<p>Some of the above information is covered and expanded in the <a href="https://colauttilab.github.io/RCrashCourse/Graphics_small.pdf">Introductory Slides</a> for examples of graphical output from R, using <code>ggplot2</code> and other graphing functions. These slides cover:</p>
+<ol style="list-style-type: decimal">
+<li>Graphing examples</li>
+<li>Graphical concepts</li>
+<li><code>ggplot</code> grammar</li>
+<li>anatomy of a <code>qplot</code>/<code>ggplot</code> graph</li>
+</ol>
+</div>
+</div>
+<div id="getting-started" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Getting Started</h2>
+<p>Install the <code>ggplot2</code> package using <code>install.packages("ggplot2")</code>. Load it with the <code>library</code> function whenever you want to include a function from the <code>ggplot2</code> library in your code..</p>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="quick-visualizations.html#cb285-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<p>The <code>ggplot2</code> package includes two main functions, quickplot <code>qplot()</code> for fast graphs and the <code>ggplot()</code> function for more detailed, customizable graphs.</p>
+<div id="data-setup" class="section level3" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Data setup</h3>
+<p>We will again be working with the <code>FallopiaData.csv</code> dataset, which can be downloaded here: <a href="https://colauttilab.github.io/RCrashCourse/FallopiaData.csv" class="uri">https://colauttilab.github.io/RCrashCourse/FallopiaData.csv</a>, and saved to your project folder, which you can identify with the <code>getwd()</code> function. You may want to save this to a folder called ‘Data’, and then open the file in R:</p>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="quick-visualizations.html#cb286-1" aria-hidden="true" tabindex="-1"></a>MyData<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">&quot;./Data/FallopiaData.csv&quot;</span>, <span class="at">header=</span>T)</span></code></pre></div>
+<p>alternatively, you can load the file right from the internet:</p>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="quick-visualizations.html#cb287-1" aria-hidden="true" tabindex="-1"></a>MyData<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">&quot;https://colauttilab.github.io/RCrashCourse/FallopiaData.csv&quot;</span>, </span>
+<span id="cb287-2"><a href="quick-visualizations.html#cb287-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">header=</span>T)</span></code></pre></div>
+<p>This dataset comes from the research group of Dr. Oliver Bossdorf at the University of Tuebingen in Tuebingen, Germany – a wonderful little town on the Neckar River. The data come from a plant competition experiment involving two invasive species from the genus <em>Fallopia</em>.</p>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="quick-visualizations.html#cb288-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(MyData)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    123 obs. of  13 variables:
+##  $ PotNum      : int  1 2 3 5 6 7 8 9 10 11 ...
+##  $ Scenario    : chr  &quot;low&quot; &quot;low&quot; &quot;low&quot; &quot;low&quot; ...
+##  $ Nutrients   : chr  &quot;low&quot; &quot;low&quot; &quot;low&quot; &quot;low&quot; ...
+##  $ Taxon       : chr  &quot;japon&quot; &quot;japon&quot; &quot;japon&quot; &quot;japon&quot; ...
+##  $ Symphytum   : num  9.81 8.64 2.65 1.44 9.15 ...
+##  $ Silene      : num  36.4 29.6 36 21.4 23.9 ...
+##  $ Urtica      : num  16.08 5.59 17.09 12.39 5.19 ...
+##  $ Geranium    : num  4.68 5.75 5.13 5.37 0 9.05 3.51 9.64 7.3 6.36 ...
+##  $ Geum        : num  0.12 0.55 0.09 0.31 0.17 0.97 0.4 0.01 0.47 0.33 ...
+##  $ All_Natives : num  67 50.2 61 40.9 38.4 ...
+##  $ Fallopia    : num  0.01 0.04 0.09 0.77 3.4 0.54 2.05 0.26 0 0 ...
+##  $ Total       : num  67.1 50.2 61.1 41.7 41.8 ...
+##  $ Pct_Fallopia: num  0.01 0.08 0.15 1.85 8.13 1.12 3.7 0.61 0 0 ...</code></pre>
+<p>The first 4 columns give information about the pot and treatments. The rest give biomass measurements.</p>
+<p><br></p>
+<hr />
+<p><br></p>
+</div>
+</div>
+<div id="basic-graphs" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Basic Graphs</h2>
+<p>Think back to the <a href="https://colauttilab.github.io/RCrashCourse/1_fundamentals.html">R Fundamentals Tutorial</a>, and you will hopefully recall the different data types. For graphing purposes, there are two main types of data: <strong>categorical</strong> and <strong>continuous</strong> putting these together in different combinations with <code>plot</code> gives us different graphs. One nice thing is that we don’t have to specify which graphs to make; <code>qplot</code> will decide which type of graph based on the type of data. Of course, we can also specify a plot type if we want something different.</p>
+<div id="one-continuous" class="section level3" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> One continuous</h3>
+<p>If we input one continous variable, <code>qplot</code> will produce a frequency histogram by default.</p>
+<div id="histogram" class="section level5" number="3.3.1.0.1">
+<h5><span class="header-section-number">3.3.1.0.1</span> Histogram</h5>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="quick-visualizations.html#cb290-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Total, <span class="at">data=</span>MyData)</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+</div>
+<div id="one-categorical" class="section level3" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> One categorical</h3>
+<p>If we input one categorical variable, <code>qplot</code> will produce a bar graph showing counts for each category.</p>
+<div id="bar-graph" class="section level5" number="3.3.2.0.1">
+<h5><span class="header-section-number">3.3.2.0.1</span> Bar Graph</h5>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="quick-visualizations.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Scenario, <span class="at">data=</span>MyData)</span></code></pre></div>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+</div>
+<div id="two-continuous" class="section level3" number="3.3.3">
+<h3><span class="header-section-number">3.3.3</span> Two continuous</h3>
+<p>If we input two continuous variables, we get the classic bivariate plot a.k.a. scatterplot.</p>
+<div id="bivariate-plot" class="section level5" number="3.3.3.0.1">
+<h5><span class="header-section-number">3.3.3.0.1</span> Bivariate plot</h5>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="quick-visualizations.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Silene, <span class="at">y=</span>Total, <span class="at">data=</span>MyData)</span></code></pre></div>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+</div>
+<div id="two-categorical" class="section level3" number="3.3.4">
+<h3><span class="header-section-number">3.3.4</span> Two categorical</h3>
+<p>Plotting two categorical variables just plots overlapping dots, and it’s not so useful except if you want to check for representation of particular variables.</p>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="quick-visualizations.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Nutrients, <span class="at">y=</span>Scenario, <span class="at">data=</span>MyData)</span></code></pre></div>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>In this case we can see that there is only one type of “Low” Nutrient treatment, but 4 types of “High” treatments. In other words, all of the rows with “Low” nutrient treatment also have the “Low” scenario, and NONE of the rows with “Low” in the scenario column have “Low” in the Nutrients column.</p>
+</div>
+<div id="categorical-by-continuous" class="section level3" number="3.3.5">
+<h3><span class="header-section-number">3.3.5</span> Categorical by continuous</h3>
+<p>If we input a combination of categorical and continuous variables, we see get a categorical scatterplot showing the spread of points along the Y or X axis.</p>
+<div id="categorical-scatter-plots" class="section level5" number="3.3.5.0.1">
+<h5><span class="header-section-number">3.3.5.0.1</span> Categorical scatter plots</h5>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="quick-visualizations.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Nutrients, <span class="at">y=</span>Total, <span class="at">data=</span>MyData)</span></code></pre></div>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>That’s it! That’s all you need to start exploring your data! Load your data frame, and plot different combinations of variables to look at the distribution of values or the relationship between your variables.</p>
+<p>Of course, you might also want to make a few quick tweaks to the look of the graph.</p>
+<p><br></p>
+<hr />
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="basic-customization" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Basic customization</h2>
+<p>There are a number of parameters available with <code>qplot()</code> to quickly customize a few of the basic features of your graphs. Most of these will work with <code>ggplot()</code> as well, though the syntax or context is a bit different in some cases. Refer back to these when you work through the <a href="https://colauttilab.github.io/RCrashCourse/3_ggplot.html">ggplot Tutorial</a>.</p>
+<div id="binwidth" class="section level3" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> <code>binwidth</code></h3>
+<p>Use this with the histogram graph to alter the size of the ‘bins’ along the x-axis.</p>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="quick-visualizations.html#cb296-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Total, <span class="at">data=</span>MyData, <span class="at">binwidth=</span><span class="dv">9</span>)</span></code></pre></div>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="quick-visualizations.html#cb297-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Total, <span class="at">data=</span>MyData, <span class="at">binwidth=</span><span class="fl">0.5</span>)</span></code></pre></div>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-10-2.png" width="672" /></p>
+</div>
+<div id="size" class="section level3" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> <code>size</code></h3>
+<p>This controls the size of points (usually) or sometimes lines, depending on the context.</p>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="quick-visualizations.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Silene, <span class="at">y=</span>Fallopia, <span class="at">data=</span>MyData, <span class="at">size=</span>Total) <span class="co"># Scale by a variable</span></span></code></pre></div>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="quick-visualizations.html#cb299-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Silene, <span class="at">y=</span>Total, <span class="at">data=</span>MyData, <span class="at">size=</span><span class="fu">I</span>(<span class="dv">5</span>)) <span class="co"># Scale by a constant</span></span></code></pre></div>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-11-2.png" width="672" /></p>
+<p><strong>NOTE</strong> the use of the identity function: <code>I()</code> for constant. What happens if you just put a 5 in there without the identity function? Do it and see if you can figure out the problem.</p>
+<p>Try using different numbers for comparison (e.g., 2, 5 and 10). How does the size change when you include the <code>I()</code> function vs when you just put the number in?</p>
+<p>The explanation is a bit tricky, but imagine if you added a column to your data frame and put in a number. Then for size you put the column name. R would treat this as a variable and scale the size of the symbol to the value in this column. However, since all the rows have the same value, then they all have the same scaled size. Now try using a different column for scaling:</p>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="quick-visualizations.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Silene, <span class="at">y=</span>Total, <span class="at">data=</span>MyData, <span class="at">size=</span>Total) <span class="co"># Scale by column &#39;Total&#39;</span></span></code></pre></div>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>You can see in the legend how the point size scales with the column called <em>Total</em></p>
+<p>On the other hand, the identify function <code>I()</code> tells R: <em>I want to use this exact point size</em>.</p>
+</div>
+<div id="colour-or-color" class="section level3" number="3.4.3">
+<h3><span class="header-section-number">3.4.3</span> <code>colour</code> or <code>color</code></h3>
+<p>Another nice feature of <code>qplot</code> and <code>ggplot</code> is that you can use different spelling. You can use colour or color to colour add colour to your graphs.</p>
+<p>For example, you can colours points based on a factor</p>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="quick-visualizations.html#cb301-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Silene, <span class="at">y=</span>Fallopia, <span class="at">data=</span>MyData, <span class="at">colour=</span>Nutrients) <span class="co"># Categorical colour</span></span></code></pre></div>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="quick-visualizations.html#cb302-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Silene, <span class="at">y=</span>Fallopia, <span class="at">data=</span>MyData, <span class="at">colour=</span>Total) <span class="co"># Continuous colour</span></span></code></pre></div>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-13-2.png" width="672" /></p>
+<p>Or use the identity function <code>I()</code> again to set a specific colour</p>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="quick-visualizations.html#cb303-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Silene, <span class="at">y=</span>Total, <span class="at">data=</span>MyData, <span class="at">colour=</span><span class="fu">I</span>(<span class="st">&quot;purple&quot;</span>)) <span class="co"># basic colour</span></span></code></pre></div>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="quick-visualizations.html#cb304-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Silene, <span class="at">y=</span>Total, <span class="at">data=</span>MyData, <span class="at">colour=</span><span class="fu">I</span>(<span class="fu">rgb</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>))) <span class="co"># rgb = red/green/blue</span></span></code></pre></div>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-14-2.png" width="672" /></p>
+<div id="histogram-1" class="section level4" number="3.4.3.1">
+<h4><span class="header-section-number">3.4.3.1</span> Histogram</h4>
+<p>Note what happens when we use the <code>colour</code> parameter for a histrogram</p>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="quick-visualizations.html#cb305-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Total, <span class="at">data=</span>MyData, <span class="at">group=</span>Nutrients, <span class="at">colour=</span>Nutrients)</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>The coloured outlines might be useful but we usually will want the inside coloured.</p>
+</div>
+</div>
+<div id="fill" class="section level3" number="3.4.4">
+<h3><span class="header-section-number">3.4.4</span> <code>fill</code></h3>
+<p>This parameter is used for boxes and other shapes that have a separate outline (<code>colour=</code>) and interior (<code>fill=</code>).</p>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="quick-visualizations.html#cb307-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Total, <span class="at">data=</span>MyData, <span class="at">group=</span>Nutrients, <span class="at">fill=</span>Nutrients)</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+</div>
+<div id="posit" class="section level3" number="3.4.5">
+<h3><span class="header-section-number">3.4.5</span> <code>posit</code></h3>
+<p>Use this to adjust the position, usually for histograms or bar graphs. For example, if we want to compare histograms on the same graph:</p>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="quick-visualizations.html#cb309-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Total, <span class="at">data=</span>MyData, <span class="at">group=</span>Nutrients, <span class="at">fill=</span>Nutrients)</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>It’s hard to interpret that graph, so we can shift the position using <code>"dodge"</code>.</p>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="quick-visualizations.html#cb311-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Total, <span class="at">data=</span>MyData, <span class="at">group=</span>Nutrients, <span class="at">fill=</span>Nutrients, <span class="at">posit=</span><span class="st">&quot;dodge&quot;</span>)</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+</div>
+<div id="alpha" class="section level3" number="3.4.6">
+<h3><span class="header-section-number">3.4.6</span> <code>alpha</code></h3>
+<p>Think of <code>alpha</code> as a measure of opacity, ranging from 0 to 1 with 1 being the default, solid point or line and 0 being invisible.</p>
+<p>This is particularly useful for visualizing overlapping points.</p>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="quick-visualizations.html#cb313-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Silene,<span class="at">y=</span>Total,<span class="at">data=</span>MyData,<span class="at">size=</span><span class="fu">I</span>(<span class="dv">5</span>),<span class="at">alpha=</span><span class="fu">I</span>(<span class="fl">0.3</span>))</span></code></pre></div>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+</div>
+<div id="shape" class="section level3" number="3.4.7">
+<h3><span class="header-section-number">3.4.7</span> <code>shape</code></h3>
+<p>You can also change the shape of your points, again using a column of data or the identity <code>I()</code> function.</p>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="quick-visualizations.html#cb314-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Silene,<span class="at">y=</span>Total,<span class="at">data=</span>MyData,<span class="at">size=</span><span class="fu">I</span>(<span class="dv">5</span>),<span class="at">shape=</span>Nutrients)</span></code></pre></div>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="quick-visualizations.html#cb315-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Silene,<span class="at">y=</span>Total,<span class="at">data=</span>MyData,<span class="at">size=</span><span class="fu">I</span>(<span class="dv">5</span>),<span class="at">shape=</span><span class="fu">I</span>(<span class="dv">17</span>))</span></code></pre></div>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-20-2.png" width="672" /></p>
+<p>There are a number of different shapes available, by specifying a number from 0 through 25.</p>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p>Note that the shapes with grey in the above figure can be coloured with <code>fill=</code> paremeter, while all of the black parts (lines and fill) can be coloured with the <code>colour=</code> parameter.</p>
+<p>You can use <code>fill</code> and <code>colour</code> to customize these separately.</p>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="quick-visualizations.html#cb316-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Silene,<span class="at">y=</span>Total,<span class="at">data=</span>MyData,<span class="at">size=</span><span class="fu">I</span>(<span class="dv">5</span>),<span class="at">shape=</span><span class="fu">I</span>(<span class="dv">21</span>),<span class="at">fill=</span><span class="fu">I</span>(<span class="st">&quot;yellow&quot;</span>),<span class="at">colour=</span><span class="fu">I</span>(<span class="st">&quot;red&quot;</span>))</span></code></pre></div>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+</div>
+<div id="lab-xlab-and-ylab" class="section level3" number="3.4.8">
+<h3><span class="header-section-number">3.4.8</span> <code>lab</code>, <code>xlab</code>, and <code>ylab</code></h3>
+<p>Use these to customize your axis labels.</p>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="quick-visualizations.html#cb317-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Silene, <span class="at">y=</span>Total, <span class="at">data=</span>MyData,</span>
+<span id="cb317-2"><a href="quick-visualizations.html#cb317-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">xlab=</span><span class="st">&quot;Silene Biomass&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;Total Biomass&quot;</span>)</span></code></pre></div>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+</div>
+<div id="main" class="section level3" number="3.4.9">
+<h3><span class="header-section-number">3.4.9</span> <code>main</code></h3>
+<p>This will add a title to your plot. Usually you wouldn’t use this for a figure intended for publication, but this can be useful for reports, websites, presentations, supplementary material, appendices, etc.</p>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="quick-visualizations.html#cb318-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Silene,<span class="at">y=</span>Total,<span class="at">data=</span>MyData,<span class="at">main=</span><span class="st">&quot;Biomass&quot;</span>)</span></code></pre></div>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p><br></p>
+<hr />
+<p><br></p>
+</div>
+</div>
+<div id="themes-and-geoms" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> Themes and Geoms</h2>
+<p>Themes determine the look and ‘feel’ of your graphs, while Geoms determine the geometry – how your data are physically mapped to the graphing space. In both <code>qplot</code> and <code>ggplot</code>, themes are added with a separate function linked to the graph by using the plus sign <code>+</code>. Geoms are defined by the <code>geom=</code> paremeter inside the <code>qplot()</code> function or with a specific <code>geom_FUNCTION()</code> linked to the main <code>ggplot()</code> function by using the plus sign.</p>
+<p>These are easy to understand with a few examples.</p>
+<div id="theme_name" class="section level3" number="3.5.1">
+<h3><span class="header-section-number">3.5.1</span> <code>+ theme_NAME()</code></h3>
+<p>There are a number of available themes, defined by changing the <em>NAME</em> part.</p>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="quick-visualizations.html#cb319-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Silene,<span class="at">data=</span>MyData) <span class="sc">+</span> <span class="fu">theme_grey</span>() <span class="co"># default</span></span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="quick-visualizations.html#cb321-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Silene,<span class="at">data=</span>MyData) <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="co"># cleaner, better contrast</span></span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-25-2.png" width="672" /></p>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="quick-visualizations.html#cb323-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Silene,<span class="at">data=</span>MyData) <span class="sc">+</span> <span class="fu">theme_linedraw</span>() <span class="co"># thicker grid lines</span></span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-25-3.png" width="672" /></p>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="quick-visualizations.html#cb325-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Silene,<span class="at">data=</span>MyData) <span class="sc">+</span> <span class="fu">theme_light</span>() <span class="co"># fainter border and axis values</span></span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-25-4.png" width="672" /></p>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="quick-visualizations.html#cb327-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Silene,<span class="at">data=</span>MyData) <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="co"># no borders</span></span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-25-5.png" width="672" /></p>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="quick-visualizations.html#cb329-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Silene,<span class="at">data=</span>MyData) <span class="sc">+</span> <span class="fu">theme_classic</span>() <span class="co"># x and y lines only, no tick marks</span></span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-25-6.png" width="672" /></p>
+<p>These can be further customized. Or you can create a completely new theme. For example, here is a simplified and cleaner version of <code>theme_classic</code> but with bigger axis labels taht are more suitable for figures in presentation or publication:</p>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="quick-visualizations.html#cb331-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Clean theme for presentations &amp; publications used in the Colautti Lab</span></span>
+<span id="cb331-2"><a href="quick-visualizations.html#cb331-2" aria-hidden="true" tabindex="-1"></a>theme_pub <span class="ot">&lt;-</span> <span class="cf">function</span> (<span class="at">base_size =</span> <span class="dv">12</span>, <span class="at">base_family =</span> <span class="st">&quot;&quot;</span>) {</span>
+<span id="cb331-3"><a href="quick-visualizations.html#cb331-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> base_size, <span class="at">base_family =</span> base_family) <span class="sc">%+replace%</span> </span>
+<span id="cb331-4"><a href="quick-visualizations.html#cb331-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
+<span id="cb331-5"><a href="quick-visualizations.html#cb331-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">colour =</span> <span class="st">&quot;black&quot;</span>),</span>
+<span id="cb331-6"><a href="quick-visualizations.html#cb331-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">18</span>),</span>
+<span id="cb331-7"><a href="quick-visualizations.html#cb331-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>),</span>
+<span id="cb331-8"><a href="quick-visualizations.html#cb331-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">18</span>,<span class="at">angle=</span><span class="dv">90</span>),</span>
+<span id="cb331-9"><a href="quick-visualizations.html#cb331-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>),</span>
+<span id="cb331-10"><a href="quick-visualizations.html#cb331-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(), </span>
+<span id="cb331-11"><a href="quick-visualizations.html#cb331-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">&quot;white&quot;</span>),</span>
+<span id="cb331-12"><a href="quick-visualizations.html#cb331-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.border =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb331-13"><a href="quick-visualizations.html#cb331-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">plot.title=</span><span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;bold&quot;</span>, <span class="at">size=</span><span class="dv">24</span>),</span>
+<span id="cb331-14"><a href="quick-visualizations.html#cb331-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">legend.position=</span><span class="st">&quot;none&quot;</span></span>
+<span id="cb331-15"><a href="quick-visualizations.html#cb331-15" aria-hidden="true" tabindex="-1"></a>    ) </span>
+<span id="cb331-16"><a href="quick-visualizations.html#cb331-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>To use this theme, you could just copy-and-paste the above function into your R code.</p>
+<p>Alternatively, you could save it as a separate <code>.R</code> file and thean load it with the <code>source()</code> function.</p>
+<p>A third, even easier option, is to load the version of this code that is available online:</p>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="quick-visualizations.html#cb332-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;http://bit.ly/theme_pub&quot;</span>)</span></code></pre></div>
+<p>The theme is called <code>theme_pub</code> (pub = publication):</p>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="quick-visualizations.html#cb333-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Silene,<span class="at">data=</span>MyData) <span class="sc">+</span> <span class="fu">theme_pub</span>() <span class="co"># A clean format with bigger axis labels for publication</span></span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="quick-visualizations.html#cb335-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Pct_Fallopia,<span class="at">y=</span>Silene,<span class="at">data=</span>MyData) <span class="sc">+</span> <span class="fu">theme_pub</span>() <span class="co"># Bivariate plot</span></span></code></pre></div>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-28-2.png" width="672" /></p>
+</div>
+<div id="theme_set" class="section level3" number="3.5.2">
+<h3><span class="header-section-number">3.5.2</span> <code>theme_set</code></h3>
+<p>If you want to use the same theme throughout your code, you can use this funciton.</p>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="quick-visualizations.html#cb336-1" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_pub</span>())</span>
+<span id="cb336-2"><a href="quick-visualizations.html#cb336-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Silene,<span class="at">data=</span>MyData) </span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+</div>
+<div id="geom" class="section level3" number="3.5.3">
+<h3><span class="header-section-number">3.5.3</span> <code>geom</code></h3>
+<p>In addition to the default genomes that <code>qplot</code> uses for different data types, there are some other options available.</p>
+<p>For example, the scatterplot doesn’t give a good sense of the spread of the data.</p>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="quick-visualizations.html#cb338-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Nutrients,<span class="at">y=</span>Total,<span class="at">data=</span>MyData) <span class="co"># Basic</span></span></code></pre></div>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p>But the <code>boxplot</code> geom shows the median (line), 1st and 3rd quartiles (boxes), range of most observations (whiskers), and potential outliers (dots)</p>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="quick-visualizations.html#cb339-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Nutrients,<span class="at">y=</span>Total,<span class="at">data=</span>MyData,<span class="at">geom=</span><span class="st">&quot;boxplot&quot;</span>) <span class="co"># Geom</span></span></code></pre></div>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p>Another useful example is for histograms with many ‘bins’ which can be smoothed into a <code>density</code> curve rather than plotting bar graphs.</p>
+<p>For example, the bar graph from above</p>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="quick-visualizations.html#cb340-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(Total,<span class="at">data=</span>MyData) <span class="co"># Basic</span></span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p>reformatted as a <code>density</code> geom.</p>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="quick-visualizations.html#cb342-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(Total,<span class="at">data=</span>MyData,<span class="at">geom=</span><span class="st">&quot;density&quot;</span>) <span class="co"># Geom</span></span></code></pre></div>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<p>See the <code>ggplot2</code> website for a complete list of geoms with examples:</p>
+<p><a href="https://ggplot2.tidyverse.org/reference/" class="uri">https://ggplot2.tidyverse.org/reference/</a></p>
+<p><br></p>
+<hr />
+<p><br></p>
+</div>
+</div>
+<div id="multiple-graphs" class="section level2" number="3.6">
+<h2><span class="header-section-number">3.6</span> Multiple graphs</h2>
+<p>It is often handy to plot separate graphs for different categories of a grouping variable. This can be done with <code>facets</code> in <code>qplot</code>.</p>
+<div id="facets" class="section level3" number="3.6.1">
+<h3><span class="header-section-number">3.6.1</span> <code>facets</code></h3>
+<p>Facets have the general form <code>VERTICAL ~ HORIZONTAL</code>. Use the period <code>.</code> to indicate ‘all data’ r ‘do not separate my data’.</p>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="quick-visualizations.html#cb343-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Silene,<span class="at">data=</span>MyData,<span class="at">facets=</span>Nutrients<span class="sc">~</span>.) <span class="co"># Vertical stacking</span></span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="quick-visualizations.html#cb345-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Silene,<span class="at">data=</span>MyData,<span class="at">facets=</span>.<span class="sc">~</span>Nutrients) <span class="co"># Horizontal stacking</span></span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-34-2.png" width="672" /></p>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="quick-visualizations.html#cb347-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>Silene,<span class="at">data=</span>MyData,<span class="at">facets=</span>Taxon<span class="sc">~</span>Nutrients) <span class="co"># Both (2 column stacking)</span></span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="02_qplot_files/figure-html/unnamed-chunk-34-3.png" width="672" /></p>
+<p><br></p>
+<hr />
+<p><br></p>
+</div>
+</div>
+<div id="save-output" class="section level2" number="3.7">
+<h2><span class="header-section-number">3.7</span> Save output</h2>
+<p>Saving your graphs to an external file requires three important steps:</p>
+<ol style="list-style-type: decimal">
+<li>Open a file using a function like <code>pdf</code> or <code>svg</code> for the <strong>vector</strong> format, or <code>png</code> for the <strong>raster</strong> format.</li>
+<li>Run the code to produce the graph, just like above. However, instead of seeing a graph in your R interface, you will not see anything because the graph is being sent to the file.</li>
+<li>Close the file! Do this with the <code>dev.off()</code> function.</li>
+</ol>
+<blockquote>
+<p>Important: If you don’t close the file, it is unusable.</p>
+</blockquote>
+<p>Failing to close the file is a common source of error when generating graphs. If you are having problems with graphing outputs, try running the <code>dev.off()</code> function a few times to make sure you close any files that are ‘hanging’ open.</p>
+<p>Here’s an example code for making a <code>pdf</code> output of a grpah.</p>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="quick-visualizations.html#cb349-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&quot;SileneHist.pdf&quot;</span>) <span class="co"># 1. Create and open a file</span></span>
+<span id="cb349-2"><a href="quick-visualizations.html#cb349-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">qplot</span>(<span class="at">x=</span>Silene,<span class="at">data=</span>MyData,<span class="at">facets=</span>Taxon<span class="sc">~</span>Nutrients) <span class="co"># 2. Write the graph info</span></span>
+<span id="cb349-3"><a href="quick-visualizations.html#cb349-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>() <span class="co"># 3. Close the file</span></span></code></pre></div>
+<p>Note how the qplot command does not open in the plots window when you run this. This is because the info is sent to <em>SileneHist.pdf</em> file instead of the graphing area in your R console (e.g. <em>plots</em> tab in R Studio)</p>
+</div>
+<div id="practice" class="section level2" number="3.8">
+<h2><span class="header-section-number">3.8</span> Practice</h2>
+<p>Graphing may seem slow and tedious at first, but the more you practice, the faster you will be able to produce meaningful visualizations.</p>
+<p>Don’t be afraid to try new things. Try mixing up components and see what happens. At worst you will just get an error message.</p>
+<p>Once you have a good understanding of these basics, you can see how to build more advanced plots with <code>ggplot()</code>.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="fundamentals.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="advanced-visualizations.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02_qplot.rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

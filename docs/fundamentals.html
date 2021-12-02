@@ -1,0 +1,1763 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Fundamentals | R Crash Course</title>
+  <meta name="description" content="A Crash Course in R for Biologists" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Fundamentals | R Crash Course" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="A Crash Course in R for Biologists" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Fundamentals | R Crash Course" />
+  
+  <meta name="twitter:description" content="A Crash Course in R for Biologists" />
+  
+
+<meta name="author" content="Robert I. Colautti" />
+
+
+<meta name="date" content="2021-12-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="setup.html"/>
+<link rel="next" href="quick-visualizations.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>1</b> Setup</a></li>
+<li class="chapter" data-level="2" data-path="fundamentals.html"><a href="fundamentals.html"><i class="fa fa-check"></i><b>2</b> Fundamentals</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="fundamentals.html"><a href="fundamentals.html#introduction"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="fundamentals.html"><a href="fundamentals.html#r-basics"><i class="fa fa-check"></i><b>2.2</b> R Basics</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="fundamentals.html"><a href="fundamentals.html#basic-math"><i class="fa fa-check"></i><b>2.2.1</b> Basic Math</a></li>
+<li class="chapter" data-level="2.2.2" data-path="fundamentals.html"><a href="fundamentals.html#functions"><i class="fa fa-check"></i><b>2.2.2</b> Functions</a></li>
+<li class="chapter" data-level="2.2.3" data-path="fundamentals.html"><a href="fundamentals.html#c"><i class="fa fa-check"></i><b>2.2.3</b> `c()</a></li>
+<li class="chapter" data-level="2.2.4" data-path="fundamentals.html"><a href="fundamentals.html#math-functions"><i class="fa fa-check"></i><b>2.2.4</b> Math Functions</a></li>
+<li class="chapter" data-level="2.2.5" data-path="fundamentals.html"><a href="fundamentals.html#roundtruncate"><i class="fa fa-check"></i><b>2.2.5</b> Round/Truncate</a></li>
+<li class="chapter" data-level="2.2.6" data-path="fundamentals.html"><a href="fundamentals.html#logic-operators"><i class="fa fa-check"></i><b>2.2.6</b> Logic Operators</a></li>
+<li class="chapter" data-level="2.2.7" data-path="fundamentals.html"><a href="fundamentals.html#group-comparison"><i class="fa fa-check"></i><b>2.2.7</b> Group Comparison</a></li>
+<li class="chapter" data-level="2.2.8" data-path="fundamentals.html"><a href="fundamentals.html#random-numbers"><i class="fa fa-check"></i><b>2.2.8</b> Random Numbers</a></li>
+<li class="chapter" data-level="2.2.9" data-path="fundamentals.html"><a href="fundamentals.html#combining-objects"><i class="fa fa-check"></i><b>2.2.9</b> Combining objects</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="fundamentals.html"><a href="fundamentals.html#data-types"><i class="fa fa-check"></i><b>2.3</b> Data Types</a></li>
+<li class="chapter" data-level="2.4" data-path="fundamentals.html"><a href="fundamentals.html#objects"><i class="fa fa-check"></i><b>2.4</b> Objects</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="fundamentals.html"><a href="fundamentals.html#cells"><i class="fa fa-check"></i><b>2.4.1</b> Cells</a></li>
+<li class="chapter" data-level="2.4.2" data-path="fundamentals.html"><a href="fundamentals.html#vector"><i class="fa fa-check"></i><b>2.4.2</b> Vector</a></li>
+<li class="chapter" data-level="2.4.3" data-path="fundamentals.html"><a href="fundamentals.html#matrices"><i class="fa fa-check"></i><b>2.4.3</b> Matrices</a></li>
+<li class="chapter" data-level="2.4.4" data-path="fundamentals.html"><a href="fundamentals.html#tensors"><i class="fa fa-check"></i><b>2.4.4</b> Tensors</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="fundamentals.html"><a href="fundamentals.html#matrix-algebra"><i class="fa fa-check"></i><b>2.5</b> Matrix Algebra</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="fundamentals.html"><a href="fundamentals.html#pca"><i class="fa fa-check"></i><b>2.5.1</b> PCA</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="fundamentals.html"><a href="fundamentals.html#lists"><i class="fa fa-check"></i><b>2.6</b> Lists</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="fundamentals.html"><a href="fundamentals.html#subset-1"><i class="fa fa-check"></i><b>2.6.1</b> Subset</a></li>
+<li class="chapter" data-level="2.6.2" data-path="fundamentals.html"><a href="fundamentals.html#output"><i class="fa fa-check"></i><b>2.6.2</b> Output</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="fundamentals.html"><a href="fundamentals.html#print-and-paste"><i class="fa fa-check"></i><b>2.7</b> <code>print()</code> and <code>paste()</code></a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="fundamentals.html"><a href="fundamentals.html#for-help"><i class="fa fa-check"></i><b>2.7.1</b> ? for HELP</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="fundamentals.html"><a href="fundamentals.html#data"><i class="fa fa-check"></i><b>2.8</b> Data</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="fundamentals.html"><a href="fundamentals.html#working-directory"><i class="fa fa-check"></i><b>2.8.1</b> Working Directory</a></li>
+<li class="chapter" data-level="2.8.2" data-path="fundamentals.html"><a href="fundamentals.html#import"><i class="fa fa-check"></i><b>2.8.2</b> Import</a></li>
+<li class="chapter" data-level="2.8.3" data-path="fundamentals.html"><a href="fundamentals.html#data.frame"><i class="fa fa-check"></i><b>2.8.3</b> <code>data.frame</code></a></li>
+<li class="chapter" data-level="2.8.4" data-path="fundamentals.html"><a href="fundamentals.html#subset-2"><i class="fa fa-check"></i><b>2.8.4</b> Subset</a></li>
+<li class="chapter" data-level="2.8.5" data-path="fundamentals.html"><a href="fundamentals.html#new-columns"><i class="fa fa-check"></i><b>2.8.5</b> New Columns</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="fundamentals.html"><a href="fundamentals.html#other-functions"><i class="fa fa-check"></i><b>2.9</b> Other Functions</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="fundamentals.html"><a href="fundamentals.html#unique"><i class="fa fa-check"></i><b>2.9.1</b> <code>unique</code></a></li>
+<li class="chapter" data-level="2.9.2" data-path="fundamentals.html"><a href="fundamentals.html#duplicated"><i class="fa fa-check"></i><b>2.9.2</b> <code>duplicated</code></a></li>
+<li class="chapter" data-level="2.9.3" data-path="fundamentals.html"><a href="fundamentals.html#aggregate"><i class="fa fa-check"></i><b>2.9.3</b> <code>aggregate</code></a></li>
+<li class="chapter" data-level="2.9.4" data-path="fundamentals.html"><a href="fundamentals.html#tapply"><i class="fa fa-check"></i><b>2.9.4</b> tapply</a></li>
+<li class="chapter" data-level="2.9.5" data-path="fundamentals.html"><a href="fundamentals.html#save"><i class="fa fa-check"></i><b>2.9.5</b> Save</a></li>
+</ul></li>
+<li class="chapter" data-level="2.10" data-path="fundamentals.html"><a href="fundamentals.html#flow-control"><i class="fa fa-check"></i><b>2.10</b> Flow control</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="fundamentals.html"><a href="fundamentals.html#if"><i class="fa fa-check"></i><b>2.10.1</b> <code>if</code></a></li>
+<li class="chapter" data-level="2.10.2" data-path="fundamentals.html"><a href="fundamentals.html#ifelse"><i class="fa fa-check"></i><b>2.10.2</b> ifelse</a></li>
+<li class="chapter" data-level="2.10.3" data-path="fundamentals.html"><a href="fundamentals.html#for-loop"><i class="fa fa-check"></i><b>2.10.3</b> <code>for</code> loop</a></li>
+<li class="chapter" data-level="2.10.4" data-path="fundamentals.html"><a href="fundamentals.html#nested-loops"><i class="fa fa-check"></i><b>2.10.4</b> Nested Loops</a></li>
+<li class="chapter" data-level="2.10.5" data-path="fundamentals.html"><a href="fundamentals.html#while-loop"><i class="fa fa-check"></i><b>2.10.5</b> <code>while</code> loop</a></li>
+</ul></li>
+<li class="chapter" data-level="2.11" data-path="fundamentals.html"><a href="fundamentals.html#packages"><i class="fa fa-check"></i><b>2.11</b> Packages</a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="fundamentals.html"><a href="fundamentals.html#installing"><i class="fa fa-check"></i><b>2.11.1</b> Installing</a></li>
+<li class="chapter" data-level="2.11.2" data-path="fundamentals.html"><a href="fundamentals.html#loading"><i class="fa fa-check"></i><b>2.11.2</b> Loading</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="fundamentals.html"><a href="fundamentals.html#readable-code"><i class="fa fa-check"></i><b>2.12</b> Readable code</a></li>
+<li class="chapter" data-level="2.13" data-path="fundamentals.html"><a href="fundamentals.html#test-yourself"><i class="fa fa-check"></i><b>2.13</b> TEST yourself:</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="quick-visualizations.html"><a href="quick-visualizations.html"><i class="fa fa-check"></i><b>3</b> Quick Visualizations</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="quick-visualizations.html"><a href="quick-visualizations.html#overview"><i class="fa fa-check"></i><b>3.1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="quick-visualizations.html"><a href="quick-visualizations.html#graphical-concepts"><i class="fa fa-check"></i><b>3.1.1</b> Graphical Concepts</a></li>
+<li class="chapter" data-level="3.1.2" data-path="quick-visualizations.html"><a href="quick-visualizations.html#vector-vs.-raster"><i class="fa fa-check"></i><b>3.1.2</b> Vector vs. Raster</a></li>
+<li class="chapter" data-level="3.1.3" data-path="quick-visualizations.html"><a href="quick-visualizations.html#resolution-vs-dimension"><i class="fa fa-check"></i><b>3.1.3</b> Resolution vs Dimension</a></li>
+<li class="chapter" data-level="3.1.4" data-path="quick-visualizations.html"><a href="quick-visualizations.html#screen-vs-print"><i class="fa fa-check"></i><b>3.1.4</b> Screen vs Print</a></li>
+<li class="chapter" data-level="3.1.5" data-path="quick-visualizations.html"><a href="quick-visualizations.html#accessibility"><i class="fa fa-check"></i><b>3.1.5</b> Accessibility</a></li>
+<li class="chapter" data-level="3.1.6" data-path="quick-visualizations.html"><a href="quick-visualizations.html#slides"><i class="fa fa-check"></i><b>3.1.6</b> Slides</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="quick-visualizations.html"><a href="quick-visualizations.html#getting-started"><i class="fa fa-check"></i><b>3.2</b> Getting Started</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="quick-visualizations.html"><a href="quick-visualizations.html#data-setup"><i class="fa fa-check"></i><b>3.2.1</b> Data setup</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="quick-visualizations.html"><a href="quick-visualizations.html#basic-graphs"><i class="fa fa-check"></i><b>3.3</b> Basic Graphs</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="quick-visualizations.html"><a href="quick-visualizations.html#one-continuous"><i class="fa fa-check"></i><b>3.3.1</b> One continuous</a></li>
+<li class="chapter" data-level="3.3.2" data-path="quick-visualizations.html"><a href="quick-visualizations.html#one-categorical"><i class="fa fa-check"></i><b>3.3.2</b> One categorical</a></li>
+<li class="chapter" data-level="3.3.3" data-path="quick-visualizations.html"><a href="quick-visualizations.html#two-continuous"><i class="fa fa-check"></i><b>3.3.3</b> Two continuous</a></li>
+<li class="chapter" data-level="3.3.4" data-path="quick-visualizations.html"><a href="quick-visualizations.html#two-categorical"><i class="fa fa-check"></i><b>3.3.4</b> Two categorical</a></li>
+<li class="chapter" data-level="3.3.5" data-path="quick-visualizations.html"><a href="quick-visualizations.html#categorical-by-continuous"><i class="fa fa-check"></i><b>3.3.5</b> Categorical by continuous</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="quick-visualizations.html"><a href="quick-visualizations.html#basic-customization"><i class="fa fa-check"></i><b>3.4</b> Basic customization</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="quick-visualizations.html"><a href="quick-visualizations.html#binwidth"><i class="fa fa-check"></i><b>3.4.1</b> <code>binwidth</code></a></li>
+<li class="chapter" data-level="3.4.2" data-path="quick-visualizations.html"><a href="quick-visualizations.html#size"><i class="fa fa-check"></i><b>3.4.2</b> <code>size</code></a></li>
+<li class="chapter" data-level="3.4.3" data-path="quick-visualizations.html"><a href="quick-visualizations.html#colour-or-color"><i class="fa fa-check"></i><b>3.4.3</b> <code>colour</code> or <code>color</code></a></li>
+<li class="chapter" data-level="3.4.4" data-path="quick-visualizations.html"><a href="quick-visualizations.html#fill"><i class="fa fa-check"></i><b>3.4.4</b> <code>fill</code></a></li>
+<li class="chapter" data-level="3.4.5" data-path="quick-visualizations.html"><a href="quick-visualizations.html#posit"><i class="fa fa-check"></i><b>3.4.5</b> <code>posit</code></a></li>
+<li class="chapter" data-level="3.4.6" data-path="quick-visualizations.html"><a href="quick-visualizations.html#alpha"><i class="fa fa-check"></i><b>3.4.6</b> <code>alpha</code></a></li>
+<li class="chapter" data-level="3.4.7" data-path="quick-visualizations.html"><a href="quick-visualizations.html#shape"><i class="fa fa-check"></i><b>3.4.7</b> <code>shape</code></a></li>
+<li class="chapter" data-level="3.4.8" data-path="quick-visualizations.html"><a href="quick-visualizations.html#lab-xlab-and-ylab"><i class="fa fa-check"></i><b>3.4.8</b> <code>lab</code>, <code>xlab</code>, and <code>ylab</code></a></li>
+<li class="chapter" data-level="3.4.9" data-path="quick-visualizations.html"><a href="quick-visualizations.html#main"><i class="fa fa-check"></i><b>3.4.9</b> <code>main</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="quick-visualizations.html"><a href="quick-visualizations.html#themes-and-geoms"><i class="fa fa-check"></i><b>3.5</b> Themes and Geoms</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="quick-visualizations.html"><a href="quick-visualizations.html#theme_name"><i class="fa fa-check"></i><b>3.5.1</b> <code>+ theme_NAME()</code></a></li>
+<li class="chapter" data-level="3.5.2" data-path="quick-visualizations.html"><a href="quick-visualizations.html#theme_set"><i class="fa fa-check"></i><b>3.5.2</b> <code>theme_set</code></a></li>
+<li class="chapter" data-level="3.5.3" data-path="quick-visualizations.html"><a href="quick-visualizations.html#geom"><i class="fa fa-check"></i><b>3.5.3</b> <code>geom</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="quick-visualizations.html"><a href="quick-visualizations.html#multiple-graphs"><i class="fa fa-check"></i><b>3.6</b> Multiple graphs</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="quick-visualizations.html"><a href="quick-visualizations.html#facets"><i class="fa fa-check"></i><b>3.6.1</b> <code>facets</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="quick-visualizations.html"><a href="quick-visualizations.html#save-output"><i class="fa fa-check"></i><b>3.7</b> Save output</a></li>
+<li class="chapter" data-level="3.8" data-path="quick-visualizations.html"><a href="quick-visualizations.html#practice"><i class="fa fa-check"></i><b>3.8</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html"><i class="fa fa-check"></i><b>4</b> Advanced Visualizations</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#overview-1"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
+<li class="chapter" data-level="4.2" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#getting-started-1"><i class="fa fa-check"></i><b>4.2</b> Getting Started</a></li>
+<li class="chapter" data-level="4.3" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#rules-of-thumb"><i class="fa fa-check"></i><b>4.3</b> Rules of thumb</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#minimize-ink"><i class="fa fa-check"></i><b>4.3.1</b> 1. Minimize ‘ink’</a></li>
+<li class="chapter" data-level="4.3.2" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#use-space-wisely"><i class="fa fa-check"></i><b>4.3.2</b> 2. Use space wisely</a></li>
+<li class="chapter" data-level="4.3.3" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#choose-a-colour-palette"><i class="fa fa-check"></i><b>4.3.3</b> 3. Choose a colour palette</a></li>
+<li class="chapter" data-level="4.3.4" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#colours-have-meaning"><i class="fa fa-check"></i><b>4.3.4</b> 4. Colours have meaning</a></li>
+<li class="chapter" data-level="4.3.5" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#maximize-contrast"><i class="fa fa-check"></i><b>4.3.5</b> 5. Maximize contrast</a></li>
+<li class="chapter" data-level="4.3.6" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#keep-relevant-information"><i class="fa fa-check"></i><b>4.3.6</b> 6. Keep relevant information</a></li>
+<li class="chapter" data-level="4.3.7" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#choose-the-right-graph"><i class="fa fa-check"></i><b>4.3.7</b> 7. Choose the right graph</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#example"><i class="fa fa-check"></i><b>4.4</b> Example</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#setup-1"><i class="fa fa-check"></i><b>4.4.1</b> Setup</a></li>
+<li class="chapter" data-level="4.4.2" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#inspect"><i class="fa fa-check"></i><b>4.4.2</b> Inspect</a></li>
+<li class="chapter" data-level="4.4.3" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#absolute-value"><i class="fa fa-check"></i><b>4.4.3</b> Absolute Value</a></li>
+<li class="chapter" data-level="4.4.4" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#missing-values"><i class="fa fa-check"></i><b>4.4.4</b> Missing values</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#measuring-selection"><i class="fa fa-check"></i><b>4.5</b> Measuring Selection</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#relative-fitness"><i class="fa fa-check"></i><b>4.5.1</b> Relative Fitness</a></li>
+<li class="chapter" data-level="4.5.2" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#trait-value"><i class="fa fa-check"></i><b>4.5.2</b> Trait Value</a></li>
+<li class="chapter" data-level="4.5.3" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#s-vs-beta"><i class="fa fa-check"></i><b>4.5.3</b> <span class="math inline">\(s\)</span> vs <span class="math inline">\(\beta\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#ggplot-vs-qplot"><i class="fa fa-check"></i><b>4.6</b> <code>ggplot</code> vs <code>qplot</code></a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#histogram-2"><i class="fa fa-check"></i><b>4.6.1</b> Histogram</a></li>
+<li class="chapter" data-level="4.6.2" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#aes"><i class="fa fa-check"></i><b>4.6.2</b> <code>aes</code></a></li>
+<li class="chapter" data-level="4.6.3" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#layers"><i class="fa fa-check"></i><b>4.6.3</b> Layers</a></li>
+<li class="chapter" data-level="4.6.4" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#stat_name"><i class="fa fa-check"></i><b>4.6.4</b> <code>stat_NAME</code></a></li>
+<li class="chapter" data-level="4.6.5" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#bivariate-geom"><i class="fa fa-check"></i><b>4.6.5</b> Bivariate geom</a></li>
+<li class="chapter" data-level="4.6.6" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#geom_smooth"><i class="fa fa-check"></i><b>4.6.6</b> <code>geom_smooth</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#full-ggplot"><i class="fa fa-check"></i><b>4.7</b> Full ggplot</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#separate-data"><i class="fa fa-check"></i><b>4.7.1</b> Separate data</a></li>
+<li class="chapter" data-level="4.7.2" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#bootstrap"><i class="fa fa-check"></i><b>4.7.2</b> Bootstrap</a></li>
+<li class="chapter" data-level="4.7.3" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#plot-data"><i class="fa fa-check"></i><b>4.7.3</b> Plot data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#multi-graph"><i class="fa fa-check"></i><b>4.8</b> Multi-graph</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#facets-1"><i class="fa fa-check"></i><b>4.8.1</b> <code>facets</code></a></li>
+<li class="chapter" data-level="4.8.2" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#grid.extra-package"><i class="fa fa-check"></i><b>4.8.2</b> <code>grid.extra</code> package</a></li>
+<li class="chapter" data-level="4.8.3" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#grid-package"><i class="fa fa-check"></i><b>4.8.3</b> <code>grid</code> package</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#further-reading"><i class="fa fa-check"></i><b>4.9</b> Further Reading</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="regular-expressions.html"><a href="regular-expressions.html"><i class="fa fa-check"></i><b>5</b> Regular Expressions</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="regular-expressions.html"><a href="regular-expressions.html#overview-2"><i class="fa fa-check"></i><b>5.1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="regular-expressions.html"><a href="regular-expressions.html#universal"><i class="fa fa-check"></i><b>5.1.1</b> Universal</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="regular-expressions.html"><a href="regular-expressions.html#functions-1"><i class="fa fa-check"></i><b>5.2</b> Functions</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="regular-expressions.html"><a href="regular-expressions.html#examples"><i class="fa fa-check"></i><b>5.2.1</b> Examples</a></li>
+<li class="chapter" data-level="5.2.2" data-path="regular-expressions.html"><a href="regular-expressions.html#grep"><i class="fa fa-check"></i><b>5.2.2</b> <code>grep()</code></a></li>
+<li class="chapter" data-level="5.2.3" data-path="regular-expressions.html"><a href="regular-expressions.html#grepl"><i class="fa fa-check"></i><b>5.2.3</b> <code>grepl()</code></a></li>
+<li class="chapter" data-level="5.2.4" data-path="regular-expressions.html"><a href="regular-expressions.html#sub"><i class="fa fa-check"></i><b>5.2.4</b> <code>sub()</code></a></li>
+<li class="chapter" data-level="5.2.5" data-path="regular-expressions.html"><a href="regular-expressions.html#gsub"><i class="fa fa-check"></i><b>5.2.5</b> <code>gsub()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="regular-expressions.html"><a href="regular-expressions.html#wildcards"><i class="fa fa-check"></i><b>5.3</b> Wildcards</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="regular-expressions.html"><a href="regular-expressions.html#escape-character"><i class="fa fa-check"></i><b>5.3.1</b> <code>\</code> escape character</a></li>
+<li class="chapter" data-level="5.3.2" data-path="regular-expressions.html"><a href="regular-expressions.html#in-r"><i class="fa fa-check"></i><b>5.3.2</b> <code>\\</code> in R</a></li>
+<li class="chapter" data-level="5.3.3" data-path="regular-expressions.html"><a href="regular-expressions.html#w"><i class="fa fa-check"></i><b>5.3.3</b> <code>\\w</code></a></li>
+<li class="chapter" data-level="5.3.4" data-path="regular-expressions.html"><a href="regular-expressions.html#w-1"><i class="fa fa-check"></i><b>5.3.4</b> <code>\\W</code></a></li>
+<li class="chapter" data-level="5.3.5" data-path="regular-expressions.html"><a href="regular-expressions.html#s"><i class="fa fa-check"></i><b>5.3.5</b> <code>\\s</code></a></li>
+<li class="chapter" data-level="5.3.6" data-path="regular-expressions.html"><a href="regular-expressions.html#t"><i class="fa fa-check"></i><b>5.3.6</b> <code>\\t</code></a></li>
+<li class="chapter" data-level="5.3.7" data-path="regular-expressions.html"><a href="regular-expressions.html#d"><i class="fa fa-check"></i><b>5.3.7</b> <code>\\d</code></a></li>
+<li class="chapter" data-level="5.3.8" data-path="regular-expressions.html"><a href="regular-expressions.html#d-1"><i class="fa fa-check"></i><b>5.3.8</b> <code>\\D</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="regular-expressions.html"><a href="regular-expressions.html#new-lines"><i class="fa fa-check"></i><b>5.4</b> New Lines</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="regular-expressions.html"><a href="regular-expressions.html#r"><i class="fa fa-check"></i><b>5.4.1</b> <code>\\r</code></a></li>
+<li class="chapter" data-level="5.4.2" data-path="regular-expressions.html"><a href="regular-expressions.html#n"><i class="fa fa-check"></i><b>5.4.2</b> <code>\\n</code></a></li>
+<li class="chapter" data-level="5.4.3" data-path="regular-expressions.html"><a href="regular-expressions.html#big-problem"><i class="fa fa-check"></i><b>5.4.3</b> Big Problem</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="regular-expressions.html"><a href="regular-expressions.html#special-characters"><i class="fa fa-check"></i><b>5.5</b> Special characters</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="regular-expressions.html"><a href="regular-expressions.html#section"><i class="fa fa-check"></i><b>5.5.1</b> <code>|</code></a></li>
+<li class="chapter" data-level="5.5.2" data-path="regular-expressions.html"><a href="regular-expressions.html#section-1"><i class="fa fa-check"></i><b>5.5.2</b> <code>.</code></a></li>
+<li class="chapter" data-level="5.5.3" data-path="regular-expressions.html"><a href="regular-expressions.html#section-2"><i class="fa fa-check"></i><b>5.5.3</b> <code>*</code>, <code>?</code>, <code>+</code>, <code>{}</code></a></li>
+<li class="chapter" data-level="5.5.4" data-path="regular-expressions.html"><a href="regular-expressions.html#section-4"><i class="fa fa-check"></i><b>5.5.4</b> <code>*</code></a></li>
+<li class="chapter" data-level="5.5.5" data-path="regular-expressions.html"><a href="regular-expressions.html#section-5"><i class="fa fa-check"></i><b>5.5.5</b> <code>?</code></a></li>
+<li class="chapter" data-level="5.5.6" data-path="regular-expressions.html"><a href="regular-expressions.html#section-6"><i class="fa fa-check"></i><b>5.5.6</b> <code>+?</code></a></li>
+<li class="chapter" data-level="5.5.7" data-path="regular-expressions.html"><a href="regular-expressions.html#section-7"><i class="fa fa-check"></i><b>5.5.7</b> <code>*?</code></a></li>
+<li class="chapter" data-level="5.5.8" data-path="regular-expressions.html"><a href="regular-expressions.html#section-8"><i class="fa fa-check"></i><b>5.5.8</b> <code>{}</code></a></li>
+<li class="chapter" data-level="5.5.9" data-path="regular-expressions.html"><a href="regular-expressions.html#nm"><i class="fa fa-check"></i><b>5.5.9</b> <code>{n,m}</code></a></li>
+<li class="chapter" data-level="5.5.10" data-path="regular-expressions.html"><a href="regular-expressions.html#n-1"><i class="fa fa-check"></i><b>5.5.10</b> <code>{n}</code></a></li>
+<li class="chapter" data-level="5.5.11" data-path="regular-expressions.html"><a href="regular-expressions.html#n-2"><i class="fa fa-check"></i><b>5.5.11</b> <code>{n,}</code></a></li>
+<li class="chapter" data-level="5.5.12" data-path="regular-expressions.html"><a href="regular-expressions.html#section-9"><i class="fa fa-check"></i><b>5.5.12</b> {}?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="regular-expressions.html"><a href="regular-expressions.html#section-10"><i class="fa fa-check"></i><b>5.6</b> <code>[]</code></a></li>
+<li class="chapter" data-level="5.7" data-path="regular-expressions.html"><a href="regular-expressions.html#and"><i class="fa fa-check"></i><b>5.7</b> <code>^</code> and <code>$</code></a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="regular-expressions.html"><a href="regular-expressions.html#section-11"><i class="fa fa-check"></i><b>5.7.1</b> <code>^</code></a></li>
+<li class="chapter" data-level="5.7.2" data-path="regular-expressions.html"><a href="regular-expressions.html#section-12"><i class="fa fa-check"></i><b>5.7.2</b> <code>$</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="regular-expressions.html"><a href="regular-expressions.html#section-13"><i class="fa fa-check"></i><b>5.8</b> <code>()</code></a></li>
+<li class="chapter" data-level="5.9" data-path="regular-expressions.html"><a href="regular-expressions.html#scraping"><i class="fa fa-check"></i><b>5.9</b> Scraping</a></li>
+<li class="chapter" data-level="5.10" data-path="regular-expressions.html"><a href="regular-expressions.html#examples-1"><i class="fa fa-check"></i><b>5.10</b> Examples</a>
+<ul>
+<li class="chapter" data-level="5.10.1" data-path="regular-expressions.html"><a href="regular-expressions.html#transect-data"><i class="fa fa-check"></i><b>5.10.1</b> Transect Data</a></li>
+<li class="chapter" data-level="5.10.2" data-path="regular-expressions.html"><a href="regular-expressions.html#genbank"><i class="fa fa-check"></i><b>5.10.2</b> Genbank</a></li>
+</ul></li>
+<li class="chapter" data-level="5.11" data-path="regular-expressions.html"><a href="regular-expressions.html#solutions"><i class="fa fa-check"></i><b>5.11</b> Solutions</a>
+<ul>
+<li class="chapter" data-level="5.11.1" data-path="regular-expressions.html"><a href="regular-expressions.html#transects"><i class="fa fa-check"></i><b>5.11.1</b> Transects</a></li>
+<li class="chapter" data-level="5.11.2" data-path="regular-expressions.html"><a href="regular-expressions.html#genbank-1"><i class="fa fa-check"></i><b>5.11.2</b> Genbank</a></li>
+</ul></li>
+<li class="chapter" data-level="5.12" data-path="regular-expressions.html"><a href="regular-expressions.html#more-exercises"><i class="fa fa-check"></i><b>5.12</b> More Exercises</a>
+<ul>
+<li class="chapter" data-level="5.12.1" data-path="regular-expressions.html"><a href="regular-expressions.html#consider-a-vector-of-email-addresses-scraped-from-the-internet"><i class="fa fa-check"></i><b>5.12.1</b> 1. Consider a vector of email addresses scraped from the internet:</a></li>
+<li class="chapter" data-level="5.12.2" data-path="regular-expressions.html"><a href="regular-expressions.html#create-a-random-sequence-of-dna"><i class="fa fa-check"></i><b>5.12.2</b> 2. Create a random sequence of DNA:</a></li>
+<li class="chapter" data-level="5.12.3" data-path="regular-expressions.html"><a href="regular-expressions.html#more-online-examples"><i class="fa fa-check"></i><b>5.12.3</b> 3. More online examples</a></li>
+<li class="chapter" data-level="5.12.4" data-path="regular-expressions.html"><a href="regular-expressions.html#regex-golf"><i class="fa fa-check"></i><b>5.12.4</b> 4. Regex Golf</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-science-intro.html"><a href="data-science-intro.html"><i class="fa fa-check"></i><b>6</b> Data Science Intro</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="data-science-intro.html"><a href="data-science-intro.html#setup-2"><i class="fa fa-check"></i><b>6.1</b> Setup</a></li>
+<li class="chapter" data-level="6.2" data-path="data-science-intro.html"><a href="data-science-intro.html#introduction-to-data-science"><i class="fa fa-check"></i><b>6.2</b> Introduction to Data Science</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="data-science-intro.html"><a href="data-science-intro.html#data-science-life-cycle"><i class="fa fa-check"></i><b>6.2.1</b> Data Science Life-Cycle</a></li>
+<li class="chapter" data-level="6.2.2" data-path="data-science-intro.html"><a href="data-science-intro.html#data-science-in-r"><i class="fa fa-check"></i><b>6.2.2</b> Data Science in R</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="data-science-intro.html"><a href="data-science-intro.html#d-data-wrangling"><i class="fa fa-check"></i><b>6.3</b> 2D Data Wrangling</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="data-science-intro.html"><a href="data-science-intro.html#filter"><i class="fa fa-check"></i><b>6.3.1</b> <code>filter()</code></a></li>
+<li class="chapter" data-level="6.3.2" data-path="data-science-intro.html"><a href="data-science-intro.html#rename"><i class="fa fa-check"></i><b>6.3.2</b> <code>rename()</code></a></li>
+<li class="chapter" data-level="6.3.3" data-path="data-science-intro.html"><a href="data-science-intro.html#arrange"><i class="fa fa-check"></i><b>6.3.3</b> <code>arrange()</code></a></li>
+<li class="chapter" data-level="6.3.4" data-path="data-science-intro.html"><a href="data-science-intro.html#select"><i class="fa fa-check"></i><b>6.3.4</b> <code>select()</code></a></li>
+<li class="chapter" data-level="6.3.5" data-path="data-science-intro.html"><a href="data-science-intro.html#everything"><i class="fa fa-check"></i><b>6.3.5</b> <code>everything()</code></a></li>
+<li class="chapter" data-level="6.3.6" data-path="data-science-intro.html"><a href="data-science-intro.html#mutate"><i class="fa fa-check"></i><b>6.3.6</b> <code>mutate()</code></a></li>
+<li class="chapter" data-level="6.3.7" data-path="data-science-intro.html"><a href="data-science-intro.html#transmute"><i class="fa fa-check"></i><b>6.3.7</b> <code>transmute()</code></a></li>
+<li class="chapter" data-level="6.3.8" data-path="data-science-intro.html"><a href="data-science-intro.html#summarize-group_by"><i class="fa fa-check"></i><b>6.3.8</b> <code>summarize()</code> + <code>group_by()</code></a></li>
+<li class="chapter" data-level="6.3.9" data-path="data-science-intro.html"><a href="data-science-intro.html#weighted-mean"><i class="fa fa-check"></i><b>6.3.9</b> Weighted Mean</a></li>
+<li class="chapter" data-level="6.3.10" data-path="data-science-intro.html"><a href="data-science-intro.html#pipe"><i class="fa fa-check"></i><b>6.3.10</b> <code>%&gt;%</code> (pipe)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="data-science-intro.html"><a href="data-science-intro.html#missing-data"><i class="fa fa-check"></i><b>6.4</b> Missing Data</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="data-science-intro.html"><a href="data-science-intro.html#na-and-na.rm"><i class="fa fa-check"></i><b>6.4.1</b> <code>NA</code> and <code>na.rm()</code></a></li>
+<li class="chapter" data-level="6.4.2" data-path="data-science-intro.html"><a href="data-science-intro.html#na-vs-0"><i class="fa fa-check"></i><b>6.4.2</b> <code>NA</code> vs <code>0</code></a></li>
+<li class="chapter" data-level="6.4.3" data-path="data-science-intro.html"><a href="data-science-intro.html#is.na"><i class="fa fa-check"></i><b>6.4.3</b> <code>is.na()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="data-science-intro.html"><a href="data-science-intro.html#naughty-data"><i class="fa fa-check"></i><b>6.5</b> Naughty Data</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="advanced-r.html"><a href="advanced-r.html"><i class="fa fa-check"></i><b>7</b> Advanced R</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="advanced-r.html"><a href="advanced-r.html#introduction-1"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="advanced-r.html"><a href="advanced-r.html#getting-started-2"><i class="fa fa-check"></i><b>7.2</b> Getting Started</a></li>
+<li class="chapter" data-level="7.3" data-path="advanced-r.html"><a href="advanced-r.html#r-markdown"><i class="fa fa-check"></i><b>7.3</b> R Markdown</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="advanced-r.html"><a href="advanced-r.html#cheat-sheet"><i class="fa fa-check"></i><b>7.3.1</b> Cheat Sheet</a></li>
+<li class="chapter" data-level="7.3.2" data-path="advanced-r.html"><a href="advanced-r.html#create"><i class="fa fa-check"></i><b>7.3.2</b> Create</a></li>
+<li class="chapter" data-level="7.3.3" data-path="advanced-r.html"><a href="advanced-r.html#yaml-header"><i class="fa fa-check"></i><b>7.3.3</b> YAML Header</a></li>
+<li class="chapter" data-level="7.3.4" data-path="advanced-r.html"><a href="advanced-r.html#markdown"><i class="fa fa-check"></i><b>7.3.4</b> Markdown</a></li>
+<li class="chapter" data-level="7.3.5" data-path="advanced-r.html"><a href="advanced-r.html#basic-elements"><i class="fa fa-check"></i><b>7.3.5</b> Basic elements:</a></li>
+<li class="chapter" data-level="7.3.6" data-path="advanced-r.html"><a href="advanced-r.html#headers"><i class="fa fa-check"></i><b>7.3.6</b> Headers</a></li>
+<li class="chapter" data-level="7.3.7" data-path="advanced-r.html"><a href="advanced-r.html#other-elements"><i class="fa fa-check"></i><b>7.3.7</b> Other Elements</a></li>
+<li class="chapter" data-level="7.3.8" data-path="advanced-r.html"><a href="advanced-r.html#links"><i class="fa fa-check"></i><b>7.3.8</b> Links</a></li>
+<li class="chapter" data-level="7.3.9" data-path="advanced-r.html"><a href="advanced-r.html#images"><i class="fa fa-check"></i><b>7.3.9</b> Images</a></li>
+<li class="chapter" data-level="7.3.10" data-path="advanced-r.html"><a href="advanced-r.html#lists-and-tables"><i class="fa fa-check"></i><b>7.3.10</b> Lists and tables</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="advanced-r.html"><a href="advanced-r.html#tables"><i class="fa fa-check"></i><b>7.4</b> Tables</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="advanced-r.html"><a href="advanced-r.html#embed-r-code"><i class="fa fa-check"></i><b>7.4.1</b> Embed R Code</a></li>
+<li class="chapter" data-level="7.4.2" data-path="advanced-r.html"><a href="advanced-r.html#dynamic-tables"><i class="fa fa-check"></i><b>7.4.2</b> Dynamic tables</a></li>
+<li class="chapter" data-level="7.4.3" data-path="advanced-r.html"><a href="advanced-r.html#embed-graphs"><i class="fa fa-check"></i><b>7.4.3</b> Embed Graphs</a></li>
+<li class="chapter" data-level="7.4.4" data-path="advanced-r.html"><a href="advanced-r.html#options-for-header"><i class="fa fa-check"></i><b>7.4.4</b> Options for header</a></li>
+<li class="chapter" data-level="7.4.5" data-path="advanced-r.html"><a href="advanced-r.html#content-as-tabs"><i class="fa fa-check"></i><b>7.4.5</b> Content as tabs</a></li>
+<li class="chapter" data-level="7.4.6" data-path="advanced-r.html"><a href="advanced-r.html#quarterly-results"><i class="fa fa-check"></i><b>7.4.6</b> Quarterly Results</a></li>
+<li class="chapter" data-level="7.4.7" data-path="advanced-r.html"><a href="advanced-r.html#equations"><i class="fa fa-check"></i><b>7.4.7</b> Equations</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="advanced-r.html"><a href="advanced-r.html#custom-functions"><i class="fa fa-check"></i><b>7.5</b> Custom Functions</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="advanced-r.html"><a href="advanced-r.html#general-form"><i class="fa fa-check"></i><b>7.5.1</b> General form:</a></li>
+<li class="chapter" data-level="7.5.2" data-path="advanced-r.html"><a href="advanced-r.html#example-function"><i class="fa fa-check"></i><b>7.5.2</b> Example function</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="advanced-r.html"><a href="advanced-r.html#custom-r-package"><i class="fa fa-check"></i><b>7.6</b> Custom R Package</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="advanced-r.html"><a href="advanced-r.html#introduction-2"><i class="fa fa-check"></i><b>7.6.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.6.2" data-path="advanced-r.html"><a href="advanced-r.html#getting-started-3"><i class="fa fa-check"></i><b>7.6.2</b> Getting started</a></li>
+<li class="chapter" data-level="7.6.3" data-path="advanced-r.html"><a href="advanced-r.html#add-functions"><i class="fa fa-check"></i><b>7.6.3</b> Add functions</a></li>
+<li class="chapter" data-level="7.6.4" data-path="advanced-r.html"><a href="advanced-r.html#adding-documentation"><i class="fa fa-check"></i><b>7.6.4</b> Adding documentation</a></li>
+<li class="chapter" data-level="7.6.5" data-path="advanced-r.html"><a href="advanced-r.html#add-a-manual"><i class="fa fa-check"></i><b>7.6.5</b> Add a Manual</a></li>
+<li class="chapter" data-level="7.6.6" data-path="advanced-r.html"><a href="advanced-r.html#installing-the-package"><i class="fa fa-check"></i><b>7.6.6</b> Installing the package</a></li>
+<li class="chapter" data-level="7.6.7" data-path="advanced-r.html"><a href="advanced-r.html#input-checking"><i class="fa fa-check"></i><b>7.6.7</b> Input checking</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="advanced-r.html"><a href="advanced-r.html#make-it-public"><i class="fa fa-check"></i><b>7.7</b> Make it public</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="advanced-r.html"><a href="advanced-r.html#references"><i class="fa fa-check"></i><b>7.7.1</b> References:</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Crash Course</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="fundamentals" class="section level1" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Fundamentals</h1>
+<div id="introduction" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Introduction</h2>
+<p>This chapter provides a rapid breakdown of the core functionality of R. There is a lot to cover in a very short time. Remember that you can only learn coding through repetition.</p>
+<p>Before you begin, you should have R and R Studio installed.</p>
+<p><strong>It is important that you physically participate and code along with the examples. Type everything out. The physical act of typing into R and troubleshooting any errors you get is a crucial part of the learning process.</strong></p>
+<p><br></p>
+<hr />
+<p><br></p>
+</div>
+<div id="r-basics" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> R Basics</h2>
+<p>Make comments inside your code. Very important (unless you are using R markdown or R notebooks)!</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="fundamentals.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use hastags to make comments - not read by the R console</span></span>
+<span id="cb3-2"><a href="fundamentals.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Use other characters and blank lines to improve readability:</span></span>
+<span id="cb3-3"><a href="fundamentals.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ------------------------- </span></span>
+<span id="cb3-4"><a href="fundamentals.html#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># My first R script </span></span>
+<span id="cb3-5"><a href="fundamentals.html#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Today&#39;s Date</span></span>
+<span id="cb3-6"><a href="fundamentals.html#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># -------------------------</span></span>
+<span id="cb3-7"><a href="fundamentals.html#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a summary description of what the script does</span></span>
+<span id="cb3-8"><a href="fundamentals.html#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># This script will...</span></span>
+<span id="cb3-9"><a href="fundamentals.html#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># And annotate individual parts of the script</span></span></code></pre></div>
+<div id="basic-math" class="section level3" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Basic Math</h3>
+<p>You can do basic mathematical equations in R.</p>
+<blockquote>
+<p>Yes, type these out!</p>
+</blockquote>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="fundamentals.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span><span class="sc">+</span><span class="dv">2</span> <span class="co"># add</span></span></code></pre></div>
+<pre><code>## [1] 12</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="fundamentals.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10-2</span> <span class="co"># subtract</span></span></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="fundamentals.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span><span class="sc">*</span><span class="dv">2</span> <span class="co"># multiply</span></span></code></pre></div>
+<pre><code>## [1] 20</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="fundamentals.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span><span class="sc">/</span><span class="dv">2</span> <span class="co"># divide</span></span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="fundamentals.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span><span class="sc">^</span><span class="dv">2</span> <span class="co"># exponent</span></span></code></pre></div>
+<pre><code>## [1] 100</code></pre>
+</div>
+<div id="functions" class="section level3" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Functions</h3>
+<p>R uses <strong>functions</strong>. Each function has a name and is followed by brackets <code>function()</code>.</p>
+<p>Inside the brackets we can define input values and parameters.</p>
+</div>
+<div id="c" class="section level3" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> `c()</h3>
+<p>The <strong>concatenate</strong> function <code>c()</code> is a very important function in R that is used to group items together:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="fundamentals.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] 1 2 3 5</code></pre>
+</div>
+<div id="math-functions" class="section level3" number="2.2.4">
+<h3><span class="header-section-number">2.2.4</span> Math Functions</h3>
+<p>Here are some basic mathematical functions</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="fundamentals.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>(<span class="sc">-</span><span class="dv">10</span>) <span class="co"># absolute value</span></span></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="fundamentals.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">10-1</span>) <span class="co"># square root (with subtraction)</span></span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="fundamentals.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">10</span>) <span class="co"># natural log</span></span></code></pre></div>
+<pre><code>## [1] 2.302585</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="fundamentals.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log10</span>(<span class="dv">10</span>) <span class="co"># log base 10</span></span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="fundamentals.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">1</span>) <span class="co"># power of e</span></span></code></pre></div>
+<pre><code>## [1] 2.718282</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="fundamentals.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sin</span>(pi<span class="sc">/</span><span class="dv">2</span>) <span class="co"># sine function</span></span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="fundamentals.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">asin</span>(<span class="dv">1</span>) <span class="co"># inverse sine</span></span></code></pre></div>
+<pre><code>## [1] 1.570796</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="fundamentals.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cos</span>(pi) <span class="co"># cosine</span></span></code></pre></div>
+<pre><code>## [1] -1</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="fundamentals.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">acos</span>(<span class="sc">-</span><span class="dv">1</span>) <span class="co"># inverse cosine</span></span></code></pre></div>
+<pre><code>## [1] 3.141593</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="fundamentals.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tan</span>(<span class="dv">0</span>) <span class="co"># tangent</span></span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="fundamentals.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">atan</span>(<span class="dv">0</span>) <span class="co"># inverse tangent</span></span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+</div>
+<div id="roundtruncate" class="section level3" number="2.2.5">
+<h3><span class="header-section-number">2.2.5</span> Round/Truncate</h3>
+<p>Rounding and truncating numbers</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="fundamentals.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(pi,<span class="at">digits=</span><span class="dv">3</span>) <span class="co"># standard rounding to 3 digits</span></span></code></pre></div>
+<pre><code>## [1] 3.142</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="fundamentals.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">floor</span>(pi) <span class="co"># round down to closest whole number</span></span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="fundamentals.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ceiling</span>(pi) <span class="co"># round up to closest whole number</span></span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="fundamentals.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">signif</span>(pi,<span class="at">digits=</span><span class="dv">2</span>) <span class="co"># round to keep 2 significant digits</span></span></code></pre></div>
+<pre><code>## [1] 3.1</code></pre>
+</div>
+<div id="logic-operators" class="section level3" number="2.2.6">
+<h3><span class="header-section-number">2.2.6</span> Logic Operators</h3>
+<p>An <strong>operator</strong> is used to compare values.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="fundamentals.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">&gt;</span> <span class="dv">2</span> <span class="co"># greater than</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="fundamentals.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">&lt;</span> <span class="dv">2</span> <span class="co"># less than</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="fundamentals.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">&lt;=</span> <span class="dv">2</span> <span class="co"># less than or equal to</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="fundamentals.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">==</span> <span class="dv">1</span> <span class="co"># equal to</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="fundamentals.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">==</span> <span class="dv">2</span> <span class="sc">|</span> <span class="dv">1</span> <span class="sc">==</span> <span class="dv">1</span> <span class="co"># | means &#39;OR&#39;</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="fundamentals.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">==</span> <span class="dv">2</span> <span class="sc">&amp;</span> <span class="dv">1</span> <span class="sc">==</span> <span class="dv">1</span> <span class="co"># &amp; means &#39;AND&#39; </span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="fundamentals.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> <span class="dv">1</span> <span class="sc">==</span> <span class="dv">1</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<blockquote>
+<p>Note: <code>!</code> is a negation/inverse operator</p>
+</blockquote>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="fundamentals.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">!=</span> <span class="dv">1</span> <span class="co"># not equal to</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+</div>
+<div id="group-comparison" class="section level3" number="2.2.7">
+<h3><span class="header-section-number">2.2.7</span> Group Comparison</h3>
+<p>Instead of <code>|</code>, you can us <code>%in%</code> with <code>c()</code> to check a large number of values.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="fundamentals.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+<div id="random-numbers" class="section level3" number="2.2.8">
+<h3><span class="header-section-number">2.2.8</span> Random Numbers</h3>
+<p>It is very easy to generate some random numbers from different distributions. This is very useful for modelling and testing your code.</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="fundamentals.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">10</span>,<span class="at">min=</span><span class="dv">0</span>,<span class="at">max=</span><span class="dv">1</span>) <span class="co"># random numbers from a uniform distribution (each number equally likely to be chosen)</span></span></code></pre></div>
+<pre><code>##  [1] 0.1388931 0.2776045 0.7852248 0.9423432 0.4907170 0.3168890 0.6232029
+##  [8] 0.5839645 0.2872892 0.2574184</code></pre>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="fundamentals.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="at">mean=</span><span class="dv">0</span>,<span class="at">sd=</span><span class="dv">1</span>) <span class="co"># random numbers from a normal distribution</span></span></code></pre></div>
+<pre><code>##  [1] -1.2379441  1.5559149  2.1739250 -0.8888026  0.1812213  0.5298556
+##  [7]  0.3341936  0.6536453 -0.5992498  0.5675925</code></pre>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="fundamentals.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rpois</span>(<span class="dv">10</span>,<span class="at">lambda=</span><span class="dv">10</span>) <span class="co"># poisson distribution</span></span></code></pre></div>
+<pre><code>##  [1] 13  8 12 12  8 10  9 12 10 10</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="fundamentals.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rbinom</span>(<span class="dv">10</span>,<span class="at">size=</span><span class="dv">1</span>,<span class="at">prob=</span><span class="fl">0.5</span>) <span class="co"># binomial sampling (e.g. 10 coin tosses where heads=1 tails=0)</span></span></code></pre></div>
+<pre><code>##  [1] 1 0 1 0 1 1 1 0 0 1</code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="fundamentals.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rbinom</span>(<span class="dv">10</span>,<span class="at">size=</span><span class="dv">10</span>,<span class="at">prob=</span><span class="fl">0.5</span>) <span class="co"># binomial repeated sampling  (e.g. number of heads in 10 coin tosses, repeated 10 times)</span></span></code></pre></div>
+<pre><code>##  [1] 2 7 2 3 8 4 5 7 6 4</code></pre>
+<p>Fun fact, random numbers generated by a computer are generated by a calculation from a ‘seed’ number, so they are never truly random. They act random because the seed number might be something like the remainder of a calculation involving the current year/day/hour/minute/millisecond of your computer’s internal clock.</p>
+<p>It’s not just philosophical, it is also useful for testing and debugging since you can set the seed to generate the same ‘random’ numbers.</p>
+<p>We can recreate the exact random number using the <code>set.seed()</code> function.</p>
+<p>Compare these outputs:</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="fundamentals.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] 0.7604204 0.5491574 0.5501070 0.8136757 0.7006903</code></pre>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="fundamentals.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] 0.2736914 0.9224710 0.2831013 0.8192767 0.5443611</code></pre>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="fundamentals.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3</span>)</span>
+<span id="cb78-2"><a href="fundamentals.html#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] 0.1680415 0.8075164 0.3849424 0.3277343 0.6021007</code></pre>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="fundamentals.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3</span>)</span>
+<span id="cb80-2"><a href="fundamentals.html#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] 0.1680415 0.8075164 0.3849424 0.3277343 0.6021007</code></pre>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="fundamentals.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">172834782</span>)</span>
+<span id="cb82-2"><a href="fundamentals.html#cb82-2" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] 0.13729290 0.18587365 0.01860484 0.88440060 0.21414154</code></pre>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="fundamentals.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">172834782</span>)</span>
+<span id="cb84-2"><a href="fundamentals.html#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] 0.13729290 0.18587365 0.01860484 0.88440060 0.21414154</code></pre>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="fundamentals.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] 0.19787402 0.84870074 0.27303904 0.12225215 0.08365613</code></pre>
+</div>
+<div id="combining-objects" class="section level3" number="2.2.9">
+<h3><span class="header-section-number">2.2.9</span> Combining objects</h3>
+<p>Use <code>c()</code> to concatenate single objects</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="fundamentals.html#cb88-1" aria-hidden="true" tabindex="-1"></a>Nums<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">5</span>)</span>
+<span id="cb88-2"><a href="fundamentals.html#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(Nums,<span class="st">&quot;string&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;1&quot;      &quot;2&quot;      &quot;5&quot;      &quot;string&quot;</code></pre>
+<p>Use <code>:</code> to include a range of numbers</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="fundamentals.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span></code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="fundamentals.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="dv">100</span><span class="sc">:</span><span class="dv">90</span></span></code></pre></div>
+<pre><code>##  [1] 100  99  98  97  96  95  94  93  92  91  90</code></pre>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="fundamentals.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="dv">1</span><span class="sc">:</span><span class="dv">1</span></span></code></pre></div>
+<pre><code>## [1] -1  0  1</code></pre>
+<p>Use <code>cbind()</code> to bind columns and <code>rbind</code> to bind rows</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="fundamentals.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="dv">10</span><span class="sc">:</span><span class="dv">1</span>)</span></code></pre></div>
+<pre><code>##       [,1] [,2]
+##  [1,]    1   10
+##  [2,]    2    9
+##  [3,]    3    8
+##  [4,]    4    7
+##  [5,]    5    6
+##  [6,]    6    5
+##  [7,]    7    4
+##  [8,]    8    3
+##  [9,]    9    2
+## [10,]   10    1</code></pre>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="fundamentals.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rbind</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="dv">10</span><span class="sc">:</span><span class="dv">1</span>)</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+## [1,]    1    2    3    4    5    6    7    8    9    10
+## [2,]   10    9    8    7    6    5    4    3    2     1</code></pre>
+<p><br></p>
+<hr />
+<p><br></p>
+</div>
+</div>
+<div id="data-types" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Data Types</h2>
+<p>Programming languages like R use different data types.</p>
+<p>It’s very important to understand data types in order to properly encode and analyze data in R. It’s very common to have errors in statistical analyses caused by the wrong kind of data. For example, if you have 3 experimental groups coded as 1, 2 and 3 then these should be coded and analyzed as <strong>factors</strong> not <strong>numeric</strong> variables.</p>
+<table>
+<colgroup>
+<col width="16%" />
+<col width="14%" />
+<col width="69%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>string</code></td>
+<td><code>"String"</code></td>
+<td>Strings are the most common and versatile and can be defined with single <code>''</code> or double <code>""</code> quotation marks. The downside of strings is that you can’t do any kind of equations.</td>
+</tr>
+<tr class="even">
+<td><code>numeric</code></td>
+<td><code>12.421</code></td>
+<td>Numeric variables are rational numbers</td>
+</tr>
+<tr class="odd">
+<td><code>integer</code></td>
+<td><code>12</code></td>
+<td>Integers are whole numbers and may be positive or negative (no decimal)</td>
+</tr>
+<tr class="even">
+<td><code>complex</code></td>
+<td><code>0+12.43i</code></td>
+<td>Complex numbers include real and imaginary numbers</td>
+</tr>
+<tr class="odd">
+<td><code>boolean</code></td>
+<td><code>T</code> or <code>TRUE</code></td>
+<td>Boolean or <strong>logical</strong> variables are either true or false (Note always capital)</td>
+</tr>
+</tbody>
+</table>
+<p><code>factors</code> Factors are a special type of data that may include strings and/or numbers but have a limited number of classes. Factors are often used to code groups in statistical models.</p>
+<p>Note that computers cannot store irrational numbers, they have to be rounded to some (tiny) decimal place.</p>
+<p><br></p>
+<hr />
+<p><br></p>
+</div>
+<div id="objects" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Objects</h2>
+<p>R supports <strong>Object-Oriented Programming (OOP)</strong>, which is a programming style that defines and manipulates <strong>objects</strong></p>
+<p>An <strong>object</strong> in R can be a lot of things, but an easy way is to think of a spreadsheet (example Microsoft Excel).</p>
+<p>A spreadsheet has columns organized into rows and columns, and may have multiple sheets.</p>
+<div id="cells" class="section level3" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Cells</h3>
+<p>The most basic object is a single value. For example, a string</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="fundamentals.html#cb100-1" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span><span class="st">&quot;string&quot;</span></span></code></pre></div>
+<blockquote>
+<p>Why no output?</p>
+</blockquote>
+<p>When we wrote: <code>X&lt;-"string"</code></p>
+<p>R created the object called <strong>X</strong>, so no output is produced.</p>
+<p>There are a few options To see the contents of <strong>X</strong>:</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="fundamentals.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(X)</span></code></pre></div>
+<pre><code>## [1] &quot;string&quot;</code></pre>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="fundamentals.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(X)</span></code></pre></div>
+<pre><code>## [1] &quot;string&quot;</code></pre>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="fundamentals.html#cb105-1" aria-hidden="true" tabindex="-1"></a>X</span></code></pre></div>
+<pre><code>## [1] &quot;string&quot;</code></pre>
+<p><code>print()</code> Is most generic and versatile for providing feedback while running complex scripts (e.g. during loops, Bash scripts, etc)</p>
+<p><code>paste()</code> Converts objects to a string, we’ll come back to this.</p>
+<p>Generally <code>print()</code> or <code>paste()</code> are preferred over calling the object directly.</p>
+</div>
+<div id="vector" class="section level3" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> Vector</h3>
+<p>A vector is a one-dimensional array of cells. This could be a row or column in our spreadsheet example.</p>
+<p>Each cell within the vector has an ‘address’ – a number corresponding to the cell ranging from 1 to N, where N is the number of cells.</p>
+<p>The number of cells in a vector is called the <strong>length</strong> of the vector.</p>
+<p>All items in a vector must be of the same type. If you mix numbers and text, then the whole vector will be formatted to the simplest type. For example, if you include a string with any other fomat, then the whole vector will be treated as a string:</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="fundamentals.html#cb107-1" aria-hidden="true" tabindex="-1"></a>Xvec<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fl">1.1829378</span>,X,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="st">&quot;E&quot;</span>, <span class="st">&quot;Computational Biology&quot;</span>, <span class="dv">100</span><span class="sc">:</span><span class="dv">90</span>)</span>
+<span id="cb107-2"><a href="fundamentals.html#cb107-2" aria-hidden="true" tabindex="-1"></a>Xvec</span></code></pre></div>
+<pre><code>##  [1] &quot;1.1829378&quot;             &quot;string&quot;                &quot;1&quot;                    
+##  [4] &quot;2&quot;                     &quot;3&quot;                     &quot;4&quot;                    
+##  [7] &quot;5&quot;                     &quot;6&quot;                     &quot;7&quot;                    
+## [10] &quot;8&quot;                     &quot;9&quot;                     &quot;10&quot;                   
+## [13] &quot;E&quot;                     &quot;Computational Biology&quot; &quot;100&quot;                  
+## [16] &quot;99&quot;                    &quot;98&quot;                    &quot;97&quot;                   
+## [19] &quot;96&quot;                    &quot;95&quot;                    &quot;94&quot;                   
+## [22] &quot;93&quot;                    &quot;92&quot;                    &quot;91&quot;                   
+## [25] &quot;90&quot;</code></pre>
+<blockquote>
+<p><strong>Protip</strong>: A common problem when importing data to R occurs when a column of numeric data includes at least one text value (e.g. “missing” or “&lt; 1”). R will treat the entire column as text rather than numeric values. Watch for this when working with real data!</p>
+</blockquote>
+<div id="subset-a-vector" class="section level4" number="2.4.2.1">
+<h4><span class="header-section-number">2.4.2.1</span> Subset a vector</h4>
+<p>Use square brackets <code>[]</code> to subset a vector</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="fundamentals.html#cb109-1" aria-hidden="true" tabindex="-1"></a>Xvec[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;1.1829378&quot;</code></pre>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="fundamentals.html#cb111-1" aria-hidden="true" tabindex="-1"></a>Xvec[<span class="dv">13</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;E&quot;</code></pre>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="fundamentals.html#cb113-1" aria-hidden="true" tabindex="-1"></a>Xvec[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;1.1829378&quot; &quot;string&quot;    &quot;1&quot;</code></pre>
+</div>
+</div>
+<div id="matrices" class="section level3" number="2.4.3">
+<h3><span class="header-section-number">2.4.3</span> Matrices</h3>
+<p>A matrix is a 2-D array of cells, equivalent to one sheet in a spreadsheet program.</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="fundamentals.html#cb115-1" aria-hidden="true" tabindex="-1"></a>Xmat<span class="ot">&lt;-</span><span class="fu">matrix</span>(Xvec,<span class="at">nrow=</span><span class="dv">6</span>)</span></code></pre></div>
+<pre><code>## Warning in matrix(Xvec, nrow = 6): data length [25] is not a sub-multiple or
+## multiple of the number of rows [6]</code></pre>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="fundamentals.html#cb117-1" aria-hidden="true" tabindex="-1"></a>Xmat</span></code></pre></div>
+<pre><code>##      [,1]        [,2] [,3]                    [,4] [,5]       
+## [1,] &quot;1.1829378&quot; &quot;5&quot;  &quot;E&quot;                     &quot;96&quot; &quot;90&quot;       
+## [2,] &quot;string&quot;    &quot;6&quot;  &quot;Computational Biology&quot; &quot;95&quot; &quot;1.1829378&quot;
+## [3,] &quot;1&quot;         &quot;7&quot;  &quot;100&quot;                   &quot;94&quot; &quot;string&quot;   
+## [4,] &quot;2&quot;         &quot;8&quot;  &quot;99&quot;                    &quot;93&quot; &quot;1&quot;        
+## [5,] &quot;3&quot;         &quot;9&quot;  &quot;98&quot;                    &quot;92&quot; &quot;2&quot;        
+## [6,] &quot;4&quot;         &quot;10&quot; &quot;97&quot;                    &quot;91&quot; &quot;3&quot;</code></pre>
+<div id="subset" class="section level4" number="2.4.3.1">
+<h4><span class="header-section-number">2.4.3.1</span> Subset</h4>
+<p><strong>Notice</strong> the square brackets along the top and left side?</p>
+<p>These show the ‘address’ of each element in the matrix. We can subset with square brackets, just like we did with vectors. Since there are two dimensions, we need to specify two numbers:</p>
+<p><code>[row,column]</code></p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="fundamentals.html#cb119-1" aria-hidden="true" tabindex="-1"></a>Xmat[<span class="dv">1</span>,<span class="dv">3</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;E&quot;</code></pre>
+<p>Or leave it blank if you want the whole row or column:</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="fundamentals.html#cb121-1" aria-hidden="true" tabindex="-1"></a>Xmat[<span class="dv">1</span>,]</span></code></pre></div>
+<pre><code>## [1] &quot;1.1829378&quot; &quot;5&quot;         &quot;E&quot;         &quot;96&quot;        &quot;90&quot;</code></pre>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="fundamentals.html#cb123-1" aria-hidden="true" tabindex="-1"></a>Xmat[,<span class="dv">3</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;E&quot;                     &quot;Computational Biology&quot; &quot;100&quot;                  
+## [4] &quot;99&quot;                    &quot;98&quot;                    &quot;97&quot;</code></pre>
+</div>
+</div>
+<div id="tensors" class="section level3" number="2.4.4">
+<h3><span class="header-section-number">2.4.4</span> Tensors</h3>
+<p><strong>Tensors</strong> are the general term for a grid with N dimensions. We’ve already seen a few different tensors:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Tensor Dimension</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cell</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Vector</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Matrix</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>Array</td>
+<td>3+</td>
+</tr>
+</tbody>
+</table>
+<p>Another common term for tensor is <strong>array</strong>. In R you can build tensors by adding as many dimensions as you need using the <code>array()</code> function</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="fundamentals.html#cb125-1" aria-hidden="true" tabindex="-1"></a>Xarray<span class="ot">&lt;-</span><span class="fu">array</span>(<span class="dv">0</span>, <span class="at">dim=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>)) <span class="co"># 3 dimensions</span></span>
+<span id="cb125-2"><a href="fundamentals.html#cb125-2" aria-hidden="true" tabindex="-1"></a>Xarray</span></code></pre></div>
+<pre><code>## , , 1
+## 
+##      [,1] [,2] [,3]
+## [1,]    0    0    0
+## [2,]    0    0    0
+## [3,]    0    0    0
+## 
+## , , 2
+## 
+##      [,1] [,2] [,3]
+## [1,]    0    0    0
+## [2,]    0    0    0
+## [3,]    0    0    0</code></pre>
+<p>Notice how 3rd dimension is sliced to print out in 2D</p>
+<p><br></p>
+<p>Higher-order arrays are possible, but a bit tricky to read on a 2-dimensional screen</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="fundamentals.html#cb127-1" aria-hidden="true" tabindex="-1"></a>Xarray<span class="ot">&lt;-</span><span class="fu">array</span>(<span class="fu">rnorm</span>(<span class="dv">64</span>), <span class="at">dim=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>)) <span class="co"># 6 dimensions</span></span></code></pre></div>
+<p>Once you get the hang of it, it’s easy to subset. Just think of each dimension, separated by commas.</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="fundamentals.html#cb128-1" aria-hidden="true" tabindex="-1"></a>Xarray[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>##           [,1]       [,2]
+## [1,] -1.718987  0.3487603
+## [2,]  1.779268 -0.3523615</code></pre>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="fundamentals.html#cb130-1" aria-hidden="true" tabindex="-1"></a>Xarray[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>##           [,1]      [,2]
+## [1,] -1.718987 0.8664164
+## [2,]  1.779268 1.2394975</code></pre>
+<blockquote>
+<p>Why are these numbers not the same?</p>
+</blockquote>
+<p>Look at the <code>array[]</code> function and compare to the 6-D tensor to understand how this works</p>
+</div>
+</div>
+<div id="matrix-algebra" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> Matrix Algebra</h2>
+<p>R is pretty handy for matrix calculations that are very time consuming to do by hand or in a spreadsheet program</p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="fundamentals.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Create some vectors to play with</span></span>
+<span id="cb132-2"><a href="fundamentals.html#cb132-2" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb132-3"><a href="fundamentals.html#cb132-3" aria-hidden="true" tabindex="-1"></a>X</span></code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="fundamentals.html#cb134-1" aria-hidden="true" tabindex="-1"></a>Y<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span><span class="sc">*</span><span class="fl">0.5</span>)</span>
+<span id="cb134-2"><a href="fundamentals.html#cb134-2" aria-hidden="true" tabindex="-1"></a>Y</span></code></pre></div>
+<pre><code>##  [1] 0.5 1.0 1.5 2.0 2.5 3.0 3.5 4.0 4.5 5.0</code></pre>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="fundamentals.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Use pretty much any standard operator for element-by element calculations</span></span>
+<span id="cb136-2"><a href="fundamentals.html#cb136-2" aria-hidden="true" tabindex="-1"></a>X<span class="sc">*</span>Y <span class="co"># Multiply corresponding element (e.g. X[1]*Y[1], then X[2]*Y[2], etc)</span></span></code></pre></div>
+<pre><code>##  [1]  0.5  2.0  4.5  8.0 12.5 18.0 24.5 32.0 40.5 50.0</code></pre>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="fundamentals.html#cb138-1" aria-hidden="true" tabindex="-1"></a>X<span class="sc">+</span>Y</span></code></pre></div>
+<pre><code>##  [1]  1.5  3.0  4.5  6.0  7.5  9.0 10.5 12.0 13.5 15.0</code></pre>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="fundamentals.html#cb140-1" aria-hidden="true" tabindex="-1"></a>X<span class="sc">/</span>Y</span></code></pre></div>
+<pre><code>##  [1] 2 2 2 2 2 2 2 2 2 2</code></pre>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="fundamentals.html#cb142-1" aria-hidden="true" tabindex="-1"></a>X<span class="sc">^</span>Y</span></code></pre></div>
+<pre><code>##  [1] 1.000000e+00 2.000000e+00 5.196152e+00 1.600000e+01 5.590170e+01
+##  [6] 2.160000e+02 9.074927e+02 4.096000e+03 1.968300e+04 1.000000e+05</code></pre>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="fundamentals.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(X)</span></code></pre></div>
+<pre><code>##  [1] 0.0000000 0.6931472 1.0986123 1.3862944 1.6094379 1.7917595 1.9459101
+##  [8] 2.0794415 2.1972246 2.3025851</code></pre>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="fundamentals.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(Y)</span></code></pre></div>
+<pre><code>##  [1]   1.648721   2.718282   4.481689   7.389056  12.182494  20.085537
+##  [7]  33.115452  54.598150  90.017131 148.413159</code></pre>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="fundamentals.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="do">## More advanced matrix algebra</span></span>
+<span id="cb148-2"><a href="fundamentals.html#cb148-2" aria-hidden="true" tabindex="-1"></a>X<span class="sc">%*%</span>Y <span class="co"># Matrix multiplication (e.g.  X[1]*Y[1]+X[2]*Y[2]...)</span></span></code></pre></div>
+<pre><code>##       [,1]
+## [1,] 192.5</code></pre>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="fundamentals.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(X<span class="sc">*</span>Y) <span class="sc">==</span> X<span class="sc">%*%</span>Y</span></code></pre></div>
+<pre><code>##      [,1]
+## [1,] TRUE</code></pre>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="fundamentals.html#cb152-1" aria-hidden="true" tabindex="-1"></a>Z<span class="ot">&lt;-</span>X[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]<span class="sc">%o%</span>Y[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>] <span class="co"># Outer product</span></span>
+<span id="cb152-2"><a href="fundamentals.html#cb152-2" aria-hidden="true" tabindex="-1"></a>Z</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]  0.5    1  1.5
+## [2,]  1.0    2  3.0
+## [3,]  1.5    3  4.5
+## [4,]  2.0    4  6.0</code></pre>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="fundamentals.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t</span>(Z) <span class="co"># Transpose</span></span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]  0.5    1  1.5    2
+## [2,]  1.0    2  3.0    4
+## [3,]  1.5    3  4.5    6</code></pre>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="fundamentals.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crossprod</span>(X[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>],Z) <span class="co"># Cross product</span></span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]   15   30   45</code></pre>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="fundamentals.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crossprod</span>(Z) <span class="co"># Cross product of Z and t(Z) a.k.a. Z&#39;Z</span></span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]  7.5   15 22.5
+## [2,] 15.0   30 45.0
+## [3,] 22.5   45 67.5</code></pre>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="fundamentals.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">diag</span>(<span class="dv">4</span>) <span class="co"># Identity matrix, 4x4 in this case</span></span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    0    0    0
+## [2,]    0    1    0    0
+## [3,]    0    0    1    0
+## [4,]    0    0    0    1</code></pre>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="fundamentals.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="fu">diag</span>(Z) <span class="co"># Diagonal elements of Z </span></span></code></pre></div>
+<pre><code>## [1] 0.5 2.0 4.5</code></pre>
+<div id="pca" class="section level3" number="2.5.1">
+<h3><span class="header-section-number">2.5.1</span> PCA</h3>
+<p>One example of a matrix calculation is principal components analysis. This is covered in more detail in the <a href="https://colauttilab.github.io/RIntroML/2_PCA.html">PCA Tutorial</a>.</p>
+<p>PCA is widely used in biology, from community ecology and metagenomics to gene expression and morphometrics. It also has many applications outside of biology. For now, just know that it is easy to run a PCA using the <code>prcomp()</code> function:</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="fundamentals.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prcomp</span>(Z, <span class="at">cor=</span>T) </span></code></pre></div>
+<pre><code>## Warning: In prcomp.default(Z, cor = T) :
+##  extra argument &#39;cor&#39; will be disregarded</code></pre>
+<pre><code>## Standard deviations (1, .., p=3):
+## [1] 2.415229 0.000000 0.000000
+## 
+## Rotation (n x k) = (3 x 3):
+##            PC1        PC2        PC3
+## [1,] 0.2672612  0.0000000  0.9636241
+## [2,] 0.5345225 -0.8320503 -0.1482499
+## [3,] 0.8017837  0.5547002 -0.2223748</code></pre>
+</div>
+</div>
+<div id="lists" class="section level2" number="2.6">
+<h2><span class="header-section-number">2.6</span> Lists</h2>
+<p>Tensors generally all have the same data type and sub-dimension. For example, if you want to combine two 2-d matrices into a single tensor (3rd dimension) then the individual matrices have to have the same number of rows and columns, and the same data type.</p>
+<p>Lists are useful for mixxing data types, and can combine different dimensions cells, vectors, and higher-order arrays</p>
+<p>Each element needs a name</p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="fundamentals.html#cb167-1" aria-hidden="true" tabindex="-1"></a>MyList<span class="ot">&lt;-</span><span class="fu">list</span>(<span class="at">name=</span><span class="st">&quot;SWC&quot;</span>,<span class="at">potpourri=</span>Xvec,<span class="at">numbers=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb167-2"><a href="fundamentals.html#cb167-2" aria-hidden="true" tabindex="-1"></a>MyList</span></code></pre></div>
+<pre><code>## $name
+## [1] &quot;SWC&quot;
+## 
+## $potpourri
+##  [1] &quot;1.1829378&quot;             &quot;string&quot;                &quot;1&quot;                    
+##  [4] &quot;2&quot;                     &quot;3&quot;                     &quot;4&quot;                    
+##  [7] &quot;5&quot;                     &quot;6&quot;                     &quot;7&quot;                    
+## [10] &quot;8&quot;                     &quot;9&quot;                     &quot;10&quot;                   
+## [13] &quot;E&quot;                     &quot;Computational Biology&quot; &quot;100&quot;                  
+## [16] &quot;99&quot;                    &quot;98&quot;                    &quot;97&quot;                   
+## [19] &quot;96&quot;                    &quot;95&quot;                    &quot;94&quot;                   
+## [22] &quot;93&quot;                    &quot;92&quot;                    &quot;91&quot;                   
+## [25] &quot;90&quot;                   
+## 
+## $numbers
+##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div id="subset-1" class="section level3" number="2.6.1">
+<h3><span class="header-section-number">2.6.1</span> Subset</h3>
+<p>There are a few different ways to subset a list object</p>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="fundamentals.html#cb169-1" aria-hidden="true" tabindex="-1"></a>MyList<span class="sc">$</span>numbers <span class="co"># Use $ to subset by name</span></span></code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="fundamentals.html#cb171-1" aria-hidden="true" tabindex="-1"></a>MyList[<span class="dv">3</span>] <span class="co"># A &#39;slice&#39; of MyList</span></span></code></pre></div>
+<pre><code>## $numbers
+##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="fundamentals.html#cb173-1" aria-hidden="true" tabindex="-1"></a>MyList[[<span class="dv">3</span>]] <span class="co"># An &#39;extract&#39; of MyList</span></span></code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<blockquote>
+<p>What’s the difference between <code>[]</code> and <code>[[]]</code>?</p>
+</blockquote>
+<p>Look carefully at the output above; notice how the <code>[]</code> includes <code>$numbers</code> but the <code>[[]]</code> includes only the values? This is important if you want to use the slice:</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="fundamentals.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span>MyList[[<span class="dv">3</span>]]</span></code></pre></div>
+<pre><code>##  [1]  2  4  6  8 10 12 14 16 18 20</code></pre>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="fundamentals.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">*</span>MyList[<span class="dv">3</span>]</span></code></pre></div>
+<pre><code>## Error in 2 * MyList[3]: non-numeric argument to binary operator</code></pre>
+</div>
+<div id="output" class="section level3" number="2.6.2">
+<h3><span class="header-section-number">2.6.2</span> Output</h3>
+<blockquote>
+<p><strong>Protip</strong>: Many analysis functions in R output as lists (e.g. statistical packages)</p>
+</blockquote>
+<p>For example, the output of <code>prcomp</code>:</p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="fundamentals.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prcomp</span>(Z) </span></code></pre></div>
+<pre><code>## Standard deviations (1, .., p=3):
+## [1] 2.415229 0.000000 0.000000
+## 
+## Rotation (n x k) = (3 x 3):
+##            PC1        PC2        PC3
+## [1,] 0.2672612  0.0000000  0.9636241
+## [2,] 0.5345225 -0.8320503 -0.1482499
+## [3,] 0.8017837  0.5547002 -0.2223748</code></pre>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="fundamentals.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(<span class="fu">prcomp</span>(Z))</span></code></pre></div>
+<pre><code>## [1] &quot;sdev&quot;     &quot;rotation&quot; &quot;center&quot;   &quot;scale&quot;    &quot;x&quot;</code></pre>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="fundamentals.html#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prcomp</span>(Z)<span class="sc">$</span>center</span></code></pre></div>
+<pre><code>## [1] 1.25 2.50 3.75</code></pre>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="fundamentals.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prcomp</span>(Z)<span class="sc">$</span>scale</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+</div>
+</div>
+<div id="print-and-paste" class="section level2" number="2.7">
+<h2><span class="header-section-number">2.7</span> <code>print()</code> and <code>paste()</code></h2>
+<p>The <code>print</code> function is the go-to function for printing output to the user. The <code>paste</code> function is for combining things together.</p>
+<p>Paste is a versatile function for manipulating output:</p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="fundamentals.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Hello World!&quot;</span>) <span class="co"># Basic string</span></span></code></pre></div>
+<pre><code>## [1] &quot;Hello World!&quot;</code></pre>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="fundamentals.html#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Hello&quot;</span>,<span class="st">&quot;World!&quot;</span>) <span class="co"># Concatenate two strings</span></span></code></pre></div>
+<pre><code>## [1] &quot;Hello World!&quot;</code></pre>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="fundamentals.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="co"># Paste numbers as strings</span></span></code></pre></div>
+<pre><code>##  [1] &quot;1&quot;  &quot;2&quot;  &quot;3&quot;  &quot;4&quot;  &quot;5&quot;  &quot;6&quot;  &quot;7&quot;  &quot;8&quot;  &quot;9&quot;  &quot;10&quot;</code></pre>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="fundamentals.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)[<span class="dv">4</span>] <span class="co"># Note that each number is a separate cell in a vector of strings</span></span></code></pre></div>
+<pre><code>## [1] &quot;4&quot;</code></pre>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="fundamentals.html#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(<span class="fu">paste</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)) <span class="co"># Convert back to numbers</span></span></code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="fundamentals.html#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="at">collapse=</span><span class="st">&quot;.&quot;</span>) <span class="co"># Collapse separate cells to produce a single string</span></span></code></pre></div>
+<pre><code>## [1] &quot;1.2.3.4.5.6.7.8.9.10&quot;</code></pre>
+<p>Note what happens if we combine objects of different length:</p>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="fundamentals.html#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Hello&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="at">sep=</span><span class="st">&quot;-&quot;</span>) <span class="co"># Note </span></span></code></pre></div>
+<pre><code>##  [1] &quot;Hello-1&quot;  &quot;Hello-2&quot;  &quot;Hello-3&quot;  &quot;Hello-4&quot;  &quot;Hello-5&quot;  &quot;Hello-6&quot; 
+##  [7] &quot;Hello-7&quot;  &quot;Hello-8&quot;  &quot;Hello-9&quot;  &quot;Hello-10&quot;</code></pre>
+<p>It is not uncommon to nest a paste function within a print:</p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="fundamentals.html#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Hello&quot;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="at">sep=</span><span class="st">&quot;-&quot;</span>))</span></code></pre></div>
+<pre><code>##  [1] &quot;Hello-1&quot;  &quot;Hello-2&quot;  &quot;Hello-3&quot;  &quot;Hello-4&quot;  &quot;Hello-5&quot;  &quot;Hello-6&quot; 
+##  [7] &quot;Hello-7&quot;  &quot;Hello-8&quot;  &quot;Hello-9&quot;  &quot;Hello-10&quot;</code></pre>
+<p>This would be useful inside of a <code>for</code> loop (see below) where the output of <code>paste</code> is not shown on the screen if used inside of a loop, whereas the output of <code>print</code> is.</p>
+<div id="for-help" class="section level3" number="2.7.1">
+<h3><span class="header-section-number">2.7.1</span> ? for HELP</h3>
+<p>Whenever you are learning a new function, you should use <code>?</code> and carefully read about all the parameters and outputs. The explanations can be a bit technical, which is intimidating at first. But after enough practice you will start to understand more and more of the descriptions.</p>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="fundamentals.html#cb203-1" aria-hidden="true" tabindex="-1"></a>?paste</span></code></pre></div>
+<p><br></p>
+<hr />
+<p><br></p>
+</div>
+</div>
+<div id="data" class="section level2" number="2.8">
+<h2><span class="header-section-number">2.8</span> Data</h2>
+<p>So far we’ve done everything within the R environment. If we quit R then everything we have made will be removed from memory and we’ll have to start all over. Therefore, it can be useful to save and load data from external files.</p>
+<div id="working-directory" class="section level3" number="2.8.1">
+<h3><span class="header-section-number">2.8.1</span> Working Directory</h3>
+<p>The <strong>working directory</strong> is the place where R looks to load or save your files. You can figure out what your current working directory is with the <code>getwd()</code> function</p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="fundamentals.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
+<p>Or you can set a specific working directory. Here’s one example:</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="fundamentals.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;C:/Users/ColauttiLab/Documents&quot;</span>)</span></code></pre></div>
+<p>Did you type out the above line? You should! Remember, going through and typing everything out is one of the most effective ways to learn to code. So do it now</p>
+<p>Okay, so you probably have an error unless you are working in Windows and for some reason have a ColauttiLab username on your computer. Now try changing to a different directory on your computer.</p>
+<p>If you are a mac user, you can just ignore the <code>C:</code> part:</p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="fundamentals.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;/Users/ColauttiLab/Documents&quot;</span>)</span></code></pre></div>
+<div id="relative-path" class="section level4" number="2.8.1.1">
+<h4><span class="header-section-number">2.8.1.1</span> Relative Path</h4>
+<p>The above examples of <code>setwd()</code> us an <strong>absolute</strong> path. You can also use a <strong>relative</strong> path. For example, if we have a folder called <code>Data</code> inside our <code>Documents</code> folder, and our current working directory is one of the two examples above, we can use a relative path name to set the <code>Data</code> folder as the working directory. Before you type this out, you should make a folder called <code>Data</code> inside of your current working directory:</p>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="fundamentals.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;./Data&quot;</span>)</span></code></pre></div>
+<p>The <code>.</code> means “Inside of my current directory” and the <code>/Data</code> means “find the Data folder”</p>
+<p>now try this:</p>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="fundamentals.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span>
+<span id="cb208-2"><a href="fundamentals.html#cb208-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;..&quot;</span>)</span>
+<span id="cb208-3"><a href="fundamentals.html#cb208-3" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
+<p>Compare the working directories. The <code>..</code> means “Go to the parent directory”</p>
+<p>The neat thing about relative directories is that it makes it easy to share code between Windows, MacOS and Linux/Unix. In fact, these commands come from Linux. You can check out the <a href="https://colauttilab.github.io/LinuxCrashCourse/Linux-Fundamentals.html">Linux Crash Course</a> for more detail.</p>
+</div>
+</div>
+<div id="import" class="section level3" number="2.8.2">
+<h3><span class="header-section-number">2.8.2</span> Import</h3>
+<p>Download <a href="https://colauttilab.github.io/RCrashCourse/FallopiaData.csv">This Data File</a> and save in a folder called <code>Data</code> inside of your current working directory.</p>
+<p>We can use the <code>read.csv</code> to read a ‘comma-delimited file’ and import it into an object called <code>MyData</code></p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="fundamentals.html#cb209-1" aria-hidden="true" tabindex="-1"></a>MyData<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">&quot;Data/FallopiaData.csv&quot;</span>,<span class="at">header=</span>T) <span class="co"># Header=T tells read.csv to interpret first row as column labels</span></span></code></pre></div>
+<p>A <code>.csv</code> file is just a text file with special formatting that can be read into a program like Microsoft Excel or R to translate the text file into a data matrix.</p>
+<p><strong>Important</strong>: In R, objects created by <code>read.csv</code> and other <code>read.?</code> functions are special objects called <code>data.frame</code> objects.</p>
+</div>
+<div id="data.frame" class="section level3" number="2.8.3">
+<h3><span class="header-section-number">2.8.3</span> <code>data.frame</code></h3>
+<p>A <code>data.frame</code> is a special type of 2D matrix with additional indexing information for rows/columns of data</p>
+<p>This format is partly why R is so useful for data analysis</p>
+<p><br></p>
+<p>There are a number of useful functions for inspecting a <code>data.frame</code> object</p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="fundamentals.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(MyData) <span class="co"># See column names</span></span></code></pre></div>
+<pre><code>##  [1] &quot;PotNum&quot;       &quot;Scenario&quot;     &quot;Nutrients&quot;    &quot;Taxon&quot;        &quot;Symphytum&quot;   
+##  [6] &quot;Silene&quot;       &quot;Urtica&quot;       &quot;Geranium&quot;     &quot;Geum&quot;         &quot;All_Natives&quot; 
+## [11] &quot;Fallopia&quot;     &quot;Total&quot;        &quot;Pct_Fallopia&quot;</code></pre>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="fundamentals.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(MyData) <span class="co">#  Show first six rows of data</span></span></code></pre></div>
+<pre><code>##   PotNum Scenario Nutrients Taxon Symphytum Silene Urtica Geranium Geum
+## 1      1      low       low japon      9.81  36.36  16.08     4.68 0.12
+## 2      2      low       low japon      8.64  29.65   5.59     5.75 0.55
+## 3      3      low       low japon      2.65  36.03  17.09     5.13 0.09
+## 4      5      low       low japon      1.44  21.43  12.39     5.37 0.31
+## 5      6      low       low japon      9.15  23.90   5.19     0.00 0.17
+## 6      7      low       low japon      6.31  24.40   7.00     9.05 0.97
+##   All_Natives Fallopia Total Pct_Fallopia
+## 1       67.05     0.01 67.06         0.01
+## 2       50.18     0.04 50.22         0.08
+## 3       60.99     0.09 61.08         0.15
+## 4       40.94     0.77 41.71         1.85
+## 5       38.41     3.40 41.81         8.13
+## 6       47.73     0.54 48.27         1.12</code></pre>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="fundamentals.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(MyData) <span class="co">#  Show last six rows of data</span></span></code></pre></div>
+<pre><code>##     PotNum     Scenario Nutrients Taxon Symphytum Silene Urtica Geranium Geum
+## 118    143 fluctuations      high bohem      5.06  12.81  23.82     3.64 0.16
+## 119    144 fluctuations      high bohem     19.93  21.07   6.08     2.80 0.43
+## 120    145 fluctuations      high bohem      4.89  32.93   6.30     9.64 0.00
+## 121    147 fluctuations      high bohem      7.84  31.16  13.61     6.58 0.03
+## 122    148 fluctuations      high bohem      4.15  38.70  23.59     5.11 1.36
+## 123    149 fluctuations      high bohem      1.72  10.41  23.48     8.51 0.43
+##     All_Natives Fallopia Total Pct_Fallopia
+## 118       45.49    21.31 66.80        31.90
+## 119       50.31     0.00 50.31         0.00
+## 120       53.76     2.36 56.12         4.21
+## 121       59.22     3.74 62.96         5.94
+## 122       72.91     5.89 78.80         7.47
+## 123       44.55    19.70 64.25        30.66</code></pre>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="fundamentals.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(MyData) <span class="co"># Number of rows x columns (or &#39;dimension&#39;) of the data object</span></span></code></pre></div>
+<pre><code>## [1] 123  13</code></pre>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="fundamentals.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(MyData) <span class="co"># Number of rows only</span></span></code></pre></div>
+<pre><code>## [1] 123</code></pre>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="fundamentals.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(MyData) <span class="co"># Number of columns only</span></span></code></pre></div>
+<pre><code>## [1] 13</code></pre>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="fundamentals.html#cb222-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(MyData) <span class="co">#  Data &#39;structure&#39; - types of variables</span></span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    123 obs. of  13 variables:
+##  $ PotNum      : int  1 2 3 5 6 7 8 9 10 11 ...
+##  $ Scenario    : chr  &quot;low&quot; &quot;low&quot; &quot;low&quot; &quot;low&quot; ...
+##  $ Nutrients   : chr  &quot;low&quot; &quot;low&quot; &quot;low&quot; &quot;low&quot; ...
+##  $ Taxon       : chr  &quot;japon&quot; &quot;japon&quot; &quot;japon&quot; &quot;japon&quot; ...
+##  $ Symphytum   : num  9.81 8.64 2.65 1.44 9.15 ...
+##  $ Silene      : num  36.4 29.6 36 21.4 23.9 ...
+##  $ Urtica      : num  16.08 5.59 17.09 12.39 5.19 ...
+##  $ Geranium    : num  4.68 5.75 5.13 5.37 0 9.05 3.51 9.64 7.3 6.36 ...
+##  $ Geum        : num  0.12 0.55 0.09 0.31 0.17 0.97 0.4 0.01 0.47 0.33 ...
+##  $ All_Natives : num  67 50.2 61 40.9 38.4 ...
+##  $ Fallopia    : num  0.01 0.04 0.09 0.77 3.4 0.54 2.05 0.26 0 0 ...
+##  $ Total       : num  67.1 50.2 61.1 41.7 41.8 ...
+##  $ Pct_Fallopia: num  0.01 0.08 0.15 1.85 8.13 1.12 3.7 0.61 0 0 ...</code></pre>
+<blockquote>
+<p>Protip: <code>str()</code> is very important for functions that use data.frames including statistical analysis and plotting</p>
+</blockquote>
+<p>Pay careful attention to ‘int’ vs ‘num’ vs ‘factor’. These are the data types, as noted above.</p>
+<p>Here’s an example of data types gone rogue: In an analysis of variance (ANOVA), you want a ‘factor’ as a predictor. But in linear regression you want ‘int’ or ‘num’ as a predictor. If you code your factor (e.g. treatment) as a number (e.g. 1-4) then your <code>data.frame</code> will treat it as an integer. When you run a linear model, you will be running a regression rather than ANOVA.</p>
+</div>
+<div id="subset-2" class="section level3" number="2.8.4">
+<h3><span class="header-section-number">2.8.4</span> Subset</h3>
+<p>The <code>data.frame</code> object can be subset, just like a matrix</p>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="fundamentals.html#cb224-1" aria-hidden="true" tabindex="-1"></a>MyData[<span class="dv">1</span>,] <span class="co"># Returns first row of data.frame</span></span></code></pre></div>
+<pre><code>##   PotNum Scenario Nutrients Taxon Symphytum Silene Urtica Geranium Geum
+## 1      1      low       low japon      9.81  36.36  16.08     4.68 0.12
+##   All_Natives Fallopia Total Pct_Fallopia
+## 1       67.05     0.01 67.06         0.01</code></pre>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="fundamentals.html#cb226-1" aria-hidden="true" tabindex="-1"></a>MyData[<span class="dv">1</span>,<span class="dv">1</span>] <span class="co"># Returns first value of data.frame</span></span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>In addition, you can define the column names</p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="fundamentals.html#cb228-1" aria-hidden="true" tabindex="-1"></a>MyData[,<span class="st">&quot;PotNum&quot;</span>] <span class="co"># Returns values in &quot;PotNum&quot; column</span></span></code></pre></div>
+<pre><code>##   [1]   1   2   3   5   6   7   8   9  10  11  12  14  16  17  18  19  20  22
+##  [19]  23  24  25  26  28  29  30  31  33  34  35  36  38  39  40  41  42  44
+##  [37]  45  47  48  49  50  52  53  54  55  57  58  60  61  62  63  65  66  67
+##  [55]  68  69  70  72  73  74  76  77  78  79  80  81  83  84  85  86  87  88
+##  [73]  90  91  92  93  94  95  96  97  98 100 101 102 103 104 105 107 108 110
+##  [91] 111 112 113 114 116 117 118 119 120 121 122 124 125 126 127 128 129 131
+## [109] 132 133 134 135 136 138 139 140 142 143 144 145 147 148 149</code></pre>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="fundamentals.html#cb230-1" aria-hidden="true" tabindex="-1"></a>MyData<span class="sc">$</span>PotNum <span class="co"># Another way to get the same output</span></span></code></pre></div>
+<pre><code>##   [1]   1   2   3   5   6   7   8   9  10  11  12  14  16  17  18  19  20  22
+##  [19]  23  24  25  26  28  29  30  31  33  34  35  36  38  39  40  41  42  44
+##  [37]  45  47  48  49  50  52  53  54  55  57  58  60  61  62  63  65  66  67
+##  [55]  68  69  70  72  73  74  76  77  78  79  80  81  83  84  85  86  87  88
+##  [73]  90  91  92  93  94  95  96  97  98 100 101 102 103 104 105 107 108 110
+##  [91] 111 112 113 114 116 117 118 119 120 121 122 124 125 126 127 128 129 131
+## [109] 132 133 134 135 136 138 139 140 142 143 144 145 147 148 149</code></pre>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="fundamentals.html#cb232-1" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(MyData,Scenario<span class="sc">==</span><span class="st">&quot;extreme&quot;</span>) <span class="co"># Subset data where the Scenario column == &#39;extreme&#39;</span></span></code></pre></div>
+<pre><code>##    PotNum Scenario Nutrients Taxon Symphytum Silene Urtica Geranium Geum
+## 74     91  extreme      high japon      6.77  29.29  17.58     1.20 0.98
+## 75     92  extreme      high japon      9.19  16.76   7.32     4.84 0.21
+## 76     93  extreme      high japon      6.55  48.19   0.00     9.21 0.05
+## 77     94  extreme      high japon      5.22  18.21  21.51     6.53 0.58
+## 78     95  extreme      high japon      4.92  25.93  40.33     4.92 0.07
+## 79     96  extreme      high japon      9.51   3.15  36.16    10.16 0.62
+## 80     97  extreme      high japon     14.98  33.34   2.56     7.38 0.16
+## 81     98  extreme      high japon     17.37   4.38   2.73    16.41 0.00
+## 82    100  extreme      high japon      7.36  24.90   3.21     7.30 0.46
+## 83    101  extreme      high japon     10.54  31.97   7.37     4.62 0.54
+## 84    102  extreme      high japon      9.51   0.00  17.56     6.97 0.00
+## 85    103  extreme      high japon      6.92  49.38   0.00    10.33 0.42
+## 86    104  extreme      high japon     12.42  18.36   4.44     6.42 0.42
+## 87    105  extreme      high japon      5.89  37.92   4.71     5.18 0.09
+## 88    107  extreme      high bohem      0.00  43.85   8.10     8.18 0.36
+## 89    108  extreme      high bohem     10.29  27.47   5.47     0.00 0.40
+## 90    110  extreme      high bohem     17.39  24.42  10.71     8.34 0.00
+## 91    111  extreme      high bohem     12.59   0.00  41.08     4.81 1.38
+## 92    112  extreme      high bohem     15.27   1.66  25.77     8.79 0.50
+## 93    113  extreme      high bohem     12.52  21.52   0.00     5.71 1.11
+## 94    114  extreme      high bohem     11.33  31.61   6.95    10.14 0.86
+## 95    116  extreme      high bohem     14.89   0.00  10.16    10.28 0.18
+## 96    117  extreme      high bohem     14.12  24.57  12.59     8.46 0.63
+## 97    118  extreme      high bohem     14.21  25.15  12.69     8.06 0.29
+## 98    119  extreme      high bohem      0.00  36.79   8.69     3.38 1.20
+## 99    120  extreme      high bohem      9.85  15.71  15.56     3.89 1.46
+##    All_Natives Fallopia Total Pct_Fallopia
+## 74       55.82     1.98 57.80         3.43
+## 75       38.32     3.40 41.72         8.15
+## 76       64.00     3.44 67.44         5.10
+## 77       52.05     6.73 58.78        11.45
+## 78       76.17     1.57 77.74         2.02
+## 79       59.60     6.08 65.68         9.26
+## 80       58.42     0.00 58.42         0.00
+## 81       40.89    14.46 55.35        26.12
+## 82       43.23     7.05 50.28        14.02
+## 83       55.04     0.00 55.04         0.00
+## 84       34.04     5.52 39.56        13.95
+## 85       67.05     4.02 71.07         5.66
+## 86       42.06     3.17 45.23         7.01
+## 87       53.79     3.41 57.20         5.96
+## 88       60.49     7.21 67.70        10.65
+## 89       43.63     8.83 52.46        16.83
+## 90       60.86     0.00 60.86         0.00
+## 91       59.86     2.33 62.19         3.75
+## 92       51.99    13.54 65.53        20.66
+## 93       40.86     7.33 48.19        15.21
+## 94       60.89     0.00 60.89         0.00
+## 95       35.51    12.62 48.13        26.22
+## 96       60.37     0.00 60.37         0.00
+## 97       60.40     7.46 67.86        10.99
+## 98       50.06     6.34 56.40        11.24
+## 99       46.47     2.66 49.13         5.41</code></pre>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="fundamentals.html#cb234-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(MyData<span class="sc">$</span>Scenario)</span></code></pre></div>
+<pre><code>## NULL</code></pre>
+</div>
+<div id="new-columns" class="section level3" number="2.8.5">
+<h3><span class="header-section-number">2.8.5</span> New Columns</h3>
+<p>It’s easy to add new columns to a data frame. For example, to add a new column that is the sum of two others</p>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="fundamentals.html#cb236-1" aria-hidden="true" tabindex="-1"></a>MyData<span class="sc">$</span>Total<span class="ot">&lt;-</span>MyData<span class="sc">$</span>Symphytum <span class="sc">+</span> MyData<span class="sc">$</span>Silene <span class="sc">+</span> MyData<span class="sc">$</span>Urtica</span>
+<span id="cb236-2"><a href="fundamentals.html#cb236-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(MyData)</span></code></pre></div>
+<pre><code>##  [1] &quot;PotNum&quot;       &quot;Scenario&quot;     &quot;Nutrients&quot;    &quot;Taxon&quot;        &quot;Symphytum&quot;   
+##  [6] &quot;Silene&quot;       &quot;Urtica&quot;       &quot;Geranium&quot;     &quot;Geum&quot;         &quot;All_Natives&quot; 
+## [11] &quot;Fallopia&quot;     &quot;Total&quot;        &quot;Pct_Fallopia&quot;</code></pre>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="fundamentals.html#cb238-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(MyData<span class="sc">$</span>Total)      </span></code></pre></div>
+<pre><code>##   [1] 62.25 43.88 55.77 35.26 38.24 37.71 49.46 32.77 45.76 39.20 49.84 36.28
+##  [13] 40.52 35.78 39.26 45.33 38.54 33.27 50.09 48.55 49.25 31.36 36.56 37.21
+##  [25] 57.06 48.48 39.32 28.03 47.19 57.63 53.27 37.79 43.56 45.47 56.68 43.88
+##  [37] 47.03 47.41 50.64 34.74 54.40 48.46 64.48 49.31 48.97 54.00 55.71 64.35
+##  [49] 38.73 41.31 52.31 56.77 50.10 47.22 38.61 59.73 75.59 36.33 53.57 54.94
+##  [61] 39.21 45.22 25.39 57.10 38.00 37.51 56.86 43.48 51.86 67.97 16.43 58.13
+##  [73] 52.64 53.64 33.27 54.74 44.94 71.18 48.82 50.88 24.48 35.47 49.88 27.07
+##  [85] 56.30 35.22 48.52 51.95 43.23 52.52 53.67 42.70 34.04 49.89 25.05 51.28
+##  [97] 52.05 45.48 41.12 45.67 38.18 53.30 40.52 36.70 58.78 37.31 14.48 43.19
+## [109] 65.25 30.79 54.97 62.96 38.64 37.08 41.39 38.85 39.34 41.69 47.08 44.12
+## [121] 52.61 66.44 35.61</code></pre>
+<p><br></p>
+<hr />
+<p><br></p>
+</div>
+</div>
+<div id="other-functions" class="section level2" number="2.9">
+<h2><span class="header-section-number">2.9</span> Other Functions</h2>
+<p>There are a few more useful functions for inspecting your data.</p>
+<div id="unique" class="section level3" number="2.9.1">
+<h3><span class="header-section-number">2.9.1</span> <code>unique</code></h3>
+<p>Find all the unique values within a vector using <code>unique</code></p>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="fundamentals.html#cb240-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(MyData<span class="sc">$</span>Nutrients)</span></code></pre></div>
+<pre><code>## [1] &quot;low&quot;  &quot;high&quot;</code></pre>
+</div>
+<div id="duplicated" class="section level3" number="2.9.2">
+<h3><span class="header-section-number">2.9.2</span> <code>duplicated</code></h3>
+<p>Look at each value in a vector and return a <code>TRUE</code> if it is duplicated and <code>FALSE</code> if it is unique</p>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="fundamentals.html#cb242-1" aria-hidden="true" tabindex="-1"></a><span class="fu">duplicated</span>(MyData<span class="sc">$</span>Nutrients)</span></code></pre></div>
+<pre><code>##   [1] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+##  [13]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+##  [25]  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+##  [37]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+##  [49]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+##  [61]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+##  [73]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+##  [85]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+##  [97]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [109]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [121]  TRUE  TRUE  TRUE</code></pre>
+<p>This is a good example of a Boolean vector, which can be used to subset your data.</p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="fundamentals.html#cb244-1" aria-hidden="true" tabindex="-1"></a>MyData<span class="sc">$</span>Nutrients[<span class="fu">duplicated</span>(MyData<span class="sc">$</span>Nutrients)]</span></code></pre></div>
+<pre><code>##   [1] &quot;low&quot;  &quot;low&quot;  &quot;low&quot;  &quot;low&quot;  &quot;low&quot;  &quot;low&quot;  &quot;low&quot;  &quot;low&quot;  &quot;low&quot;  &quot;low&quot; 
+##  [11] &quot;low&quot;  &quot;low&quot;  &quot;low&quot;  &quot;low&quot;  &quot;low&quot;  &quot;low&quot;  &quot;low&quot;  &quot;low&quot;  &quot;low&quot;  &quot;low&quot; 
+##  [21] &quot;low&quot;  &quot;low&quot;  &quot;low&quot;  &quot;low&quot;  &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot;
+##  [31] &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot;
+##  [41] &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot;
+##  [51] &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot;
+##  [61] &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot;
+##  [71] &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot;
+##  [81] &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot;
+##  [91] &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot;
+## [101] &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot;
+## [111] &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot; &quot;high&quot;
+## [121] &quot;high&quot;</code></pre>
+<p>Note that only the <code>TRUE</code> values are returned (duplicated)</p>
+</div>
+<div id="aggregate" class="section level3" number="2.9.3">
+<h3><span class="header-section-number">2.9.3</span> <code>aggregate</code></h3>
+<p>Quickly calculate means of one vector (Total) for each value of a grouping variable (Nutrients)</p>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="fundamentals.html#cb246-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(MyData<span class="sc">$</span>Total,<span class="fu">list</span>(MyData<span class="sc">$</span>Nutrients), mean) </span></code></pre></div>
+<pre><code>##   Group.1        x
+## 1    high 46.51173
+## 2     low 42.76800</code></pre>
+<p>The <code>~</code> provides an alternative way to write this function. In R the <code>~</code> usually means ‘by’ and is often used in statistical models. Here we can say aggregate Total ‘by’ Nutrients grouping</p>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="fundamentals.html#cb248-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(Total <span class="sc">~</span> Nutrients, <span class="at">data=</span>MyData, mean)</span></code></pre></div>
+<pre><code>##   Nutrients    Total
+## 1      high 46.51173
+## 2       low 42.76800</code></pre>
+<p>The nice thing about doing it this way is that we preserve the column name (Total instead of x).</p>
+<p>You can also use this to calculate means across different grouping variables</p>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="fundamentals.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(Total <span class="sc">~</span> Nutrients<span class="sc">*</span>Taxon<span class="sc">*</span>Scenario, <span class="at">data=</span>MyData, mean)</span></code></pre></div>
+<pre><code>##    Nutrients Taxon     Scenario    Total
+## 1       high bohem      extreme 45.24833
+## 2       high japon      extreme 45.31500
+## 3       high bohem fluctuations 43.89545
+## 4       high japon fluctuations 44.77692
+## 5       high bohem      gradual 45.36923
+## 6       high japon      gradual 50.43417
+## 7       high bohem         high 52.04273
+## 8       high japon         high 45.69417
+## 9        low bohem          low 41.75231
+## 10       low japon          low 43.86833</code></pre>
+<p>Note that <code>mean</code> is just the <code>mean()</code> function in R. We can use other functions, like the standard deviation <code>sd</code>:</p>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="fundamentals.html#cb252-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(Total <span class="sc">~</span> Nutrients, <span class="at">data=</span>MyData, sd) </span></code></pre></div>
+<pre><code>##   Nutrients     Total
+## 1      high 11.175885
+## 2       low  8.227402</code></pre>
+</div>
+<div id="tapply" class="section level3" number="2.9.4">
+<h3><span class="header-section-number">2.9.4</span> tapply</h3>
+<p>The <code>tapply</code> function is a more general way to replicate functions.</p>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="fundamentals.html#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(MyData<span class="sc">$</span>Total, <span class="fu">list</span>(MyData<span class="sc">$</span>Nutrients), mean) <span class="co"># calculate means</span></span></code></pre></div>
+<pre><code>##     high      low 
+## 46.51173 42.76800</code></pre>
+<p>Compare the two outputs with <code>aggregate</code> above</p>
+</div>
+<div id="save" class="section level3" number="2.9.5">
+<h3><span class="header-section-number">2.9.5</span> Save</h3>
+<p>Just as we can load FROM external files, we can save TO external files</p>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="fundamentals.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Calulate means</span></span>
+<span id="cb256-2"><a href="fundamentals.html#cb256-2" aria-hidden="true" tabindex="-1"></a>NutrientMeans<span class="ot">&lt;-</span><span class="fu">tapply</span>(MyData<span class="sc">$</span>Total,<span class="fu">list</span>(MyData<span class="sc">$</span>Nutrients),mean)</span>
+<span id="cb256-3"><a href="fundamentals.html#cb256-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Save means as .csv file</span></span>
+<span id="cb256-4"><a href="fundamentals.html#cb256-4" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(NutrientMeans,<span class="st">&quot;MyData_Nutrient_Means.csv&quot;</span>)</span></code></pre></div>
+<p>You should see this file in your working directory.</p>
+<p><br></p>
+<hr />
+<p><br></p>
+</div>
+</div>
+<div id="flow-control" class="section level2" number="2.10">
+<h2><span class="header-section-number">2.10</span> Flow control</h2>
+<p>Think of your data analysis as a stream flowing from the raw data at the headwaters and flowing down to the end, exiting as a full analysis with graphics, stats, and interpretation.</p>
+<p>There are different ways we can control the flow of the water. The simplest is just to write a sequence of lines of code, with the output of one line of code forming the input of the next. There are several examples of this above:</p>
+<pre><code>A&lt;-functionA()
+B&lt;-functionB(A)
+C&lt;-functionC(B)</code></pre>
+<p>But sometimes we may want to do the same function or analysis only if the input meets certain criteria. Or we may want to reiterate the same analysis multiple times on different inputs. This is where more advanced flow control comes in handy.</p>
+<p>To start, let’s make up a couple of objects to play with:</p>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="fundamentals.html#cb258-1" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span><span class="dv">21</span></span>
+<span id="cb258-2"><a href="fundamentals.html#cb258-2" aria-hidden="true" tabindex="-1"></a>Xvec<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="st">&quot;string&quot;</span>)</span></code></pre></div>
+<div id="if" class="section level3" number="2.10.1">
+<h3><span class="header-section-number">2.10.1</span> <code>if</code></h3>
+<p>The <code>if</code> statement uses an <strong>operator</strong> (see above) to asses whether the value is <code>TRUE</code> or <code>FALSE</code>:</p>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="fundamentals.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(X <span class="sc">&gt;</span> <span class="dv">100</span>){ <span class="co"># Greater-than operator assessing whether X is greater than 100</span></span>
+<span id="cb259-2"><a href="fundamentals.html#cb259-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;X &gt; 100&quot;</span>) <span class="co"># What to do if TRUE (X greater than 100)</span></span>
+<span id="cb259-3"><a href="fundamentals.html#cb259-3" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> { </span>
+<span id="cb259-4"><a href="fundamentals.html#cb259-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;X &lt;= 100&quot;</span>) <span class="co"># What do do if FALSE (X less than 100)</span></span>
+<span id="cb259-5"><a href="fundamentals.html#cb259-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;X &lt;= 100&quot;</code></pre>
+<blockquote>
+<p><strong>NOTE</strong>: A common ‘rookie’ mistake is to leave out a bracket or use the wrong type.</p>
+</blockquote>
+<p>Use regular brackets for the if function <code>if()</code> followed by two sets of curly brackets <code>{}else{}</code>.</p>
+<p>Break up across multiple lines to improve readability. Note that you don’t need an <code>else{}</code> part if you just want to ‘do nothing’ when <code>FALSE</code>.</p>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="fundamentals.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="dv">1</span> <span class="sc">&gt;</span> <span class="dv">0</span>){<span class="fu">print</span> (<span class="st">&quot;yup&quot;</span>)}</span></code></pre></div>
+<pre><code>## [1] &quot;yup&quot;</code></pre>
+</div>
+<div id="ifelse" class="section level3" number="2.10.2">
+<h3><span class="header-section-number">2.10.2</span> ifelse</h3>
+<p>The <code>ifelse</code> is a more compact version for simple comparisons. The following code does the same as above</p>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="fundamentals.html#cb263-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(X <span class="sc">&gt;</span> <span class="dv">100</span>, <span class="fu">print</span>(<span class="st">&quot;X &gt; 100&quot;</span>), <span class="fu">print</span>(<span class="st">&quot;X &lt;= 100&quot;</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;X &lt;= 100&quot;</code></pre>
+<pre><code>## [1] &quot;X &lt;= 100&quot;</code></pre>
+</div>
+<div id="for-loop" class="section level3" number="2.10.3">
+<h3><span class="header-section-number">2.10.3</span> <code>for</code> loop</h3>
+<p>A loop does the same thing over and over again until some condition is met. In the case of a <code>for</code> loop, we set a ‘counter’ variable and loop through each value of the counter variable. Here are a few examples:</p>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="fundamentals.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop through numbers from 1 to X</span></span>
+<span id="cb266-2"><a href="fundamentals.html#cb266-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>X){</span>
+<span id="cb266-3"><a href="fundamentals.html#cb266-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(X,i,<span class="at">sep=</span><span class="st">&quot;:&quot;</span>))</span>
+<span id="cb266-4"><a href="fundamentals.html#cb266-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;21:1&quot;
+## [1] &quot;21:2&quot;
+## [1] &quot;21:3&quot;
+## [1] &quot;21:4&quot;
+## [1] &quot;21:5&quot;
+## [1] &quot;21:6&quot;
+## [1] &quot;21:7&quot;
+## [1] &quot;21:8&quot;
+## [1] &quot;21:9&quot;
+## [1] &quot;21:10&quot;
+## [1] &quot;21:11&quot;
+## [1] &quot;21:12&quot;
+## [1] &quot;21:13&quot;
+## [1] &quot;21:14&quot;
+## [1] &quot;21:15&quot;
+## [1] &quot;21:16&quot;
+## [1] &quot;21:17&quot;
+## [1] &quot;21:18&quot;
+## [1] &quot;21:19&quot;
+## [1] &quot;21:20&quot;
+## [1] &quot;21:21&quot;</code></pre>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="fundamentals.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop through elements of a vector directly</span></span>
+<span id="cb268-2"><a href="fundamentals.html#cb268-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> Xvec){</span>
+<span id="cb268-3"><a href="fundamentals.html#cb268-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
+<span id="cb268-4"><a href="fundamentals.html#cb268-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;1&quot;
+## [1] &quot;2&quot;
+## [1] &quot;3&quot;
+## [1] &quot;4&quot;
+## [1] &quot;5&quot;
+## [1] &quot;6&quot;
+## [1] &quot;7&quot;
+## [1] &quot;8&quot;
+## [1] &quot;9&quot;
+## [1] &quot;10&quot;
+## [1] &quot;string&quot;</code></pre>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="fundamentals.html#cb270-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use an index to loop through the elements</span></span>
+<span id="cb270-2"><a href="fundamentals.html#cb270-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(Xvec)){</span>
+<span id="cb270-3"><a href="fundamentals.html#cb270-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(Xvec[i])</span>
+<span id="cb270-4"><a href="fundamentals.html#cb270-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;1&quot;
+## [1] &quot;2&quot;
+## [1] &quot;3&quot;
+## [1] &quot;4&quot;
+## [1] &quot;5&quot;
+## [1] &quot;6&quot;
+## [1] &quot;7&quot;
+## [1] &quot;8&quot;
+## [1] &quot;9&quot;
+## [1] &quot;10&quot;
+## [1] &quot;string&quot;</code></pre>
+<p>Note that in each case there is a vector and we loop through each cell in the vector. The <code>i</code> keeps track of the cell value in each iteration of the loop.</p>
+<p>Loops can be tricky, and the only way to really learn them is to try to write a bunch. Whenever you find yourself writing similar code more than 2 or 3 times, challenge yourself to try to do it as a loop.</p>
+<p>In addition to looping through a vector, it can often be useful to include a counter variable.</p>
+<p>One thing to watch out for is what part of the loop you want to update the counter variable. USUALLY it will be at the beginning</p>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="fundamentals.html#cb272-1" aria-hidden="true" tabindex="-1"></a>count1<span class="ot">&lt;-</span><span class="dv">1</span></span>
+<span id="cb272-2"><a href="fundamentals.html#cb272-2" aria-hidden="true" tabindex="-1"></a>count10<span class="ot">&lt;-</span><span class="dv">1</span></span>
+<span id="cb272-3"><a href="fundamentals.html#cb272-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb272-4"><a href="fundamentals.html#cb272-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>){</span>
+<span id="cb272-5"><a href="fundamentals.html#cb272-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;count1 =&quot;</span>,count1))</span>
+<span id="cb272-6"><a href="fundamentals.html#cb272-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;count10 =&quot;</span>,count10))</span>
+<span id="cb272-7"><a href="fundamentals.html#cb272-7" aria-hidden="true" tabindex="-1"></a>  count1<span class="ot">&lt;-</span>count1<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb272-8"><a href="fundamentals.html#cb272-8" aria-hidden="true" tabindex="-1"></a>  count10<span class="ot">&lt;-</span>count10<span class="sc">*</span><span class="dv">10</span></span>
+<span id="cb272-9"><a href="fundamentals.html#cb272-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;count1 = 1&quot;
+## [1] &quot;count10 = 1&quot;
+## [1] &quot;count1 = 2&quot;
+## [1] &quot;count10 = 10&quot;
+## [1] &quot;count1 = 3&quot;
+## [1] &quot;count10 = 100&quot;
+## [1] &quot;count1 = 4&quot;
+## [1] &quot;count10 = 1000&quot;
+## [1] &quot;count1 = 5&quot;
+## [1] &quot;count10 = 10000&quot;
+## [1] &quot;count1 = 6&quot;
+## [1] &quot;count10 = 1e+05&quot;
+## [1] &quot;count1 = 7&quot;
+## [1] &quot;count10 = 1e+06&quot;
+## [1] &quot;count1 = 8&quot;
+## [1] &quot;count10 = 1e+07&quot;
+## [1] &quot;count1 = 9&quot;
+## [1] &quot;count10 = 1e+08&quot;
+## [1] &quot;count1 = 10&quot;
+## [1] &quot;count10 = 1e+09&quot;</code></pre>
+<p>or at the end.</p>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="fundamentals.html#cb274-1" aria-hidden="true" tabindex="-1"></a>countbefore<span class="ot">&lt;-</span><span class="dv">0</span></span>
+<span id="cb274-2"><a href="fundamentals.html#cb274-2" aria-hidden="true" tabindex="-1"></a>countafter<span class="ot">&lt;-</span><span class="dv">0</span></span>
+<span id="cb274-3"><a href="fundamentals.html#cb274-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>){</span>
+<span id="cb274-4"><a href="fundamentals.html#cb274-4" aria-hidden="true" tabindex="-1"></a>  countbefore<span class="ot">&lt;-</span>countbefore<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb274-5"><a href="fundamentals.html#cb274-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;before =&quot;</span>,countbefore))</span>
+<span id="cb274-6"><a href="fundamentals.html#cb274-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;after =&quot;</span>,countafter))</span>
+<span id="cb274-7"><a href="fundamentals.html#cb274-7" aria-hidden="true" tabindex="-1"></a>  countafter<span class="ot">&lt;-</span>countafter<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb274-8"><a href="fundamentals.html#cb274-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;before = 1&quot;
+## [1] &quot;after = 0&quot;
+## [1] &quot;before = 2&quot;
+## [1] &quot;after = 1&quot;
+## [1] &quot;before = 3&quot;
+## [1] &quot;after = 2&quot;
+## [1] &quot;before = 4&quot;
+## [1] &quot;after = 3&quot;
+## [1] &quot;before = 5&quot;
+## [1] &quot;after = 4&quot;
+## [1] &quot;before = 6&quot;
+## [1] &quot;after = 5&quot;
+## [1] &quot;before = 7&quot;
+## [1] &quot;after = 6&quot;
+## [1] &quot;before = 8&quot;
+## [1] &quot;after = 7&quot;
+## [1] &quot;before = 9&quot;
+## [1] &quot;after = 8&quot;
+## [1] &quot;before = 10&quot;
+## [1] &quot;after = 9&quot;</code></pre>
+<p>Read through the outputs above carefully to make sure you understand how the loops work. When you are confident you understand, then write a new for loop and write down the predicted output. Run the loop to check if you were right.</p>
+</div>
+<div id="nested-loops" class="section level3" number="2.10.4">
+<h3><span class="header-section-number">2.10.4</span> Nested Loops</h3>
+<p>Counters are particularly valuable when you have a nested loop, which is just one loop inside of another.</p>
+<p>In the example below, we are first looping through a vector of length 3, tracked with <code>i</code>. Then <strong>for each i</strong> we do a second loop, tracked by <code>j</code>.</p>
+<p>This time, try to predict the output BEFORE you run the loop. Write it down, then run the loop to check your answer.</p>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="fundamentals.html#cb276-1" aria-hidden="true" tabindex="-1"></a>LoopCount<span class="ot">&lt;-</span><span class="dv">0</span></span>
+<span id="cb276-2"><a href="fundamentals.html#cb276-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>){</span>
+<span id="cb276-3"><a href="fundamentals.html#cb276-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>){</span>
+<span id="cb276-4"><a href="fundamentals.html#cb276-4" aria-hidden="true" tabindex="-1"></a>    LoopCount<span class="ot">&lt;-</span>LoopCount<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb276-5"><a href="fundamentals.html#cb276-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;i = &quot;</span>,i))</span>
+<span id="cb276-6"><a href="fundamentals.html#cb276-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;j = &quot;</span>,j))</span>
+<span id="cb276-7"><a href="fundamentals.html#cb276-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Loop =&quot;</span>,LoopCount))</span>
+<span id="cb276-8"><a href="fundamentals.html#cb276-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb276-9"><a href="fundamentals.html#cb276-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;i =  1&quot;
+## [1] &quot;j =  1&quot;
+## [1] &quot;Loop = 1&quot;
+## [1] &quot;i =  1&quot;
+## [1] &quot;j =  2&quot;
+## [1] &quot;Loop = 2&quot;
+## [1] &quot;i =  1&quot;
+## [1] &quot;j =  3&quot;
+## [1] &quot;Loop = 3&quot;
+## [1] &quot;i =  1&quot;
+## [1] &quot;j =  4&quot;
+## [1] &quot;Loop = 4&quot;
+## [1] &quot;i =  2&quot;
+## [1] &quot;j =  1&quot;
+## [1] &quot;Loop = 5&quot;
+## [1] &quot;i =  2&quot;
+## [1] &quot;j =  2&quot;
+## [1] &quot;Loop = 6&quot;
+## [1] &quot;i =  2&quot;
+## [1] &quot;j =  3&quot;
+## [1] &quot;Loop = 7&quot;
+## [1] &quot;i =  2&quot;
+## [1] &quot;j =  4&quot;
+## [1] &quot;Loop = 8&quot;
+## [1] &quot;i =  3&quot;
+## [1] &quot;j =  1&quot;
+## [1] &quot;Loop = 9&quot;
+## [1] &quot;i =  3&quot;
+## [1] &quot;j =  2&quot;
+## [1] &quot;Loop = 10&quot;
+## [1] &quot;i =  3&quot;
+## [1] &quot;j =  3&quot;
+## [1] &quot;Loop = 11&quot;
+## [1] &quot;i =  3&quot;
+## [1] &quot;j =  4&quot;
+## [1] &quot;Loop = 12&quot;</code></pre>
+</div>
+<div id="while-loop" class="section level3" number="2.10.5">
+<h3><span class="header-section-number">2.10.5</span> <code>while</code> loop</h3>
+<p>The <code>while</code> is another kind of loop, but instead of looping through a predefined set of variables, we iterate until some condition is met inside of the loop. This is called the <strong>exit condition</strong>.</p>
+<p>Often, the <code>while</code> loop is used in optimization algorithms, where many calculations are run until some optimum or threshold value is reached.</p>
+<p>One common coding error associated with <code>while</code> loops is that the exit condition is never reached, causing your computer to run an infinite loop.</p>
+<p>Here’s a simple while loop, which will continue until <code>count</code> is greater than or equal to <code>X</code>.</p>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="fundamentals.html#cb278-1" aria-hidden="true" tabindex="-1"></a>count<span class="ot">&lt;-</span><span class="dv">0</span></span>
+<span id="cb278-2"><a href="fundamentals.html#cb278-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (count <span class="sc">&lt;</span> X){</span>
+<span id="cb278-3"><a href="fundamentals.html#cb278-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(count)</span>
+<span id="cb278-4"><a href="fundamentals.html#cb278-4" aria-hidden="true" tabindex="-1"></a>  count<span class="ot">&lt;-</span>count<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb278-5"><a href="fundamentals.html#cb278-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] 0
+## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+## [1] 6
+## [1] 7
+## [1] 8
+## [1] 9
+## [1] 10
+## [1] 11
+## [1] 12
+## [1] 13
+## [1] 14
+## [1] 15
+## [1] 16
+## [1] 17
+## [1] 18
+## [1] 19
+## [1] 20</code></pre>
+</div>
+</div>
+<div id="packages" class="section level2" number="2.11">
+<h2><span class="header-section-number">2.11</span> Packages</h2>
+<p>As noted above, <strong>functions</strong> in R use brackets <code>()</code> and generally have <strong>input</strong> and <strong>output</strong> objects as well as <strong>parameters</strong> that affect their behaviour.</p>
+<p>All of the functions in this tutorial are automatically loaded when you start R. There are many more functions available from developers. For example, our lab developed the <code>baRcodeR</code> package for creating unique identifier codes with printable barcodes and data sheets to help with sample management and data collection.</p>
+<p>A <strong>package</strong> in R is a set of functions grouped together. For example, the <code>stats</code> package is automatically loaded when you run R and contains many useful functions. You can see what package a function belongs to at the beginning of the help file:</p>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="fundamentals.html#cb280-1" aria-hidden="true" tabindex="-1"></a>?cor</span></code></pre></div>
+<div id="installing" class="section level3" number="2.11.1">
+<h3><span class="header-section-number">2.11.1</span> Installing</h3>
+<p>Before you can use a new function from a package that isn’t installed with R, you first have to install the package on your computer. You only have to do this once per computer. However, it is a good idea to update the package frequently, especially when you update your version of R. This ensures that you are using the most recent version of the package.</p>
+<p>Note that <strong>installing</strong> a package just downloads it from an online ‘<strong>repository</strong>’ and saves to your computer.</p>
+<p>Packages are installed with <code>install.packages()</code>, with the package indicated with single or double quotation marks. You may be asked for a repository, in which case choose one that is geographically close to you.</p>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="fundamentals.html#cb281-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;baRcoeR&#39;</span>)</span></code></pre></div>
+</div>
+<div id="loading" class="section level3" number="2.11.2">
+<h3><span class="header-section-number">2.11.2</span> Loading</h3>
+<p>Once you have installed a package, you can access it two ways.</p>
+<div id="library" class="section level4" number="2.11.2.1">
+<h4><span class="header-section-number">2.11.2.1</span> 1. Library</h4>
+<p>You can load the package using the <code>library()</code> function, giving you access to functions contained within it:</p>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="fundamentals.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(baRcodeR)</span>
+<span id="cb282-2"><a href="fundamentals.html#cb282-2" aria-hidden="true" tabindex="-1"></a><span class="fu">make_labels</span>()</span></code></pre></div>
+</div>
+<div id="function" class="section level4" number="2.11.2.2">
+<h4><span class="header-section-number">2.11.2.2</span> 2. Function</h4>
+<p>You can run a function without loading the whole package:</p>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="fundamentals.html#cb283-1" aria-hidden="true" tabindex="-1"></a>baRcodeR<span class="sc">::</span><span class="fu">make_labels</span>()</span></code></pre></div>
+<p>This translates to "Run the <code>make_labels</code> function from the <code>baRcodeR</code> library.</p>
+<p>The first method is more common, especially for the commonly used functions covered in these self-tutorials. However, the second method is convenient if you just want to use one function from a large library that take up a lot of space.</p>
+<p>More importantly, some packages have <strong>functions with the same names</strong>. Let’s say you load two packages <code>pkgA</code> and <code>pkgB</code> that have different functions but both are called <code>cor</code>. When you run the <code>cor</code> function, R will assume you want the one from the package that was most recently loaded using the <code>library()</code> function. However, you can over-ride this with the second method:</p>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="fundamentals.html#cb284-1" aria-hidden="true" tabindex="-1"></a>pkgA<span class="sc">::</span><span class="fu">cor</span>()</span>
+<span id="cb284-2"><a href="fundamentals.html#cb284-2" aria-hidden="true" tabindex="-1"></a>pkgB<span class="sc">::</span><span class="fu">cor</span>()</span></code></pre></div>
+</div>
+<div id="library-vs-package" class="section level4" number="2.11.2.3">
+<h4><span class="header-section-number">2.11.2.3</span> Library vs Package</h4>
+<p>The terms <strong>library</strong> and <strong>package</strong> are often used interchangeably. Technically, the <strong>package</strong> is the collection of functions whereas the <strong>library</strong> is the specific folder where the R packages are stored. A library may contain more than one package.</p>
+<p>For the most part, you just need to know that a package and a library are a collection of functions.</p>
+</div>
+</div>
+</div>
+<div id="readable-code" class="section level2" number="2.12">
+<h2><span class="header-section-number">2.12</span> Readable code</h2>
+<p>It’s important to make your code readable and interpretable by collaborators, peer reviewers, and yourself 6 months from now. There are lots of opinions on this but here are a few basic suggestions:</p>
+<ol style="list-style-type: decimal">
+<li>Add documentation to explain what you are doing</li>
+<li>Add spacing between parameters to improve readability</li>
+<li>Add spacing on either side of <code>&lt;-</code> when making objects</li>
+<li>Break long functions into multiple lines; add the line break after a <code>,</code> or <code>+</code></li>
+<li>Follow these suggestions for object/column/file names
+a. Try to keep your names short and concise but meaningful
+b. Use underscore <code>_</code> to improve readability and avoid <code>.</code>
+c. Always start with a letter
+d. Avoid symbols</li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th>Bad</th>
+<th>Good</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>sum(X,na.rm=T)</code></td>
+<td><code>sum(X, na.rm=T)</code></td>
+</tr>
+<tr class="even">
+<td><code>data.frame(X, Y, ..., data=...)</code></td>
+<td><code>data.frame(X, Y,</code> <br> <code>..., data=...)</code></td>
+</tr>
+<tr class="odd">
+<td><code>X</code></td>
+<td><code>Mass</code></td>
+</tr>
+<tr class="even">
+<td><code>Days.To.First.Flower</code></td>
+<td><code>Flwr_Days</code> or <code>FDays</code></td>
+</tr>
+<tr class="odd">
+<td><code>10d.Height</code></td>
+<td><code>Ht10d</code></td>
+</tr>
+<tr class="even">
+<td><code>Length*Width</code></td>
+<td><code>LxW</code></td>
+</tr>
+</tbody>
+</table>
+<p>To take your code to the next level, look into the <a href="https://style.tidyverse.org/index.html">Tidyverse Style Guide</a></p>
+</div>
+<div id="test-yourself" class="section level2" number="2.13">
+<h2><span class="header-section-number">2.13</span> TEST yourself:</h2>
+<p>Are you ready to test your knowledge?</p>
+<p>If so, click <a href="https://colauttilab.github.io/RCrashCourse/1_fundamentals_test.html">HERE</a></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="setup.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="quick-visualizations.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01_Fundamentals.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

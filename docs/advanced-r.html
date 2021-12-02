@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Advanced R | R Crash Course</title>
+  <meta name="description" content="A Crash Course in R for Biologists" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Advanced R | R Crash Course" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="A Crash Course in R for Biologists" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Advanced R | R Crash Course" />
+  
+  <meta name="twitter:description" content="A Crash Course in R for Biologists" />
+  
+
+<meta name="author" content="Robert I. Colautti" />
+
+
+<meta name="date" content="2021-12-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-science-intro.html"/>
+
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>1</b> Setup</a></li>
+<li class="chapter" data-level="2" data-path="fundamentals.html"><a href="fundamentals.html"><i class="fa fa-check"></i><b>2</b> Fundamentals</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="fundamentals.html"><a href="fundamentals.html#introduction"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="fundamentals.html"><a href="fundamentals.html#r-basics"><i class="fa fa-check"></i><b>2.2</b> R Basics</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="fundamentals.html"><a href="fundamentals.html#basic-math"><i class="fa fa-check"></i><b>2.2.1</b> Basic Math</a></li>
+<li class="chapter" data-level="2.2.2" data-path="fundamentals.html"><a href="fundamentals.html#functions"><i class="fa fa-check"></i><b>2.2.2</b> Functions</a></li>
+<li class="chapter" data-level="2.2.3" data-path="fundamentals.html"><a href="fundamentals.html#c"><i class="fa fa-check"></i><b>2.2.3</b> `c()</a></li>
+<li class="chapter" data-level="2.2.4" data-path="fundamentals.html"><a href="fundamentals.html#math-functions"><i class="fa fa-check"></i><b>2.2.4</b> Math Functions</a></li>
+<li class="chapter" data-level="2.2.5" data-path="fundamentals.html"><a href="fundamentals.html#roundtruncate"><i class="fa fa-check"></i><b>2.2.5</b> Round/Truncate</a></li>
+<li class="chapter" data-level="2.2.6" data-path="fundamentals.html"><a href="fundamentals.html#logic-operators"><i class="fa fa-check"></i><b>2.2.6</b> Logic Operators</a></li>
+<li class="chapter" data-level="2.2.7" data-path="fundamentals.html"><a href="fundamentals.html#group-comparison"><i class="fa fa-check"></i><b>2.2.7</b> Group Comparison</a></li>
+<li class="chapter" data-level="2.2.8" data-path="fundamentals.html"><a href="fundamentals.html#random-numbers"><i class="fa fa-check"></i><b>2.2.8</b> Random Numbers</a></li>
+<li class="chapter" data-level="2.2.9" data-path="fundamentals.html"><a href="fundamentals.html#combining-objects"><i class="fa fa-check"></i><b>2.2.9</b> Combining objects</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="fundamentals.html"><a href="fundamentals.html#data-types"><i class="fa fa-check"></i><b>2.3</b> Data Types</a></li>
+<li class="chapter" data-level="2.4" data-path="fundamentals.html"><a href="fundamentals.html#objects"><i class="fa fa-check"></i><b>2.4</b> Objects</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="fundamentals.html"><a href="fundamentals.html#cells"><i class="fa fa-check"></i><b>2.4.1</b> Cells</a></li>
+<li class="chapter" data-level="2.4.2" data-path="fundamentals.html"><a href="fundamentals.html#vector"><i class="fa fa-check"></i><b>2.4.2</b> Vector</a></li>
+<li class="chapter" data-level="2.4.3" data-path="fundamentals.html"><a href="fundamentals.html#matrices"><i class="fa fa-check"></i><b>2.4.3</b> Matrices</a></li>
+<li class="chapter" data-level="2.4.4" data-path="fundamentals.html"><a href="fundamentals.html#tensors"><i class="fa fa-check"></i><b>2.4.4</b> Tensors</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="fundamentals.html"><a href="fundamentals.html#matrix-algebra"><i class="fa fa-check"></i><b>2.5</b> Matrix Algebra</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="fundamentals.html"><a href="fundamentals.html#pca"><i class="fa fa-check"></i><b>2.5.1</b> PCA</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="fundamentals.html"><a href="fundamentals.html#lists"><i class="fa fa-check"></i><b>2.6</b> Lists</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="fundamentals.html"><a href="fundamentals.html#subset-1"><i class="fa fa-check"></i><b>2.6.1</b> Subset</a></li>
+<li class="chapter" data-level="2.6.2" data-path="fundamentals.html"><a href="fundamentals.html#output"><i class="fa fa-check"></i><b>2.6.2</b> Output</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="fundamentals.html"><a href="fundamentals.html#print-and-paste"><i class="fa fa-check"></i><b>2.7</b> <code>print()</code> and <code>paste()</code></a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="fundamentals.html"><a href="fundamentals.html#for-help"><i class="fa fa-check"></i><b>2.7.1</b> ? for HELP</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="fundamentals.html"><a href="fundamentals.html#data"><i class="fa fa-check"></i><b>2.8</b> Data</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="fundamentals.html"><a href="fundamentals.html#working-directory"><i class="fa fa-check"></i><b>2.8.1</b> Working Directory</a></li>
+<li class="chapter" data-level="2.8.2" data-path="fundamentals.html"><a href="fundamentals.html#import"><i class="fa fa-check"></i><b>2.8.2</b> Import</a></li>
+<li class="chapter" data-level="2.8.3" data-path="fundamentals.html"><a href="fundamentals.html#data.frame"><i class="fa fa-check"></i><b>2.8.3</b> <code>data.frame</code></a></li>
+<li class="chapter" data-level="2.8.4" data-path="fundamentals.html"><a href="fundamentals.html#subset-2"><i class="fa fa-check"></i><b>2.8.4</b> Subset</a></li>
+<li class="chapter" data-level="2.8.5" data-path="fundamentals.html"><a href="fundamentals.html#new-columns"><i class="fa fa-check"></i><b>2.8.5</b> New Columns</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="fundamentals.html"><a href="fundamentals.html#other-functions"><i class="fa fa-check"></i><b>2.9</b> Other Functions</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="fundamentals.html"><a href="fundamentals.html#unique"><i class="fa fa-check"></i><b>2.9.1</b> <code>unique</code></a></li>
+<li class="chapter" data-level="2.9.2" data-path="fundamentals.html"><a href="fundamentals.html#duplicated"><i class="fa fa-check"></i><b>2.9.2</b> <code>duplicated</code></a></li>
+<li class="chapter" data-level="2.9.3" data-path="fundamentals.html"><a href="fundamentals.html#aggregate"><i class="fa fa-check"></i><b>2.9.3</b> <code>aggregate</code></a></li>
+<li class="chapter" data-level="2.9.4" data-path="fundamentals.html"><a href="fundamentals.html#tapply"><i class="fa fa-check"></i><b>2.9.4</b> tapply</a></li>
+<li class="chapter" data-level="2.9.5" data-path="fundamentals.html"><a href="fundamentals.html#save"><i class="fa fa-check"></i><b>2.9.5</b> Save</a></li>
+</ul></li>
+<li class="chapter" data-level="2.10" data-path="fundamentals.html"><a href="fundamentals.html#flow-control"><i class="fa fa-check"></i><b>2.10</b> Flow control</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="fundamentals.html"><a href="fundamentals.html#if"><i class="fa fa-check"></i><b>2.10.1</b> <code>if</code></a></li>
+<li class="chapter" data-level="2.10.2" data-path="fundamentals.html"><a href="fundamentals.html#ifelse"><i class="fa fa-check"></i><b>2.10.2</b> ifelse</a></li>
+<li class="chapter" data-level="2.10.3" data-path="fundamentals.html"><a href="fundamentals.html#for-loop"><i class="fa fa-check"></i><b>2.10.3</b> <code>for</code> loop</a></li>
+<li class="chapter" data-level="2.10.4" data-path="fundamentals.html"><a href="fundamentals.html#nested-loops"><i class="fa fa-check"></i><b>2.10.4</b> Nested Loops</a></li>
+<li class="chapter" data-level="2.10.5" data-path="fundamentals.html"><a href="fundamentals.html#while-loop"><i class="fa fa-check"></i><b>2.10.5</b> <code>while</code> loop</a></li>
+</ul></li>
+<li class="chapter" data-level="2.11" data-path="fundamentals.html"><a href="fundamentals.html#packages"><i class="fa fa-check"></i><b>2.11</b> Packages</a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="fundamentals.html"><a href="fundamentals.html#installing"><i class="fa fa-check"></i><b>2.11.1</b> Installing</a></li>
+<li class="chapter" data-level="2.11.2" data-path="fundamentals.html"><a href="fundamentals.html#loading"><i class="fa fa-check"></i><b>2.11.2</b> Loading</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="fundamentals.html"><a href="fundamentals.html#readable-code"><i class="fa fa-check"></i><b>2.12</b> Readable code</a></li>
+<li class="chapter" data-level="2.13" data-path="fundamentals.html"><a href="fundamentals.html#test-yourself"><i class="fa fa-check"></i><b>2.13</b> TEST yourself:</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="quick-visualizations.html"><a href="quick-visualizations.html"><i class="fa fa-check"></i><b>3</b> Quick Visualizations</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="quick-visualizations.html"><a href="quick-visualizations.html#overview"><i class="fa fa-check"></i><b>3.1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="quick-visualizations.html"><a href="quick-visualizations.html#graphical-concepts"><i class="fa fa-check"></i><b>3.1.1</b> Graphical Concepts</a></li>
+<li class="chapter" data-level="3.1.2" data-path="quick-visualizations.html"><a href="quick-visualizations.html#vector-vs.-raster"><i class="fa fa-check"></i><b>3.1.2</b> Vector vs. Raster</a></li>
+<li class="chapter" data-level="3.1.3" data-path="quick-visualizations.html"><a href="quick-visualizations.html#resolution-vs-dimension"><i class="fa fa-check"></i><b>3.1.3</b> Resolution vs Dimension</a></li>
+<li class="chapter" data-level="3.1.4" data-path="quick-visualizations.html"><a href="quick-visualizations.html#screen-vs-print"><i class="fa fa-check"></i><b>3.1.4</b> Screen vs Print</a></li>
+<li class="chapter" data-level="3.1.5" data-path="quick-visualizations.html"><a href="quick-visualizations.html#accessibility"><i class="fa fa-check"></i><b>3.1.5</b> Accessibility</a></li>
+<li class="chapter" data-level="3.1.6" data-path="quick-visualizations.html"><a href="quick-visualizations.html#slides"><i class="fa fa-check"></i><b>3.1.6</b> Slides</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="quick-visualizations.html"><a href="quick-visualizations.html#getting-started"><i class="fa fa-check"></i><b>3.2</b> Getting Started</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="quick-visualizations.html"><a href="quick-visualizations.html#data-setup"><i class="fa fa-check"></i><b>3.2.1</b> Data setup</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="quick-visualizations.html"><a href="quick-visualizations.html#basic-graphs"><i class="fa fa-check"></i><b>3.3</b> Basic Graphs</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="quick-visualizations.html"><a href="quick-visualizations.html#one-continuous"><i class="fa fa-check"></i><b>3.3.1</b> One continuous</a></li>
+<li class="chapter" data-level="3.3.2" data-path="quick-visualizations.html"><a href="quick-visualizations.html#one-categorical"><i class="fa fa-check"></i><b>3.3.2</b> One categorical</a></li>
+<li class="chapter" data-level="3.3.3" data-path="quick-visualizations.html"><a href="quick-visualizations.html#two-continuous"><i class="fa fa-check"></i><b>3.3.3</b> Two continuous</a></li>
+<li class="chapter" data-level="3.3.4" data-path="quick-visualizations.html"><a href="quick-visualizations.html#two-categorical"><i class="fa fa-check"></i><b>3.3.4</b> Two categorical</a></li>
+<li class="chapter" data-level="3.3.5" data-path="quick-visualizations.html"><a href="quick-visualizations.html#categorical-by-continuous"><i class="fa fa-check"></i><b>3.3.5</b> Categorical by continuous</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="quick-visualizations.html"><a href="quick-visualizations.html#basic-customization"><i class="fa fa-check"></i><b>3.4</b> Basic customization</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="quick-visualizations.html"><a href="quick-visualizations.html#binwidth"><i class="fa fa-check"></i><b>3.4.1</b> <code>binwidth</code></a></li>
+<li class="chapter" data-level="3.4.2" data-path="quick-visualizations.html"><a href="quick-visualizations.html#size"><i class="fa fa-check"></i><b>3.4.2</b> <code>size</code></a></li>
+<li class="chapter" data-level="3.4.3" data-path="quick-visualizations.html"><a href="quick-visualizations.html#colour-or-color"><i class="fa fa-check"></i><b>3.4.3</b> <code>colour</code> or <code>color</code></a></li>
+<li class="chapter" data-level="3.4.4" data-path="quick-visualizations.html"><a href="quick-visualizations.html#fill"><i class="fa fa-check"></i><b>3.4.4</b> <code>fill</code></a></li>
+<li class="chapter" data-level="3.4.5" data-path="quick-visualizations.html"><a href="quick-visualizations.html#posit"><i class="fa fa-check"></i><b>3.4.5</b> <code>posit</code></a></li>
+<li class="chapter" data-level="3.4.6" data-path="quick-visualizations.html"><a href="quick-visualizations.html#alpha"><i class="fa fa-check"></i><b>3.4.6</b> <code>alpha</code></a></li>
+<li class="chapter" data-level="3.4.7" data-path="quick-visualizations.html"><a href="quick-visualizations.html#shape"><i class="fa fa-check"></i><b>3.4.7</b> <code>shape</code></a></li>
+<li class="chapter" data-level="3.4.8" data-path="quick-visualizations.html"><a href="quick-visualizations.html#lab-xlab-and-ylab"><i class="fa fa-check"></i><b>3.4.8</b> <code>lab</code>, <code>xlab</code>, and <code>ylab</code></a></li>
+<li class="chapter" data-level="3.4.9" data-path="quick-visualizations.html"><a href="quick-visualizations.html#main"><i class="fa fa-check"></i><b>3.4.9</b> <code>main</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="quick-visualizations.html"><a href="quick-visualizations.html#themes-and-geoms"><i class="fa fa-check"></i><b>3.5</b> Themes and Geoms</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="quick-visualizations.html"><a href="quick-visualizations.html#theme_name"><i class="fa fa-check"></i><b>3.5.1</b> <code>+ theme_NAME()</code></a></li>
+<li class="chapter" data-level="3.5.2" data-path="quick-visualizations.html"><a href="quick-visualizations.html#theme_set"><i class="fa fa-check"></i><b>3.5.2</b> <code>theme_set</code></a></li>
+<li class="chapter" data-level="3.5.3" data-path="quick-visualizations.html"><a href="quick-visualizations.html#geom"><i class="fa fa-check"></i><b>3.5.3</b> <code>geom</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="quick-visualizations.html"><a href="quick-visualizations.html#multiple-graphs"><i class="fa fa-check"></i><b>3.6</b> Multiple graphs</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="quick-visualizations.html"><a href="quick-visualizations.html#facets"><i class="fa fa-check"></i><b>3.6.1</b> <code>facets</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="quick-visualizations.html"><a href="quick-visualizations.html#save-output"><i class="fa fa-check"></i><b>3.7</b> Save output</a></li>
+<li class="chapter" data-level="3.8" data-path="quick-visualizations.html"><a href="quick-visualizations.html#practice"><i class="fa fa-check"></i><b>3.8</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html"><i class="fa fa-check"></i><b>4</b> Advanced Visualizations</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#overview-1"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
+<li class="chapter" data-level="4.2" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#getting-started-1"><i class="fa fa-check"></i><b>4.2</b> Getting Started</a></li>
+<li class="chapter" data-level="4.3" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#rules-of-thumb"><i class="fa fa-check"></i><b>4.3</b> Rules of thumb</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#minimize-ink"><i class="fa fa-check"></i><b>4.3.1</b> 1. Minimize ‘ink’</a></li>
+<li class="chapter" data-level="4.3.2" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#use-space-wisely"><i class="fa fa-check"></i><b>4.3.2</b> 2. Use space wisely</a></li>
+<li class="chapter" data-level="4.3.3" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#choose-a-colour-palette"><i class="fa fa-check"></i><b>4.3.3</b> 3. Choose a colour palette</a></li>
+<li class="chapter" data-level="4.3.4" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#colours-have-meaning"><i class="fa fa-check"></i><b>4.3.4</b> 4. Colours have meaning</a></li>
+<li class="chapter" data-level="4.3.5" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#maximize-contrast"><i class="fa fa-check"></i><b>4.3.5</b> 5. Maximize contrast</a></li>
+<li class="chapter" data-level="4.3.6" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#keep-relevant-information"><i class="fa fa-check"></i><b>4.3.6</b> 6. Keep relevant information</a></li>
+<li class="chapter" data-level="4.3.7" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#choose-the-right-graph"><i class="fa fa-check"></i><b>4.3.7</b> 7. Choose the right graph</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#example"><i class="fa fa-check"></i><b>4.4</b> Example</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#setup-1"><i class="fa fa-check"></i><b>4.4.1</b> Setup</a></li>
+<li class="chapter" data-level="4.4.2" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#inspect"><i class="fa fa-check"></i><b>4.4.2</b> Inspect</a></li>
+<li class="chapter" data-level="4.4.3" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#absolute-value"><i class="fa fa-check"></i><b>4.4.3</b> Absolute Value</a></li>
+<li class="chapter" data-level="4.4.4" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#missing-values"><i class="fa fa-check"></i><b>4.4.4</b> Missing values</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#measuring-selection"><i class="fa fa-check"></i><b>4.5</b> Measuring Selection</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#relative-fitness"><i class="fa fa-check"></i><b>4.5.1</b> Relative Fitness</a></li>
+<li class="chapter" data-level="4.5.2" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#trait-value"><i class="fa fa-check"></i><b>4.5.2</b> Trait Value</a></li>
+<li class="chapter" data-level="4.5.3" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#s-vs-beta"><i class="fa fa-check"></i><b>4.5.3</b> <span class="math inline">\(s\)</span> vs <span class="math inline">\(\beta\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#ggplot-vs-qplot"><i class="fa fa-check"></i><b>4.6</b> <code>ggplot</code> vs <code>qplot</code></a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#histogram-2"><i class="fa fa-check"></i><b>4.6.1</b> Histogram</a></li>
+<li class="chapter" data-level="4.6.2" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#aes"><i class="fa fa-check"></i><b>4.6.2</b> <code>aes</code></a></li>
+<li class="chapter" data-level="4.6.3" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#layers"><i class="fa fa-check"></i><b>4.6.3</b> Layers</a></li>
+<li class="chapter" data-level="4.6.4" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#stat_name"><i class="fa fa-check"></i><b>4.6.4</b> <code>stat_NAME</code></a></li>
+<li class="chapter" data-level="4.6.5" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#bivariate-geom"><i class="fa fa-check"></i><b>4.6.5</b> Bivariate geom</a></li>
+<li class="chapter" data-level="4.6.6" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#geom_smooth"><i class="fa fa-check"></i><b>4.6.6</b> <code>geom_smooth</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#full-ggplot"><i class="fa fa-check"></i><b>4.7</b> Full ggplot</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#separate-data"><i class="fa fa-check"></i><b>4.7.1</b> Separate data</a></li>
+<li class="chapter" data-level="4.7.2" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#bootstrap"><i class="fa fa-check"></i><b>4.7.2</b> Bootstrap</a></li>
+<li class="chapter" data-level="4.7.3" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#plot-data"><i class="fa fa-check"></i><b>4.7.3</b> Plot data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#multi-graph"><i class="fa fa-check"></i><b>4.8</b> Multi-graph</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#facets-1"><i class="fa fa-check"></i><b>4.8.1</b> <code>facets</code></a></li>
+<li class="chapter" data-level="4.8.2" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#grid.extra-package"><i class="fa fa-check"></i><b>4.8.2</b> <code>grid.extra</code> package</a></li>
+<li class="chapter" data-level="4.8.3" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#grid-package"><i class="fa fa-check"></i><b>4.8.3</b> <code>grid</code> package</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#further-reading"><i class="fa fa-check"></i><b>4.9</b> Further Reading</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="regular-expressions.html"><a href="regular-expressions.html"><i class="fa fa-check"></i><b>5</b> Regular Expressions</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="regular-expressions.html"><a href="regular-expressions.html#overview-2"><i class="fa fa-check"></i><b>5.1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="regular-expressions.html"><a href="regular-expressions.html#universal"><i class="fa fa-check"></i><b>5.1.1</b> Universal</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="regular-expressions.html"><a href="regular-expressions.html#functions-1"><i class="fa fa-check"></i><b>5.2</b> Functions</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="regular-expressions.html"><a href="regular-expressions.html#examples"><i class="fa fa-check"></i><b>5.2.1</b> Examples</a></li>
+<li class="chapter" data-level="5.2.2" data-path="regular-expressions.html"><a href="regular-expressions.html#grep"><i class="fa fa-check"></i><b>5.2.2</b> <code>grep()</code></a></li>
+<li class="chapter" data-level="5.2.3" data-path="regular-expressions.html"><a href="regular-expressions.html#grepl"><i class="fa fa-check"></i><b>5.2.3</b> <code>grepl()</code></a></li>
+<li class="chapter" data-level="5.2.4" data-path="regular-expressions.html"><a href="regular-expressions.html#sub"><i class="fa fa-check"></i><b>5.2.4</b> <code>sub()</code></a></li>
+<li class="chapter" data-level="5.2.5" data-path="regular-expressions.html"><a href="regular-expressions.html#gsub"><i class="fa fa-check"></i><b>5.2.5</b> <code>gsub()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="regular-expressions.html"><a href="regular-expressions.html#wildcards"><i class="fa fa-check"></i><b>5.3</b> Wildcards</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="regular-expressions.html"><a href="regular-expressions.html#escape-character"><i class="fa fa-check"></i><b>5.3.1</b> <code>\</code> escape character</a></li>
+<li class="chapter" data-level="5.3.2" data-path="regular-expressions.html"><a href="regular-expressions.html#in-r"><i class="fa fa-check"></i><b>5.3.2</b> <code>\\</code> in R</a></li>
+<li class="chapter" data-level="5.3.3" data-path="regular-expressions.html"><a href="regular-expressions.html#w"><i class="fa fa-check"></i><b>5.3.3</b> <code>\\w</code></a></li>
+<li class="chapter" data-level="5.3.4" data-path="regular-expressions.html"><a href="regular-expressions.html#w-1"><i class="fa fa-check"></i><b>5.3.4</b> <code>\\W</code></a></li>
+<li class="chapter" data-level="5.3.5" data-path="regular-expressions.html"><a href="regular-expressions.html#s"><i class="fa fa-check"></i><b>5.3.5</b> <code>\\s</code></a></li>
+<li class="chapter" data-level="5.3.6" data-path="regular-expressions.html"><a href="regular-expressions.html#t"><i class="fa fa-check"></i><b>5.3.6</b> <code>\\t</code></a></li>
+<li class="chapter" data-level="5.3.7" data-path="regular-expressions.html"><a href="regular-expressions.html#d"><i class="fa fa-check"></i><b>5.3.7</b> <code>\\d</code></a></li>
+<li class="chapter" data-level="5.3.8" data-path="regular-expressions.html"><a href="regular-expressions.html#d-1"><i class="fa fa-check"></i><b>5.3.8</b> <code>\\D</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="regular-expressions.html"><a href="regular-expressions.html#new-lines"><i class="fa fa-check"></i><b>5.4</b> New Lines</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="regular-expressions.html"><a href="regular-expressions.html#r"><i class="fa fa-check"></i><b>5.4.1</b> <code>\\r</code></a></li>
+<li class="chapter" data-level="5.4.2" data-path="regular-expressions.html"><a href="regular-expressions.html#n"><i class="fa fa-check"></i><b>5.4.2</b> <code>\\n</code></a></li>
+<li class="chapter" data-level="5.4.3" data-path="regular-expressions.html"><a href="regular-expressions.html#big-problem"><i class="fa fa-check"></i><b>5.4.3</b> Big Problem</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="regular-expressions.html"><a href="regular-expressions.html#special-characters"><i class="fa fa-check"></i><b>5.5</b> Special characters</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="regular-expressions.html"><a href="regular-expressions.html#section"><i class="fa fa-check"></i><b>5.5.1</b> <code>|</code></a></li>
+<li class="chapter" data-level="5.5.2" data-path="regular-expressions.html"><a href="regular-expressions.html#section-1"><i class="fa fa-check"></i><b>5.5.2</b> <code>.</code></a></li>
+<li class="chapter" data-level="5.5.3" data-path="regular-expressions.html"><a href="regular-expressions.html#section-2"><i class="fa fa-check"></i><b>5.5.3</b> <code>*</code>, <code>?</code>, <code>+</code>, <code>{}</code></a></li>
+<li class="chapter" data-level="5.5.4" data-path="regular-expressions.html"><a href="regular-expressions.html#section-4"><i class="fa fa-check"></i><b>5.5.4</b> <code>*</code></a></li>
+<li class="chapter" data-level="5.5.5" data-path="regular-expressions.html"><a href="regular-expressions.html#section-5"><i class="fa fa-check"></i><b>5.5.5</b> <code>?</code></a></li>
+<li class="chapter" data-level="5.5.6" data-path="regular-expressions.html"><a href="regular-expressions.html#section-6"><i class="fa fa-check"></i><b>5.5.6</b> <code>+?</code></a></li>
+<li class="chapter" data-level="5.5.7" data-path="regular-expressions.html"><a href="regular-expressions.html#section-7"><i class="fa fa-check"></i><b>5.5.7</b> <code>*?</code></a></li>
+<li class="chapter" data-level="5.5.8" data-path="regular-expressions.html"><a href="regular-expressions.html#section-8"><i class="fa fa-check"></i><b>5.5.8</b> <code>{}</code></a></li>
+<li class="chapter" data-level="5.5.9" data-path="regular-expressions.html"><a href="regular-expressions.html#nm"><i class="fa fa-check"></i><b>5.5.9</b> <code>{n,m}</code></a></li>
+<li class="chapter" data-level="5.5.10" data-path="regular-expressions.html"><a href="regular-expressions.html#n-1"><i class="fa fa-check"></i><b>5.5.10</b> <code>{n}</code></a></li>
+<li class="chapter" data-level="5.5.11" data-path="regular-expressions.html"><a href="regular-expressions.html#n-2"><i class="fa fa-check"></i><b>5.5.11</b> <code>{n,}</code></a></li>
+<li class="chapter" data-level="5.5.12" data-path="regular-expressions.html"><a href="regular-expressions.html#section-9"><i class="fa fa-check"></i><b>5.5.12</b> {}?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="regular-expressions.html"><a href="regular-expressions.html#section-10"><i class="fa fa-check"></i><b>5.6</b> <code>[]</code></a></li>
+<li class="chapter" data-level="5.7" data-path="regular-expressions.html"><a href="regular-expressions.html#and"><i class="fa fa-check"></i><b>5.7</b> <code>^</code> and <code>$</code></a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="regular-expressions.html"><a href="regular-expressions.html#section-11"><i class="fa fa-check"></i><b>5.7.1</b> <code>^</code></a></li>
+<li class="chapter" data-level="5.7.2" data-path="regular-expressions.html"><a href="regular-expressions.html#section-12"><i class="fa fa-check"></i><b>5.7.2</b> <code>$</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="regular-expressions.html"><a href="regular-expressions.html#section-13"><i class="fa fa-check"></i><b>5.8</b> <code>()</code></a></li>
+<li class="chapter" data-level="5.9" data-path="regular-expressions.html"><a href="regular-expressions.html#scraping"><i class="fa fa-check"></i><b>5.9</b> Scraping</a></li>
+<li class="chapter" data-level="5.10" data-path="regular-expressions.html"><a href="regular-expressions.html#examples-1"><i class="fa fa-check"></i><b>5.10</b> Examples</a>
+<ul>
+<li class="chapter" data-level="5.10.1" data-path="regular-expressions.html"><a href="regular-expressions.html#transect-data"><i class="fa fa-check"></i><b>5.10.1</b> Transect Data</a></li>
+<li class="chapter" data-level="5.10.2" data-path="regular-expressions.html"><a href="regular-expressions.html#genbank"><i class="fa fa-check"></i><b>5.10.2</b> Genbank</a></li>
+</ul></li>
+<li class="chapter" data-level="5.11" data-path="regular-expressions.html"><a href="regular-expressions.html#solutions"><i class="fa fa-check"></i><b>5.11</b> Solutions</a>
+<ul>
+<li class="chapter" data-level="5.11.1" data-path="regular-expressions.html"><a href="regular-expressions.html#transects"><i class="fa fa-check"></i><b>5.11.1</b> Transects</a></li>
+<li class="chapter" data-level="5.11.2" data-path="regular-expressions.html"><a href="regular-expressions.html#genbank-1"><i class="fa fa-check"></i><b>5.11.2</b> Genbank</a></li>
+</ul></li>
+<li class="chapter" data-level="5.12" data-path="regular-expressions.html"><a href="regular-expressions.html#more-exercises"><i class="fa fa-check"></i><b>5.12</b> More Exercises</a>
+<ul>
+<li class="chapter" data-level="5.12.1" data-path="regular-expressions.html"><a href="regular-expressions.html#consider-a-vector-of-email-addresses-scraped-from-the-internet"><i class="fa fa-check"></i><b>5.12.1</b> 1. Consider a vector of email addresses scraped from the internet:</a></li>
+<li class="chapter" data-level="5.12.2" data-path="regular-expressions.html"><a href="regular-expressions.html#create-a-random-sequence-of-dna"><i class="fa fa-check"></i><b>5.12.2</b> 2. Create a random sequence of DNA:</a></li>
+<li class="chapter" data-level="5.12.3" data-path="regular-expressions.html"><a href="regular-expressions.html#more-online-examples"><i class="fa fa-check"></i><b>5.12.3</b> 3. More online examples</a></li>
+<li class="chapter" data-level="5.12.4" data-path="regular-expressions.html"><a href="regular-expressions.html#regex-golf"><i class="fa fa-check"></i><b>5.12.4</b> 4. Regex Golf</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-science-intro.html"><a href="data-science-intro.html"><i class="fa fa-check"></i><b>6</b> Data Science Intro</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="data-science-intro.html"><a href="data-science-intro.html#setup-2"><i class="fa fa-check"></i><b>6.1</b> Setup</a></li>
+<li class="chapter" data-level="6.2" data-path="data-science-intro.html"><a href="data-science-intro.html#introduction-to-data-science"><i class="fa fa-check"></i><b>6.2</b> Introduction to Data Science</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="data-science-intro.html"><a href="data-science-intro.html#data-science-life-cycle"><i class="fa fa-check"></i><b>6.2.1</b> Data Science Life-Cycle</a></li>
+<li class="chapter" data-level="6.2.2" data-path="data-science-intro.html"><a href="data-science-intro.html#data-science-in-r"><i class="fa fa-check"></i><b>6.2.2</b> Data Science in R</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="data-science-intro.html"><a href="data-science-intro.html#d-data-wrangling"><i class="fa fa-check"></i><b>6.3</b> 2D Data Wrangling</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="data-science-intro.html"><a href="data-science-intro.html#filter"><i class="fa fa-check"></i><b>6.3.1</b> <code>filter()</code></a></li>
+<li class="chapter" data-level="6.3.2" data-path="data-science-intro.html"><a href="data-science-intro.html#rename"><i class="fa fa-check"></i><b>6.3.2</b> <code>rename()</code></a></li>
+<li class="chapter" data-level="6.3.3" data-path="data-science-intro.html"><a href="data-science-intro.html#arrange"><i class="fa fa-check"></i><b>6.3.3</b> <code>arrange()</code></a></li>
+<li class="chapter" data-level="6.3.4" data-path="data-science-intro.html"><a href="data-science-intro.html#select"><i class="fa fa-check"></i><b>6.3.4</b> <code>select()</code></a></li>
+<li class="chapter" data-level="6.3.5" data-path="data-science-intro.html"><a href="data-science-intro.html#everything"><i class="fa fa-check"></i><b>6.3.5</b> <code>everything()</code></a></li>
+<li class="chapter" data-level="6.3.6" data-path="data-science-intro.html"><a href="data-science-intro.html#mutate"><i class="fa fa-check"></i><b>6.3.6</b> <code>mutate()</code></a></li>
+<li class="chapter" data-level="6.3.7" data-path="data-science-intro.html"><a href="data-science-intro.html#transmute"><i class="fa fa-check"></i><b>6.3.7</b> <code>transmute()</code></a></li>
+<li class="chapter" data-level="6.3.8" data-path="data-science-intro.html"><a href="data-science-intro.html#summarize-group_by"><i class="fa fa-check"></i><b>6.3.8</b> <code>summarize()</code> + <code>group_by()</code></a></li>
+<li class="chapter" data-level="6.3.9" data-path="data-science-intro.html"><a href="data-science-intro.html#weighted-mean"><i class="fa fa-check"></i><b>6.3.9</b> Weighted Mean</a></li>
+<li class="chapter" data-level="6.3.10" data-path="data-science-intro.html"><a href="data-science-intro.html#pipe"><i class="fa fa-check"></i><b>6.3.10</b> <code>%&gt;%</code> (pipe)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="data-science-intro.html"><a href="data-science-intro.html#missing-data"><i class="fa fa-check"></i><b>6.4</b> Missing Data</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="data-science-intro.html"><a href="data-science-intro.html#na-and-na.rm"><i class="fa fa-check"></i><b>6.4.1</b> <code>NA</code> and <code>na.rm()</code></a></li>
+<li class="chapter" data-level="6.4.2" data-path="data-science-intro.html"><a href="data-science-intro.html#na-vs-0"><i class="fa fa-check"></i><b>6.4.2</b> <code>NA</code> vs <code>0</code></a></li>
+<li class="chapter" data-level="6.4.3" data-path="data-science-intro.html"><a href="data-science-intro.html#is.na"><i class="fa fa-check"></i><b>6.4.3</b> <code>is.na()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="data-science-intro.html"><a href="data-science-intro.html#naughty-data"><i class="fa fa-check"></i><b>6.5</b> Naughty Data</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="advanced-r.html"><a href="advanced-r.html"><i class="fa fa-check"></i><b>7</b> Advanced R</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="advanced-r.html"><a href="advanced-r.html#introduction-1"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="advanced-r.html"><a href="advanced-r.html#getting-started-2"><i class="fa fa-check"></i><b>7.2</b> Getting Started</a></li>
+<li class="chapter" data-level="7.3" data-path="advanced-r.html"><a href="advanced-r.html#r-markdown"><i class="fa fa-check"></i><b>7.3</b> R Markdown</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="advanced-r.html"><a href="advanced-r.html#cheat-sheet"><i class="fa fa-check"></i><b>7.3.1</b> Cheat Sheet</a></li>
+<li class="chapter" data-level="7.3.2" data-path="advanced-r.html"><a href="advanced-r.html#create"><i class="fa fa-check"></i><b>7.3.2</b> Create</a></li>
+<li class="chapter" data-level="7.3.3" data-path="advanced-r.html"><a href="advanced-r.html#yaml-header"><i class="fa fa-check"></i><b>7.3.3</b> YAML Header</a></li>
+<li class="chapter" data-level="7.3.4" data-path="advanced-r.html"><a href="advanced-r.html#markdown"><i class="fa fa-check"></i><b>7.3.4</b> Markdown</a></li>
+<li class="chapter" data-level="7.3.5" data-path="advanced-r.html"><a href="advanced-r.html#basic-elements"><i class="fa fa-check"></i><b>7.3.5</b> Basic elements:</a></li>
+<li class="chapter" data-level="7.3.6" data-path="advanced-r.html"><a href="advanced-r.html#headers"><i class="fa fa-check"></i><b>7.3.6</b> Headers</a></li>
+<li class="chapter" data-level="7.3.7" data-path="advanced-r.html"><a href="advanced-r.html#other-elements"><i class="fa fa-check"></i><b>7.3.7</b> Other Elements</a></li>
+<li class="chapter" data-level="7.3.8" data-path="advanced-r.html"><a href="advanced-r.html#links"><i class="fa fa-check"></i><b>7.3.8</b> Links</a></li>
+<li class="chapter" data-level="7.3.9" data-path="advanced-r.html"><a href="advanced-r.html#images"><i class="fa fa-check"></i><b>7.3.9</b> Images</a></li>
+<li class="chapter" data-level="7.3.10" data-path="advanced-r.html"><a href="advanced-r.html#lists-and-tables"><i class="fa fa-check"></i><b>7.3.10</b> Lists and tables</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="advanced-r.html"><a href="advanced-r.html#tables"><i class="fa fa-check"></i><b>7.4</b> Tables</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="advanced-r.html"><a href="advanced-r.html#embed-r-code"><i class="fa fa-check"></i><b>7.4.1</b> Embed R Code</a></li>
+<li class="chapter" data-level="7.4.2" data-path="advanced-r.html"><a href="advanced-r.html#dynamic-tables"><i class="fa fa-check"></i><b>7.4.2</b> Dynamic tables</a></li>
+<li class="chapter" data-level="7.4.3" data-path="advanced-r.html"><a href="advanced-r.html#embed-graphs"><i class="fa fa-check"></i><b>7.4.3</b> Embed Graphs</a></li>
+<li class="chapter" data-level="7.4.4" data-path="advanced-r.html"><a href="advanced-r.html#options-for-header"><i class="fa fa-check"></i><b>7.4.4</b> Options for header</a></li>
+<li class="chapter" data-level="7.4.5" data-path="advanced-r.html"><a href="advanced-r.html#content-as-tabs"><i class="fa fa-check"></i><b>7.4.5</b> Content as tabs</a></li>
+<li class="chapter" data-level="7.4.6" data-path="advanced-r.html"><a href="advanced-r.html#quarterly-results"><i class="fa fa-check"></i><b>7.4.6</b> Quarterly Results</a></li>
+<li class="chapter" data-level="7.4.7" data-path="advanced-r.html"><a href="advanced-r.html#equations"><i class="fa fa-check"></i><b>7.4.7</b> Equations</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="advanced-r.html"><a href="advanced-r.html#custom-functions"><i class="fa fa-check"></i><b>7.5</b> Custom Functions</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="advanced-r.html"><a href="advanced-r.html#general-form"><i class="fa fa-check"></i><b>7.5.1</b> General form:</a></li>
+<li class="chapter" data-level="7.5.2" data-path="advanced-r.html"><a href="advanced-r.html#example-function"><i class="fa fa-check"></i><b>7.5.2</b> Example function</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="advanced-r.html"><a href="advanced-r.html#custom-r-package"><i class="fa fa-check"></i><b>7.6</b> Custom R Package</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="advanced-r.html"><a href="advanced-r.html#introduction-2"><i class="fa fa-check"></i><b>7.6.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.6.2" data-path="advanced-r.html"><a href="advanced-r.html#getting-started-3"><i class="fa fa-check"></i><b>7.6.2</b> Getting started</a></li>
+<li class="chapter" data-level="7.6.3" data-path="advanced-r.html"><a href="advanced-r.html#add-functions"><i class="fa fa-check"></i><b>7.6.3</b> Add functions</a></li>
+<li class="chapter" data-level="7.6.4" data-path="advanced-r.html"><a href="advanced-r.html#adding-documentation"><i class="fa fa-check"></i><b>7.6.4</b> Adding documentation</a></li>
+<li class="chapter" data-level="7.6.5" data-path="advanced-r.html"><a href="advanced-r.html#add-a-manual"><i class="fa fa-check"></i><b>7.6.5</b> Add a Manual</a></li>
+<li class="chapter" data-level="7.6.6" data-path="advanced-r.html"><a href="advanced-r.html#installing-the-package"><i class="fa fa-check"></i><b>7.6.6</b> Installing the package</a></li>
+<li class="chapter" data-level="7.6.7" data-path="advanced-r.html"><a href="advanced-r.html#input-checking"><i class="fa fa-check"></i><b>7.6.7</b> Input checking</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="advanced-r.html"><a href="advanced-r.html#make-it-public"><i class="fa fa-check"></i><b>7.7</b> Make it public</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="advanced-r.html"><a href="advanced-r.html#references"><i class="fa fa-check"></i><b>7.7.1</b> References:</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Crash Course</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="advanced-r" class="section level1" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Advanced R</h1>
+<div id="introduction-1" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> Introduction</h2>
+<p>By now you have mastered the fundamentals of base R, visualizations, and data science!</p>
+<p>In this tutorial, we will cover some a few of the more advanced but extremely useful topics.</p>
+</div>
+<div id="getting-started-2" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Getting Started</h2>
+<p>Before beginning this tutorial, make sure you have installed these packages:</p>
+<div class="sourceCode" id="cb613"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb613-1"><a href="advanced-r.html#cb613-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;rmarkdown&#39;</span>)</span>
+<span id="cb613-2"><a href="advanced-r.html#cb613-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;dplyr&#39;</span>)</span>
+<span id="cb613-3"><a href="advanced-r.html#cb613-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;knitr&#39;</span>)</span></code></pre></div>
+</div>
+<div id="r-markdown" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> R Markdown</h2>
+<p>R Markdown is a powerful format for quickly making high-quality reports of your analysis. You can embed code and all kinds of output, including graphs, and output them to a Word Document, PDF or website. In fact, all of our tutorial webpages are written in R Markdown, including this one!</p>
+<p>Here we’ll cover just the basics, but a complete guide to R Markdown is available online from <a href="https://bookdown.org/yihui/rmarkdown/">Yihui Xie, J. J. Allaire and Garrett Grolemund</a>. You can also check out the R Markdown documents that we use to make our tutorial websites on our GitHub Pages (the website files have .html extension and the R Markdown files have the same name with .Rmd extensions):</p>
+<ul>
+<li><a href="https://colauttilab.github.io/">Main Colautti Lab Resources Website</a> and <a href="https://github.com/ColauttiLab/ColauttiLab.github.io">GitHub Repository</a></li>
+<li><a href="https://colauttilab.github.io/RCrashCourse/1_fundamentals.html">R Tutorials</a> and <a href="https://github.com/ColauttiLab/RCrashCourse">GitHub Repository</a></li>
+</ul>
+<div id="cheat-sheet" class="section level3" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> Cheat Sheet</h3>
+<p>There is a very <a href="https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf">handy 2-page ‘cheat sheet’</a> that you can print out to help you remember some of the main commands. I use R Markdown for all kinds of documents – including course tutorials like this one – so I have the 2-page cheat sheet printed out and taped to my wall next to my computer.</p>
+<p>You can also access cheat sheets for R Markdown and several others R Studio also includes a number of cheat sheets under the <em>Help</em> menu: <code>Help -&gt; Cheatsheets</code></p>
+</div>
+<div id="create" class="section level3" number="7.3.2">
+<h3><span class="header-section-number">7.3.2</span> Create</h3>
+<p>In RStudio: <code>File-&gt; New-&gt; R Markdown</code></p>
+<p>Choose <code>Document</code> from the left-hand side menu</p>
+<p>Make sure <code>html</code> is selected</p>
+<p>Then click <code>OK</code></p>
+<p>Very few elements are needed for a basic markdown file, and these are provided when you create a new file.</p>
+</div>
+<div id="yaml-header" class="section level3" number="7.3.3">
+<h3><span class="header-section-number">7.3.3</span> YAML Header</h3>
+<p>This is generated automatically when you make a new .Rmd file in RStudio. Depending on what options you choose, it might look something like this:</p>
+<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="advanced-r.html#cb614-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb614-2"><a href="advanced-r.html#cb614-2" aria-hidden="true" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">&quot;Untitled&quot;</span></span>
+<span id="cb614-3"><a href="advanced-r.html#cb614-3" aria-hidden="true" tabindex="-1"></a>author<span class="sc">:</span> <span class="st">&quot;Robert I. Colautti&quot;</span></span>
+<span id="cb614-4"><a href="advanced-r.html#cb614-4" aria-hidden="true" tabindex="-1"></a>date<span class="sc">:</span> <span class="st">&quot;January 20, 2019&quot;</span></span>
+<span id="cb614-5"><a href="advanced-r.html#cb614-5" aria-hidden="true" tabindex="-1"></a>output<span class="sc">:</span> html_document</span>
+<span id="cb614-6"><a href="advanced-r.html#cb614-6" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code></pre></div>
+<p>There are other options available for YAML, and you can includes a separate <code>_output.yml</code> to set other aspects of the layoug.</p>
+</div>
+<div id="markdown" class="section level3" number="7.3.4">
+<h3><span class="header-section-number">7.3.4</span> Markdown</h3>
+<p>R Markdown is based on the <a href="https://en.wikipedia.org/wiki/Markdown">markdown language</a>, which was created as a quick and easy way to encode formatted websites in a simple text document.</p>
+<p>R Markdown has a few additions, including the ability to easily incorporate R code, graphs, and equations.</p>
+</div>
+<div id="basic-elements" class="section level3" number="7.3.5">
+<h3><span class="header-section-number">7.3.5</span> Basic elements:</h3>
+<div id="plain-text" class="section level4" number="7.3.5.1">
+<h4><span class="header-section-number">7.3.5.1</span> Plain text</h4>
+<p>Plain text is converted into paragraph format.</p>
+<p>To start a new paragraph, press <em>enter</em> twice, so to skip a line in the .Rmd file.</p>
+</div>
+<div id="formatted-text" class="section level4" number="7.3.5.2">
+<h4><span class="header-section-number">7.3.5.2</span> Formatted text</h4>
+<p>You can format text with <code>*</code> or <code>_</code></p>
+<p><code>*italics*</code> or <code>_italics_</code>: <em>italics</em></p>
+<p><code>**bold**</code> or <code>__bold__</code>: <strong>bold</strong></p>
+<p>Use greater-than sign for block quotes, eg. <code>&gt; TIP: quote</code></p>
+<blockquote>
+<p>TIP: quote</p>
+</blockquote>
+</div>
+</div>
+<div id="headers" class="section level3" number="7.3.6">
+<h3><span class="header-section-number">7.3.6</span> Headers</h3>
+<p>Add headers with up to 6x <code>#</code> – more headers = subheadings:</p>
+<h1>
+<code># Header 1</code>
+</h1>
+<h2>
+<code>## Sub-Header = Header 2</code>
+</h2>
+<h3>
+<code>### Sub-Sub Header = Header 3</code>
+</h3>
+<h4>
+<code>#### Sub-Sub-Sub Header = Header 4</code>
+</h4>
+</div>
+<div id="other-elements" class="section level3" number="7.3.7">
+<h3><span class="header-section-number">7.3.7</span> Other Elements</h3>
+<p><code>superscript^2</code> superscript^2</p>
+<p><code>--</code> for short–dash: –</p>
+<p><code>---</code> for long — dash: —</p>
+</div>
+<div id="links" class="section level3" number="7.3.8">
+<h3><span class="header-section-number">7.3.8</span> Links</h3>
+<p>Links have a special format. The text you want the user to see goes in square brackets, followed immediately by the file or html link in regular brackets, with no space in between:</p>
+<p><code>[Colautti Lab Website](https://colauttilab.github.io/)</code>:</p>
+<p><a href="https://colauttilab.github.io/">Colautti Lab Website</a></p>
+<p>You can also use this to link a file in the same project folder:</p>
+<p><code>[Linked jpeg file](./ColauttiLabLogo.png)</code>:</p>
+<p><a href="./ColauttiLabLogo.png">Linked jpeg file</a></p>
+</div>
+<div id="images" class="section level3" number="7.3.9">
+<h3><span class="header-section-number">7.3.9</span> Images</h3>
+<p>Or you can embed the image directly by adding an exclamation point. You can leave the linked text blank or keep it to use as a caption.</p>
+<p><code>![Linked jpeg file](./ColauttiLabLogo.png)</code>:</p>
+<div class="figure">
+<img src="ColauttiLabLogo.png" alt="" />
+<p class="caption">Linked jpeg file</p>
+</div>
+</div>
+<div id="lists-and-tables" class="section level3" number="7.3.10">
+<h3><span class="header-section-number">7.3.10</span> Lists and tables</h3>
+<p>Lists are easy to create, simply start a line with <code>*</code> or <code>+</code> for <em>unordered</em> lists or a number for <em>ordered</em> lists. Add tab characters for sub-lists:</p>
+<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb615-1"><a href="advanced-r.html#cb615-1" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> Unordered list item <span class="dv">1</span>  </span>
+<span id="cb615-2"><a href="advanced-r.html#cb615-2" aria-hidden="true" tabindex="-1"></a><span class="sc">*</span> Item <span class="dv">2</span>  </span>
+<span id="cb615-3"><a href="advanced-r.html#cb615-3" aria-hidden="true" tabindex="-1"></a>    <span class="sc">+</span> sub item <span class="fl">2.1</span>  </span>
+<span id="cb615-4"><a href="advanced-r.html#cb615-4" aria-hidden="true" tabindex="-1"></a>    <span class="sc">*</span> sub item <span class="fl">2.2</span>  </span>
+<span id="cb615-5"><a href="advanced-r.html#cb615-5" aria-hidden="true" tabindex="-1"></a><span class="sc">*</span> Item <span class="dv">3</span>  </span></code></pre></div>
+<ul>
+<li>Unordered list item 1</li>
+<li>Item 2
+<ul>
+<li>sub item 2.1</li>
+<li>sub item 2.2</li>
+</ul></li>
+<li>Item 3</li>
+</ul>
+<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="advanced-r.html#cb616-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Ordered list item <span class="dv">1</span>  </span>
+<span id="cb616-2"><a href="advanced-r.html#cb616-2" aria-hidden="true" tabindex="-1"></a><span class="fl">2.</span> Item <span class="dv">2</span>  </span>
+<span id="cb616-3"><a href="advanced-r.html#cb616-3" aria-hidden="true" tabindex="-1"></a>    <span class="sc">+</span> sub item <span class="fl">2.1</span>  </span>
+<span id="cb616-4"><a href="advanced-r.html#cb616-4" aria-hidden="true" tabindex="-1"></a>    <span class="sc">*</span> sub item <span class="fl">2.2</span>  </span>
+<span id="cb616-5"><a href="advanced-r.html#cb616-5" aria-hidden="true" tabindex="-1"></a><span class="fl">3.</span> Item <span class="dv">3</span>  </span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li>Ordered list item 1<br />
+</li>
+<li>Item 2
+<ul>
+<li>sub item 2.1<br />
+</li>
+<li>sub item 2.2<br />
+</li>
+</ul></li>
+<li>Item 3</li>
+</ol>
+<p>The fun thing about ordered lists is the numbers you use don’t really matter – R Markdown will automatically start at 1 and increase for each item.</p>
+<div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb617-1"><a href="advanced-r.html#cb617-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Ordered list item <span class="dv">1</span>  </span>
+<span id="cb617-2"><a href="advanced-r.html#cb617-2" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Item <span class="dv">2</span>  </span>
+<span id="cb617-3"><a href="advanced-r.html#cb617-3" aria-hidden="true" tabindex="-1"></a>    <span class="sc">+</span> sub item <span class="fl">2.1</span>  </span>
+<span id="cb617-4"><a href="advanced-r.html#cb617-4" aria-hidden="true" tabindex="-1"></a>    <span class="sc">*</span> sub item <span class="fl">2.2</span>  </span>
+<span id="cb617-5"><a href="advanced-r.html#cb617-5" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Item <span class="dv">3</span>  </span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li>Ordered list item 1<br />
+</li>
+<li>Item 2
+<ul>
+<li>sub item 2.1<br />
+</li>
+<li>sub item 2.2<br />
+</li>
+</ul></li>
+<li>Item 3</li>
+</ol>
+<p>Tables are added using vertical pipe <code>|</code> to denote columns, and a line of horizontal dashes to separate the title of the table, and dashes with pipes to separate the header row from the rest of the table. For example, this code:</p>
+<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="advanced-r.html#cb618-1" aria-hidden="true" tabindex="-1"></a>Tables </span>
+<span id="cb618-2"><a href="advanced-r.html#cb618-2" aria-hidden="true" tabindex="-1"></a><span class="sc">-----------------------</span></span>
+<span id="cb618-3"><a href="advanced-r.html#cb618-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb618-4"><a href="advanced-r.html#cb618-4" aria-hidden="true" tabindex="-1"></a>Date  <span class="sc">|</span> Length  <span class="sc">|</span> Width</span>
+<span id="cb618-5"><a href="advanced-r.html#cb618-5" aria-hidden="true" tabindex="-1"></a><span class="sc">------</span><span class="er">|</span><span class="sc">---------</span><span class="er">|</span><span class="sc">------</span></span>
+<span id="cb618-6"><a href="advanced-r.html#cb618-6" aria-hidden="true" tabindex="-1"></a><span class="dv">09</span><span class="sc">/</span><span class="dv">09</span><span class="sc">/</span><span class="dv">09</span> <span class="sc">|</span> <span class="dv">14</span> <span class="sc">|</span> <span class="dv">27</span></span>
+<span id="cb618-7"><a href="advanced-r.html#cb618-7" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span><span class="sc">/</span><span class="dv">09</span><span class="sc">/</span><span class="dv">09</span> <span class="sc">|</span> <span class="dv">15</span> <span class="sc">|</span> <span class="dv">29</span></span>
+<span id="cb618-8"><a href="advanced-r.html#cb618-8" aria-hidden="true" tabindex="-1"></a><span class="dv">11</span><span class="sc">/</span><span class="dv">09</span><span class="sc">/</span><span class="dv">09</span> <span class="sc">|</span> <span class="dv">16</span> <span class="sc">|</span> <span class="dv">31</span></span></code></pre></div>
+<p>Produces this output:</p>
+</div>
+</div>
+<div id="tables" class="section level2" number="7.4">
+<h2><span class="header-section-number">7.4</span> Tables</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Date</th>
+<th>Length</th>
+<th>Width</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>09/09/09</td>
+<td>14</td>
+<td>27</td>
+</tr>
+<tr class="even">
+<td>10/09/09</td>
+<td>15</td>
+<td>29</td>
+</tr>
+<tr class="odd">
+<td>11/09/09</td>
+<td>16</td>
+<td>31</td>
+</tr>
+</tbody>
+</table>
+<div id="embed-r-code" class="section level3" number="7.4.1">
+<h3><span class="header-section-number">7.4.1</span> Embed R Code</h3>
+<p>Embed R code inline using the back-tick ` character: <code>embedded code</code></p>
+<p>Note that the back-tick is not the single quotation mark. It’s often on the same key as ~ on North American keyboards.</p>
+<p>You can add larger blocks of code (multiple lines) using three back ticks ` and r in curly brackets. Then add three more tick marks after the code chunk:</p>
+<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="advanced-r.html#cb619-1" aria-hidden="true" tabindex="-1"></a><span class="co">#     ```{r}</span></span>
+<span id="cb619-2"><a href="advanced-r.html#cb619-2" aria-hidden="true" tabindex="-1"></a><span class="co">#      &lt;&lt;your code goes here&gt;&gt;</span></span>
+<span id="cb619-3"><a href="advanced-r.html#cb619-3" aria-hidden="true" tabindex="-1"></a><span class="co">#     ```</span></span></code></pre></div>
+<p><code>Ctl-Alt-i</code> is a nice shortcut in R Studio for adding code chunks quickly</p>
+<div id="code-chunk-names" class="section level4" number="7.4.1.1">
+<h4><span class="header-section-number">7.4.1.1</span> Code Chunk Names</h4>
+<p>You can name your code chunks, which becomes useful when making custom packages or other knitr uses. The name is added after the <code>r</code> separated only by spaces. The name cannot contain spaces. E.g. ```<code>{r code-chunk-name, eval=F}</code></p>
+</div>
+<div id="suppress-code" class="section level4" number="7.4.1.2">
+<h4><span class="header-section-number">7.4.1.2</span> Suppress code</h4>
+<p>You can use different options for your R code chunks, as shown on the cheatsheet. Three main ones are:</p>
+<ul>
+<li><code>eval=F</code> – show the code but don’t run it.</li>
+<li><code>include=F</code> – run the code but don’t show it and and don’t produce any output, plots, messages or warnings.</li>
+<li><code>echo=F</code> – don’t show the code but run it and include any output, plots, messages and warnings.</li>
+</ul>
+</div>
+</div>
+<div id="dynamic-tables" class="section level3" number="7.4.2">
+<h3><span class="header-section-number">7.4.2</span> Dynamic tables</h3>
+<p>Making tables from data is a bit more complicated. For example, if we wanted to summarize the <code>FallopiaData.csv</code> data, we could read in the file and then summarize with dplyr as we did in the <a href="5_datascience.html">Data Science Tutorial</a>:</p>
+<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb620-1"><a href="advanced-r.html#cb620-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb620-2"><a href="advanced-r.html#cb620-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb620-3"><a href="advanced-r.html#cb620-3" aria-hidden="true" tabindex="-1"></a>Fallo<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">&quot;https://colauttilab.github.io/RCrashCourse/FallopiaData.csv&quot;</span>)</span>
+<span id="cb620-4"><a href="advanced-r.html#cb620-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb620-5"><a href="advanced-r.html#cb620-5" aria-hidden="true" tabindex="-1"></a>SumTable<span class="ot">&lt;-</span>Fallo <span class="sc">%&gt;%</span> </span>
+<span id="cb620-6"><a href="advanced-r.html#cb620-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Taxon,Scenario,Nutrients) <span class="sc">%&gt;%</span></span>
+<span id="cb620-7"><a href="advanced-r.html#cb620-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Mean=</span><span class="fu">mean</span>(Total), <span class="at">SD=</span><span class="fu">sd</span>(Total)) <span class="sc">%&gt;%</span></span>
+<span id="cb620-8"><a href="advanced-r.html#cb620-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Mean))</span>
+<span id="cb620-9"><a href="advanced-r.html#cb620-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb620-10"><a href="advanced-r.html#cb620-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(SumTable)</span></code></pre></div>
+<pre><code>## # A tibble: 10 x 5
+## # Groups:   Taxon, Scenario [10]
+##    Taxon Scenario     Nutrients  Mean    SD
+##    &lt;chr&gt; &lt;chr&gt;        &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
+##  1 bohem high         high       60.3  8.68
+##  2 japon gradual      high       59.7  9.57
+##  3 bohem fluctuations high       58.4  9.20
+##  4 bohem extreme      high       58.3  7.34
+##  5 bohem gradual      high       57.5  9.34
+##  6 japon extreme      high       57.2 10.9 
+##  7 japon high         high       56.4  8.20
+##  8 japon fluctuations high       56.4 13.7 
+##  9 japon low          low        52.0  8.29
+## 10 bohem low          low        48.0  8.86</code></pre>
+<p>The output is legible but not very attractive for a final report. To make it look better, we can use the <code>kable</code> function from the <code>knitr</code> package:</p>
+<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="advanced-r.html#cb622-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb622-2"><a href="advanced-r.html#cb622-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(SumTable, <span class="at">caption =</span> <span class="st">&quot;Summary Table&quot;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-10">Table 7.1: </span>Summary Table</caption>
+<thead>
+<tr class="header">
+<th align="left">Taxon</th>
+<th align="left">Scenario</th>
+<th align="left">Nutrients</th>
+<th align="right">Mean</th>
+<th align="right">SD</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">bohem</td>
+<td align="left">high</td>
+<td align="left">high</td>
+<td align="right">60.28091</td>
+<td align="right">8.677075</td>
+</tr>
+<tr class="even">
+<td align="left">japon</td>
+<td align="left">gradual</td>
+<td align="left">high</td>
+<td align="right">59.72917</td>
+<td align="right">9.565376</td>
+</tr>
+<tr class="odd">
+<td align="left">bohem</td>
+<td align="left">fluctuations</td>
+<td align="left">high</td>
+<td align="right">58.36455</td>
+<td align="right">9.202334</td>
+</tr>
+<tr class="even">
+<td align="left">bohem</td>
+<td align="left">extreme</td>
+<td align="left">high</td>
+<td align="right">58.30917</td>
+<td align="right">7.337015</td>
+</tr>
+<tr class="odd">
+<td align="left">bohem</td>
+<td align="left">gradual</td>
+<td align="left">high</td>
+<td align="right">57.46154</td>
+<td align="right">9.338311</td>
+</tr>
+<tr class="even">
+<td align="left">japon</td>
+<td align="left">extreme</td>
+<td align="left">high</td>
+<td align="right">57.23643</td>
+<td align="right">10.903133</td>
+</tr>
+<tr class="odd">
+<td align="left">japon</td>
+<td align="left">high</td>
+<td align="left">high</td>
+<td align="right">56.44833</td>
+<td align="right">8.204091</td>
+</tr>
+<tr class="even">
+<td align="left">japon</td>
+<td align="left">fluctuations</td>
+<td align="left">high</td>
+<td align="right">56.43692</td>
+<td align="right">13.724906</td>
+</tr>
+<tr class="odd">
+<td align="left">japon</td>
+<td align="left">low</td>
+<td align="left">low</td>
+<td align="right">52.02917</td>
+<td align="right">8.287938</td>
+</tr>
+<tr class="even">
+<td align="left">bohem</td>
+<td align="left">low</td>
+<td align="left">low</td>
+<td align="right">47.98077</td>
+<td align="right">8.862164</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="embed-graphs" class="section level3" number="7.4.3">
+<h3><span class="header-section-number">7.4.3</span> Embed Graphs</h3>
+<p>Use R code to embed graphs.</p>
+<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb623-1"><a href="advanced-r.html#cb623-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="fu">rnorm</span>(<span class="dv">100</span>))</span></code></pre></div>
+<p><img src="06_advanced_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+</div>
+<div id="options-for-header" class="section level3" number="7.4.4">
+<h3><span class="header-section-number">7.4.4</span> Options for header</h3>
+<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="advanced-r.html#cb624-1" aria-hidden="true" tabindex="-1"></a>output<span class="sc">:</span></span>
+<span id="cb624-2"><a href="advanced-r.html#cb624-2" aria-hidden="true" tabindex="-1"></a>  html_document<span class="sc">:</span> <span class="co"># Add options for html output</span></span>
+<span id="cb624-3"><a href="advanced-r.html#cb624-3" aria-hidden="true" tabindex="-1"></a>    toc<span class="sc">:</span> true <span class="co"># Add table of contents (TOC)</span></span>
+<span id="cb624-4"><a href="advanced-r.html#cb624-4" aria-hidden="true" tabindex="-1"></a>    number_sections<span class="sc">:</span> true <span class="co"># Add section numbers</span></span>
+<span id="cb624-5"><a href="advanced-r.html#cb624-5" aria-hidden="true" tabindex="-1"></a>    toc_float<span class="sc">:</span> <span class="co"># Have TOC floating at the side, rather than at the beginning</span></span>
+<span id="cb624-6"><a href="advanced-r.html#cb624-6" aria-hidden="true" tabindex="-1"></a>      collapsed<span class="sc">:</span> false <span class="co"># Expand subsections</span></span></code></pre></div>
+</div>
+<div id="content-as-tabs" class="section level3" number="7.4.5">
+<h3><span class="header-section-number">7.4.5</span> Content as tabs</h3>
+<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="advanced-r.html#cb625-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Quarterly Results {.tabset}</span></span>
+<span id="cb625-2"><a href="advanced-r.html#cb625-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb625-3"><a href="advanced-r.html#cb625-3" aria-hidden="true" tabindex="-1"></a><span class="do">### By Product</span></span>
+<span id="cb625-4"><a href="advanced-r.html#cb625-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb625-5"><a href="advanced-r.html#cb625-5" aria-hidden="true" tabindex="-1"></a>(Product tab content)</span>
+<span id="cb625-6"><a href="advanced-r.html#cb625-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb625-7"><a href="advanced-r.html#cb625-7" aria-hidden="true" tabindex="-1"></a><span class="do">### By Region</span></span>
+<span id="cb625-8"><a href="advanced-r.html#cb625-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb625-9"><a href="advanced-r.html#cb625-9" aria-hidden="true" tabindex="-1"></a>(Region tab content)</span></code></pre></div>
+<p>Looks like this:</p>
+</div>
+<div id="quarterly-results" class="section level3 tabset" number="7.4.6">
+<h3><span class="header-section-number">7.4.6</span> Quarterly Results</h3>
+<div id="by-product" class="section level4" number="7.4.6.1">
+<h4><span class="header-section-number">7.4.6.1</span> By Product</h4>
+<p>(Product tab content)</p>
+</div>
+<div id="by-region" class="section level4" number="7.4.6.2">
+<h4><span class="header-section-number">7.4.6.2</span> By Region</h4>
+<p>(Region tab content)</p>
+</div>
+</div>
+<div id="equations" class="section level3" number="7.4.7">
+<h3><span class="header-section-number">7.4.7</span> Equations</h3>
+<p>Insert equations using LaTeX. Here is a handy <a href="./latexsheet.pdf">cheat sheet</a></p>
+<p>Use single dollar signs for in-line equations, like $Y ~ X$, which will print as <span class="math inline">\(Y ~ X\)</span></p>
+<p>Use double dollar signs on a new line for full-line equations, for example:</p>
+<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="advanced-r.html#cb626-1" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span><span class="er">$</span>\idotsint_V \<span class="fu">mu</span>(u_1,\dots,u_k) \,du_1 \dots du_k<span class="sc">$</span><span class="er">$</span> </span></code></pre></div>
+<p>will produce:</p>
+<p><span class="math display">\[\idotsint_V \mu(u_1,\dots,u_k) \,du_1 \dots du_k\]</span></p>
+<p>and</p>
+<div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb627-1"><a href="advanced-r.html#cb627-1" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span><span class="er">$</span>sum_{n<span class="ot">=</span><span class="dv">1</span>}<span class="sc">^</span>{\infty} <span class="dv">2</span><span class="sc">^</span>{<span class="sc">-</span>n} <span class="ot">=</span> <span class="dv">1</span><span class="sc">$</span><span class="er">$</span></span></code></pre></div>
+<p>will produce:</p>
+<p><span class="math display">\[\sum_{n=1}^{\infty} 2^{-n} = 1\]</span></p>
+<p>Notice the use of special characters with the backslash <code>\</code>, along with subscripts <code>_</code> and superscripts <code>_</code> with the super/subscripted text in curly brackets <code>{}</code></p>
+<hr />
+</div>
+</div>
+<div id="custom-functions" class="section level2" number="7.5">
+<h2><span class="header-section-number">7.5</span> Custom Functions</h2>
+<div id="general-form" class="section level3" number="7.5.1">
+<h3><span class="header-section-number">7.5.1</span> General form:</h3>
+<div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb628-1"><a href="advanced-r.html#cb628-1" aria-hidden="true" tabindex="-1"></a>functionName<span class="ot">&lt;-</span><span class="cf">function</span>(<span class="at">var1=</span>Default1,<span class="at">var2=</span>Default2){</span>
+<span id="cb628-2"><a href="advanced-r.html#cb628-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">## Meat and potatoes script</span></span>
+<span id="cb628-3"><a href="advanced-r.html#cb628-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="example-function" class="section level3" number="7.5.2">
+<h3><span class="header-section-number">7.5.2</span> Example function</h3>
+<p>User inputs two objects; the function outputs a list of functions applied to the inputs</p>
+<div class="sourceCode" id="cb629"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb629-1"><a href="advanced-r.html#cb629-1" aria-hidden="true" tabindex="-1"></a>my.function<span class="ot">&lt;-</span><span class="cf">function</span>(<span class="at">var1=</span><span class="dv">0</span>,<span class="at">var2=</span><span class="dv">0</span>){</span>
+<span id="cb629-2"><a href="advanced-r.html#cb629-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># You can make new variables within a function</span></span>
+<span id="cb629-3"><a href="advanced-r.html#cb629-3" aria-hidden="true" tabindex="-1"></a>  add<span class="ot">&lt;-</span>var1<span class="sc">+</span>var2</span>
+<span id="cb629-4"><a href="advanced-r.html#cb629-4" aria-hidden="true" tabindex="-1"></a>  subt<span class="ot">&lt;-</span>var1<span class="sc">-</span>var2</span>
+<span id="cb629-5"><a href="advanced-r.html#cb629-5" aria-hidden="true" tabindex="-1"></a>  mult<span class="ot">&lt;-</span>var1<span class="sc">*</span>var2</span>
+<span id="cb629-6"><a href="advanced-r.html#cb629-6" aria-hidden="true" tabindex="-1"></a>  div<span class="ot">&lt;-</span>var1<span class="sc">/</span>var2  </span>
+<span id="cb629-7"><a href="advanced-r.html#cb629-7" aria-hidden="true" tabindex="-1"></a>  outlist<span class="ot">&lt;-</span><span class="fu">list</span>(<span class="at">input1=</span>var1,<span class="at">input2=</span>var2,<span class="at">addition=</span>add,<span class="at">subtraction=</span>subt,<span class="at">multiplication=</span>mult,<span class="at">division=</span>div)</span>
+<span id="cb629-8"><a href="advanced-r.html#cb629-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># So far, everything is contained within the function. </span></span>
+<span id="cb629-9"><a href="advanced-r.html#cb629-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Use return() to generate output</span></span>
+<span id="cb629-10"><a href="advanced-r.html#cb629-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(outlist)</span>
+<span id="cb629-11"><a href="advanced-r.html#cb629-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Note: Nothing output when the funciton is run. This just loads the function into memory.</p>
+<div id="run-the-function" class="section level4" number="7.5.2.1">
+<h4><span class="header-section-number">7.5.2.1</span> Run the function</h4>
+<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="advanced-r.html#cb630-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my.function</span>(<span class="at">var1=</span><span class="dv">10</span>,<span class="at">var2=</span><span class="fl">0.1</span>)</span></code></pre></div>
+<pre><code>## $input1
+## [1] 10
+## 
+## $input2
+## [1] 0.1
+## 
+## $addition
+## [1] 10.1
+## 
+## $subtraction
+## [1] 9.9
+## 
+## $multiplication
+## [1] 1
+## 
+## $division
+## [1] 100</code></pre>
+<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb632-1"><a href="advanced-r.html#cb632-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my.function</span>(<span class="at">var1=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>),<span class="at">var2=</span><span class="fu">c</span>(<span class="dv">10</span><span class="sc">:</span><span class="dv">1</span>))</span></code></pre></div>
+<pre><code>## $input1
+##  [1]  1  2  3  4  5  6  7  8  9 10
+## 
+## $input2
+##  [1] 10  9  8  7  6  5  4  3  2  1
+## 
+## $addition
+##  [1] 11 11 11 11 11 11 11 11 11 11
+## 
+## $subtraction
+##  [1] -9 -7 -5 -3 -1  1  3  5  7  9
+## 
+## $multiplication
+##  [1] 10 18 24 28 30 30 28 24 18 10
+## 
+## $division
+##  [1]  0.1000000  0.2222222  0.3750000  0.5714286  0.8333333  1.2000000
+##  [7]  1.7500000  2.6666667  4.5000000 10.0000000</code></pre>
+<blockquote>
+<p>Protip #1:</p>
+</blockquote>
+<p>Consider annotating long or complex script with <code>cat()</code> to help with troubleshooting. The <code>cat</code> function is similar to <code>print</code> but lets you print directly to screen rather than passing through a data object. Note that <code>\n</code> is a ’new line` character; try removing them and compare the output.</p>
+<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb634-1"><a href="advanced-r.html#cb634-1" aria-hidden="true" tabindex="-1"></a>my.function<span class="ot">&lt;-</span><span class="cf">function</span>(<span class="at">var1=</span><span class="dv">0</span>,<span class="at">var2=</span><span class="dv">0</span>,<span class="at">verbose=</span><span class="cn">FALSE</span>){</span>
+<span id="cb634-2"><a href="advanced-r.html#cb634-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Input variables:</span><span class="sc">\n</span><span class="st">var1 =&quot;</span>,var1,<span class="st">&quot;</span><span class="sc">\n</span><span class="st">var2 =&quot;</span>,var2,<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb634-3"><a href="advanced-r.html#cb634-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Calculating functions...</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb634-4"><a href="advanced-r.html#cb634-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Adding...</span><span class="sc">\n</span><span class="st">&quot;</span>)    </span>
+<span id="cb634-5"><a href="advanced-r.html#cb634-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb634-6"><a href="advanced-r.html#cb634-6" aria-hidden="true" tabindex="-1"></a>  add<span class="ot">&lt;-</span>var1<span class="sc">+</span>var2</span>
+<span id="cb634-7"><a href="advanced-r.html#cb634-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb634-8"><a href="advanced-r.html#cb634-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Subtracting...</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb634-9"><a href="advanced-r.html#cb634-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb634-10"><a href="advanced-r.html#cb634-10" aria-hidden="true" tabindex="-1"></a>  subt<span class="ot">&lt;-</span>var1<span class="sc">-</span>var2</span>
+<span id="cb634-11"><a href="advanced-r.html#cb634-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb634-12"><a href="advanced-r.html#cb634-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Multiplying...</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb634-13"><a href="advanced-r.html#cb634-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb634-14"><a href="advanced-r.html#cb634-14" aria-hidden="true" tabindex="-1"></a>  mult<span class="ot">&lt;-</span>var1<span class="sc">*</span>var2</span>
+<span id="cb634-15"><a href="advanced-r.html#cb634-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb634-16"><a href="advanced-r.html#cb634-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Dividing...</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb634-17"><a href="advanced-r.html#cb634-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb634-18"><a href="advanced-r.html#cb634-18" aria-hidden="true" tabindex="-1"></a>  div<span class="ot">&lt;-</span>var1<span class="sc">/</span>var2  </span>
+<span id="cb634-19"><a href="advanced-r.html#cb634-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb634-20"><a href="advanced-r.html#cb634-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Generating output...</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span>
+<span id="cb634-21"><a href="advanced-r.html#cb634-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb634-22"><a href="advanced-r.html#cb634-22" aria-hidden="true" tabindex="-1"></a>  outlist<span class="ot">&lt;-</span><span class="fu">list</span>(<span class="at">input1=</span>var1,<span class="at">input2=</span>var2,<span class="at">addition=</span>add,<span class="at">subtraction=</span>subt,<span class="at">multiplication=</span>mult,<span class="at">division=</span>div)</span>
+<span id="cb634-23"><a href="advanced-r.html#cb634-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb634-24"><a href="advanced-r.html#cb634-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(outlist)</span>
+<span id="cb634-25"><a href="advanced-r.html#cb634-25" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb634-26"><a href="advanced-r.html#cb634-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb634-27"><a href="advanced-r.html#cb634-27" aria-hidden="true" tabindex="-1"></a><span class="do">## Run</span></span>
+<span id="cb634-28"><a href="advanced-r.html#cb634-28" aria-hidden="true" tabindex="-1"></a><span class="fu">my.function</span>(<span class="at">var1=</span><span class="dv">10</span>,<span class="at">var2=</span><span class="fl">0.1</span>)</span></code></pre></div>
+<pre><code>## 
+## Input variables:
+## var1 = 10 
+## var2 = 0.1 
+## 
+## Calculating functions...
+## 
+## Adding...
+## 
+## Subtracting...
+## 
+## Multiplying...
+## 
+## Dividing...
+## 
+## Generating output...</code></pre>
+<pre><code>## $input1
+## [1] 10
+## 
+## $input2
+## [1] 0.1
+## 
+## $addition
+## [1] 10.1
+## 
+## $subtraction
+## [1] 9.9
+## 
+## $multiplication
+## [1] 1
+## 
+## $division
+## [1] 100</code></pre>
+<blockquote>
+<p>Better yet, make it an option:</p>
+</blockquote>
+<div class="sourceCode" id="cb637"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb637-1"><a href="advanced-r.html#cb637-1" aria-hidden="true" tabindex="-1"></a>my.function<span class="ot">&lt;-</span><span class="cf">function</span>(<span class="at">var1=</span><span class="dv">0</span>,<span class="at">var2=</span><span class="dv">0</span>,<span class="at">verbose=</span><span class="cn">FALSE</span>){</span>
+<span id="cb637-2"><a href="advanced-r.html#cb637-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (verbose<span class="sc">==</span>T){</span>
+<span id="cb637-3"><a href="advanced-r.html#cb637-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Input variables:</span><span class="sc">\n</span><span class="st">var1 =&quot;</span>,var1,<span class="st">&quot;</span><span class="sc">\n</span><span class="st">var2 =&quot;</span>,var2,<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb637-4"><a href="advanced-r.html#cb637-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Calculating functions...</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb637-5"><a href="advanced-r.html#cb637-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Adding...</span><span class="sc">\n</span><span class="st">&quot;</span>)    </span>
+<span id="cb637-6"><a href="advanced-r.html#cb637-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb637-7"><a href="advanced-r.html#cb637-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb637-8"><a href="advanced-r.html#cb637-8" aria-hidden="true" tabindex="-1"></a>  add<span class="ot">&lt;-</span>var1<span class="sc">+</span>var2</span>
+<span id="cb637-9"><a href="advanced-r.html#cb637-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb637-10"><a href="advanced-r.html#cb637-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (verbose<span class="sc">==</span>T){</span>
+<span id="cb637-11"><a href="advanced-r.html#cb637-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Subtracting...</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb637-12"><a href="advanced-r.html#cb637-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb637-13"><a href="advanced-r.html#cb637-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb637-14"><a href="advanced-r.html#cb637-14" aria-hidden="true" tabindex="-1"></a>  subt<span class="ot">&lt;-</span>var1<span class="sc">-</span>var2</span>
+<span id="cb637-15"><a href="advanced-r.html#cb637-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb637-16"><a href="advanced-r.html#cb637-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (verbose<span class="sc">==</span>T){</span>
+<span id="cb637-17"><a href="advanced-r.html#cb637-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Multiplying...</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb637-18"><a href="advanced-r.html#cb637-18" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb637-19"><a href="advanced-r.html#cb637-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb637-20"><a href="advanced-r.html#cb637-20" aria-hidden="true" tabindex="-1"></a>  mult<span class="ot">&lt;-</span>var1<span class="sc">*</span>var2</span>
+<span id="cb637-21"><a href="advanced-r.html#cb637-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb637-22"><a href="advanced-r.html#cb637-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (verbose<span class="sc">==</span>T){</span>
+<span id="cb637-23"><a href="advanced-r.html#cb637-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Dividing...</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb637-24"><a href="advanced-r.html#cb637-24" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb637-25"><a href="advanced-r.html#cb637-25" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb637-26"><a href="advanced-r.html#cb637-26" aria-hidden="true" tabindex="-1"></a>  div<span class="ot">&lt;-</span>var1<span class="sc">/</span>var2  </span>
+<span id="cb637-27"><a href="advanced-r.html#cb637-27" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb637-28"><a href="advanced-r.html#cb637-28" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (verbose<span class="sc">==</span>T){</span>
+<span id="cb637-29"><a href="advanced-r.html#cb637-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Generating output...</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb637-30"><a href="advanced-r.html#cb637-30" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb637-31"><a href="advanced-r.html#cb637-31" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb637-32"><a href="advanced-r.html#cb637-32" aria-hidden="true" tabindex="-1"></a>  outlist<span class="ot">&lt;-</span><span class="fu">list</span>(<span class="at">input1=</span>var1,<span class="at">input2=</span>var2,<span class="at">addition=</span>add,<span class="at">subtraction=</span>subt,<span class="at">multiplication=</span>mult,<span class="at">division=</span>div)</span>
+<span id="cb637-33"><a href="advanced-r.html#cb637-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb637-34"><a href="advanced-r.html#cb637-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(outlist)</span>
+<span id="cb637-35"><a href="advanced-r.html#cb637-35" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb637-36"><a href="advanced-r.html#cb637-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb637-37"><a href="advanced-r.html#cb637-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Run</span></span>
+<span id="cb637-38"><a href="advanced-r.html#cb637-38" aria-hidden="true" tabindex="-1"></a><span class="fu">my.function</span>(<span class="at">var1=</span><span class="dv">10</span>,<span class="at">var2=</span><span class="fl">0.1</span>,<span class="at">verbose=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## $input1
+## [1] 10
+## 
+## $input2
+## [1] 0.1
+## 
+## $addition
+## [1] 10.1
+## 
+## $subtraction
+## [1] 9.9
+## 
+## $multiplication
+## [1] 1
+## 
+## $division
+## [1] 100</code></pre>
+<div class="sourceCode" id="cb639"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb639-1"><a href="advanced-r.html#cb639-1" aria-hidden="true" tabindex="-1"></a><span class="fu">my.function</span>(<span class="at">var1=</span><span class="dv">10</span>,<span class="at">var2=</span><span class="fl">0.1</span>,<span class="at">verbose=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## 
+## Input variables:
+## var1 = 10 
+## var2 = 0.1 
+## 
+## Calculating functions...
+## 
+## Adding...
+## 
+## Subtracting...
+## 
+## Multiplying...
+## 
+## Dividing...
+## 
+## Generating output...</code></pre>
+<pre><code>## $input1
+## [1] 10
+## 
+## $input2
+## [1] 0.1
+## 
+## $addition
+## [1] 10.1
+## 
+## $subtraction
+## [1] 9.9
+## 
+## $multiplication
+## [1] 1
+## 
+## $division
+## [1] 100</code></pre>
+<blockquote>
+<p>Protip #2:</p>
+</blockquote>
+<p>If you have a custom function, theme, script, etc., that you use repeatedly:</p>
+<ol style="list-style-type: decimal">
+<li>Save in a separate file</li>
+</ol>
+<pre><code>* e.g. make new &quot;myfunction.R&quot; file containing just my.function</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Load using <code>source("PathName.FileName.R")</code></li>
+</ol>
+<pre><code>* e.g. `source(&quot;C:/Users/Colautti/Documents/RFunctions/myfunction.R&quot;)` if save</code></pre>
+<blockquote>
+<p>Protip #3:</p>
+</blockquote>
+<p>We have already been using functions that somebody else wrote in R.</p>
+<p>To see ‘under the hood’ type a function without the bracktes:</p>
+<div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb644-1"><a href="advanced-r.html#cb644-1" aria-hidden="true" tabindex="-1"></a>my.function</span></code></pre></div>
+<pre><code>## function(var1=0,var2=0,verbose=FALSE){
+##   if (verbose==T){
+##     cat(&quot;\nInput variables:\nvar1 =&quot;,var1,&quot;\nvar2 =&quot;,var2,&quot;\n&quot;)
+##     cat(&quot;\nCalculating functions...\n&quot;)
+##     cat(&quot;\nAdding...\n&quot;)    
+##   }
+##   
+##   add&lt;-var1+var2
+##   
+##   if (verbose==T){
+##     cat(&quot;\nSubtracting...\n&quot;)
+##   }
+##   
+##   subt&lt;-var1-var2
+##   
+##   if (verbose==T){
+##     cat(&quot;\nMultiplying...\n&quot;)
+##   }
+##   
+##   mult&lt;-var1*var2
+##   
+##   if (verbose==T){
+##     cat(&quot;\nDividing...\n&quot;)
+##   }
+##   
+##   div&lt;-var1/var2  
+##   
+##   if (verbose==T){
+##     cat(&quot;\nGenerating output...\n&quot;)
+##   }
+##   
+##   outlist&lt;-list(input1=var1,input2=var2,addition=add,subtraction=subt,multiplication=mult,division=div)
+## 
+##   return(outlist)
+## }
+## &lt;bytecode: 0x000000001e5a6c78&gt;</code></pre>
+<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="advanced-r.html#cb646-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb646-2"><a href="advanced-r.html#cb646-2" aria-hidden="true" tabindex="-1"></a>qplot</span></code></pre></div>
+<pre><code>## function (x, y, ..., data, facets = NULL, margins = FALSE, geom = &quot;auto&quot;, 
+##     xlim = c(NA, NA), ylim = c(NA, NA), log = &quot;&quot;, main = NULL, 
+##     xlab = NULL, ylab = NULL, asp = NA, stat = NULL, position = NULL) 
+## {
+##     caller_env &lt;- parent.frame()
+##     if (!missing(stat)) 
+##         warn(&quot;`stat` is deprecated&quot;)
+##     if (!missing(position)) 
+##         warn(&quot;`position` is deprecated&quot;)
+##     if (!is.character(geom)) {
+##         abort(&quot;`geom` must be a character vector&quot;)
+##     }
+##     exprs &lt;- enquos(x = x, y = y, ...)
+##     is_missing &lt;- vapply(exprs, quo_is_missing, logical(1))
+##     is_constant &lt;- (!names(exprs) %in% ggplot_global$all_aesthetics) | 
+##         vapply(exprs, quo_is_call, logical(1), name = &quot;I&quot;)
+##     mapping &lt;- new_aes(exprs[!is_missing &amp; !is_constant], env = parent.frame())
+##     consts &lt;- exprs[is_constant]
+##     aes_names &lt;- names(mapping)
+##     mapping &lt;- rename_aes(mapping)
+##     if (is.null(xlab)) {
+##         if (quo_is_missing(exprs$x)) {
+##             xlab &lt;- &quot;&quot;
+##         }
+##         else {
+##             xlab &lt;- as_label(exprs$x)
+##         }
+##     }
+##     if (is.null(ylab)) {
+##         if (quo_is_missing(exprs$y)) {
+##             ylab &lt;- &quot;&quot;
+##         }
+##         else {
+##             ylab &lt;- as_label(exprs$y)
+##         }
+##     }
+##     if (missing(data)) {
+##         data &lt;- new_data_frame()
+##         facetvars &lt;- all.vars(facets)
+##         facetvars &lt;- facetvars[facetvars != &quot;.&quot;]
+##         names(facetvars) &lt;- facetvars
+##         facetsdf &lt;- as.data.frame(mget(facetvars, envir = caller_env))
+##         if (nrow(facetsdf)) 
+##             data &lt;- facetsdf
+##     }
+##     if (&quot;auto&quot; %in% geom) {
+##         if (&quot;sample&quot; %in% aes_names) {
+##             geom[geom == &quot;auto&quot;] &lt;- &quot;qq&quot;
+##         }
+##         else if (missing(y)) {
+##             x &lt;- eval_tidy(mapping$x, data, caller_env)
+##             if (is.discrete(x)) {
+##                 geom[geom == &quot;auto&quot;] &lt;- &quot;bar&quot;
+##             }
+##             else {
+##                 geom[geom == &quot;auto&quot;] &lt;- &quot;histogram&quot;
+##             }
+##             if (is.null(ylab)) 
+##                 ylab &lt;- &quot;count&quot;
+##         }
+##         else {
+##             if (missing(x)) {
+##                 mapping$x &lt;- quo(seq_along(!!mapping$y))
+##             }
+##             geom[geom == &quot;auto&quot;] &lt;- &quot;point&quot;
+##         }
+##     }
+##     p &lt;- ggplot(data, mapping, environment = caller_env)
+##     if (is.null(facets)) {
+##         p &lt;- p + facet_null()
+##     }
+##     else if (is.formula(facets) &amp;&amp; length(facets) == 2) {
+##         p &lt;- p + facet_wrap(facets)
+##     }
+##     else {
+##         p &lt;- p + facet_grid(facets = deparse(facets), margins = margins)
+##     }
+##     if (!is.null(main)) 
+##         p &lt;- p + ggtitle(main)
+##     for (g in geom) {
+##         params &lt;- lapply(consts, eval_tidy)
+##         p &lt;- p + do.call(paste0(&quot;geom_&quot;, g), params)
+##     }
+##     logv &lt;- function(var) var %in% strsplit(log, &quot;&quot;)[[1]]
+##     if (logv(&quot;x&quot;)) 
+##         p &lt;- p + scale_x_log10()
+##     if (logv(&quot;y&quot;)) 
+##         p &lt;- p + scale_y_log10()
+##     if (!is.na(asp)) 
+##         p &lt;- p + theme(aspect.ratio = asp)
+##     if (!missing(xlab)) 
+##         p &lt;- p + xlab(xlab)
+##     if (!missing(ylab)) 
+##         p &lt;- p + ylab(ylab)
+##     if (!missing(xlim) &amp;&amp; !all(is.na(xlim))) 
+##         p &lt;- p + xlim(xlim)
+##     if (!missing(ylim) &amp;&amp; !all(is.na(ylim))) 
+##         p &lt;- p + ylim(ylim)
+##     p
+## }
+## &lt;bytecode: 0x0000000020211688&gt;
+## &lt;environment: namespace:ggplot2&gt;</code></pre>
+<hr />
+</div>
+</div>
+</div>
+<div id="custom-r-package" class="section level2" number="7.6">
+<h2><span class="header-section-number">7.6</span> Custom R Package</h2>
+<p>Most of the general content can be found in Hadley Wickham’s <a href="http://r-pkgs.had.co.nz/">R Packages book</a>. It goes into detail on almost everything you would need to know to make a package.</p>
+<p>For a quick tutorial, see Hilary Parker’s <a href="https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/">post</a> on a “cat” function.</p>
+<p>Install packages first and then read on.</p>
+<pre><code>install.packages(c(&quot;devtools&quot;, &quot;roxygen2&quot;, &quot;testthat&quot;, &quot;knitr&quot;))</code></pre>
+<p>Tutorial objectives:</p>
+<ol style="list-style-type: decimal">
+<li>Make a basic package in RStudio and make 1 function.</li>
+<li>Make documentation for the function.</li>
+<li>Installing the package and input checking.</li>
+</ol>
+<div id="introduction-2" class="section level3" number="7.6.1">
+<h3><span class="header-section-number">7.6.1</span> Introduction</h3>
+<p>When should you use a function vs write a package?</p>
+<p>Start with a piece of code, and be sure to add a comment to explain what the code does.</p>
+<pre><code># take x, square it and add one to it
+y &lt;- x^2 + 1
+</code></pre>
+<p>If you are going to use that piece of code multiple times, it’s easier to make it into a function and call it, rather than copying and pasting the same cod multiple times. (See functions tutorial <a href="./5_advanced.html">LINK</a>)</p>
+<div class="sourceCode" id="cb650"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb650-1"><a href="advanced-r.html#cb650-1" aria-hidden="true" tabindex="-1"></a>square_plus<span class="ot">&lt;-</span><span class="cf">function</span>(x){</span>
+<span id="cb650-2"><a href="advanced-r.html#cb650-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># take x, square it and add one to it</span></span>
+<span id="cb650-3"><a href="advanced-r.html#cb650-3" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span>x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb650-4"><a href="advanced-r.html#cb650-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(y)</span>
+<span id="cb650-5"><a href="advanced-r.html#cb650-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb650-6"><a href="advanced-r.html#cb650-6" aria-hidden="true" tabindex="-1"></a><span class="fu">square_plus</span>(<span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<div class="sourceCode" id="cb652"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb652-1"><a href="advanced-r.html#cb652-1" aria-hidden="true" tabindex="-1"></a><span class="fu">square_plus</span>(<span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## [1] 17</code></pre>
+<div class="sourceCode" id="cb654"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb654-1"><a href="advanced-r.html#cb654-1" aria-hidden="true" tabindex="-1"></a><span class="fu">square_plus</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##  [1]   2   5  10  17  26  37  50  65  82 101</code></pre>
+<p>If you want to use the function across many scripts, you can save the function in its own .R file, and then load it into each script</p>
+<pre><code>source(&quot;/Path/To/CustomScript/Script.R&quot;)</code></pre>
+<p>When you have many functions that you use frequently, you might want to make your own R package so that you can load all the functions easily and quickly. This also makes it easy to share the functions.</p>
+<pre><code>square_plus&lt;-function(x){
+  # take x, square it and add one to it
+  y &lt;- x^2 + 1
+  return(y)
+}
+
+cube_plus&lt;-function(x){
+  # take x, cube it and add one to it
+  y &lt;-x^3 + 1
+  return(y)
+}
+
+quartic_plus&lt;-function(x){
+  # raise x to the power of 4 and add one to it
+  y &lt;-x^4 + 1
+  return(y)
+}</code></pre>
+</div>
+<div id="getting-started-3" class="section level3" number="7.6.2">
+<h3><span class="header-section-number">7.6.2</span> Getting started</h3>
+<p>R Studio makes it easy to create your own packages for R. Once you have installed devtools (see above), create a new R package in R Studio</p>
+<pre><code>File -&gt; New Project -&gt; New Directory -&gt; R Package </code></pre>
+<p>You can also use the “R Package” option but delete the NAMESPACE file as it will be automatically generated later.
+Give the package a name and then click create.</p>
+<p>RStudio should load and there will be a file structure with several files and two folders, “R” and “man”.</p>
+<p>The “R” folder is for code, and there is a hello.R file in it. Save all of your custom functions here.</p>
+<p>The “man” folder is for manual pages, the documents that show up when you use the ? for help <code>?some_function</code>.</p>
+</div>
+<div id="add-functions" class="section level3" number="7.6.3">
+<h3><span class="header-section-number">7.6.3</span> Add functions</h3>
+<p>We are going to make a function to get public references from the Crossref API.
+Crossref is one of the organizations for Digital Object Identifiers and is frequently the one used for scientific journals.
+Crossref has “metadata” on digital objects such as type of object, author, dates etc etc.</p>
+<p>We can access this information through the Crossref page.</p>
+<p>For example, the link below shows the result of a search for the title of a paper by Primack and Miller-Rushing (2011).</p>
+<p><a href="https://search.crossref.org/?q=Broadening+the+study+of+phenology+and+climate+change" class="uri">https://search.crossref.org/?q=Broadening+the+study+of+phenology+and+climate+change</a></p>
+<p>The DOI for the first paper (by Primack &amp; Miller-Rushing) is “10.1111/j.1469-8137.2011.03773.x”</p>
+<p>Clicking on the “Actions” button for this paper, and then “Metadata as JSON”, brings up a json file including citation information, and also citations for the papers referenced in the paper.</p>
+<p>There’s been times where we read a paper and then go through the references of the paper, especially for literature reviews/meta-analyses. Automating the extraction of references from a paper of interest might be useful.</p>
+<p>We can access the json file in R using the doi and using the Crossref api (documentation <a href="https://github.com/CrossRef/rest-api-doc">LINK</a>).</p>
+<p>Doing this will give us a list of the citations:</p>
+<div class="sourceCode" id="cb659"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb659-1"><a href="advanced-r.html#cb659-1" aria-hidden="true" tabindex="-1"></a><span class="co"># download jsonlite to parse json files</span></span>
+<span id="cb659-2"><a href="advanced-r.html#cb659-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite)</span>
+<span id="cb659-3"><a href="advanced-r.html#cb659-3" aria-hidden="true" tabindex="-1"></a>url<span class="ot">&lt;-</span><span class="st">&quot;https://api.crossref.org/works/10.1111/j.1469-8137.2011.03773.x&quot;</span></span>
+<span id="cb659-4"><a href="advanced-r.html#cb659-4" aria-hidden="true" tabindex="-1"></a>result<span class="ot">&lt;-</span><span class="fu">fromJSON</span>(url)</span></code></pre></div>
+<p><code>result</code> is a list containing a variety of information</p>
+<div class="sourceCode" id="cb660"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb660-1"><a href="advanced-r.html#cb660-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(result)</span></code></pre></div>
+<pre><code>## [1] &quot;status&quot;          &quot;message-type&quot;    &quot;message-version&quot; &quot;message&quot;</code></pre>
+<p><code>result$message$reference</code> is a data frame of citations containing 17 references that we can extract this.</p>
+<div class="sourceCode" id="cb662"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb662-1"><a href="advanced-r.html#cb662-1" aria-hidden="true" tabindex="-1"></a>references<span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(result<span class="sc">$</span>message<span class="sc">$</span>reference)</span></code></pre></div>
+<p>This can be easily writen to csv or other formats.</p>
+<p>But we can also make this a function for any DOI of interest.</p>
+<pre><code>get_work_references&lt;-function(DOI){
+  url&lt;-paste0(&quot;https://api.crossref.org/works/&quot;,DOI)
+  result&lt;-fromJSON(url)
+  return(as.data.frame(result$message$reference))
+}</code></pre>
+<p>We can save the script above in the R folder to make it part of the package.</p>
+<p>Of course, we would want to add more functions in order to make this a useful package.</p>
+<p>If we want to run the function, we can use the <code>source()</code> function as described above. But as a package this still lack two important pieces:</p>
+<ol style="list-style-type: decimal">
+<li>Documentation for this function (and any other functions we add)</li>
+<li>A library that would let us load all functions using the <code>library()</code> function</li>
+</ol>
+</div>
+<div id="adding-documentation" class="section level3" number="7.6.4">
+<h3><span class="header-section-number">7.6.4</span> Adding documentation</h3>
+<p>The first piece of documentation is the DESCRIPTION file. There are several fields to fill in for this.</p>
+<ol style="list-style-type: decimal">
+<li>The <strong>package name</strong> is already filled automatically.</li>
+<li>We should add a <strong>title</strong> (ie. This Package Gets References).</li>
+<li>Change the <code>Author</code> to <code>Authors@R</code> and add yourself as the author and creator.</li>
+</ol>
+<pre><code>Authors@R: person(&quot;First Name&quot;, &quot;Last Name&quot;, email=&quot;email@email.com&quot;, role=c(&quot;aut&quot;, cre))
+
+# Two authors
+Authors@R: c(person(&quot;First Name&quot;, &quot;Last Name&quot;, email=&quot;email@email.com&quot;, role=c(&quot;aut&quot;, cre)),
+             person(&quot;Second person name&quot;, &quot;second person last name&quot;, email=&quot;email@email.com&quot;, role=&quot;aut&quot;))
+</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li><p>Write a description:</p>
+<p>Interfacing with Crossref’s API to get citation information using DOI.
+This package uses jsonlite and contains only one function.
+etc…</p></li>
+<li><p>Choose one of the public licenses such as GPL-3, MIT etc. (see <a href="https://en.wikipedia.org/wiki/Comparison_of_free_and_open-source_software_licenses">Wikipedia</a>)</p></li>
+</ol>
+<p>Save the DESCRIPTION file.</p>
+</div>
+<div id="add-a-manual" class="section level3" number="7.6.5">
+<h3><span class="header-section-number">7.6.5</span> Add a Manual</h3>
+<p>The <code>roxygen2</code> package can be used to make manuals for R packages. This greatly simplifies the writing process, which otherwise would be written in <a href="https://www.latex-project.org/">LaTeX</a>. The <code>roxygen2</code> package allows us to make comments directly in the script, and then <code>roxygen2</code> automatically generates the manual pages from these comments.</p>
+<p>First, take out any library(*) commands and use packagename::function() for any functions from other libraries. Read R Packages - R code for more details on why.</p>
+<p>When writing your comments, follow this logic:</p>
+<ul>
+<li>Roxygen2 commands start with <code>#'</code>.</li>
+<li>The first line is automatically the title field and should cover only one line.</li>
+<li>The next text paragraph goes into the description. The usage field is automatically generated.</li>
+<li>Use <code>@param</code> tags for arguments. (Only 1 in this case).</li>
+<li>Use the next line to write a longer description.</li>
+<li>Use <code>@return</code> to write what is expected output and <code>@example</code> to write example code that will be run when creating the man page.</li>
+<li>We also want to use a <code>@export</code> tag so that the function will be available for use when the library is loaded.</li>
+<li>We need to add details such as description, useage, arguments.</li>
+<li>The script would look something like this:</li>
+</ul>
+<pre><code>#&#39; Takes a DOI and returns references for the object.
+#&#39;
+#&#39; This function queries the Crossref API to obtain a data frame of references for the DOI. We use the paste0 function from base and the fromJSON function from jsonlite.
+#&#39;
+#&#39; @param DOI String. Digital object identifier.
+#&#39;
+#&#39; @return data frame of references.
+#&#39; @example
+#&#39; get_work_references(&quot;10.1111/j.1469-8137.2011.03773.x&quot;)
+#&#39; @export
+
+get_work_references&lt;-function(DOI){
+  url&lt;-paste0(&quot;https://api.crossref.org/works/&quot;,DOI)
+  result&lt;-jsonlite::fromJSON(url)
+  return(as.data.frame(result$message$reference))
+}
+</code></pre>
+<p>Save the file and use <code>devtools::document().</code></p>
+<p>We will now have a NAMESPACE file, and a new file within the man folder. The NAMESPACE file shows the function we have which will be available in the environment when the library is loaded.</p>
+<p>Open <code>get_work_references.Rd</code> and then click preview to see how it looks.</p>
+<p>However, our man page is a bit dull, and lacks the links most pages have. We have to add the links using code. For example, linking the paste0 function will be <code>\code{\link[base]{paste0}}</code>.</p>
+<p>Use <code>document()</code> again. Now the functions are in monospace font. The actual links only appear when the package is built.</p>
+<p>We can use the “CHECK” button on the “Build Pane” to check for any issues in the package.</p>
+<p>We did not import the jsonlite package. To do this, go back to the DESCRIPTION file and add:</p>
+<pre class="imports:"><code>      jsonlite</code></pre>
+<p>Another CHECK will tell you that the package <code>curl</code> is required. Add this to the imports as well.</p>
+</div>
+<div id="installing-the-package" class="section level3" number="7.6.6">
+<h3><span class="header-section-number">7.6.6</span> Installing the package</h3>
+<p>Once you pass the check, click “Install and Restart” to install the package. The package should be in your “Packages” pane.</p>
+<p>Doing <code>?get_work_references</code> will bring up the help page with working links. We can successfully run the example. But if input is not a character, the function doesn’t work.</p>
+</div>
+<div id="input-checking" class="section level3" number="7.6.7">
+<h3><span class="header-section-number">7.6.7</span> Input checking</h3>
+<p>You cannot account for every possible scenario where the function doesn’t work. Or there are certain variables you know have to be in a specific form.</p>
+<p>You can add checks for inputs within the function.</p>
+<p>For example, the DOI should be a character string. We can add a test for the input and stop the function with an error if the input isn’t a character string.</p>
+<pre><code>get_work_references&lt;-function(DOI){
+  if (!is.character(DOI)) stop(&quot; &#39;DOI&#39; must be a character string&quot;)
+  url&lt;-paste0(&quot;https://api.crossref.org/works/&quot;,DOI)
+  result&lt;-jsonlite::fromJSON(url)
+  return(as.data.frame(result$message$reference))
+}
+
+</code></pre>
+<p>Reinstall and you have a working package!</p>
+</div>
+</div>
+<div id="make-it-public" class="section level2" number="7.7">
+<h2><span class="header-section-number">7.7</span> Make it public</h2>
+<p>Before going public:</p>
+<ol style="list-style-type: decimal">
+<li>Create a public GitHub repository and push your project</li>
+<li>Flesh out documentation and meta-data</li>
+<li>Error checking with <code>devtools</code> library
+* <code>spell_check()</code>
+* <code>check_rhub()</code> – use rhub to check for errors. <a href="https://builder.r-hub.io/about.html">More about RHub</a>.
+* <code>check_win_release()</code> – check for errors on Windows with latest release version of R
+* <code>check_win_devel()</code> – check for errors on Windows with latest pre-release of R
+* <code>release()</code> – release to the world!</li>
+<li>Tag the latest release on GitHub</li>
+</ol>
+<p>For details on this and more: <a href="http://r-pkgs.had.co.nz/release.html" class="uri">http://r-pkgs.had.co.nz/release.html</a></p>
+<div id="references" class="section level3" number="7.7.1">
+<h3><span class="header-section-number">7.7.1</span> References:</h3>
+<p>Hadley Wickham, ‘R packages’ <a href="http://r-pkgs.had.co.nz/" class="uri">http://r-pkgs.had.co.nz/</a></p>
+<p>Hilary Parker, ‘Writing an R package from scratch’, <a href="https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/" class="uri">https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/</a></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-science-intro.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/06_advanced.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

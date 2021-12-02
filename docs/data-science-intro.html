@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Data Science Intro | R Crash Course</title>
+  <meta name="description" content="A Crash Course in R for Biologists" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Data Science Intro | R Crash Course" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="A Crash Course in R for Biologists" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Data Science Intro | R Crash Course" />
+  
+  <meta name="twitter:description" content="A Crash Course in R for Biologists" />
+  
+
+<meta name="author" content="Robert I. Colautti" />
+
+
+<meta name="date" content="2021-12-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="regular-expressions.html"/>
+<link rel="next" href="advanced-r.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>1</b> Setup</a></li>
+<li class="chapter" data-level="2" data-path="fundamentals.html"><a href="fundamentals.html"><i class="fa fa-check"></i><b>2</b> Fundamentals</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="fundamentals.html"><a href="fundamentals.html#introduction"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="fundamentals.html"><a href="fundamentals.html#r-basics"><i class="fa fa-check"></i><b>2.2</b> R Basics</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="fundamentals.html"><a href="fundamentals.html#basic-math"><i class="fa fa-check"></i><b>2.2.1</b> Basic Math</a></li>
+<li class="chapter" data-level="2.2.2" data-path="fundamentals.html"><a href="fundamentals.html#functions"><i class="fa fa-check"></i><b>2.2.2</b> Functions</a></li>
+<li class="chapter" data-level="2.2.3" data-path="fundamentals.html"><a href="fundamentals.html#c"><i class="fa fa-check"></i><b>2.2.3</b> `c()</a></li>
+<li class="chapter" data-level="2.2.4" data-path="fundamentals.html"><a href="fundamentals.html#math-functions"><i class="fa fa-check"></i><b>2.2.4</b> Math Functions</a></li>
+<li class="chapter" data-level="2.2.5" data-path="fundamentals.html"><a href="fundamentals.html#roundtruncate"><i class="fa fa-check"></i><b>2.2.5</b> Round/Truncate</a></li>
+<li class="chapter" data-level="2.2.6" data-path="fundamentals.html"><a href="fundamentals.html#logic-operators"><i class="fa fa-check"></i><b>2.2.6</b> Logic Operators</a></li>
+<li class="chapter" data-level="2.2.7" data-path="fundamentals.html"><a href="fundamentals.html#group-comparison"><i class="fa fa-check"></i><b>2.2.7</b> Group Comparison</a></li>
+<li class="chapter" data-level="2.2.8" data-path="fundamentals.html"><a href="fundamentals.html#random-numbers"><i class="fa fa-check"></i><b>2.2.8</b> Random Numbers</a></li>
+<li class="chapter" data-level="2.2.9" data-path="fundamentals.html"><a href="fundamentals.html#combining-objects"><i class="fa fa-check"></i><b>2.2.9</b> Combining objects</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="fundamentals.html"><a href="fundamentals.html#data-types"><i class="fa fa-check"></i><b>2.3</b> Data Types</a></li>
+<li class="chapter" data-level="2.4" data-path="fundamentals.html"><a href="fundamentals.html#objects"><i class="fa fa-check"></i><b>2.4</b> Objects</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="fundamentals.html"><a href="fundamentals.html#cells"><i class="fa fa-check"></i><b>2.4.1</b> Cells</a></li>
+<li class="chapter" data-level="2.4.2" data-path="fundamentals.html"><a href="fundamentals.html#vector"><i class="fa fa-check"></i><b>2.4.2</b> Vector</a></li>
+<li class="chapter" data-level="2.4.3" data-path="fundamentals.html"><a href="fundamentals.html#matrices"><i class="fa fa-check"></i><b>2.4.3</b> Matrices</a></li>
+<li class="chapter" data-level="2.4.4" data-path="fundamentals.html"><a href="fundamentals.html#tensors"><i class="fa fa-check"></i><b>2.4.4</b> Tensors</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="fundamentals.html"><a href="fundamentals.html#matrix-algebra"><i class="fa fa-check"></i><b>2.5</b> Matrix Algebra</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="fundamentals.html"><a href="fundamentals.html#pca"><i class="fa fa-check"></i><b>2.5.1</b> PCA</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="fundamentals.html"><a href="fundamentals.html#lists"><i class="fa fa-check"></i><b>2.6</b> Lists</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="fundamentals.html"><a href="fundamentals.html#subset-1"><i class="fa fa-check"></i><b>2.6.1</b> Subset</a></li>
+<li class="chapter" data-level="2.6.2" data-path="fundamentals.html"><a href="fundamentals.html#output"><i class="fa fa-check"></i><b>2.6.2</b> Output</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="fundamentals.html"><a href="fundamentals.html#print-and-paste"><i class="fa fa-check"></i><b>2.7</b> <code>print()</code> and <code>paste()</code></a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="fundamentals.html"><a href="fundamentals.html#for-help"><i class="fa fa-check"></i><b>2.7.1</b> ? for HELP</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="fundamentals.html"><a href="fundamentals.html#data"><i class="fa fa-check"></i><b>2.8</b> Data</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="fundamentals.html"><a href="fundamentals.html#working-directory"><i class="fa fa-check"></i><b>2.8.1</b> Working Directory</a></li>
+<li class="chapter" data-level="2.8.2" data-path="fundamentals.html"><a href="fundamentals.html#import"><i class="fa fa-check"></i><b>2.8.2</b> Import</a></li>
+<li class="chapter" data-level="2.8.3" data-path="fundamentals.html"><a href="fundamentals.html#data.frame"><i class="fa fa-check"></i><b>2.8.3</b> <code>data.frame</code></a></li>
+<li class="chapter" data-level="2.8.4" data-path="fundamentals.html"><a href="fundamentals.html#subset-2"><i class="fa fa-check"></i><b>2.8.4</b> Subset</a></li>
+<li class="chapter" data-level="2.8.5" data-path="fundamentals.html"><a href="fundamentals.html#new-columns"><i class="fa fa-check"></i><b>2.8.5</b> New Columns</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="fundamentals.html"><a href="fundamentals.html#other-functions"><i class="fa fa-check"></i><b>2.9</b> Other Functions</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="fundamentals.html"><a href="fundamentals.html#unique"><i class="fa fa-check"></i><b>2.9.1</b> <code>unique</code></a></li>
+<li class="chapter" data-level="2.9.2" data-path="fundamentals.html"><a href="fundamentals.html#duplicated"><i class="fa fa-check"></i><b>2.9.2</b> <code>duplicated</code></a></li>
+<li class="chapter" data-level="2.9.3" data-path="fundamentals.html"><a href="fundamentals.html#aggregate"><i class="fa fa-check"></i><b>2.9.3</b> <code>aggregate</code></a></li>
+<li class="chapter" data-level="2.9.4" data-path="fundamentals.html"><a href="fundamentals.html#tapply"><i class="fa fa-check"></i><b>2.9.4</b> tapply</a></li>
+<li class="chapter" data-level="2.9.5" data-path="fundamentals.html"><a href="fundamentals.html#save"><i class="fa fa-check"></i><b>2.9.5</b> Save</a></li>
+</ul></li>
+<li class="chapter" data-level="2.10" data-path="fundamentals.html"><a href="fundamentals.html#flow-control"><i class="fa fa-check"></i><b>2.10</b> Flow control</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="fundamentals.html"><a href="fundamentals.html#if"><i class="fa fa-check"></i><b>2.10.1</b> <code>if</code></a></li>
+<li class="chapter" data-level="2.10.2" data-path="fundamentals.html"><a href="fundamentals.html#ifelse"><i class="fa fa-check"></i><b>2.10.2</b> ifelse</a></li>
+<li class="chapter" data-level="2.10.3" data-path="fundamentals.html"><a href="fundamentals.html#for-loop"><i class="fa fa-check"></i><b>2.10.3</b> <code>for</code> loop</a></li>
+<li class="chapter" data-level="2.10.4" data-path="fundamentals.html"><a href="fundamentals.html#nested-loops"><i class="fa fa-check"></i><b>2.10.4</b> Nested Loops</a></li>
+<li class="chapter" data-level="2.10.5" data-path="fundamentals.html"><a href="fundamentals.html#while-loop"><i class="fa fa-check"></i><b>2.10.5</b> <code>while</code> loop</a></li>
+</ul></li>
+<li class="chapter" data-level="2.11" data-path="fundamentals.html"><a href="fundamentals.html#packages"><i class="fa fa-check"></i><b>2.11</b> Packages</a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="fundamentals.html"><a href="fundamentals.html#installing"><i class="fa fa-check"></i><b>2.11.1</b> Installing</a></li>
+<li class="chapter" data-level="2.11.2" data-path="fundamentals.html"><a href="fundamentals.html#loading"><i class="fa fa-check"></i><b>2.11.2</b> Loading</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="fundamentals.html"><a href="fundamentals.html#readable-code"><i class="fa fa-check"></i><b>2.12</b> Readable code</a></li>
+<li class="chapter" data-level="2.13" data-path="fundamentals.html"><a href="fundamentals.html#test-yourself"><i class="fa fa-check"></i><b>2.13</b> TEST yourself:</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="quick-visualizations.html"><a href="quick-visualizations.html"><i class="fa fa-check"></i><b>3</b> Quick Visualizations</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="quick-visualizations.html"><a href="quick-visualizations.html#overview"><i class="fa fa-check"></i><b>3.1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="quick-visualizations.html"><a href="quick-visualizations.html#graphical-concepts"><i class="fa fa-check"></i><b>3.1.1</b> Graphical Concepts</a></li>
+<li class="chapter" data-level="3.1.2" data-path="quick-visualizations.html"><a href="quick-visualizations.html#vector-vs.-raster"><i class="fa fa-check"></i><b>3.1.2</b> Vector vs. Raster</a></li>
+<li class="chapter" data-level="3.1.3" data-path="quick-visualizations.html"><a href="quick-visualizations.html#resolution-vs-dimension"><i class="fa fa-check"></i><b>3.1.3</b> Resolution vs Dimension</a></li>
+<li class="chapter" data-level="3.1.4" data-path="quick-visualizations.html"><a href="quick-visualizations.html#screen-vs-print"><i class="fa fa-check"></i><b>3.1.4</b> Screen vs Print</a></li>
+<li class="chapter" data-level="3.1.5" data-path="quick-visualizations.html"><a href="quick-visualizations.html#accessibility"><i class="fa fa-check"></i><b>3.1.5</b> Accessibility</a></li>
+<li class="chapter" data-level="3.1.6" data-path="quick-visualizations.html"><a href="quick-visualizations.html#slides"><i class="fa fa-check"></i><b>3.1.6</b> Slides</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="quick-visualizations.html"><a href="quick-visualizations.html#getting-started"><i class="fa fa-check"></i><b>3.2</b> Getting Started</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="quick-visualizations.html"><a href="quick-visualizations.html#data-setup"><i class="fa fa-check"></i><b>3.2.1</b> Data setup</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="quick-visualizations.html"><a href="quick-visualizations.html#basic-graphs"><i class="fa fa-check"></i><b>3.3</b> Basic Graphs</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="quick-visualizations.html"><a href="quick-visualizations.html#one-continuous"><i class="fa fa-check"></i><b>3.3.1</b> One continuous</a></li>
+<li class="chapter" data-level="3.3.2" data-path="quick-visualizations.html"><a href="quick-visualizations.html#one-categorical"><i class="fa fa-check"></i><b>3.3.2</b> One categorical</a></li>
+<li class="chapter" data-level="3.3.3" data-path="quick-visualizations.html"><a href="quick-visualizations.html#two-continuous"><i class="fa fa-check"></i><b>3.3.3</b> Two continuous</a></li>
+<li class="chapter" data-level="3.3.4" data-path="quick-visualizations.html"><a href="quick-visualizations.html#two-categorical"><i class="fa fa-check"></i><b>3.3.4</b> Two categorical</a></li>
+<li class="chapter" data-level="3.3.5" data-path="quick-visualizations.html"><a href="quick-visualizations.html#categorical-by-continuous"><i class="fa fa-check"></i><b>3.3.5</b> Categorical by continuous</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="quick-visualizations.html"><a href="quick-visualizations.html#basic-customization"><i class="fa fa-check"></i><b>3.4</b> Basic customization</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="quick-visualizations.html"><a href="quick-visualizations.html#binwidth"><i class="fa fa-check"></i><b>3.4.1</b> <code>binwidth</code></a></li>
+<li class="chapter" data-level="3.4.2" data-path="quick-visualizations.html"><a href="quick-visualizations.html#size"><i class="fa fa-check"></i><b>3.4.2</b> <code>size</code></a></li>
+<li class="chapter" data-level="3.4.3" data-path="quick-visualizations.html"><a href="quick-visualizations.html#colour-or-color"><i class="fa fa-check"></i><b>3.4.3</b> <code>colour</code> or <code>color</code></a></li>
+<li class="chapter" data-level="3.4.4" data-path="quick-visualizations.html"><a href="quick-visualizations.html#fill"><i class="fa fa-check"></i><b>3.4.4</b> <code>fill</code></a></li>
+<li class="chapter" data-level="3.4.5" data-path="quick-visualizations.html"><a href="quick-visualizations.html#posit"><i class="fa fa-check"></i><b>3.4.5</b> <code>posit</code></a></li>
+<li class="chapter" data-level="3.4.6" data-path="quick-visualizations.html"><a href="quick-visualizations.html#alpha"><i class="fa fa-check"></i><b>3.4.6</b> <code>alpha</code></a></li>
+<li class="chapter" data-level="3.4.7" data-path="quick-visualizations.html"><a href="quick-visualizations.html#shape"><i class="fa fa-check"></i><b>3.4.7</b> <code>shape</code></a></li>
+<li class="chapter" data-level="3.4.8" data-path="quick-visualizations.html"><a href="quick-visualizations.html#lab-xlab-and-ylab"><i class="fa fa-check"></i><b>3.4.8</b> <code>lab</code>, <code>xlab</code>, and <code>ylab</code></a></li>
+<li class="chapter" data-level="3.4.9" data-path="quick-visualizations.html"><a href="quick-visualizations.html#main"><i class="fa fa-check"></i><b>3.4.9</b> <code>main</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="quick-visualizations.html"><a href="quick-visualizations.html#themes-and-geoms"><i class="fa fa-check"></i><b>3.5</b> Themes and Geoms</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="quick-visualizations.html"><a href="quick-visualizations.html#theme_name"><i class="fa fa-check"></i><b>3.5.1</b> <code>+ theme_NAME()</code></a></li>
+<li class="chapter" data-level="3.5.2" data-path="quick-visualizations.html"><a href="quick-visualizations.html#theme_set"><i class="fa fa-check"></i><b>3.5.2</b> <code>theme_set</code></a></li>
+<li class="chapter" data-level="3.5.3" data-path="quick-visualizations.html"><a href="quick-visualizations.html#geom"><i class="fa fa-check"></i><b>3.5.3</b> <code>geom</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="quick-visualizations.html"><a href="quick-visualizations.html#multiple-graphs"><i class="fa fa-check"></i><b>3.6</b> Multiple graphs</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="quick-visualizations.html"><a href="quick-visualizations.html#facets"><i class="fa fa-check"></i><b>3.6.1</b> <code>facets</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="quick-visualizations.html"><a href="quick-visualizations.html#save-output"><i class="fa fa-check"></i><b>3.7</b> Save output</a></li>
+<li class="chapter" data-level="3.8" data-path="quick-visualizations.html"><a href="quick-visualizations.html#practice"><i class="fa fa-check"></i><b>3.8</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html"><i class="fa fa-check"></i><b>4</b> Advanced Visualizations</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#overview-1"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
+<li class="chapter" data-level="4.2" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#getting-started-1"><i class="fa fa-check"></i><b>4.2</b> Getting Started</a></li>
+<li class="chapter" data-level="4.3" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#rules-of-thumb"><i class="fa fa-check"></i><b>4.3</b> Rules of thumb</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#minimize-ink"><i class="fa fa-check"></i><b>4.3.1</b> 1. Minimize ‘ink’</a></li>
+<li class="chapter" data-level="4.3.2" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#use-space-wisely"><i class="fa fa-check"></i><b>4.3.2</b> 2. Use space wisely</a></li>
+<li class="chapter" data-level="4.3.3" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#choose-a-colour-palette"><i class="fa fa-check"></i><b>4.3.3</b> 3. Choose a colour palette</a></li>
+<li class="chapter" data-level="4.3.4" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#colours-have-meaning"><i class="fa fa-check"></i><b>4.3.4</b> 4. Colours have meaning</a></li>
+<li class="chapter" data-level="4.3.5" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#maximize-contrast"><i class="fa fa-check"></i><b>4.3.5</b> 5. Maximize contrast</a></li>
+<li class="chapter" data-level="4.3.6" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#keep-relevant-information"><i class="fa fa-check"></i><b>4.3.6</b> 6. Keep relevant information</a></li>
+<li class="chapter" data-level="4.3.7" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#choose-the-right-graph"><i class="fa fa-check"></i><b>4.3.7</b> 7. Choose the right graph</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#example"><i class="fa fa-check"></i><b>4.4</b> Example</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#setup-1"><i class="fa fa-check"></i><b>4.4.1</b> Setup</a></li>
+<li class="chapter" data-level="4.4.2" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#inspect"><i class="fa fa-check"></i><b>4.4.2</b> Inspect</a></li>
+<li class="chapter" data-level="4.4.3" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#absolute-value"><i class="fa fa-check"></i><b>4.4.3</b> Absolute Value</a></li>
+<li class="chapter" data-level="4.4.4" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#missing-values"><i class="fa fa-check"></i><b>4.4.4</b> Missing values</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#measuring-selection"><i class="fa fa-check"></i><b>4.5</b> Measuring Selection</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#relative-fitness"><i class="fa fa-check"></i><b>4.5.1</b> Relative Fitness</a></li>
+<li class="chapter" data-level="4.5.2" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#trait-value"><i class="fa fa-check"></i><b>4.5.2</b> Trait Value</a></li>
+<li class="chapter" data-level="4.5.3" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#s-vs-beta"><i class="fa fa-check"></i><b>4.5.3</b> <span class="math inline">\(s\)</span> vs <span class="math inline">\(\beta\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#ggplot-vs-qplot"><i class="fa fa-check"></i><b>4.6</b> <code>ggplot</code> vs <code>qplot</code></a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#histogram-2"><i class="fa fa-check"></i><b>4.6.1</b> Histogram</a></li>
+<li class="chapter" data-level="4.6.2" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#aes"><i class="fa fa-check"></i><b>4.6.2</b> <code>aes</code></a></li>
+<li class="chapter" data-level="4.6.3" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#layers"><i class="fa fa-check"></i><b>4.6.3</b> Layers</a></li>
+<li class="chapter" data-level="4.6.4" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#stat_name"><i class="fa fa-check"></i><b>4.6.4</b> <code>stat_NAME</code></a></li>
+<li class="chapter" data-level="4.6.5" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#bivariate-geom"><i class="fa fa-check"></i><b>4.6.5</b> Bivariate geom</a></li>
+<li class="chapter" data-level="4.6.6" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#geom_smooth"><i class="fa fa-check"></i><b>4.6.6</b> <code>geom_smooth</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#full-ggplot"><i class="fa fa-check"></i><b>4.7</b> Full ggplot</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#separate-data"><i class="fa fa-check"></i><b>4.7.1</b> Separate data</a></li>
+<li class="chapter" data-level="4.7.2" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#bootstrap"><i class="fa fa-check"></i><b>4.7.2</b> Bootstrap</a></li>
+<li class="chapter" data-level="4.7.3" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#plot-data"><i class="fa fa-check"></i><b>4.7.3</b> Plot data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#multi-graph"><i class="fa fa-check"></i><b>4.8</b> Multi-graph</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#facets-1"><i class="fa fa-check"></i><b>4.8.1</b> <code>facets</code></a></li>
+<li class="chapter" data-level="4.8.2" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#grid.extra-package"><i class="fa fa-check"></i><b>4.8.2</b> <code>grid.extra</code> package</a></li>
+<li class="chapter" data-level="4.8.3" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#grid-package"><i class="fa fa-check"></i><b>4.8.3</b> <code>grid</code> package</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="advanced-visualizations.html"><a href="advanced-visualizations.html#further-reading"><i class="fa fa-check"></i><b>4.9</b> Further Reading</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="regular-expressions.html"><a href="regular-expressions.html"><i class="fa fa-check"></i><b>5</b> Regular Expressions</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="regular-expressions.html"><a href="regular-expressions.html#overview-2"><i class="fa fa-check"></i><b>5.1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="regular-expressions.html"><a href="regular-expressions.html#universal"><i class="fa fa-check"></i><b>5.1.1</b> Universal</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="regular-expressions.html"><a href="regular-expressions.html#functions-1"><i class="fa fa-check"></i><b>5.2</b> Functions</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="regular-expressions.html"><a href="regular-expressions.html#examples"><i class="fa fa-check"></i><b>5.2.1</b> Examples</a></li>
+<li class="chapter" data-level="5.2.2" data-path="regular-expressions.html"><a href="regular-expressions.html#grep"><i class="fa fa-check"></i><b>5.2.2</b> <code>grep()</code></a></li>
+<li class="chapter" data-level="5.2.3" data-path="regular-expressions.html"><a href="regular-expressions.html#grepl"><i class="fa fa-check"></i><b>5.2.3</b> <code>grepl()</code></a></li>
+<li class="chapter" data-level="5.2.4" data-path="regular-expressions.html"><a href="regular-expressions.html#sub"><i class="fa fa-check"></i><b>5.2.4</b> <code>sub()</code></a></li>
+<li class="chapter" data-level="5.2.5" data-path="regular-expressions.html"><a href="regular-expressions.html#gsub"><i class="fa fa-check"></i><b>5.2.5</b> <code>gsub()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="regular-expressions.html"><a href="regular-expressions.html#wildcards"><i class="fa fa-check"></i><b>5.3</b> Wildcards</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="regular-expressions.html"><a href="regular-expressions.html#escape-character"><i class="fa fa-check"></i><b>5.3.1</b> <code>\</code> escape character</a></li>
+<li class="chapter" data-level="5.3.2" data-path="regular-expressions.html"><a href="regular-expressions.html#in-r"><i class="fa fa-check"></i><b>5.3.2</b> <code>\\</code> in R</a></li>
+<li class="chapter" data-level="5.3.3" data-path="regular-expressions.html"><a href="regular-expressions.html#w"><i class="fa fa-check"></i><b>5.3.3</b> <code>\\w</code></a></li>
+<li class="chapter" data-level="5.3.4" data-path="regular-expressions.html"><a href="regular-expressions.html#w-1"><i class="fa fa-check"></i><b>5.3.4</b> <code>\\W</code></a></li>
+<li class="chapter" data-level="5.3.5" data-path="regular-expressions.html"><a href="regular-expressions.html#s"><i class="fa fa-check"></i><b>5.3.5</b> <code>\\s</code></a></li>
+<li class="chapter" data-level="5.3.6" data-path="regular-expressions.html"><a href="regular-expressions.html#t"><i class="fa fa-check"></i><b>5.3.6</b> <code>\\t</code></a></li>
+<li class="chapter" data-level="5.3.7" data-path="regular-expressions.html"><a href="regular-expressions.html#d"><i class="fa fa-check"></i><b>5.3.7</b> <code>\\d</code></a></li>
+<li class="chapter" data-level="5.3.8" data-path="regular-expressions.html"><a href="regular-expressions.html#d-1"><i class="fa fa-check"></i><b>5.3.8</b> <code>\\D</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="regular-expressions.html"><a href="regular-expressions.html#new-lines"><i class="fa fa-check"></i><b>5.4</b> New Lines</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="regular-expressions.html"><a href="regular-expressions.html#r"><i class="fa fa-check"></i><b>5.4.1</b> <code>\\r</code></a></li>
+<li class="chapter" data-level="5.4.2" data-path="regular-expressions.html"><a href="regular-expressions.html#n"><i class="fa fa-check"></i><b>5.4.2</b> <code>\\n</code></a></li>
+<li class="chapter" data-level="5.4.3" data-path="regular-expressions.html"><a href="regular-expressions.html#big-problem"><i class="fa fa-check"></i><b>5.4.3</b> Big Problem</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="regular-expressions.html"><a href="regular-expressions.html#special-characters"><i class="fa fa-check"></i><b>5.5</b> Special characters</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="regular-expressions.html"><a href="regular-expressions.html#section"><i class="fa fa-check"></i><b>5.5.1</b> <code>|</code></a></li>
+<li class="chapter" data-level="5.5.2" data-path="regular-expressions.html"><a href="regular-expressions.html#section-1"><i class="fa fa-check"></i><b>5.5.2</b> <code>.</code></a></li>
+<li class="chapter" data-level="5.5.3" data-path="regular-expressions.html"><a href="regular-expressions.html#section-2"><i class="fa fa-check"></i><b>5.5.3</b> <code>*</code>, <code>?</code>, <code>+</code>, <code>{}</code></a></li>
+<li class="chapter" data-level="5.5.4" data-path="regular-expressions.html"><a href="regular-expressions.html#section-4"><i class="fa fa-check"></i><b>5.5.4</b> <code>*</code></a></li>
+<li class="chapter" data-level="5.5.5" data-path="regular-expressions.html"><a href="regular-expressions.html#section-5"><i class="fa fa-check"></i><b>5.5.5</b> <code>?</code></a></li>
+<li class="chapter" data-level="5.5.6" data-path="regular-expressions.html"><a href="regular-expressions.html#section-6"><i class="fa fa-check"></i><b>5.5.6</b> <code>+?</code></a></li>
+<li class="chapter" data-level="5.5.7" data-path="regular-expressions.html"><a href="regular-expressions.html#section-7"><i class="fa fa-check"></i><b>5.5.7</b> <code>*?</code></a></li>
+<li class="chapter" data-level="5.5.8" data-path="regular-expressions.html"><a href="regular-expressions.html#section-8"><i class="fa fa-check"></i><b>5.5.8</b> <code>{}</code></a></li>
+<li class="chapter" data-level="5.5.9" data-path="regular-expressions.html"><a href="regular-expressions.html#nm"><i class="fa fa-check"></i><b>5.5.9</b> <code>{n,m}</code></a></li>
+<li class="chapter" data-level="5.5.10" data-path="regular-expressions.html"><a href="regular-expressions.html#n-1"><i class="fa fa-check"></i><b>5.5.10</b> <code>{n}</code></a></li>
+<li class="chapter" data-level="5.5.11" data-path="regular-expressions.html"><a href="regular-expressions.html#n-2"><i class="fa fa-check"></i><b>5.5.11</b> <code>{n,}</code></a></li>
+<li class="chapter" data-level="5.5.12" data-path="regular-expressions.html"><a href="regular-expressions.html#section-9"><i class="fa fa-check"></i><b>5.5.12</b> {}?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="regular-expressions.html"><a href="regular-expressions.html#section-10"><i class="fa fa-check"></i><b>5.6</b> <code>[]</code></a></li>
+<li class="chapter" data-level="5.7" data-path="regular-expressions.html"><a href="regular-expressions.html#and"><i class="fa fa-check"></i><b>5.7</b> <code>^</code> and <code>$</code></a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="regular-expressions.html"><a href="regular-expressions.html#section-11"><i class="fa fa-check"></i><b>5.7.1</b> <code>^</code></a></li>
+<li class="chapter" data-level="5.7.2" data-path="regular-expressions.html"><a href="regular-expressions.html#section-12"><i class="fa fa-check"></i><b>5.7.2</b> <code>$</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="regular-expressions.html"><a href="regular-expressions.html#section-13"><i class="fa fa-check"></i><b>5.8</b> <code>()</code></a></li>
+<li class="chapter" data-level="5.9" data-path="regular-expressions.html"><a href="regular-expressions.html#scraping"><i class="fa fa-check"></i><b>5.9</b> Scraping</a></li>
+<li class="chapter" data-level="5.10" data-path="regular-expressions.html"><a href="regular-expressions.html#examples-1"><i class="fa fa-check"></i><b>5.10</b> Examples</a>
+<ul>
+<li class="chapter" data-level="5.10.1" data-path="regular-expressions.html"><a href="regular-expressions.html#transect-data"><i class="fa fa-check"></i><b>5.10.1</b> Transect Data</a></li>
+<li class="chapter" data-level="5.10.2" data-path="regular-expressions.html"><a href="regular-expressions.html#genbank"><i class="fa fa-check"></i><b>5.10.2</b> Genbank</a></li>
+</ul></li>
+<li class="chapter" data-level="5.11" data-path="regular-expressions.html"><a href="regular-expressions.html#solutions"><i class="fa fa-check"></i><b>5.11</b> Solutions</a>
+<ul>
+<li class="chapter" data-level="5.11.1" data-path="regular-expressions.html"><a href="regular-expressions.html#transects"><i class="fa fa-check"></i><b>5.11.1</b> Transects</a></li>
+<li class="chapter" data-level="5.11.2" data-path="regular-expressions.html"><a href="regular-expressions.html#genbank-1"><i class="fa fa-check"></i><b>5.11.2</b> Genbank</a></li>
+</ul></li>
+<li class="chapter" data-level="5.12" data-path="regular-expressions.html"><a href="regular-expressions.html#more-exercises"><i class="fa fa-check"></i><b>5.12</b> More Exercises</a>
+<ul>
+<li class="chapter" data-level="5.12.1" data-path="regular-expressions.html"><a href="regular-expressions.html#consider-a-vector-of-email-addresses-scraped-from-the-internet"><i class="fa fa-check"></i><b>5.12.1</b> 1. Consider a vector of email addresses scraped from the internet:</a></li>
+<li class="chapter" data-level="5.12.2" data-path="regular-expressions.html"><a href="regular-expressions.html#create-a-random-sequence-of-dna"><i class="fa fa-check"></i><b>5.12.2</b> 2. Create a random sequence of DNA:</a></li>
+<li class="chapter" data-level="5.12.3" data-path="regular-expressions.html"><a href="regular-expressions.html#more-online-examples"><i class="fa fa-check"></i><b>5.12.3</b> 3. More online examples</a></li>
+<li class="chapter" data-level="5.12.4" data-path="regular-expressions.html"><a href="regular-expressions.html#regex-golf"><i class="fa fa-check"></i><b>5.12.4</b> 4. Regex Golf</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-science-intro.html"><a href="data-science-intro.html"><i class="fa fa-check"></i><b>6</b> Data Science Intro</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="data-science-intro.html"><a href="data-science-intro.html#setup-2"><i class="fa fa-check"></i><b>6.1</b> Setup</a></li>
+<li class="chapter" data-level="6.2" data-path="data-science-intro.html"><a href="data-science-intro.html#introduction-to-data-science"><i class="fa fa-check"></i><b>6.2</b> Introduction to Data Science</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="data-science-intro.html"><a href="data-science-intro.html#data-science-life-cycle"><i class="fa fa-check"></i><b>6.2.1</b> Data Science Life-Cycle</a></li>
+<li class="chapter" data-level="6.2.2" data-path="data-science-intro.html"><a href="data-science-intro.html#data-science-in-r"><i class="fa fa-check"></i><b>6.2.2</b> Data Science in R</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="data-science-intro.html"><a href="data-science-intro.html#d-data-wrangling"><i class="fa fa-check"></i><b>6.3</b> 2D Data Wrangling</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="data-science-intro.html"><a href="data-science-intro.html#filter"><i class="fa fa-check"></i><b>6.3.1</b> <code>filter()</code></a></li>
+<li class="chapter" data-level="6.3.2" data-path="data-science-intro.html"><a href="data-science-intro.html#rename"><i class="fa fa-check"></i><b>6.3.2</b> <code>rename()</code></a></li>
+<li class="chapter" data-level="6.3.3" data-path="data-science-intro.html"><a href="data-science-intro.html#arrange"><i class="fa fa-check"></i><b>6.3.3</b> <code>arrange()</code></a></li>
+<li class="chapter" data-level="6.3.4" data-path="data-science-intro.html"><a href="data-science-intro.html#select"><i class="fa fa-check"></i><b>6.3.4</b> <code>select()</code></a></li>
+<li class="chapter" data-level="6.3.5" data-path="data-science-intro.html"><a href="data-science-intro.html#everything"><i class="fa fa-check"></i><b>6.3.5</b> <code>everything()</code></a></li>
+<li class="chapter" data-level="6.3.6" data-path="data-science-intro.html"><a href="data-science-intro.html#mutate"><i class="fa fa-check"></i><b>6.3.6</b> <code>mutate()</code></a></li>
+<li class="chapter" data-level="6.3.7" data-path="data-science-intro.html"><a href="data-science-intro.html#transmute"><i class="fa fa-check"></i><b>6.3.7</b> <code>transmute()</code></a></li>
+<li class="chapter" data-level="6.3.8" data-path="data-science-intro.html"><a href="data-science-intro.html#summarize-group_by"><i class="fa fa-check"></i><b>6.3.8</b> <code>summarize()</code> + <code>group_by()</code></a></li>
+<li class="chapter" data-level="6.3.9" data-path="data-science-intro.html"><a href="data-science-intro.html#weighted-mean"><i class="fa fa-check"></i><b>6.3.9</b> Weighted Mean</a></li>
+<li class="chapter" data-level="6.3.10" data-path="data-science-intro.html"><a href="data-science-intro.html#pipe"><i class="fa fa-check"></i><b>6.3.10</b> <code>%&gt;%</code> (pipe)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="data-science-intro.html"><a href="data-science-intro.html#missing-data"><i class="fa fa-check"></i><b>6.4</b> Missing Data</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="data-science-intro.html"><a href="data-science-intro.html#na-and-na.rm"><i class="fa fa-check"></i><b>6.4.1</b> <code>NA</code> and <code>na.rm()</code></a></li>
+<li class="chapter" data-level="6.4.2" data-path="data-science-intro.html"><a href="data-science-intro.html#na-vs-0"><i class="fa fa-check"></i><b>6.4.2</b> <code>NA</code> vs <code>0</code></a></li>
+<li class="chapter" data-level="6.4.3" data-path="data-science-intro.html"><a href="data-science-intro.html#is.na"><i class="fa fa-check"></i><b>6.4.3</b> <code>is.na()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="data-science-intro.html"><a href="data-science-intro.html#naughty-data"><i class="fa fa-check"></i><b>6.5</b> Naughty Data</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="advanced-r.html"><a href="advanced-r.html"><i class="fa fa-check"></i><b>7</b> Advanced R</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="advanced-r.html"><a href="advanced-r.html#introduction-1"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="advanced-r.html"><a href="advanced-r.html#getting-started-2"><i class="fa fa-check"></i><b>7.2</b> Getting Started</a></li>
+<li class="chapter" data-level="7.3" data-path="advanced-r.html"><a href="advanced-r.html#r-markdown"><i class="fa fa-check"></i><b>7.3</b> R Markdown</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="advanced-r.html"><a href="advanced-r.html#cheat-sheet"><i class="fa fa-check"></i><b>7.3.1</b> Cheat Sheet</a></li>
+<li class="chapter" data-level="7.3.2" data-path="advanced-r.html"><a href="advanced-r.html#create"><i class="fa fa-check"></i><b>7.3.2</b> Create</a></li>
+<li class="chapter" data-level="7.3.3" data-path="advanced-r.html"><a href="advanced-r.html#yaml-header"><i class="fa fa-check"></i><b>7.3.3</b> YAML Header</a></li>
+<li class="chapter" data-level="7.3.4" data-path="advanced-r.html"><a href="advanced-r.html#markdown"><i class="fa fa-check"></i><b>7.3.4</b> Markdown</a></li>
+<li class="chapter" data-level="7.3.5" data-path="advanced-r.html"><a href="advanced-r.html#basic-elements"><i class="fa fa-check"></i><b>7.3.5</b> Basic elements:</a></li>
+<li class="chapter" data-level="7.3.6" data-path="advanced-r.html"><a href="advanced-r.html#headers"><i class="fa fa-check"></i><b>7.3.6</b> Headers</a></li>
+<li class="chapter" data-level="7.3.7" data-path="advanced-r.html"><a href="advanced-r.html#other-elements"><i class="fa fa-check"></i><b>7.3.7</b> Other Elements</a></li>
+<li class="chapter" data-level="7.3.8" data-path="advanced-r.html"><a href="advanced-r.html#links"><i class="fa fa-check"></i><b>7.3.8</b> Links</a></li>
+<li class="chapter" data-level="7.3.9" data-path="advanced-r.html"><a href="advanced-r.html#images"><i class="fa fa-check"></i><b>7.3.9</b> Images</a></li>
+<li class="chapter" data-level="7.3.10" data-path="advanced-r.html"><a href="advanced-r.html#lists-and-tables"><i class="fa fa-check"></i><b>7.3.10</b> Lists and tables</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="advanced-r.html"><a href="advanced-r.html#tables"><i class="fa fa-check"></i><b>7.4</b> Tables</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="advanced-r.html"><a href="advanced-r.html#embed-r-code"><i class="fa fa-check"></i><b>7.4.1</b> Embed R Code</a></li>
+<li class="chapter" data-level="7.4.2" data-path="advanced-r.html"><a href="advanced-r.html#dynamic-tables"><i class="fa fa-check"></i><b>7.4.2</b> Dynamic tables</a></li>
+<li class="chapter" data-level="7.4.3" data-path="advanced-r.html"><a href="advanced-r.html#embed-graphs"><i class="fa fa-check"></i><b>7.4.3</b> Embed Graphs</a></li>
+<li class="chapter" data-level="7.4.4" data-path="advanced-r.html"><a href="advanced-r.html#options-for-header"><i class="fa fa-check"></i><b>7.4.4</b> Options for header</a></li>
+<li class="chapter" data-level="7.4.5" data-path="advanced-r.html"><a href="advanced-r.html#content-as-tabs"><i class="fa fa-check"></i><b>7.4.5</b> Content as tabs</a></li>
+<li class="chapter" data-level="7.4.6" data-path="advanced-r.html"><a href="advanced-r.html#quarterly-results"><i class="fa fa-check"></i><b>7.4.6</b> Quarterly Results</a></li>
+<li class="chapter" data-level="7.4.7" data-path="advanced-r.html"><a href="advanced-r.html#equations"><i class="fa fa-check"></i><b>7.4.7</b> Equations</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="advanced-r.html"><a href="advanced-r.html#custom-functions"><i class="fa fa-check"></i><b>7.5</b> Custom Functions</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="advanced-r.html"><a href="advanced-r.html#general-form"><i class="fa fa-check"></i><b>7.5.1</b> General form:</a></li>
+<li class="chapter" data-level="7.5.2" data-path="advanced-r.html"><a href="advanced-r.html#example-function"><i class="fa fa-check"></i><b>7.5.2</b> Example function</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="advanced-r.html"><a href="advanced-r.html#custom-r-package"><i class="fa fa-check"></i><b>7.6</b> Custom R Package</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="advanced-r.html"><a href="advanced-r.html#introduction-2"><i class="fa fa-check"></i><b>7.6.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.6.2" data-path="advanced-r.html"><a href="advanced-r.html#getting-started-3"><i class="fa fa-check"></i><b>7.6.2</b> Getting started</a></li>
+<li class="chapter" data-level="7.6.3" data-path="advanced-r.html"><a href="advanced-r.html#add-functions"><i class="fa fa-check"></i><b>7.6.3</b> Add functions</a></li>
+<li class="chapter" data-level="7.6.4" data-path="advanced-r.html"><a href="advanced-r.html#adding-documentation"><i class="fa fa-check"></i><b>7.6.4</b> Adding documentation</a></li>
+<li class="chapter" data-level="7.6.5" data-path="advanced-r.html"><a href="advanced-r.html#add-a-manual"><i class="fa fa-check"></i><b>7.6.5</b> Add a Manual</a></li>
+<li class="chapter" data-level="7.6.6" data-path="advanced-r.html"><a href="advanced-r.html#installing-the-package"><i class="fa fa-check"></i><b>7.6.6</b> Installing the package</a></li>
+<li class="chapter" data-level="7.6.7" data-path="advanced-r.html"><a href="advanced-r.html#input-checking"><i class="fa fa-check"></i><b>7.6.7</b> Input checking</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="advanced-r.html"><a href="advanced-r.html#make-it-public"><i class="fa fa-check"></i><b>7.7</b> Make it public</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="advanced-r.html"><a href="advanced-r.html#references"><i class="fa fa-check"></i><b>7.7.1</b> References:</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Crash Course</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-science-intro" class="section level1" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Data Science Intro</h1>
+<div id="setup-2" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Setup</h2>
+<p>If you don’t have it installed, then run <code>install.packages("dplyr")</code> – it can take a while to download and install.</p>
+</div>
+<div id="introduction-to-data-science" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Introduction to Data Science</h2>
+<p>Data Science is a relatively new field of study that merges <strong>computer science</strong> and <strong>statistics</strong> to answer questions in other domains (e.g. business, medicine, biology, psychology). Data Science as a discipline has grown in popularity in response to the rapid rate of increase in data collection and publication.</p>
+<p>Data Science often involves ‘Big Data’, which doesn’t have a strict quantitative definition but will usually have one or more of the following characteristics:</p>
+<ol style="list-style-type: decimal">
+<li>High <strong>Volume</strong> – large file sizes with lots of observations.</li>
+<li>Wide <strong>Variety</strong> – lots of different types</li>
+<li>High <strong>Velocity</strong> – accumulating at a high rate</li>
+<li>Compromised <strong>Veracity</strong> – variable quality that must be dealt otherwise downstream analyses will be compromised.</li>
+</ol>
+<blockquote>
+<p>What are some examples of ‘big data’ in Biology?</p>
+</blockquote>
+<p>Medical records, remote sensing data (e.g. climate stations, satellite images), and ‘omics data are good examples of ’big data’ in biology.</p>
+<p>In biology, it can be helpful to think of Data Science as a continuous life-cycle with multiple stages:</p>
+<div id="data-science-life-cycle" class="section level3" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Data Science Life-Cycle</h3>
+<ol style="list-style-type: decimal">
+<li><strong>Hypothesize</strong> – Make initial observations of about the natural world, or insights from other data, that lead to testable hypotheses. Your core biology training is crucial here.</li>
+<li><strong>Collect</strong> – This may involve taking measurements yourself, manually entering data that is not yet in electronic format, requesting data from authors of published studies, or importing data from online sources. Collecting data is a crucial step that is often done poorly. Some tips on this are provided in a <a href="https://www.biorxiv.org/content/early/2018/10/30/457051">paper by Wu et al</a></li>
+<li><strong>Correct</strong> – Investigate the data for quality assurance, to identify and fix potential errors. Start to visualize the data to look for outliers or nonsensical relationships (or lack thereof).</li>
+<li><strong>Explore</strong> – Try to understand the data, where they come from, and potential limitations on their use. Continue visualizing data; this may cause you to modify your hypotheses slightly.</li>
+<li><strong>Model</strong> – Now that hypotheses are clearly defined, apply statistical tests of their validity.</li>
+<li><strong>Report</strong> – Use visualizations along with the results of your statistical tests to summarize your findings.</li>
+<li><strong>Repeat</strong> – Return to step 1.</li>
+</ol>
+<p>In this tutorial, we focus mainly on coding in R for steps 2, 3, and 6. Step 5 requires a firm understanding of statistics. Step 4 is covered in the tutorials on <a href="./2_qplot.html">qplot</a> and <a href="./3_ggplot.html">ggplot</a>. Step 1 is everything covered in a typical degree in the biological sciences.</p>
+<p>Data collection and management are crucial steps in the Data Science Life-Cycle. Read the paper by <a href="https://www.biorxiv.org/content/early/2018/10/30/457051">Wu et al</a>. called <em>baRcodeR with PyTrackDat: Open-source labelling and tracking of biological samples for repeatable science.</em> Pay particular attention to the ‘<em>Data Standards</em>’ section. The <em>baRcodeR</em> and <em>PyTrackDat</em> programs and their application to current projects may also be of interest.</p>
+</div>
+<div id="data-science-in-r" class="section level3" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> Data Science in R</h3>
+<p>The book <a href="http://shop.oreilly.com/product/0636920034407.do">R for Data Science</a> by Hadley Wickham &amp; Garrett Grolemund is an excellent resource using R in Data Science projects.</p>
+<blockquote>
+<p>TIP: In general, any book by Hadley Wickham that you come across is worth reading if you want to be proficient in R.</p>
+</blockquote>
+<p>Here we’ll be focusing on the <code>dplyr</code> packages from Wickham et al.</p>
+</div>
+</div>
+<div id="d-data-wrangling" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> 2D Data Wrangling</h2>
+<p>The <code>dplyr</code> library in R has many useful features for importing and reorganizing your data for steps 2, 3 and 4 in the Data Science Life-Cycle outlined above. Don’t forget to install the <code>dplyr</code> library and load it into memory.</p>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="data-science-intro.html#cb535-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<blockquote>
+<p>Note: This error message just informs you that <code>dplyr</code> uses function or parameter names that are the same as other base or stats packages in R. These base/stats functions are ‘masked’ meaning that when you run one (e.g. <code>filter</code>) then R will run the <code>dplyr</code> version rather than the stats version.</p>
+</blockquote>
+<p>We’ll work with our FallopiaData.csv dataset, and remind ourselves of the structure of the data</p>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="data-science-intro.html#cb539-1" aria-hidden="true" tabindex="-1"></a>Fallo<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">&quot;https://colauttilab.github.io/RCrashCourse/FallopiaData.csv&quot;</span>)</span>
+<span id="cb539-2"><a href="data-science-intro.html#cb539-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(Fallo)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    123 obs. of  13 variables:
+##  $ PotNum      : int  1 2 3 5 6 7 8 9 10 11 ...
+##  $ Scenario    : chr  &quot;low&quot; &quot;low&quot; &quot;low&quot; &quot;low&quot; ...
+##  $ Nutrients   : chr  &quot;low&quot; &quot;low&quot; &quot;low&quot; &quot;low&quot; ...
+##  $ Taxon       : chr  &quot;japon&quot; &quot;japon&quot; &quot;japon&quot; &quot;japon&quot; ...
+##  $ Symphytum   : num  9.81 8.64 2.65 1.44 9.15 ...
+##  $ Silene      : num  36.4 29.6 36 21.4 23.9 ...
+##  $ Urtica      : num  16.08 5.59 17.09 12.39 5.19 ...
+##  $ Geranium    : num  4.68 5.75 5.13 5.37 0 9.05 3.51 9.64 7.3 6.36 ...
+##  $ Geum        : num  0.12 0.55 0.09 0.31 0.17 0.97 0.4 0.01 0.47 0.33 ...
+##  $ All_Natives : num  67 50.2 61 40.9 38.4 ...
+##  $ Fallopia    : num  0.01 0.04 0.09 0.77 3.4 0.54 2.05 0.26 0 0 ...
+##  $ Total       : num  67.1 50.2 61.1 41.7 41.8 ...
+##  $ Pct_Fallopia: num  0.01 0.08 0.15 1.85 8.13 1.12 3.7 0.61 0 0 ...</code></pre>
+<p>This file is an example of a 2-dimensional data set, which is common in biology. 2D datasets have the familiar row x column layout used by spreadsheet programs like Microsoft Excel or Google Sheets. There are some exceptions, but data in this format should typically follows 3 rules:</p>
+<ol style="list-style-type: decimal">
+<li>Each cell contains a single value</li>
+<li>Each variable must have its own column</li>
+<li>Each observation must have its own row</li>
+</ol>
+<p>Making sure your data are arranged this way will usually make it much easier to work with.</p>
+<div id="filter" class="section level3" number="6.3.1">
+<h3><span class="header-section-number">6.3.1</span> <code>filter()</code></h3>
+<p>Let’s subset observations based on value</p>
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="data-science-intro.html#cb541-1" aria-hidden="true" tabindex="-1"></a>Pot1<span class="ot">&lt;-</span><span class="fu">filter</span>(Fallo,PotNum<span class="sc">==</span><span class="dv">1</span>)</span>
+<span id="cb541-2"><a href="data-science-intro.html#cb541-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Pot1)</span></code></pre></div>
+<pre><code>##   PotNum Scenario Nutrients Taxon Symphytum Silene Urtica Geranium Geum
+## 1      1      low       low japon      9.81  36.36  16.08     4.68 0.12
+##   All_Natives Fallopia Total Pct_Fallopia
+## 1       67.05     0.01 67.06         0.01</code></pre>
+</div>
+<div id="rename" class="section level3" number="6.3.2">
+<h3><span class="header-section-number">6.3.2</span> <code>rename()</code></h3>
+<p>It’s possible to change the names of columns in your data. In base R you can use the <code>names()</code> function with the square bracket index <code>[]</code>:</p>
+<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="data-science-intro.html#cb543-1" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span>Fallo</span>
+<span id="cb543-2"><a href="data-science-intro.html#cb543-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(X)</span></code></pre></div>
+<pre><code>##  [1] &quot;PotNum&quot;       &quot;Scenario&quot;     &quot;Nutrients&quot;    &quot;Taxon&quot;        &quot;Symphytum&quot;   
+##  [6] &quot;Silene&quot;       &quot;Urtica&quot;       &quot;Geranium&quot;     &quot;Geum&quot;         &quot;All_Natives&quot; 
+## [11] &quot;Fallopia&quot;     &quot;Total&quot;        &quot;Pct_Fallopia&quot;</code></pre>
+<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="data-science-intro.html#cb545-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(X)[<span class="dv">12</span>]<span class="ot">&lt;-</span><span class="st">&quot;Total_Biomass&quot;</span></span>
+<span id="cb545-2"><a href="data-science-intro.html#cb545-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(X)</span></code></pre></div>
+<pre><code>##  [1] &quot;PotNum&quot;        &quot;Scenario&quot;      &quot;Nutrients&quot;     &quot;Taxon&quot;        
+##  [5] &quot;Symphytum&quot;     &quot;Silene&quot;        &quot;Urtica&quot;        &quot;Geranium&quot;     
+##  [9] &quot;Geum&quot;          &quot;All_Natives&quot;   &quot;Fallopia&quot;      &quot;Total_Biomass&quot;
+## [13] &quot;Pct_Fallopia&quot;</code></pre>
+<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="data-science-intro.html#cb547-1" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span><span class="fu">rename</span>(Fallo, <span class="at">Total_Biomass =</span> Total)</span>
+<span id="cb547-2"><a href="data-science-intro.html#cb547-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(X)</span></code></pre></div>
+<pre><code>##  [1] &quot;PotNum&quot;        &quot;Scenario&quot;      &quot;Nutrients&quot;     &quot;Taxon&quot;        
+##  [5] &quot;Symphytum&quot;     &quot;Silene&quot;        &quot;Urtica&quot;        &quot;Geranium&quot;     
+##  [9] &quot;Geum&quot;          &quot;All_Natives&quot;   &quot;Fallopia&quot;      &quot;Total_Biomass&quot;
+## [13] &quot;Pct_Fallopia&quot;</code></pre>
+<p>There is also a simple <code>dplyr</code> function to do this:</p>
+</div>
+<div id="arrange" class="section level3" number="6.3.3">
+<h3><span class="header-section-number">6.3.3</span> <code>arrange()</code></h3>
+<p>Use the <code>arrange()</code> function to sort the <em>rows</em> of your data based on the <em>columns</em> of your data. For example, let’s re-arrange our FallopiaData.csv dataset based on Taxon (a string denoting the species of Fallopia used) and Total (a float denoting the total biomass in each pot).</p>
+<div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb549-1"><a href="data-science-intro.html#cb549-1" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span><span class="fu">arrange</span>(Fallo, Taxon, Total)</span>
+<span id="cb549-2"><a href="data-science-intro.html#cb549-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(X)</span></code></pre></div>
+<pre><code>##   PotNum Scenario Nutrients Taxon Symphytum Silene Urtica Geranium Geum
+## 1     26      low       low bohem     13.25  18.11   0.00     0.00 0.10
+## 2     17      low       low bohem      4.90  29.52   1.36     0.00 0.19
+## 3     80  gradual      high bohem     11.92  17.16   8.92     0.94 0.18
+## 4     18      low       low bohem      3.51  27.61   8.14     3.81 0.21
+## 5     28      low       low bohem     10.59  18.78   7.19     6.73 0.17
+## 6     22      low       low bohem      0.76  22.66   9.85    10.60 0.74
+##   All_Natives Fallopia Total Pct_Fallopia
+## 1       31.46     0.00 31.46         0.00
+## 2       35.97     0.00 35.97         0.00
+## 3       39.12     3.35 42.47         7.89
+## 4       43.28     0.00 43.28         0.00
+## 5       43.46     0.00 43.46         0.00
+## 6       44.61     0.00 44.61         0.00</code></pre>
+<p>use the <code>desc()</code> function with <code>arrange()</code> to change to descending order</p>
+<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb551-1"><a href="data-science-intro.html#cb551-1" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span><span class="fu">arrange</span>(Fallo, Taxon, <span class="fu">desc</span>(Total))</span>
+<span id="cb551-2"><a href="data-science-intro.html#cb551-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(X)</span></code></pre></div>
+<pre><code>##   PotNum     Scenario Nutrients Taxon Symphytum Silene Urtica Geranium Geum
+## 1    148 fluctuations      high bohem      4.15  38.70  23.59     5.11 1.36
+## 2     86      gradual      high bohem      2.93  60.93   4.11     6.67 1.27
+## 3     60         high      high bohem      7.77  51.45   5.13    10.10 0.37
+## 4     85      gradual      high bohem     10.19  26.66  15.01     3.07 0.14
+## 5     53         high      high bohem      7.05  56.29   1.14     4.07 0.00
+## 6    118      extreme      high bohem     14.21  25.15  12.69     8.06 0.29
+##   All_Natives Fallopia Total Pct_Fallopia
+## 1       72.91     5.89 78.80         7.47
+## 2       75.91     0.00 75.91         0.00
+## 3       74.82     0.00 74.82         0.00
+## 4       55.07    14.47 69.54        20.81
+## 5       68.55     0.00 68.55         0.00
+## 6       60.40     7.46 67.86        10.99</code></pre>
+</div>
+<div id="select" class="section level3" number="6.3.4">
+<h3><span class="header-section-number">6.3.4</span> <code>select()</code></h3>
+<p>The <code>select()</code> function can be used to select a subset of columns (i.e. variables) from your data.</p>
+<p>Suppose we only want to look at total biomass, but keep all the treatment columns:</p>
+<div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb553-1"><a href="data-science-intro.html#cb553-1" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span><span class="fu">select</span>(Fallo, PotNum, Scenario, Nutrients, Taxon, Total)</span>
+<span id="cb553-2"><a href="data-science-intro.html#cb553-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(X)</span></code></pre></div>
+<pre><code>##   PotNum Scenario Nutrients Taxon Total
+## 1      1      low       low japon 67.06
+## 2      2      low       low japon 50.22
+## 3      3      low       low japon 61.08
+## 4      5      low       low japon 41.71
+## 5      6      low       low japon 41.81
+## 6      7      low       low japon 48.27</code></pre>
+<p>You can also use the colon <code>:</code> to select a range of columns:</p>
+<div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb555-1"><a href="data-science-intro.html#cb555-1" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span><span class="fu">select</span>(Fallo, PotNum<span class="sc">:</span>Taxon, Total)</span>
+<span id="cb555-2"><a href="data-science-intro.html#cb555-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(X)</span></code></pre></div>
+<pre><code>##   PotNum Scenario Nutrients Taxon Total
+## 1      1      low       low japon 67.06
+## 2      2      low       low japon 50.22
+## 3      3      low       low japon 61.08
+## 4      5      low       low japon 41.71
+## 5      6      low       low japon 41.81
+## 6      7      low       low japon 48.27</code></pre>
+<p>Exclude columns with <code>-</code></p>
+<div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb557-1"><a href="data-science-intro.html#cb557-1" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span><span class="fu">select</span>(Fallo, <span class="sc">-</span>PotNum<span class="sc">:</span>Taxon, <span class="sc">-</span>Total)</span></code></pre></div>
+<pre><code>## Warning in x:y: numerical expression has 12 elements: only the first used</code></pre>
+<blockquote>
+<p>Oops, what generated that error? Take a careful look at the error message and see if you can figure it out.</p>
+</blockquote>
+<p>The problem is we are using the range of columns between PotNum and Taxon, but in one case we are excluding and the other we are including. We need to keep both the same:</p>
+<div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb559-1"><a href="data-science-intro.html#cb559-1" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span><span class="fu">select</span>(Fallo, <span class="sc">-</span>PotNum<span class="sc">:-</span>Taxon, Total)</span>
+<span id="cb559-2"><a href="data-science-intro.html#cb559-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(X)</span></code></pre></div>
+<pre><code>##   Symphytum Silene Urtica Geranium Geum All_Natives Fallopia Total Pct_Fallopia
+## 1      9.81  36.36  16.08     4.68 0.12       67.05     0.01 67.06         0.01
+## 2      8.64  29.65   5.59     5.75 0.55       50.18     0.04 50.22         0.08
+## 3      2.65  36.03  17.09     5.13 0.09       60.99     0.09 61.08         0.15
+## 4      1.44  21.43  12.39     5.37 0.31       40.94     0.77 41.71         1.85
+## 5      9.15  23.90   5.19     0.00 0.17       38.41     3.40 41.81         8.13
+## 6      6.31  24.40   7.00     9.05 0.97       47.73     0.54 48.27         1.12</code></pre>
+<p>Or a bit more clear:</p>
+<div class="sourceCode" id="cb561"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb561-1"><a href="data-science-intro.html#cb561-1" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span><span class="fu">select</span>(Fallo, <span class="sc">-</span>(PotNum<span class="sc">:</span>Taxon), Total)</span>
+<span id="cb561-2"><a href="data-science-intro.html#cb561-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(X)</span></code></pre></div>
+<pre><code>##   Symphytum Silene Urtica Geranium Geum All_Natives Fallopia Total Pct_Fallopia
+## 1      9.81  36.36  16.08     4.68 0.12       67.05     0.01 67.06         0.01
+## 2      8.64  29.65   5.59     5.75 0.55       50.18     0.04 50.22         0.08
+## 3      2.65  36.03  17.09     5.13 0.09       60.99     0.09 61.08         0.15
+## 4      1.44  21.43  12.39     5.37 0.31       40.94     0.77 41.71         1.85
+## 5      9.15  23.90   5.19     0.00 0.17       38.41     3.40 41.81         8.13
+## 6      6.31  24.40   7.00     9.05 0.97       47.73     0.54 48.27         1.12</code></pre>
+</div>
+<div id="everything" class="section level3" number="6.3.5">
+<h3><span class="header-section-number">6.3.5</span> <code>everything()</code></h3>
+<p>Use the <code>everything()</code> function with <code>select()</code> to rearrange your columns without losing any:</p>
+<div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb563-1"><a href="data-science-intro.html#cb563-1" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span><span class="fu">select</span>(Fallo, Taxon, Scenario, Nutrients, PotNum, Pct_Fallopia, <span class="fu">everything</span>())</span>
+<span id="cb563-2"><a href="data-science-intro.html#cb563-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(X)</span></code></pre></div>
+<pre><code>##   Taxon Scenario Nutrients PotNum Pct_Fallopia Symphytum Silene Urtica Geranium
+## 1 japon      low       low      1         0.01      9.81  36.36  16.08     4.68
+## 2 japon      low       low      2         0.08      8.64  29.65   5.59     5.75
+## 3 japon      low       low      3         0.15      2.65  36.03  17.09     5.13
+## 4 japon      low       low      5         1.85      1.44  21.43  12.39     5.37
+## 5 japon      low       low      6         8.13      9.15  23.90   5.19     0.00
+## 6 japon      low       low      7         1.12      6.31  24.40   7.00     9.05
+##   Geum All_Natives Fallopia Total
+## 1 0.12       67.05     0.01 67.06
+## 2 0.55       50.18     0.04 50.22
+## 3 0.09       60.99     0.09 61.08
+## 4 0.31       40.94     0.77 41.71
+## 5 0.17       38.41     3.40 41.81
+## 6 0.97       47.73     0.54 48.27</code></pre>
+</div>
+<div id="mutate" class="section level3" number="6.3.6">
+<h3><span class="header-section-number">6.3.6</span> <code>mutate()</code></h3>
+<p>Suppose we want to make a new column (variable) to our data.frame object (dataset) that is the sum of biomass of Urtica and Geranium only. In base R you would use <code>$</code>:</p>
+<div class="sourceCode" id="cb565"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb565-1"><a href="data-science-intro.html#cb565-1" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span>Fallo</span>
+<span id="cb565-2"><a href="data-science-intro.html#cb565-2" aria-hidden="true" tabindex="-1"></a>X<span class="sc">$</span>UrtSil<span class="ot">&lt;-</span>X<span class="sc">$</span>Urtica<span class="sc">+</span>X<span class="sc">$</span>Silene</span></code></pre></div>
+<p>In the dplyr package you can use mutate</p>
+<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="data-science-intro.html#cb566-1" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span><span class="fu">mutate</span>(Fallo, <span class="at">UrtSil =</span> Urtica <span class="sc">+</span> Silene)</span>
+<span id="cb566-2"><a href="data-science-intro.html#cb566-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(X)</span></code></pre></div>
+<pre><code>##   PotNum Scenario Nutrients Taxon Symphytum Silene Urtica Geranium Geum
+## 1      1      low       low japon      9.81  36.36  16.08     4.68 0.12
+## 2      2      low       low japon      8.64  29.65   5.59     5.75 0.55
+## 3      3      low       low japon      2.65  36.03  17.09     5.13 0.09
+## 4      5      low       low japon      1.44  21.43  12.39     5.37 0.31
+## 5      6      low       low japon      9.15  23.90   5.19     0.00 0.17
+## 6      7      low       low japon      6.31  24.40   7.00     9.05 0.97
+##   All_Natives Fallopia Total Pct_Fallopia UrtSil
+## 1       67.05     0.01 67.06         0.01  52.44
+## 2       50.18     0.04 50.22         0.08  35.24
+## 3       60.99     0.09 61.08         0.15  53.12
+## 4       40.94     0.77 41.71         1.85  33.82
+## 5       38.41     3.40 41.81         8.13  29.09
+## 6       47.73     0.54 48.27         1.12  31.40</code></pre>
+<p>This is a lot more readable, especially when you have complicated equations or you want to add lots of new columns.</p>
+<blockquote>
+<p>What if you only wanted to retain the new columns and delete everything else? Try it.</p>
+</blockquote>
+<p>Which functions did you use?</p>
+</div>
+<div id="transmute" class="section level3" number="6.3.7">
+<h3><span class="header-section-number">6.3.7</span> <code>transmute()</code></h3>
+<p>You can also use <code>transmute()</code> instead of <code>mutate()</code> + <code>select()</code></p>
+<div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb568-1"><a href="data-science-intro.html#cb568-1" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span><span class="fu">transmute</span>(Fallo, <span class="at">UrtSil =</span> Urtica <span class="sc">+</span> Silene)</span>
+<span id="cb568-2"><a href="data-science-intro.html#cb568-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(X)</span></code></pre></div>
+<pre><code>##   UrtSil
+## 1  52.44
+## 2  35.24
+## 3  53.12
+## 4  33.82
+## 5  29.09
+## 6  31.40</code></pre>
+</div>
+<div id="summarize-group_by" class="section level3" number="6.3.8">
+<h3><span class="header-section-number">6.3.8</span> <code>summarize()</code> + <code>group_by()</code></h3>
+<p>This can be useful for quickly summarizing your data, for example to find the mean or standard deviation based on a particular treatment or group.</p>
+<div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="data-science-intro.html#cb570-1" aria-hidden="true" tabindex="-1"></a>TrtGrp<span class="ot">&lt;-</span><span class="fu">group_by</span>(Fallo,Taxon,Scenario,Nutrients)</span>
+<span id="cb570-2"><a href="data-science-intro.html#cb570-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(TrtGrp, <span class="at">Mean=</span><span class="fu">mean</span>(Total), <span class="at">SD=</span><span class="fu">sd</span>(Total))</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;Taxon&#39;, &#39;Scenario&#39;. You can override using the `.groups` argument.</code></pre>
+<pre><code>## # A tibble: 10 x 5
+## # Groups:   Taxon, Scenario [10]
+##    Taxon Scenario     Nutrients  Mean    SD
+##    &lt;chr&gt; &lt;chr&gt;        &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
+##  1 bohem extreme      high       58.3  7.34
+##  2 bohem fluctuations high       58.4  9.20
+##  3 bohem gradual      high       57.5  9.34
+##  4 bohem high         high       60.3  8.68
+##  5 bohem low          low        48.0  8.86
+##  6 japon extreme      high       57.2 10.9 
+##  7 japon fluctuations high       56.4 13.7 
+##  8 japon gradual      high       59.7  9.57
+##  9 japon high         high       56.4  8.20
+## 10 japon low          low        52.0  8.29</code></pre>
+</div>
+<div id="weighted-mean" class="section level3" number="6.3.9">
+<h3><span class="header-section-number">6.3.9</span> Weighted Mean</h3>
+<p>In our dataset, the <strong>Taxon</strong> column shows which of two species of <em>Fallopia</em> were used in the competition experiments. We might want to take the mean total biomass for each of the two <em>Fallopia</em> species:</p>
+<div class="sourceCode" id="cb573"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb573-1"><a href="data-science-intro.html#cb573-1" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span><span class="fu">group_by</span>(Fallo,Taxon)</span>
+<span id="cb573-2"><a href="data-science-intro.html#cb573-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(X, <span class="at">Mean=</span><span class="fu">mean</span>(Total), <span class="at">SD=</span><span class="fu">sd</span>(Total))</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 3
+##   Taxon  Mean    SD
+##   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 bohem  56.3  9.54
+## 2 japon  56.4 10.4</code></pre>
+<p>However, there are other factors in our experiment that may affect biomass. The <em>Nutrients</em> column tells us whether pots received high or low nutrients, and this also affects biomass:</p>
+<div class="sourceCode" id="cb575"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb575-1"><a href="data-science-intro.html#cb575-1" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span><span class="fu">group_by</span>(Fallo,Nutrients)</span>
+<span id="cb575-2"><a href="data-science-intro.html#cb575-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(X, <span class="at">Mean=</span><span class="fu">mean</span>(Total), <span class="at">SD=</span><span class="fu">sd</span>(Total))</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 3
+##   Nutrients  Mean    SD
+##   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
+## 1 high       58.0  9.61
+## 2 low        49.9  8.66</code></pre>
+<p>Now imagine if our sampling design is ‘unbalanced’. For example, maybe we had some plant mortality or lost some plants to a tornado. If one of the two species in the <em>Taxon</em> column had more high-nutrient pots, then it would have a higher mean. BUT, the higher mean is not an effect of the Taxon, but is simply due to the unbalanced nature of the design. We can simulate this effect by re-shuffling the species names:</p>
+<div class="sourceCode" id="cb577"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb577-1"><a href="data-science-intro.html#cb577-1" aria-hidden="true" tabindex="-1"></a>RFallo<span class="ot">&lt;-</span>Fallo</span>
+<span id="cb577-2"><a href="data-science-intro.html#cb577-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">256</span>)</span>
+<span id="cb577-3"><a href="data-science-intro.html#cb577-3" aria-hidden="true" tabindex="-1"></a>RFallo<span class="sc">$</span>Taxon<span class="ot">&lt;-</span><span class="fu">rbinom</span>(<span class="fu">nrow</span>(RFallo),<span class="at">size=</span><span class="dv">1</span>,<span class="at">prob=</span><span class="fl">0.7</span>)</span>
+<span id="cb577-4"><a href="data-science-intro.html#cb577-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb577-5"><a href="data-science-intro.html#cb577-5" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span><span class="fu">group_by</span>(RFallo,Taxon)</span>
+<span id="cb577-6"><a href="data-science-intro.html#cb577-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(X, <span class="at">Mean=</span><span class="fu">mean</span>(Total))</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 2
+##   Taxon  Mean
+##   &lt;int&gt; &lt;dbl&gt;
+## 1     0  56.1
+## 2     1  56.5</code></pre>
+<p>To fix this problem, we may want to take a <em>weighted mean</em>:</p>
+<div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb579-1"><a href="data-science-intro.html#cb579-1" aria-hidden="true" tabindex="-1"></a>X1<span class="ot">&lt;-</span><span class="fu">group_by</span>(RFallo,Taxon,Scenario,Nutrients)</span>
+<span id="cb579-2"><a href="data-science-intro.html#cb579-2" aria-hidden="true" tabindex="-1"></a>Y1<span class="ot">&lt;-</span><span class="fu">summarize</span>(X1,<span class="at">Mean=</span><span class="fu">mean</span>(Total))</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;Taxon&#39;, &#39;Scenario&#39;. You can override using the `.groups` argument.</code></pre>
+<div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb581-1"><a href="data-science-intro.html#cb581-1" aria-hidden="true" tabindex="-1"></a>X2<span class="ot">&lt;-</span><span class="fu">group_by</span>(Y1,Taxon,Scenario)</span>
+<span id="cb581-2"><a href="data-science-intro.html#cb581-2" aria-hidden="true" tabindex="-1"></a>Y2<span class="ot">&lt;-</span><span class="fu">summarize</span>(X2,<span class="at">Mean=</span><span class="fu">mean</span>(Mean))</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;Taxon&#39;. You can override using the `.groups` argument.</code></pre>
+<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="data-science-intro.html#cb583-1" aria-hidden="true" tabindex="-1"></a>X3<span class="ot">&lt;-</span><span class="fu">group_by</span>(Y2,Taxon)</span>
+<span id="cb583-2"><a href="data-science-intro.html#cb583-2" aria-hidden="true" tabindex="-1"></a>Y3<span class="ot">&lt;-</span><span class="fu">summarize</span>(X3, <span class="at">Mean=</span><span class="fu">mean</span>(Mean))</span>
+<span id="cb583-3"><a href="data-science-intro.html#cb583-3" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(Y3,<span class="fu">desc</span>(Mean))</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 2
+##   Taxon  Mean
+##   &lt;int&gt; &lt;dbl&gt;
+## 1     1  56.6
+## 2     0  55.8</code></pre>
+</div>
+<div id="pipe" class="section level3" number="6.3.10">
+<h3><span class="header-section-number">6.3.10</span> <code>%&gt;%</code> (pipe)</h3>
+<p>The combination <code>%&gt;%</code> is called ‘pipe’ for short. Be careful though – in Unix, ‘pipe’ is slightly different and uses the vertical line (often shift-backslash): <code>|</code></p>
+<p>The pipe is useful to combine operations without creating a whole bunch of new objects. This can save on memory use.</p>
+<p>For example, we can re-write the weighted mean example using pipes:</p>
+<div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb585-1"><a href="data-science-intro.html#cb585-1" aria-hidden="true" tabindex="-1"></a>RFallo <span class="sc">%&gt;%</span> </span>
+<span id="cb585-2"><a href="data-science-intro.html#cb585-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Taxon,Scenario,Nutrients) <span class="sc">%&gt;%</span> </span>
+<span id="cb585-3"><a href="data-science-intro.html#cb585-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Mean=</span><span class="fu">mean</span>(Total)) <span class="sc">%&gt;%</span> </span>
+<span id="cb585-4"><a href="data-science-intro.html#cb585-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Taxon,Scenario) <span class="sc">%&gt;%</span> </span>
+<span id="cb585-5"><a href="data-science-intro.html#cb585-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Mean=</span><span class="fu">mean</span>(Mean)) <span class="sc">%&gt;%</span> </span>
+<span id="cb585-6"><a href="data-science-intro.html#cb585-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Taxon) <span class="sc">%&gt;%</span> </span>
+<span id="cb585-7"><a href="data-science-intro.html#cb585-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Mean=</span><span class="fu">mean</span>(Mean)) <span class="sc">%&gt;%</span> </span>
+<span id="cb585-8"><a href="data-science-intro.html#cb585-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Mean))</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;Taxon&#39;, &#39;Scenario&#39;. You can override using the `.groups` argument.</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;Taxon&#39;. You can override using the `.groups` argument.</code></pre>
+<pre><code>## # A tibble: 2 x 2
+##   Taxon  Mean
+##   &lt;int&gt; &lt;dbl&gt;
+## 1     1  56.6
+## 2     0  55.8</code></pre>
+<p>This also avoids potential for bugs in our program. Imagine if we mis-spelled ‘Taxon’ in our second line by accidentialy pressing ‘s’ along with ‘x’. Compare the output:</p>
+<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="data-science-intro.html#cb589-1" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span><span class="fu">group_by</span>(Fallo,Taxon,Scenario,Nutrients)</span>
+<span id="cb589-2"><a href="data-science-intro.html#cb589-2" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span><span class="fu">group_by</span>(X,Tasxon,Scenario)</span></code></pre></div>
+<pre><code>## Error: Must group by variables found in `.data`.
+## * Column `Tasxon` is not found.</code></pre>
+<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="data-science-intro.html#cb591-1" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span><span class="fu">group_by</span>(X,Taxon)</span>
+<span id="cb591-2"><a href="data-science-intro.html#cb591-2" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span><span class="fu">summarize</span>(X, <span class="at">Mean=</span><span class="fu">mean</span>(Total), <span class="at">SD=</span><span class="fu">sd</span>(Total))</span>
+<span id="cb591-3"><a href="data-science-intro.html#cb591-3" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(X,<span class="fu">desc</span>(Mean))</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 3
+##   Taxon  Mean    SD
+##   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 japon  56.4 10.4 
+## 2 bohem  56.3  9.54</code></pre>
+<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="data-science-intro.html#cb593-1" aria-hidden="true" tabindex="-1"></a>Fallo <span class="sc">%&gt;%</span> </span>
+<span id="cb593-2"><a href="data-science-intro.html#cb593-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Taxon,Scenario,Nutrients) <span class="sc">%&gt;%</span></span>
+<span id="cb593-3"><a href="data-science-intro.html#cb593-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Tasxon,Scenario) <span class="sc">%&gt;%</span></span>
+<span id="cb593-4"><a href="data-science-intro.html#cb593-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Taxon) <span class="sc">%&gt;%</span></span>
+<span id="cb593-5"><a href="data-science-intro.html#cb593-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Mean=</span><span class="fu">mean</span>(Total), <span class="at">SD=</span><span class="fu">sd</span>(Total)) <span class="sc">%&gt;%</span></span>
+<span id="cb593-6"><a href="data-science-intro.html#cb593-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Mean))</span></code></pre></div>
+<pre><code>## Error: Must group by variables found in `.data`.
+## * Column `Tasxon` is not found.</code></pre>
+<p>In both cases we get an error, but in one case we still calculate the means and sd of the two species.</p>
+<blockquote>
+<p>A bug that produces no output is much less dangerous than an error that gives an output. Why?</p>
+</blockquote>
+</div>
+</div>
+<div id="missing-data" class="section level2" number="6.4">
+<h2><span class="header-section-number">6.4</span> Missing Data</h2>
+<p>So far we have worked on a pristine data set that has already been edited for errors. More often datasets will contain missing values.</p>
+<div id="na-and-na.rm" class="section level3" number="6.4.1">
+<h3><span class="header-section-number">6.4.1</span> <code>NA</code> and <code>na.rm()</code></h3>
+<p>The R language uses a special object <code>NA</code> to denote missing data.</p>
+<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="data-science-intro.html#cb595-1" aria-hidden="true" tabindex="-1"></a>Vec<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="cn">NA</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>)</span>
+<span id="cb595-2"><a href="data-science-intro.html#cb595-2" aria-hidden="true" tabindex="-1"></a>Vec</span></code></pre></div>
+<pre><code>## [1]  1  2  3 NA  5  6  7</code></pre>
+<p>When a function is run on a vector or other object containing NA, the function will often return NA or give an error message:</p>
+<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="data-science-intro.html#cb597-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(Vec)</span></code></pre></div>
+<pre><code>## [1] NA</code></pre>
+<p>This is by design, because it is not always clear what NA means. Many functions in R include an na.rm parameter that is set to FALSE by default. Setting it to true tells the function to ignore the NA</p>
+<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="data-science-intro.html#cb599-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(Vec, <span class="at">na.rm=</span>T)</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+</div>
+<div id="na-vs-0" class="section level3" number="6.4.2">
+<h3><span class="header-section-number">6.4.2</span> <code>NA</code> vs <code>0</code></h3>
+<p>A common mistake students make is to put 0 for missing data. This can be a big problem when analyzing the data since the calculations are very different.</p>
+<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="data-science-intro.html#cb601-1" aria-hidden="true" tabindex="-1"></a>Vec1<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="cn">NA</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>)</span>
+<span id="cb601-2"><a href="data-science-intro.html#cb601-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(Vec1, <span class="at">na.rm=</span>T)</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb603-1"><a href="data-science-intro.html#cb603-1" aria-hidden="true" tabindex="-1"></a>Vec2<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">0</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>)</span>
+<span id="cb603-2"><a href="data-science-intro.html#cb603-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(Vec2, <span class="at">na.rm=</span>T)</span></code></pre></div>
+<pre><code>## [1] 3.428571</code></pre>
+</div>
+<div id="is.na" class="section level3" number="6.4.3">
+<h3><span class="header-section-number">6.4.3</span> <code>is.na()</code></h3>
+<p>In large datasets you might want to check for missing values. Let’s simulate this in our <em>FallopiaData.csv</em> dataset.</p>
+<p>To set up a test dataset, randomly select 10 rows and replace the value for ‘Total’ with NA. The <code>sample</code> function is a</p>
+<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="data-science-intro.html#cb605-1" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span><span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">10</span>,<span class="at">min=</span><span class="dv">1</span>,<span class="at">max=</span><span class="fu">nrow</span>(Fallo)),<span class="dv">0</span>)</span>
+<span id="cb605-2"><a href="data-science-intro.html#cb605-2" aria-hidden="true" tabindex="-1"></a>Fallo<span class="sc">$</span>Total[X]<span class="ot">&lt;-</span><span class="cn">NA</span></span>
+<span id="cb605-3"><a href="data-science-intro.html#cb605-3" aria-hidden="true" tabindex="-1"></a>Fallo<span class="sc">$</span>Total</span></code></pre></div>
+<pre><code>##   [1] 67.06 50.22 61.08 41.71 41.81 48.27 55.42 42.68    NA 45.89 59.02 57.66
+##  [13] 48.98 35.97 43.28 52.27 45.92 44.61 59.13 58.97 55.36 31.46 43.46 44.65
+##  [25] 59.69 60.82 57.21 34.09 58.57 66.74 63.18    NA 54.09 55.27 61.31 53.56
+##  [37] 52.66 64.71 61.06 45.34 64.20 57.50 68.55 49.55 56.70 54.06 66.60 74.82
+##  [49] 53.71 49.75 58.45 66.06 67.01 70.41    NA 63.43 77.05 47.50 61.79 54.96
+##  [61] 48.99 52.01    NA 57.18 42.47 46.18 62.56 54.36 69.54 75.91 56.34 64.97
+##  [73] 60.71 57.80 41.72 67.44 58.78    NA    NA 58.42 55.35    NA 55.04 39.56
+##  [85] 71.07 45.23 57.20 67.70 52.46 60.86    NA 65.53 48.19 60.89 48.13 60.37
+##  [97] 67.86 56.40 49.13 56.11 49.78 69.00 65.40 50.73 63.08 60.93    NA 49.12
+## [109] 68.73 31.90 69.88 69.48 47.88 51.42 58.13 50.51 54.83 66.80 50.31 56.12
+## [121] 62.96 78.80 64.25</code></pre>
+<p>Use <code>is.na()</code> to check for missing values:</p>
+<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="data-science-intro.html#cb607-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(Fallo<span class="sc">$</span>Total)</span></code></pre></div>
+<pre><code>##   [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE
+##  [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  [25] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
+##  [37] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  [49] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
+##  [61] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  [73] FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE
+##  [85] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
+##  [97] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
+## [109] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [121] FALSE FALSE FALSE</code></pre>
+<p>Note that the output is a vector of True/False. Each cell corresponds to a value of ‘Total’ with TRUE indicating missing values. This is an example of a boolean variable, which has some handy properties in R.</p>
+<p>First, we can use it as an index. For example, let’s see which pots have missing ‘Total’ values:</p>
+<div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb609-1"><a href="data-science-intro.html#cb609-1" aria-hidden="true" tabindex="-1"></a>Missing<span class="ot">&lt;-</span><span class="fu">is.na</span>(Fallo<span class="sc">$</span>Total)</span>
+<span id="cb609-2"><a href="data-science-intro.html#cb609-2" aria-hidden="true" tabindex="-1"></a>Fallo<span class="sc">$</span>PotNum[Missing]</span></code></pre></div>
+<pre><code>## [1]  10  39  68  78  95  96 100 111 129</code></pre>
+<p>Another handy trick to count missing values is:</p>
+<div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb611-1"><a href="data-science-intro.html#cb611-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(Fallo<span class="sc">$</span>Total))</span></code></pre></div>
+<pre><code>## [1] 9</code></pre>
+<p>This takes advantage of the fact that the boolean TRUE/FALSE variable is equivalent to the binary 1/0 values.</p>
+</div>
+</div>
+<div id="naughty-data" class="section level2" number="6.5">
+<h2><span class="header-section-number">6.5</span> Naughty Data</h2>
+<p>Naughty data contain the same information as a standard row x column (i.e. 2-dimensional) dataset but break the rules outlined above:</p>
+<ol style="list-style-type: decimal">
+<li>Each cell contains a single value</li>
+<li>Each variable must have its own column</li>
+<li>Each observation must have its own row</li>
+</ol>
+<p>Examples of Naughty Data are shown in Figure 2A of the <a href="https://www.biorxiv.org/content/early/2018/10/30/457051">Wu et al. manuscript</a>. :</p>
+<p><img src="Wu_Fig2.jpg" /></p>
+<p>Naughty data can be very time consuming to fix, but regular expressions can make this a bit easier (see the <a href="https://colauttilab.github.io/RCrashCourse/4_regex.html">Regex tutorial</a>).</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="regular-expressions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="advanced-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/05_datascience.rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
