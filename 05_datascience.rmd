@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # Data Science Intro
 
 ## Setup
@@ -56,7 +61,8 @@ library(dplyr)
 We'll work with our FallopiaData.csv dataset, and remind ourselves of the structure of the data
 
 ```{r}
-Fallo<-read.csv("https://colauttilab.github.io/RCrashCourse/FallopiaData.csv")
+Fallo<-read.csv(
+  "https://colauttilab.github.io/RCrashCourse/FallopiaData.csv")
 str(Fallo)
 ```
 

@@ -86,7 +86,8 @@ What's wrong with this graph?
 X<-rnorm(100)
 Y<-X+seq_along(X)
 D<-data.frame(Lat=X,Long=Y,Temp=Y/3)
-qplot(Lat,Long,colour=Temp, data=D) + scale_color_gradient(high="blue", low="red")
+qplot(Lat,Long,colour=Temp, data=D) + 
+  scale_color_gradient(high="blue", low="red")
 ```
 
 Humans naturally associate colours with particular feelings. Be mindful of these associations when choosing a colour palette
@@ -101,7 +102,8 @@ Colours that are too similar will be hard to distinguish
 X<-rnorm(100)
 Y<-X+seq_along(X)
 D<-data.frame(Lat=X,Long=Y,Precip=rnorm(100))
-qplot(Lat,Long,colour=Precip, data=D) + scale_color_gradient(high="#56B4E9", low="#56B499")
+qplot(Lat,Long,colour=Precip, data=D) + 
+  scale_color_gradient(high="#56B4E9", low="#56B499")
 ```
 
 ### 6. Keep relevant information
@@ -115,7 +117,7 @@ Often the same data can be presented in different ways but some are easier to in
 ```{r}
 X<-rnorm(100)
 Y<-X+rnorm(100)
-qplot(c(X,Y),fill=c(rep("X",100),rep("Y",100)),posit="dodge")
+qplot(c(X,Y), fill=c(rep("X",100), rep("Y",100)), posit="dodge")
 qplot(X,Y)
 ```
 
@@ -135,7 +137,7 @@ To get to know ggplot better, let's do a step-by-step example of a figure publis
 
 Download selection dataset from Colautti & Lau (2015), published in the journal **Molecular Ecology**: https://doi.org/10.1111/mec.13162
 
-The paper is a meta-analysis and review of evolution occurring during biological invasions. in this tutorial, we'll recreate Figure 2, which shows the result of a meta-analysis of selection gradients ($\beta$) and selection differentials ($\s$). First, we'll just recreate the top panel, and then we'll look at ways to make more advanced multi-panel graphs like this one.
+The paper is a meta-analysis and review of evolution occurring during biological invasions. in this tutorial, we'll recreate Figure 2, which shows the result of a meta-analysis of selection gradients ($\beta$) and selection differentials ($s$). First, we'll just recreate the top panel, and then we'll look at ways to make more advanced multi-panel graphs like this one.
 
 The data from the paper are archived on Dryad: https://datadryad.org/stash/dataset/doi:10.5061/dryad.gt678
 
@@ -144,15 +146,16 @@ You could downoad the zip file and look for the file called `Selection_Data.csv`
 Or you can just download directly from this website:
 
 ```{r}
-SelData<-read.csv("https://colauttilab.github.io/RCrashCourse/Selection_Data.csv",
-                  header=T)
+SelData<-read.csv(
+  "https://colauttilab.github.io/RCrashCourse/Selection_Data.csv")
 ```
 
 We are also going to change the names from the file to make them a bit more intuitive and easier to work with in R.
 
 ```{r}
-names(SelData)<-c("Collector", "Author", "Year", "Journal", "Vol", 
-                  "Species", "Native", "N", "Fitness.measure", "Trait", "s", 
+names(SelData)<-c("Collector", "Author", "Year", "Journal", 
+                  "Vol", "Species", "Native", "N", 
+                  "Fitness.measure", "Trait", "s", 
                   "s.SE", "s.P", "B", "B.SE", "B.P")
 ```
 
@@ -188,13 +191,13 @@ We'll also add a couple of columns with random variables that we can use later t
 First, a column of values sampled from a z-distribution (Gaussian distribution with mean = 0 and sd = 1)
 
 ```{r}
-SelData$Rpoint<-rnorm(nrow(SelData)) # Random, normally distributed
+SelData$Rpoint<-rnorm(nrow(SelData))
 ```
 
 Second, a columnn of 1 and 0 sampled randomly with equal frequency (p = 0.5)
 
 ```{r}
-SelData$Rgroup<-sample(c(0,1),nrow(SelData),replace=T) # Random binary value
+SelData$Rgroup<-sample(c(0,1), nrow(SelData), replace=T)
 ```
 
 
@@ -306,10 +309,10 @@ In `ggplot` we have to explictly define the geoms using `geom_NAME` where name i
 
 ### Layers 
 
-So far, we have only loaded in the data info for plotting. We have to specify which geom(s) we want
+So far, we have only loaded in the data info for plotting. We have to specify which geom(s) we want.
 
 ```{r}
-BarPlot<- BarPlot + geom_bar() # info from ggplot() passed to geom_bar()
+BarPlot<- BarPlot + geom_bar() 
 BarPlot
 ```
 
@@ -338,14 +341,16 @@ For more information on the parameters and stast of `geom_bar()`
 Let's explroe a few more plotting options. Here we'll use the random normal values we generated above so that we can make a bivariate plot:
 
 ```{r}
-BivPlot<-ggplot(data=SelData, aes(x=s, y=Rpoint)) + geom_point()
+BivPlot<-ggplot(data=SelData, aes(x=s, y=Rpoint)) + 
+  geom_point()
 print(BivPlot)
 ```
 
 Notice how the points are all clustered to the left. This looks like a classic log-normal variable, so let's log-transform $s$ (x-axis)
 
 ```{r}
-BivPlot<-ggplot(data=SelData, aes(x=log(s+1), y=Rpoint)) + geom_point()
+BivPlot<-ggplot(data=SelData, aes(x=log(s+1), y=Rpoint)) + 
+  geom_point()
 print(BivPlot)
 ```
 
@@ -356,13 +361,15 @@ A really handy feature of `ggplot` is the `geom_smooth` function with several op
 Here's a simple linear regression slope:
 
 ```{r}
-BivPlot + geom_smooth(method="lm",colour="steelblue",size=2)
+BivPlot + 
+  geom_smooth(method="lm", colour="steelblue", size=2)
 ```
 
 We can use a grouping variable to add separate regression lines for each group
 
 ```{r}
-BivPlot + geom_smooth(method="lm",size=2,aes(group=Native,colour=Native))
+BivPlot + 
+  geom_smooth(method="lm" ,size=2, aes(group=Native, colour=Native))
 ```
 
 <br>
@@ -381,10 +388,14 @@ Now that we've done a bit of exploration, let's try to recreate the selection hi
 
 ### Separate data
 
+Since this is a relatively simple resampling model, we'll use two separate vectors to keep track of each interation: one for native and one for non-native. 
+
 ```{r}
-NatSVals<-SelData$s[SelData$Native=="yes"] # s values for Native species
-IntSVals<-SelData$s[SelData$Native=="no"] # s values for Introduced species
+NatSVals<-SelData$s[SelData$Native=="yes"] 
+IntSVals<-SelData$s[SelData$Native=="no"] 
 ```
+
+An alternative would be to set up a data frame and keep track of values as separate columns, with a different row for each iteration.
 
 ### Bootstrap
 
@@ -409,10 +420,14 @@ Here we apply our `for` loop. in each round, we:
 
 ```{r}
 for (i in 1:IterN){
-  NatSims[i]<-mean(sample(NatSVals,length(NatSVals),replace=T))
-  IntSims[i]<-mean(sample(IntSVals,length(IntSVals),replace=T))
+  NatSims[i]<-mean(sample(
+    NatSVals, length(NatSVals), replace=T))
+  IntSims[i]<-mean(sample(
+    IntSVals, length(IntSVals), replace=T))
 }
 ```
+
+Note in the above code we use 'nested' functions. First we sample, then calculate the mean.
 
 #### 95% CI
 
@@ -430,10 +445,16 @@ Each of the objects contains a number of values equal to our `Iter` variable def
 We use this number to index the vector with square brackets. We make sure to round to a whole number since we can't have a fractional cell position. 
 
 ```{r}
-CIs<-c(sort(NatSims)[round(IterN*0.025,0)], # Native, lower 2.5%
-       sort(NatSims)[round(IterN*0.975,0)], # Native, upper 97.5%
-       sort(IntSims)[round(IterN*0.025,0)], # Intro, lower 2.5%
-       sort(IntSims)[round(IterN*0.975,0)]) # Intro, upper 97.5%
+CIs<-c(sort(NatSims)[round(IterN*0.025,0)], # Lower 2.5%
+       sort(NatSims)[round(IterN*0.975,0)], # Upper 97.5%
+       sort(IntSims)[round(IterN*0.025,0)], # Lower 2.5%
+       sort(IntSims)[round(IterN*0.975,0)]) # Upper 97.5%
+```
+
+Note that the output is a vector of length 4:
+
+```{r}
+print(CIs)
 ```
 
 ### Plot data
@@ -448,19 +469,28 @@ Now we can add layers to the plot. We'll print out each layer as we go, so that 
 
 ```{r}
 p <- ggplot() + theme_classic()
-p <- p + geom_freqpoly(data=HistData[HistData$Native=="yes",], aes(s,y=(..count..)/sum(..count..)),alpha = 0.6,colour="#1fcebd",size=2)
+p <- p + geom_freqpoly(data=HistData[HistData$Native=="yes",], 
+                       aes(s,y=(..count..)/sum(..count..)),
+                       alpha = 0.6,colour="#1fcebd",size=2)
 print(p) # native species histogram
-p <- p + geom_freqpoly(data=HistData[HistData$Native=="no",], aes(s,y=(..count..)/sum(..count..)),alpha = 0.5,colour="#f53751",size=2)
+p <- p + geom_freqpoly(data=HistData[HistData$Native=="no",], 
+                       aes(s,y=(..count..)/sum(..count..)),
+                       alpha = 0.5,colour="#f53751",size=2)
 print(p) # introduced species histogram
-p <- p + geom_rect(aes(xmin=CIs[1],xmax=CIs[2],ymin=0,ymax=0.01),colour="white",fill="#1fcebd88")
+p <- p + geom_rect(aes(xmin=CIs[1],xmax=CIs[2],ymin=0,ymax=0.01),
+                   colour="white",fill="#1fcebd88")
 print(p) # native species 95% CI bar
-p <- p + geom_line(aes(x=mean(NatSims),y=c(0,0.01)),colour="#1d76bf",size=1)
+p <- p + geom_line(aes(x=mean(NatSims),y=c(0,0.01)),
+                   colour="#1d76bf",size=1)
 print(p) # native species bootstrap mean
-p <- p + geom_rect(aes(xmin=CIs[3],xmax=CIs[4],ymin=0,ymax=0.01),colour="white",fill="#f5375188")
+p <- p + geom_rect(aes(xmin=CIs[3],xmax=CIs[4],ymin=0,ymax=0.01),
+                   colour="white",fill="#f5375188")
 print(p) # introduced species 95% CI bar
-p <- p + geom_line(aes(x=mean(IntSims),y=c(0,0.01)),colour="#f53751",size=1)
+p <- p + geom_line(aes(x=mean(IntSims),y=c(0,0.01)),
+                   colour="#f53751",size=1)
 print(p) # introduced species bootstrap mean
-p <- p + ylab("Frequency") + scale_x_continuous(limits = c(0, 1.5))
+p <- p + ylab("Frequency") + 
+  scale_x_continuous(limits = c(0, 1.5))
 print(p) # labels added, truncated x-axis
 ```
 
@@ -537,27 +567,54 @@ First, we set up the plotting area with `grid.newpage`
 grid.newpage() # Open a new page on grid device
 ```
 
-To insert a new graph on top (or inside) the current graph, we use `pushViewport` to set up an imaginary plotting grid. In this case, imagine breaking up the plotting space into 3 rows by two columsn.
+To insert a new graph on top (or inside) the current graph, we use `pushViewport` to set up an imaginary plotting grid. In this case, imagine breaking up the plotting space into 3 rows by 2 columns.
 
 ```{r, warning=F, message=F}
-pushViewport(viewport(layout = grid.layout(3, 2))) # Create 3x2 grid layout
+pushViewport(viewport(layout = grid.layout(3, 2))) 
 ```
 
 Finally, we print each `ggplot` object, specifying which grid(s) to plot in.
 
+Add the first figure in row 3 and across columns 1:2
+
 ```{r, warning=F, message=F}
-print(HistPlot, vp = viewport(layout.pos.row = 3, layout.pos.col = 1:2)) # Add fig in row 3 and across columns 1:2
-print(BivPlot, vp = viewport(layout.pos.row = 1:2, layout.pos.col = 1)) # add fig acros rows 1:3 in column 1
-print(BarPlot, vp = viewport(layout.pos.row = 1:2, layout.pos.col = 2))
+print(HistPlot, vp = viewport(layout.pos.row = 3, 
+                              layout.pos.col = 1:2))
+```
+
+Add the next figure across rows 1 and 2 of column 1
+
+```{r, warning=F, message=F}
+print(BivPlot, vp = viewport(layout.pos.row = 1:2, 
+                             layout.pos.col = 1))
+```
+
+Add the final figure across rows 1 and 2 of column 2
+
+```{r, warning=F, message=F}
+print(BarPlot, vp = viewport(layout.pos.row = 1:2, 
+                             layout.pos.col = 2))
 ```
 
 #### Inset
 
 We can also use `pushViewport` to set up a grid for plotting on top of an existing graph or image. This can be used to generate a figure with an inset.
 
+First generate the 'background' plot. Note that you could alternatively load an image here to place in the background.
+
 ```{r, warning=F, message=F}
 HistPlot
-pushViewport(viewport(layout = grid.layout(4, 4))) # Create 4x4 grid layout (number of cells, will determine size/location of graph)
+```
+
+Next, overlay an invisible 4x4 grid layout (number of cells, will determine size/location of graph)
+
+```{r, warning=F, message=F}
+pushViewport(viewport(layout = grid.layout(4, 4)))
+```
+
+Finally, add the graph. In this case we want it only in the top two rows and the right-most two columns -- i.e. the top-right corner.
+
+```{r, warning=F, message=F}
 print(BivPlot, vp = viewport(layout.pos.row = 1:2, layout.pos.col = 3:4))
 ```
 

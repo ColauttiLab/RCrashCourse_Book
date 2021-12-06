@@ -240,7 +240,8 @@ Making tables from data is a bit more complicated. For example, if we wanted to 
 ```{r, message=F}
 library(dplyr)
 
-Fallo<-read.csv("https://colauttilab.github.io/RCrashCourse/FallopiaData.csv")
+Fallo<-read.csv(
+  "https://colauttilab.github.io/RCrashCourse/FallopiaData.csv")
 
 SumTable<-Fallo %>% 
   group_by(Taxon,Scenario,Nutrients) %>%
@@ -256,7 +257,6 @@ The output is legible but not very attractive for a final report. To make it loo
 library(knitr)
 kable(SumTable, caption = "Summary Table")
 ```
-
 
 ### Embed Graphs
 
@@ -278,7 +278,7 @@ output:
   html_document: # Add options for html output
     toc: true # Add table of contents (TOC)
     number_sections: true # Add section numbers
-    toc_float: # Have TOC floating at the side, rather than at the beginning
+    toc_float: # Have TOC floating at the side
       collapsed: false # Expand subsections
 ```
 
@@ -359,7 +359,9 @@ my.function<-function(var1=0,var2=0){
   subt<-var1-var2
   mult<-var1*var2
   div<-var1/var2  
-  outlist<-list(input1=var1,input2=var2,addition=add,subtraction=subt,multiplication=mult,division=div)
+  outlist<-list(input1=var1, input2=var2, 
+                addition=add, subtraction=subt, 
+                multiplication=mult, division=div)
   # So far, everything is contained within the function. 
   # Use return() to generate output
   return(outlist)
@@ -381,7 +383,7 @@ Consider annotating long or complex script with `cat()` to help with troubleshoo
 
 ```{r}
 my.function<-function(var1=0,var2=0,verbose=FALSE){
-  cat("\nInput variables:\nvar1 =",var1,"\nvar2 =",var2,"\n")
+  cat("\nInput variables:\nvar1 =", var1,"\nvar2 =", var2,"\n")
   cat("\nCalculating functions...\n")
   cat("\nAdding...\n")    
 
@@ -401,7 +403,9 @@ my.function<-function(var1=0,var2=0,verbose=FALSE){
   
   cat("\nGenerating output...\n\n")
   
-  outlist<-list(input1=var1,input2=var2,addition=add,subtraction=subt,multiplication=mult,division=div)
+  outlist<-list(input1=var1, input2=var2, 
+                addition=add, subtraction=subt, 
+                multiplication=mult, division=div)
 
   return(outlist)
 }
@@ -415,7 +419,7 @@ my.function(var1=10,var2=0.1)
 ```{r}
 my.function<-function(var1=0,var2=0,verbose=FALSE){
   if (verbose==T){
-    cat("\nInput variables:\nvar1 =",var1,"\nvar2 =",var2,"\n")
+    cat("\nInput variables:\nvar1 =", var1,"\nvar2 =", var2,"\n")
     cat("\nCalculating functions...\n")
     cat("\nAdding...\n")    
   }
@@ -444,7 +448,9 @@ my.function<-function(var1=0,var2=0,verbose=FALSE){
     cat("\nGenerating output...\n")
   }
   
-  outlist<-list(input1=var1,input2=var2,addition=add,subtraction=subt,multiplication=mult,division=div)
+  outlist<-list(input1=var1, input2=var2,
+                addition=add, subtraction=subt,
+                multiplication=mult, division=div)
 
   return(outlist)
 }

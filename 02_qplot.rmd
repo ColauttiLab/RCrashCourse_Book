@@ -88,17 +88,19 @@ The `ggplot2` package includes two main functions, quickplot `qplot()` for fast 
 
 ### Data setup
 
-We will again be working with the `FallopiaData.csv` dataset, which can be downloaded here: https://colauttilab.github.io/RCrashCourse/FallopiaData.csv, and saved to your project folder, which you can identify with the `getwd()` function. You may want to save this to a folder called 'Data', and then open the file in R:
+We will again be working with the `FallopiaData.csv` dataset, which can be downloaded here: https://colauttilab.github.io/RCrashCourse/FallopiaData.csv, and saved to a folder called `Data` inside your project folder. You can find your currentworking folder with the `getwd()` function. This was covered in the [R Fundamentals Tutorial].
+
+Now load the *.csv* file into R as a `data.frame` object:
 
 ```{r, eval=F}
 MyData<-read.csv("./Data/FallopiaData.csv", header=T)
 ```
 
-alternatively, you can load the file right from the internet:
+Alternatively, you can load the file right from the internet:
 
 ```{r}
-MyData<-read.csv("https://colauttilab.github.io/RCrashCourse/FallopiaData.csv", 
-                 header=T)
+MyData<-read.csv(
+  "https://colauttilab.github.io/RCrashCourse/FallopiaData.csv")
 ```
 
 This dataset comes from the research group of Dr. Oliver Bossdorf at the University of Tuebingen in Tuebingen, Germany -- a wonderful little town on the Neckar River. The data come from a plant competition experiment involving two invasive species from the genus *Fallopia*.  
@@ -124,7 +126,7 @@ Think back to the [R Fundamentals Tutorial](https://colauttilab.github.io/RCrash
 
 If we input one continous variable, `qplot` will produce a frequency histogram by default.
 
-##### Histogram
+**Histogram**
 
 ```{r}
 qplot(x=Total, data=MyData)
@@ -134,7 +136,7 @@ qplot(x=Total, data=MyData)
 
 If we input one categorical variable, `qplot` will produce a bar graph showing counts for each category.
 
-##### Bar Graph
+**Bar Graph**
 
 ```{r}
 qplot(x=Scenario, data=MyData)
@@ -144,7 +146,7 @@ qplot(x=Scenario, data=MyData)
 
 If we input two continuous variables, we get the classic bivariate plot a.k.a. scatterplot.
 
-##### Bivariate plot
+**Bivariate Plot**
 
 ```{r}
 qplot(x=Silene, y=Total, data=MyData)
@@ -164,7 +166,7 @@ In this case we can see that there is only one type of "Low" Nutrient treatment,
 
 If we input a combination of categorical and continuous variables, we see get a categorical scatterplot showing the spread of points along the Y or X axis.
 
-##### Categorical scatter plots
+**Categorical scatter plots**
 
 ```{r}
 qplot(x=Nutrients, y=Total, data=MyData)
@@ -195,21 +197,28 @@ qplot(x=Total, data=MyData, binwidth=0.5)
 
 ### `size`
 
-This controls the size of points (usually) or sometimes lines, depending on the context.
+This controls the size of points (usually) or sometimes lines, depending on the context. It's also important to understand that many parameters in plotting can be inerpreted in two ways
+
+  1. As a vector (e.g. scale this colour/size/shape based on a column of data)
+  2. As a value (e.g. I want this exact colour/size/shape)
+  
+In `qplot` the second option usually requires the **identity** function `I`. Compare these two examples.
 
 ```{r}
-qplot(x=Silene, y=Fallopia, data=MyData, size=Total) # Scale by a variable
-qplot(x=Silene, y=Total, data=MyData, size=I(5)) # Scale by a constant
+qplot(x=Silene, y=Fallopia, data=MyData, size=Total)
+qplot(x=Silene, y=Total, data=MyData, size=I(5))
 ```
 
 **NOTE** the use of the identity function: `I()` for constant. What happens if you just put a 5 in there without the identity function? Do it and see if you can figure out the problem.
 
 Try using different numbers for comparison (e.g., 2, 5 and 10). How does the size change when you include the `I()` function vs when you just put the number in?
 
-The explanation is a bit tricky, but imagine if you added a column to your data frame and put in a number. Then for size you put the column name. R would treat this as a variable and scale the size of the symbol to the value in this column. However, since all the rows have the same value, then they all have the same scaled size. Now try using a different column for scaling:
+The explanation is a bit tricky, but imagine if you added a column to your data frame and put in a number. Then for size you put the column name. R would treat this as a variable and scale the size of the symbol to the value in this column. However, since all the rows have the same value, then they all have the same scaled size. 
+
+Now try using a different column for scaling:
 
 ```{r}
-qplot(x=Silene, y=Total, data=MyData, size=Total) # Scale by column 'Total'
+qplot(x=Silene, y=Total, data=MyData, size=Total)
 ```
 
 You can see in the legend how the point size scales with the column called *Total*
@@ -220,18 +229,28 @@ On the other hand, the identify function `I()` tells R: *I want to use this exac
 
 Another nice feature of `qplot` and `ggplot` is that you can use different spelling. You can use colour or color to colour add colour to your graphs.
 
-For example, you can colours points based on a factor
+For example, you can colours points based on a factor...
 
 ```{r}
-qplot(x=Silene, y=Fallopia, data=MyData, colour=Nutrients) # Categorical colour
-qplot(x=Silene, y=Fallopia, data=MyData, colour=Total) # Continuous colour
+qplot(x=Silene, y=Fallopia, data=MyData, colour=Nutrients)
 ```
 
-Or use the identity function `I()` again to set a specific colour
+... or a continuous variable.
 
 ```{r}
-qplot(x=Silene, y=Total, data=MyData, colour=I("purple")) # basic colour
-qplot(x=Silene, y=Total, data=MyData, colour=I(rgb(1,0,0))) # rgb = red/green/blue
+qplot(x=Silene, y=Fallopia, data=MyData, colour=Total) 
+```
+
+Or use the identity function `I()` again to set a specific colour.
+
+```{r}
+qplot(x=Silene, y=Total, data=MyData, colour=I("purple"))
+```
+
+Not all colours are available as strings, but you can make just about any colour with the `rgb()` function. It takes three values corresponding to the intensity of red, green and blue light, respectively.
+
+```{r}
+qplot(x=Silene, y=Total, data=MyData, colour=I(rgb(1,0,0)))
 ```
 
 #### Histogram
@@ -260,10 +279,11 @@ Use this to adjust the position, usually for histograms or bar graphs. For examp
 qplot(x=Total, data=MyData, group=Nutrients, fill=Nutrients)
 ```
 
-It's hard to interpret that graph, so we can shift the position using `"dodge"`.
+It's hard to interpret that graph, so we can shift the position using `dodge`.
 
 ```{r}
-qplot(x=Total, data=MyData, group=Nutrients, fill=Nutrients, posit="dodge")
+qplot(x=Total, data=MyData, group=Nutrients, fill=Nutrients, 
+      posit="dodge")
 ```
 
 ### `alpha`
@@ -273,7 +293,7 @@ Think of `alpha` as a measure of opacity, ranging from 0 to 1 with 1 being the d
 This is particularly useful for visualizing overlapping points.
 
 ```{r}
-qplot(x=Silene,y=Total,data=MyData,size=I(5),alpha=I(0.3))
+qplot(x=Silene, y=Total, data=MyData, size=I(5), alpha=I(0.3))
 ```
 
 ### `shape`
@@ -281,8 +301,8 @@ qplot(x=Silene,y=Total,data=MyData,size=I(5),alpha=I(0.3))
 You can also change the shape of your points, again using a column of data or the identity `I()` function.
 
 ```{r}
-qplot(x=Silene,y=Total,data=MyData,size=I(5),shape=Nutrients)
-qplot(x=Silene,y=Total,data=MyData,size=I(5),shape=I(17))
+qplot(x=Silene, y=Total, data=MyData, size=I(5), shape=Nutrients)
+qplot(x=Silene, y=Total, data=MyData, size=I(5), shape=I(17))
 ```
 
 There are a number of different shapes available, by specifying a number from 0 through 25.
@@ -311,7 +331,8 @@ Note that the shapes with grey in the above figure can be coloured with `fill=` 
 You can use `fill` and `colour` to customize these separately.
 
 ```{r}
-qplot(x=Silene,y=Total,data=MyData,size=I(5),shape=I(21),fill=I("yellow"),colour=I("red"))
+qplot(x=Silene, y=Total, data=MyData, size=I(5), shape=I(21),
+      fill=I("yellow"), colour=I("red"))
 ```
 
 ### `lab`, `xlab`, and `ylab`
@@ -320,7 +341,7 @@ Use these to customize your axis labels.
 
 ```{r}
 qplot(x=Silene, y=Total, data=MyData,
-      xlab="Silene Biomass",ylab="Total Biomass")
+      xlab="Silene Biomass", ylab="Total Biomass")
 ```
 
 ### `main`
@@ -328,7 +349,7 @@ qplot(x=Silene, y=Total, data=MyData,
 This will add a title to your plot. Usually you wouldn't use this for a figure intended for publication, but this can be useful for reports, websites, presentations, supplementary material, appendices, etc.
 
 ```{r}
-qplot(x=Silene,y=Total,data=MyData,main="Biomass")
+qplot(x=Silene, y=Total, data=MyData, main="Biomass")
 ```
 
 <br>
@@ -347,16 +368,48 @@ These are easy to understand with a few examples.
 
 There are a number of available themes, defined by changing the *NAME* part. 
 
+**Default theme:**
+
 ```{r}
-qplot(x=Silene,data=MyData) + theme_grey() # default
-qplot(x=Silene,data=MyData) + theme_bw() # cleaner, better contrast
-qplot(x=Silene,data=MyData) + theme_linedraw() # thicker grid lines
-qplot(x=Silene,data=MyData) + theme_light() # fainter border and axis values
-qplot(x=Silene,data=MyData) + theme_minimal() # no borders
+qplot(x=Silene,data=MyData) + theme_grey()
+```
+
+**A cleaner theme with better contrast:**
+
+```{r}
+qplot(x=Silene,data=MyData) + theme_bw()
+```
+
+**Thicker grid lines:**
+
+```{r}
+qplot(x=Silene,data=MyData) + theme_linedraw()
+```
+
+
+**Fainter border and axis values**
+
+```{r}
+qplot(x=Silene,data=MyData) + theme_light()
+```
+
+**No borders at all**
+
+```{r}
+qplot(x=Silene,data=MyData) + theme_minimal()
+```
+
+**A minimal theme, closest to what you would see in a published paper**
+
+```{r}
 qplot(x=Silene,data=MyData) + theme_classic() # x and y lines only, no tick marks
 ```
 
-These can be further customized. Or you can create a completely new theme. For example, here is a simplified and cleaner version of `theme_classic` but with bigger axis labels taht are more suitable for figures in presentation or publication:
+These can be further customized. Or you can create a completely new theme. 
+
+### Custom Theme
+
+For example, here is a simplified and cleaner version of `theme_classic` but with bigger axis labels taht are more suitable for figures in presentation or publication:
 
 ```{r}
 # Clean theme for presentations & publications used in the Colautti Lab
@@ -387,16 +440,16 @@ A third, even easier option, is to load the version of this code that is availab
 source("http://bit.ly/theme_pub")
 ```
 
-The theme is called `theme_pub` (pub = publication):
+The theme is called `theme_pub` (pub is short for publication):
 
 ```{r}
-qplot(x=Silene,data=MyData) + theme_pub() # A clean format with bigger axis labels for publication
-qplot(x=Pct_Fallopia,y=Silene,data=MyData) + theme_pub() # Bivariate plot
+qplot(x=Silene,data=MyData) + theme_pub()
+qplot(x=Pct_Fallopia,y=Silene,data=MyData) + theme_pub() 
 ```
 
 ### `theme_set`
 
-If you want to use the same theme throughout your code, you can use this funciton.
+If you want to use the same theme throughout your code, you can use this function.
 
 ```{r}
 theme_set(theme_pub())
@@ -410,13 +463,13 @@ In addition to the default genomes that `qplot` uses for different data types, t
 For example, the scatterplot doesn't give a good sense of the spread of the data.
 
 ```{r}
-qplot(x=Nutrients,y=Total,data=MyData) # Basic
+qplot(x=Nutrients,y=Total,data=MyData)
 ```
 
 But the `boxplot` geom shows the median (line), 1st and 3rd quartiles (boxes), range of most observations (whiskers), and potential outliers (dots)
 
 ```{r}
-qplot(x=Nutrients,y=Total,data=MyData,geom="boxplot") # Geom
+qplot(x=Nutrients,y=Total,data=MyData,geom="boxplot")
 ```
 
 Another useful example is for histograms with many 'bins' which can be smoothed into a `density` curve rather than plotting bar graphs.
@@ -424,13 +477,13 @@ Another useful example is for histograms with many 'bins' which can be smoothed 
 For example, the bar graph from above 
 
 ```{r}
-qplot(Total,data=MyData) # Basic
+qplot(Total,data=MyData)
 ```
 
 reformatted as a `density` geom.
 
 ```{r}
-qplot(Total,data=MyData,geom="density") # Geom
+qplot(Total,data=MyData,geom="density")
 ```
 
 See the `ggplot2` website for a complete list of geoms with examples:
@@ -451,10 +504,22 @@ It is often handy to plot separate graphs for different categories of a grouping
 
 Facets have the general form `VERTICAL ~ HORIZONTAL`. Use the period `.` to indicate 'all data' r 'do not separate my data'.
 
+**Vertical stacking**
+
 ```{r}
-qplot(x=Silene,data=MyData,facets=Nutrients~.) # Vertical stacking
-qplot(x=Silene,data=MyData,facets=.~Nutrients) # Horizontal stacking
-qplot(x=Silene,data=MyData,facets=Taxon~Nutrients) # Both (2 column stacking)
+qplot(x=Silene, data=MyData, facets=Nutrients~.)
+```
+
+**Horizontal stacking**
+
+```{r}
+qplot(x=Silene, data=MyData, facets=.~Nutrients) 
+```
+
+**Both (grid)**
+
+```{r}
+qplot(x=Silene, data=MyData, facets=Taxon~Nutrients) 
 ```
 
 <br>
@@ -475,12 +540,12 @@ Saving your graphs to an external file requires three important steps:
 
 Failing to close the file is a common source of error when generating graphs. If you are having problems with graphing outputs, try running the `dev.off()` function a few times to make sure you close any files that are 'hanging' open.
 
-Here's an example code for making a `pdf` output of a grpah.
+Here's an example code for making a `pdf` output of a graph.
 
 ```{r,eval=F}
-pdf("SileneHist.pdf") # 1. Create and open a file
-  qplot(x=Silene,data=MyData,facets=Taxon~Nutrients) # 2. Write the graph info
-dev.off() # 3. Close the file
+pdf("SileneHist.pdf") # 1. Open
+  qplot(x=Silene, data=MyData, facets=Taxon ~ Nutrients) # 2. Write
+dev.off() # 3. Close
 ```
 
 Note how the qplot command does not open in the plots window when you run this. This is because the info is sent to *SileneHist.pdf* file instead of the graphing area in your R console (e.g. *plots* tab in R Studio)
