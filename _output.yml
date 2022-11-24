@@ -1,18 +1,18 @@
 bookdown::gitbook:
-  css: "style.css"
+  css: style.css
+  highlight: tango
   config:
     toc:
       before: |
-        <li><a href="./">@ColauttiLab</a></li>
+        <li><a href="./">R Crash Course for Biologists</a></li>
       after: |
-        <li><a href="https://ecoevogeno.org/" target="blank">EcoEvoGeno.org</a></li>
+        <li><a href="https://EcoEvoGeno.org" target="blank">Robert I. Colautti</a></li>
     download: ["pdf", "epub"]
 bookdown::pdf_book:
-  css: "style.css"
-  citation_package: natbib
-  keep_tex: no
+  highlight: tango
   includes:
     in_header: preamble.tex
   latex_engine: xelatex
-bookdown::html_book:
-  css: "style.css"
+  citation_package: natbib
+  keep_tex: yes
+bookdown::epub_book: default

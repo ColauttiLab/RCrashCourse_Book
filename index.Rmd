@@ -1,82 +1,150 @@
 --- 
 title: "R Crash Course <br> for Biologists"
-author: "Robert I. Colautti"
-date: "`r Sys.Date()`"
-documentclass: book
-description: "A Crash Course in R for Biologists"
-editor_options: 
-  chunk_output_type: console
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+site: bookdown::bookdown_site
+description: A Crash Course in R for Biologists
+geometry: paperheight=9.25in,paperwidth=7.5in,margin=1in,right=1.5in,bottom=1.5in
+fontsize: 10pt
+mainfont: Arial
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(fig.width=4,fig.height=3)
+```
+
+
+\newpage 
 
 # Preface {-}
 
-This book is targeted at students and professionals in the biological sciences who wish to develop coding skills for the analysis of biological data using R. The content is based on my teaching experience at the senior undergraduate and early graduate level for a range of topics in Biology and Health Sciences at Queen's University -- Environmental Science, Epidemiology, Genomics, Ecology, and Evolution. Many biology students do not receive strong quantitative skills training in math, statistics, or computer science but later realize how valuable these skills can be for investigating biological phenomena. This book tries to demystify mathematical equations and computational algorithms using a hands-on tuturial approach. 
+**Think of a Biologist**. Who do you see? Take a minute to write down some characteristics in your mind. Try to be specific: gender, skin, age, height, hair, clothes, personality. Who do you see?
 
-Professionals who have little to no coding and quantitative skills may also find this book helpful, as it assumes only minimal training in math and statistics. 
+Now think of a *computer programmer* or *data scientist*. Write down their characteristics.
 
-To help demonstrate the tremendous value of coding and quantitative skills, I focus on examples drawn from real biological studies. This provides real-world examples of how one can apply programming tools and techniques to curate, analyze, and visualize biological data. These are the areas in which I have researched and published papers -- opportunities that were presented to me because of my ability to analyze data in a reproducible and open framework. Thee tools presented here are the very same tools that I use on a regular basis for rigorous, peer-reviewed analysis. A few examples of our datasets, analyses and visualizations using R include:
+How do these people differ in your mind? Can you imagine them being the same person? Can you picture yourself in both roles? 
 
-  1. A *Science* paper examining rapid evolution of flowering time: https://doi.org/10.1126/science.1242121
+The goal of this book is to bridge these two worlds. In writing this book, I assume you are a practising biologist or a student of biology, or you are just motivated by biological phenomena. It doesn't matter if you are a recent high school graduate entering into a biology undergraduate program, a graduate student embarking on an independent research dissertation, or a senior scientist with specialized expertise in the science of life. As long as you are interested in learning how to code, this book is written for you.
+
+The goal of this book is to provide a 'how-to' guide to connect you to the world of data science. We focus on the fundamentals of the R programming language and its applications in biology. In writing this book, I assume you do not have much coding experience. Whether you are a new biology student or a seasoned professional, this book was written for you.
+
+There are many great introductions to the R coding language available in print and online. But these tend to be general and abstract, sometimes going on tangents that are not so relevant to what you want to do as a biologist. 
+
+What makes this a different, is that it is written with the biologist in mind. Specifically, my goal was to write the book that I wish I had access to as an undergraduate student learning how to collect and analyze data. With the benefit of hindsight, I've tried to cut out all the programming details that haven't been of much use to me as a data scientist, and focus on the most common methods. I've tried to connect to biological questions and examples as much as possible, without getting too side-tracked with biological details. 
+
+This decision-making progress is based on my research and teaching experience in a range of topics in Biology and Health Sciences at Queen's University -- Environmental Science, Epidemiology, Genomics, Ecology, and Evolution. 
+
+A comprehensive coding volume would require thousands of printed pages and take decades to master. In choosing the content for this book, I have focused on everything that I wish I knew when I first started learning to program in R. Many of the functions and packages included here were not available when I started, but have some exceptional functionality. I continue to add new tricks and techniques that I find useful. 
+
+## Is this book for you?
+
+Maybe you are curious about coding for data analysis but you aren't sure if you want to invest the time and energy you will need to become competent in these methods. Many students in biology programs do not receive strong quantitative skills training in math, statistics, or computer science. In fact, many of us choose to go into biology programs because we are scared of the quantitative focus of the 'hard' sciences like physics and chemistry. Only much later do we realize how valuable these skills can be for investigating biological phenomena. Modern biology is defined by 'big data' sources including high-throughput sequencing, real-time environmental measurements, satellite imaging, animal tracking, human health monitoring, etc. Along with more traditional types approaches, these data are increasingly made available in online databases that are too big to navigate manually. Coding is not simply helpful to biologists -- it's becoming essential.
+
+To help demonstrate the tremendous value of coding, I focus on examples drawn from real biological studies. I try to provide real-world examples of how one can apply programming tools and techniques to curate, analyze, and visualize biological data. These tend to be areas in which I have researched and published papers -- opportunities that were presented to me because of my ability to analyze data in a reproducible and open framework. However, a key theme is that these skills are highly transferable, not only across the biological sciences but to other disciplines. 
+
+Here are a few examples of the diversity of data, analyses, and visualizations in my own collaborations, which all use similar methods in R:
+
+  1. A paper examining rapid evolution of flowering time, published in Science: https://doi.org/10.1126/science.1242121
   2. A *de novo* genome assembly: https://doi.org/10.1093/g3journal/jkab339
-  3. A Meta-analysis of evolution of invasive species: https://doi.org/10.1111/mec.13162
-  4. Tracking COVID-19 ourbreaks using whole-genome sequencing: https://doi.org/10.1038/s41598-021-83355-1
-  
-  
-In choosing the content for this book, I tried to focus on everything that I wish I knew when I first started learning to program in R. Many of the functions and packages included here were not available when I started, but have some exceptional functionality. I continue to add new tricks and techniques that I find useful.
+  3. A meta-analysis of evolution of invasive species: https://doi.org/10.1111/mec.13162
+  4. Tracking COVID-19 outbreaks using whole-genome sequencing: https://doi.org/10.1038/s41598-021-83355-1
+  5. A study of metabolites in nasal swabs that can differentiate COVID-19 from other viral infections in human patients: https://www.nature.com/articles/s41598-022-14050-y
+  6. An analysis of 3,429 herbarium images and >1 million weather records to reconstruct evolution of an invasive plant: https://www.pnas.org/doi/full/10.1073/pnas.2107584119
+  7. A model of species range limits 
+
+## Why R? 
+
+In Biology, there are two dominant programming languages: **Python** and **R**. Thousands of hours have been wasted arguing the merits of one programming language over another. The truth is that there is a lot of similarity and it's very easy to to move from one to the other. 
+
+There are many other programming languages used in Biology. **C/C#/C++** and **Java** are popular in computer science because they provide a high level of control, but this comes at a cost of abstraction and a steeper learning curve. Bash programming in **Unix/Linux/GNU** is all but necessary for high-performance computing on remote servers, but in biology it is most often used to automate file management and to run programs written in other languages. **Julia** is gaining momentum for mathematical modellers, but it is still in its infancy. **PERL** was popular for bioinformatics but is not as common as Python.
+
+We focus on R because it is more commonly used in published statistical analyses in Biology, and it is a bit easier to learn. As you will see, it is very easy to walk through the fundamentals and generate graphs and statistical analyses within just a few hours of tutorial. This comes at a cost of slower run-times and less flexibility than Python, but this is usually not a problem for beginners. In fact, it is possible to use R to run Python code (or C++ or many other languages). More importantly, concepts like data objects, function and packages are conceptually very similar between R and Python, making it easy to move from one language to the other. The truth is that they are both good languages and anyone who tells you that language A is better than B is simply showing their ignorance about language B.
 
 ## Advice
 
-If this is your first attempt to learn how to code, then it's important to understand HOW to learn to code. It's crucial to understand that you won't learn to code just by reading this text and the examples. You need to take control of your education and actively participate with the examples in this book. Consider that R is a programming *language*...
+If you've completed a few years of any undergraduate program in biology, then you've probably developed a good approach to study various subjects in Biology. Maybe it involves reading the textbook, attending lectures, and making notes that you review before the big test. Coding is different.
+
+If this is your first attempt to learn how to code, then it's important to understand HOW to learn to code. You won't learn by reading this textbook. You need to take **participate** and actively take control of your learning by typing along with the examples in this book. 
+
+Consider that R is a programming *language*. When I teach this content at the senior undergraduate and junior graduate level, I often begin with a poll of students to see who has learned to speak more than one language. I then ask:
 
 **Question**: How did you become fluent in a second language? 
-  
+
+Some common themes in the answers tend to be:
+
   * Immerse yourself
   * Study, read, listen
   * Try something new, fail, correct errors, repeat
   * Practice, practice, practice!
-
-
-**Question**: How do you become fluent in a programming language?
+  
+How do you become fluent in a programming language? Pretty much the same way:
   
   * Immerse yourself
-  * Study, read, TYPE!
+  * Study, read, and **type everything out**!
   * Try something new, fail, correct errors, repeat
   * Practice, practice, practice!
 
-Here are a few specific tips to become fluent in R:
+Learning a new language is not easy. Learning a programming language is not easy either. Here are a few specific tips to become fluent in R:  
 
-  1. Get organized and PLAN. Plan which pages/lessons you want to focus on for the day/week/month/semester. 
-  2. As your skills develop, you will start to develop a toolbox of coding techniques. Look for opportunities to apply them. Take time to plan out a course of action to help you think about what coding tools you can apply.
-  3. Set aside large blocks of time (2+ hours), to **immerse yourself** in your coding lessons or project. Turn off your phone, turn off your wifi, and find some place you can work without interruption.
-  3. Get some good headphones with white noise or instrumental sounds (no lyrics), depending on mood:
-  
-    a. Baroque/Classical
+  1. **Get organized and PLAN**. Use a personal calender and schedule sufficient time to deal with error messages. This is important to accept, though it can be difficult: troubleshooting your code often takes more time than planning and writing it!
+  2. **Apply what you learn**. You will start to develop a toolbox of coding techniques from day one. Look for opportunities to apply them whenever you can. Even if it takes a lot longer to code than to use other methods, the extra time is worth it in the long run. Take time to think about what coding tools you can apply.  
+  3. **Experiment**. Try new things, make mistakes, solve problems.  
+  4. **Devote time**. Set aside large blocks of time (2+ hours), to **immerse yourself** in your coding lessons or project.   
+  5. **Focus**. Turn off your notifications. Eliminate distractions. Put your phone and computer on 'airplane mode'. Do whatever it takes to work without interruption. Get some good headphones with white noise or instrumental sounds (no lyrics) to block out distractions. Here are some things I listen to, depending on mood:  
+    a. Baroque/Classical  
     b. Smooth Jazz  
-    c. Electronic (ambient, house, lofi)
-    e. https://coffitivity.com/
-    
-  4. If you get stuck, Google: "How do I ______ in R". Look for answers from [Stack Overflow](https://stackoverflow.com/)
-  5. If you can't figure out what an error means, paste it into Google. Again, look for answers from [Stack Overflow](https://stackoverflow.com/)
-  6. Read other people's code carefully to see how they tackle problems. Rarely is there one single 'right' way to code something. 
-  7. When you are starting out, the 'right' way to code is whatever it takes to get the code to do what you want.
-  8. As you advance, look for ways to do the same thing faster and with fewer lines of code.
-  8. **EMBRACE FAILURE!** -- even after 10+ years of programming experience, most of my algorithms do not work on the first try, and most of my time is spent dealing with error messages and unexpected output.
-  9. **Read** the documentation for the function or package you are using. Often the repository on [R-CRAN.org](https://cran.r-project.org/) or [Bioconductor](https://www.bioconductor.org/) will have not only the official documentation but also 'vignettes' or tutorials to guide you through its details.
+    c. Electronic (ambient, house, lofi)  
+    d. https://coffitivity.com/  
+  6. **Learn to Troubleshoot**.  
+    a. If you get stuck, Google: "How do I ______ in R". Look for answers from a website called [Stack Overflow](https://stackoverflow.com/)  
+    b. If you can't figure out what an error means, paste it into Google. Again, look for answers from [Stack Overflow](https://stackoverflow.com/)  
+  7. **Socialize**. Find a coding support group or find a few others to form your own group. Discuss problems and successes. Read other people's code to see how they tackle problems. Rarely is there one single 'right' way to code something.   
+  8. **Git 'er done**. When you are starting out, the 'right' way to code is whatever it takes to get the code to do what you want. Don't let perfection be the enemy of the good: messy code that works is 100% better than efficient code that never runs.  
+  9. **Improve**. As you get more comfortable you can start to think about cleaner, clearer, more efficient ways to code. As you advance, look for ways to do the same thing faster and with fewer lines of code.  
+  10. **Embrace Failure**. I can't stress this enough. Even after 10+ years of programming experience, most of my code does not work on the first try, and most of my time is spent dealing with error messages and unexpected output.  
+  11. **Read** the documentation for the function or package you are using. Don't worry if you don't understand everything. Be sure to take the time to read it slowly and try to understand as much as you can. Try searching online for terms or phrases that are not familiar to you. You will come across these again in the future, so you are investing time now for future payoff. In addition to the built-in help in R, often the repository on [R-CRAN.org](https://cran.r-project.org/) or [Bioconductor](https://www.bioconductor.org/) will include 'vignettes' or tutorials with worked examples.  
 
 ## Learn By Doing!
 
-As you work through these self-tutorials, don't just read them. I can't stress this enough: type them out in your R (Studio) console and see what the output looks like. The simple act of typing it out will send messages to your brain telling it that this is an important thing to remember and store in there somewhere. If you get an error, even better! Read the error carefully, then compare what you typed to what is in the tutorial. Once you find what is different, you will learn what that error means.
+As you work through these self-tutorials, don't just read them. I can't stress this enough: take the time to type out the commands in your R (Studio) console and make sure you get the same output. The simple act of typing it out will send messages to your brain saying "hey, this is an important thing to remember." If you get an error, even better! Read the error carefully, then compare what you typed to what is in the tutorial. Once you find what is different, you will learn what that error means.
 
-About 70-90% of coding is dealing with errors, and the same is true for learning to code.
+About 70-90% of coding time is dealing with errors, and the same is true for learning to code. This can be difficult for us to accept because our experience in biology programs is quite different. 
 
-In my experience there are three main steps to coding competence. 
+## What to Expect
+
+Learning to code is a lifelong journey. There is always more to learn and new ways to improve. The beginning of the journal might be broken up into three overlapping stages, depending on the level of training you have already received:
 
   1. **Utter bewilderment** -- reading code is like reading a foreign language. All these letters and symbols are meaningless to you.
-  2. **Understanding** -- you can look at a function and have a decent idea of what it does and how to use it.
-  3. **Competence** -- you can write your own code from scratch, without needing to look up examples. 
+  2. **Understanding** -- you can look at a function and have a decent idea of what it does and how to use it, but you don't understand most of the parameters. You usually rely on default parameters.
+  3. **Competence** -- you can write your own code from scratch, without needing to look up examples, and you are able to carefully review and apply parameters. You rarely trust default parameters, especially for more complicated functions.
+  4. **Expertise** -- you write your own functions and help others to troubleshoot code, analysis pipelines, etc. Maybe you even have your own published R package or algorithms.
   
-Don't confuse *understanding* with *competence* -- this is a common mistake that students make. It's relatively easy to learn how to understand code that is shown to you, but it's quite another skill to learn the names and parameters of useful functions and apply them in the appropriate circumstances. That doesn't mean you need to memorize every function -- though memorization can help. A good strategy for move from understanding to competence is to make the extra time and effort to type out the code that is shown to you, even when you can look at it and understand what it does. Again, the act of typing out the code is what will help to solidify it in your brain.
+Don't confuse *understanding* with *competence* -- this is a common mistake that students make. It's relatively easy to learn how to understand code that is shown to you, but it's quite another skill to learn the names and parameters of useful functions and apply them to solve problems or answer questions. That doesn't mean you need to memorize every function -- though memorization can help. A good strategy to move from understanding to competence is to make the extra time and effort to type out the code that is shown to you, even when you can look at it and understand what it does. As noted above, the act of typing out the code is what will help to solidify it in your brain.
   
+## Translational Coding
+
+There is often a mismatch between the knowledge acquired through a university degree and the skills that employers need in their workforce. That is, newly minted university students have a lot of knowledge and skills for learning, but often struggle with goals laid out by employers or in entrepreneurial endeavours or thesis/dissertation research.
+
+In the computing world, the disconnect between learning and application can happen when students have acquired knowledge of coding algorithms and tools, but learn to apply these tools only when working within a 'sandbox' created for teaching purposes. The sandbox is a clean and well-groomed programming environment with pre-loaded software and examples, curated by the educator. The sandbox lacks the messiness and ambiguity that define real-world applications, and the student never faces these uncomfortable but highly relevant challenges. The sandbox approach is commonly used in both university settings and online courses (e.g. Udemy, Coursera, Datacamp, Skillshare). 
+
+A typical teaching sandbox will probably include pre-installed software with 'clean' data defined by a well-defined data structure without errors or missing observations. It will probably have a clear and singular path from problem to solution. This approach has the advantage of efficiency -- both for the educator and for the learner. The learner can be guided to move efficiently through key learning objectives while minimizing unexpected bugs or problems that can slow progress and take significant time for educators to deal with. The sandbox creates a more homogeneous experience that is more efficient for tracking progress and assigning grades. The trade-off is that sandbox learning does a poor job preparing you for the messy realities of coding with real data in the real world.
+
+An alternative to the sandbox approach is translational coding, which borrows the term from translational medicine. Translational medicine is a multidisciplinary hybrid between research and application that directly connects medical researchers to the needs of patients. Similarly, translational coding tries to directly connect coding skills and tools to the needs of potential employers.
+
+This will not be pleasant for you, the learner, at first. The sandbox approach is popular with learners because it is relatively quick and painless with minimal time needed for researching, planning, debugging, and other forms of problem solving. There is value to learning to work quickly and efficiently, but there is also value in learning to deal with problems that arise in the real-world. This includes dealing with errors at every stage, from installing software to problems hidden among thousands of lines of data or code. This can be frustrating at first, and it will absolutely slow down your progress. There are three key things to remember when this happens:
+
+  1. Every error, problem, or roadblock is a **learning opportunity**. Every problem and assignment will have specific goals and challenges that are explicitly laid out by the tutorial, assignment or practice problem. These are the challenges that every learner must overcome to complete the task. In addition, there are *implicit* challenges that may be unique or shared by only a few learners -- a particular typo in the code, an error importing or saving, an unidentified error in your dataset. These implicit problems may feel 'unfair' because not every learner has to deal with the same problems at the same time. Over time however, these will tend to average out so that everyone will make similar mistakes just at different times.
+  2. You can learn to **budget your time** to deal with these implicit, unforeseen errors. And this is an important and highly-transferrable skill! Start a problem or assignment as soon as possible. Give yourself time to take a break and come back to a problem when you get stuck. When you estimate how long an assignment will take, don't just look at the *explicit* goals. Remember to also add time for the *implicit* challenges, which will take much longer to complete.
+  3. **Time devoted to a new problem pays off in the future**. Most of your time will be spent the first time you encounter a problem. If you take the time to read the error or warning, think about it, and investigate it, then you will know how to recognize and deal with it in the future. Once you learn to recognize and solve a particular problem, you will know how to recognize and deal with it in the future. In this way, implicit challenges tend to balance out among learners over time. Some learners will encounter a problem early and struggle while others move ahead, until they encounter the same problem, evening the playing field.
+  
+The most important thing is to **embrace the challenge**! Don't let yourself get discouraged.
+
+Now, let's get coding...
+  
+\newpage
+
 # Setup
 
 ## R 
@@ -91,26 +159,35 @@ Versions are available for Windows, MacOS and Linux operating systems. Immediate
 You should also install R Studio:
 https://rstudio.com/products/rstudio/download/#download
 
-R Studio is an **Integrated Development Environment (IDE). Once you install and open R Studio, run the program for the first time.
+R Studio is an **Integrated Development Environment (IDE)**. Once you install R Studio, go ahead and run the program.
 
-You will see several helpful *tabs* -- small windows. Several windows have more than one tab at the top, which you can click on to access. 
+You will see several helpful *tabs*, probably arranged across four windows. Several windows have more than one tab at the top, which you can click to access. Here is a quick overview of the more useful ones (some of this will make more sense after you work through the first few chapters of the tutorial):
 
-### Console
+  * **Environment** keeps track of all of the objects in your programming environment. If this doesn't make sense now, it will later.
+  * **History** keeps track of the code you have run.
+  * **Files** similar to the Finder (MacOS) or File Explorer (Windows), starting with the *working directory*.
+  * **Plots** are where your plots are created
+  * **Packages** show which packages you have installed, and which have been loaded.
+  * **Help** provides documentation for R functions
+  * **Console**...
+  
+## Console
 
-One of the most important tabs is the console. It's usually the main tab that opens when you open R Studio. You'll see a little chevron `>` with a cursor after it. That's the R Console and it's the part that actually runs the R program. The other tabs help with other things, like keeping track of your files, a place to show graphs that you make, a **help** tab to look for information on particular functions, and several other useful tabs that you can read about in the R Studio documentation.
+One of the most important tabs is the console. It's usually the main tab that opens on the left when you first start R Studio. You'll see a little chevron **`>`** with a cursor after it. That's the R Console and it's the part that actually runs the R program.
+  
 
 ### R Script
 
-To run an R script, you can just type functions into the console. However, it is very hard to keep track of everything you do if you only use the console. In R Studio you can click **File-->New File-->R Script**. This will open a new tab window called **Untitled**. This is called a **script**, but it's really just a text file, with a **.R** suffix, that you can use to keep track of your R program. Try typing something into your R script -- don't worry for now if it is just some random text. Note that you can **Save** this file.
+To run an R script, you can just type functions into the console. However, it is very hard to keep track of everything you do if you only use the console. In R Studio you can click **`File-->New File-->R Script`**. This will open a new tab window called **Untitled**. This is called a **script**, but it's really just a text file, with a **.R** suffix, that you can use to keep track of your R program. Try typing something into your R script -- don't worry for now if it is just some random text. Note that you can **Save** this file.
 
 Nothing happens (yet). To run the script, you have to send the text from the script tab to the console tab. There are a few ways you could do this:
 
   1. Copy and paste manually. This works fine, but there are more effeicient options
   2. Highlight the code you want to run and click the **Run** button on the top-right corner of the script tab. The run button sends the highlighted text from the script to the console.
   3. If you click the **Run** button without highlighting text, it will send whatever text is on the same *line* as your cursor
-  4. If you press **Ctl + R** it will do the same thing -- this is the shortcut for the **Run** button
+  4. If you press **Ctl + Enter** (Windows) or **Cmd + Return** (Mac) it will do the same thing -- this is the shortcut for the **Run** button
   5. There are other options if you press the tiny triangle next to the **Run** button, including **Run All**. This is the equivalent of running one line at a time.
-  6. **Ctl + Shift + R** is a shortcut for **Run All**
+  6. **Ctl/Cmd + Shift + Enter/Return** is a shortcut for **Run All**
 
 ## Packages
 
@@ -118,12 +195,16 @@ Packages in R contain functions -- small programs that you can run. One really g
 
 > WARNING! This may take a long time to run
 
-To install the packages, open R Studio and look for the **Console** tab. 
-
-Type this into your console:
+To install the packages, open R Studio and look for the **Console** tab. Type this into your console:
 
 ```{r, eval=F}
 install.packages("tidyverse")
+```
+
+Next, install `devtools:
+
+```{r, eval=F}
+install.packages("devtools")
 ```
 
 

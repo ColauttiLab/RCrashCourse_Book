@@ -1,13 +1,18 @@
----
-output:
-  pdf_document: default
-  html_document: default
----
-# Data Science Intro
+\newpage
+
+# Data Science
 
 ## Setup
 
-If you don't have it installed, then run `install.packages("dplyr")` -- it can take a while to download and install.
+If you don't have it installed, then run `install.packages("tidyverse")` -- it can take a while to download and install.
+
+The **tidyverse** library is a set of packages created by the same developers responsible for R Studio. There are a number of packages and functions that improve on base R. The name is based on the idea of living in a data universe that is neat and *tidy*. 
+
+The book [R for Data Science](http://shop.oreilly.com/product/0636920034407.do) by Hadley Wickham & Garrett Grolemund is an excellent resource for learning about the tidyverse. In this chapter we'll touch on a few of the main packages and functions. 
+
+> **Protip** In general, any book by Hadley Wickham that you come across is worth reading if you want to be proficient in R.
+
+While we wait for the `tidyverse` to install, let's consider a few general principles of data science.
 
 ## Introduction to Data Science
 
@@ -38,15 +43,7 @@ In biology, it can be helpful to think of Data Science as a continuous life-cycl
 
 In this tutorial, we focus mainly on coding in R for steps 2, 3, and 6. Step 5 requires a firm understanding of statistics. Step 4 is covered in the tutorials on [qplot](./2_qplot.html) and [ggplot](./3_ggplot.html). Step 1 is everything covered in a typical degree in the biological sciences. 
 
-Data collection and management are crucial steps in the Data Science Life-Cycle. Read the paper by [Wu et al](https://www.biorxiv.org/content/early/2018/10/30/457051). called *baRcodeR with PyTrackDat: Open-source labelling and tracking of biological samples for repeatable science.* Pay particular attention to the '*Data Standards*' section. The *baRcodeR* and *PyTrackDat* programs and their application to current projects may also be of interest.
-
-### Data Science in R
-
-The book [R for Data Science](http://shop.oreilly.com/product/0636920034407.do) by Hadley Wickham & Garrett Grolemund is an excellent resource using R in Data Science projects. 
-
-> TIP: In general, any book by Hadley Wickham that you come across is worth reading if you want to be proficient in R.
-
-Here we'll be focusing on the `dplyr` packages from Wickham et al.
+Data collection and management are crucial steps in the Data Science Life-Cycle. Read the `baRcodeR` paper by [Wu et al](https://www.biorxiv.org/content/early/2018/10/30/457051). called *baRcodeR with PyTrackDat: Open-source labelling and tracking of biological samples for repeatable science.* Pay particular attention to the '*Data Standards*' section. The *baRcodeR* and *PyTrackDat* programs and their application to current projects may also be of interest.
 
 ## 2D Data Wrangling
 
@@ -54,14 +51,23 @@ The `dplyr` library in R has many useful features for importing and reorganizing
 
 ```{r}
 library(dplyr)
+library(tidyr)
 ```
 
 > Note: This error message just informs you that `dplyr` uses function or parameter names that are the same as other base or stats packages in R. These base/stats functions are 'masked' meaning that when you run one (e.g. `filter`) then R will run the `dplyr` version rather than the stats version.
 
 We'll work with our FallopiaData.csv dataset, and remind ourselves of the structure of the data
 
+### `tibbles` and `readr()`
+
+We looked at `data.frame` objects in the first chapter as an expansion of *matrices* with a few additional features like column and row names. A `tibble` is the `tidyverse` version of the `data.frame` object and includes a few more useful features. To import a dataset to a `tibble` instead of a `data.frame` object, we use `read_csv` instead of `read.csv`.
+
 ```{r}
-Fallo<-read.csv(
+library(tidyverse)
+```
+
+```{r}
+Fallo<-read_csv(
   "https://colauttilab.github.io/RCrashCourse/FallopiaData.csv")
 str(Fallo)
 ```
@@ -94,12 +100,14 @@ names(X)[12]<-"Total_Biomass"
 names(X)
 ```
 
+There is also a simple `dplyr` function to do this:
+
+### `rename()`
+
 ```{r}
 X<-rename(Fallo, Total_Biomass = Total)
 names(X)
 ```
-
-There is also a simple `dplyr` function to do this:
 
 ### `arrange()` 
 
@@ -110,10 +118,10 @@ X<-arrange(Fallo, Taxon, Total)
 head(X)
 ```
 
-use the `desc()` function with `arrange()` to change to descending order
+use the `desc()` function with `arrange()` to change reverse alphabetical order, or use `-` to sort from low to high
 
 ```{r}
-X<-arrange(Fallo, Taxon, desc(Total))
+X<-arrange(Fallo, desc(Fallo), Taxon, -Total)
 head(X)
 ```
 
@@ -153,7 +161,7 @@ head(X)
 Or a bit more clear:
 
 ```{r}
-X<-select(Fallo, -(PotNum:Taxon), Total)
+X<-select(Fallo, -(PotNum:Taxon), Scenario)
 head(X)
 ```
 
@@ -162,7 +170,8 @@ head(X)
 Use the `everything()` function with `select()` to rearrange your columns without losing any:
 
 ```{r}
-X<-select(Fallo, Taxon, Scenario, Nutrients, PotNum, Pct_Fallopia, everything())
+X<-select(Fallo, Taxon, Scenario, Nutrients, PotNum, 
+          Pct_Fallopia, everything())
 head(X)
 ```
 
@@ -251,6 +260,8 @@ The combination `%>%` is called 'pipe' for short. Be careful though -- in Unix, 
 
 The pipe is useful to combine operations without creating a whole bunch of new objects. This can save on memory use. 
 
+> Use `Ctl` + `Shift` + `m` to add a pipe quickly
+
 For example, we can re-write the weighted mean example using pipes:
 
 ```{r}
@@ -264,7 +275,7 @@ RFallo %>%
   arrange(desc(Mean))
 ```
 
-This also avoids potential for bugs in our program. Imagine if we mis-spelled 'Taxon' in our second line by accidentialy pressing 's' along with 'x'. Compare the output:
+This also avoids potential for bugs in our program. Imagine if we mis-spelled 'Taxon' in our second line by accidentally pressing 's' along with 'x'. Compare the output:
 
 ```{r,error=T}
 X<-group_by(Fallo,Taxon,Scenario,Nutrients)
@@ -286,6 +297,68 @@ Fallo %>%
 In both cases we get an error, but in one case we still calculate the means and sd of the two species. 
 
 > A bug that produces no output is much less dangerous than an error that gives an output. Why?
+
+## Join datasets
+
+The `dplyr` package has some handy tools for joining datasets. There are four main ways to join datasets, similar to a Venn diagram. You can get more information on these with the help command `?join` after loading the dplyr library, but here is a quick overview. For each of these, imagine a Venn diagram with two datasets: $X$ as a circle on the left side and $Y$ as a circle on the right side. The rows we choose to combine from the two datasets depend on one or more identifying columns that we can define (e.g. sample ID, date, time).
+
+![Venn diagram of datasets](./images/joinVenn.png)
+
+`left_join()` - Keep all rows of $X$ and add matching rows from $Y$. Any rows in $Y$ that don't match $X$ are excluded.
+
+`right_join()` - The reverse of `left_join()`
+
+`inner_join()` - Only keep rows that are common to **both** $X$ **AND** $Y$. Remove any rows that don't match.
+
+`full_join()` - Keep **any** columns that are in **either** $X$ **OR** $Y$.
+
+To try these out, we can create a couple of quick datasets and compare the output. For each case, note the addition of NA for missing data.
+
+```{r}
+X<-data.frame(ID=c("A","C"),Xdat=c(1,3))
+Y<-data.frame(ID=c("B","C"),Ydat=c(2,3))
+X
+Y
+left_join(X,Y,by="ID")
+right_join(X,Y,by="ID")
+inner_join(X,Y,by="ID")
+full_join(X,Y,by="ID")
+```
+
+## Wide vs Long data
+
+Most of the data examples we've looked at are in the 'wide' format, where we have a single individual as a row, and multiple measurements as separate columns.
+
+However, there are many cases where we may want to reorganize our data into the 'long' format, where each row is an individual observation. Many statistical models use this format, and it's also useful for visualizations. For example, if we have a bunch of columns of data and we want to generate histograms quickly, we can use `facet_` functions from ggplot2 if our data is in the long format. 
+
+### `pivot_longer`
+
+The `pivot_longer()` function in the `tidyr` library does this. We use the `cols=` parameter to specify the data columns, then `names_to=` specifies the column name containing the parameter, and the `cols_to=` specifies the column name of the values. 
+
+This is a bit confusing to read, but it's easier to understand if you compare the output with the `full_join` function above.
+
+```{r}
+LongData<-full_join(X,Y,by="ID") %>%
+  pivot_longer(cols=c("Xdat","Ydat"),
+               names_to="Measurement",
+               values_to="Value")
+LongData
+```
+
+Note how there is only 1 column of data values, with the `Measurement` column indicating which measurement the value belongs to, and the `ID` column is repeated for each measurement.
+
+This is why the *long* data format is sometimes called the *repeated measures* data format.
+
+### `pivot_wider`
+
+The `pivot_wider()` function does the reverse, but this time we specify the column that contains the values with `values_from=` and the corresponding column names with `names_from=`. This should recover the original dataset:
+
+```{r}
+WideData<-LongData %>%
+  pivot_wider(values_from=Value,
+              names_from=Measurement)
+WideData
+```
 
 
 ## Missing Data
@@ -367,15 +440,171 @@ Naughty data contain the same information as a standard row x column (i.e. 2-dim
 2. Each variable must have its own column
 3. Each observation must have its own row
 
-Examples of Naughty Data are shown in Figure 2A of the [Wu et al. manuscript](https://www.biorxiv.org/content/early/2018/10/30/457051). :
+Examples of Naughty Data are shown in Figure 2A of the [Wu et al. manuscript](https://www.biorxiv.org/content/early/2018/10/30/457051).
 
-![](./Wu_Fig2.jpg)
+![](./images/Wu_Fig2.jpg)
 
 Naughty data can be very time consuming to fix, but regular expressions can make this a bit easier (see the [Regex tutorial](https://colauttilab.github.io/RCrashCourse/4_regex.html)).
 
+## Dates
 
+As biologists, we often work with dates. We may want to analyze the date a sample was collected, or a measurement was taken. But dates are often encoded in formats that can't be analyzed directly. The `lubridate` package provides a convenient framework for switching between human-readable dates and mathematical relationships among them -- for example, the number of days, minutes, or seconds between two time points.
 
+```{r}
+library(lubridate)
+```
 
+It can be convenient to automatically include the current date or time, especially when you are producing reports.
+
+We can get the date, which we will call a `date` object
+
+```{r}
+today()
+```
+
+And we can get the date and time, which we will call a `datetime` object
+
+```{r}
+now()
+```
+
+This is an important distinction, because the `datetime` object extends on the `date` object to include hours, minutes, seconds, etc.
+
+We can use a `datetime` object to track how long it takes to run a particular program. We first create an object to store the computer clock before the program runs, then we subtract that object from the compter clock afterthe program finishes:
+
+```{r}
+Before<-now()
+
+for(i in 1:1000){
+  rpois(10,lambda=10)^rnorm(10)
+}
+
+now()-Before
+```
+
+> **Protip**: Try adding a `print()` function to print out the result in each iteration of the for loop. How much does this slow down the run time?
+
+### `date` Objects
+
+Human-readable dates come in many different forms, which we can encode as strings. Here are some examples that we might see for encoding the end-date of the most recent 5,126-year-long Mesoamerican calendar used by the ancient Maya:
+
+```{r}
+Date2<-"2012-12-21"
+Date3<-"21.12.2012"
+Date4<-"Dec 21, 2012"
+Date5<-"21 December, 2012"
+```
+
+The `lubridate` package has a number of related functions that correspond to the order of entry -- `d` for day, `m` for month, and `y` for year:
+
+```{r}
+ymd(Date2)
+dmy(Date3)
+mdy(Date4)
+dmy(Date5)
+```
+
+Notice the flexibility here! Some dates have dashes, dots, spaces, and commas! But all are converted to a common object type. On the surface, these objects look like simple strings, but let's investigate:
+
+```{r}
+str(Date2)
+str(ymd(Date2))
+```
+
+Notice how the first is a simple `chr` character object, whereas the second is a `Date` object. The date object can be treated as a numeric variable, that outputs as a readable date. For example, what if we want to know what the date 90 days before or after?
+
+```{r}
+c(ymd(Date2)-90,ymd(Date2)+90)
+```
+
+The above examples are single strings, but we can just as easily work with a column in a data frame or any other vector of strings:
+
+```{r}
+DateVec<-c("2012-12-21","2012-12-22","2012-12-23")
+ymd(DateVec)
+```
+
+Because these objects are numeric, we can also use them for plotting:
+
+```{r}
+qplot(ymd(DateVec))
+```
+
+### `datetime`
+
+The `datetime` object adds a time element to the date with an underscore `_` separating the time elements from the day, encoding . Here are a couple of examples
+
+```{r}
+mdy_h("Dec 21, 2012 -- 10am")
+ymd_hm("2012-12-21, 08:30")
+dmy_hms("21 December, 2012; 11:59:59")
+```
+
+### Extracting Components 
+
+We can extract components from date objects
+
+```{r}
+year(Date2)
+month(Date2)
+```
+
+We have several options for days.
+
+First, we can get the day of the year, also known as the Julian day:
+
+```{r}
+yday(Date2)
+```
+
+Or the day of the month
+
+```{r}
+mday(Date2)
+```
+
+or the day of the week (rather than month) using `wday()`
+
+```{r}
+wday(Date2)
+```
+
+We can use the `label=T`parameter with the above, to get the specific month or day
+
+```{r}
+month(Date2, label=T)
+wday(Date2, label=T)
+```
+
+### Categorical dates  
+
+We've seen above how dates are more like `numeric` rather than `strings`, but we can also treat dates as categorical data. 
+
+One example that is becoming more and more common in biology is the analysis of data from data loggers, which automatically save observations over time. Think of climate stations that measure temperature and precipitation as a common example. Another example might be location information of a study organism using image analysis or PIT tags (i.e. Passive Integrated Transponders).
+
+In many cases, the timescale of collection is much shorter than what we need. Luckily, `dplyr` with `lubridate` are great tools for summarizing these data!
+
+> Example: imagine we have observations taken every minute, and we just want to calculate the average for each hour in R. We can generate a toy dataset in R using the tibble function, and then assigning column names: DayTime for the day-time object and Obs for the observation (i.e. measurement):
+
+First, we create the imaginary dataset, using the replicate function and the a random number generator:
+
+```{r}
+TestData<-tibble(
+  DayTime=now()+minutes(rep(c(0:359),100)),
+  Obs=rnorm(36000))
+```
+
+We can calculate the hourly average by piping our TestData tibble (above) through a group_by and then a summarize function.
+
+```{r}
+TestData %>%
+  group_by(yday(DayTime),hour(DayTime)) %>%
+  summarize(Mean=mean(Obs))
+```
+
+> **Question** Why do we include `yday` in the group_by function. 
+
+**HINT**: Try removing `yday(DayTime)` and compare the output
 
 
 

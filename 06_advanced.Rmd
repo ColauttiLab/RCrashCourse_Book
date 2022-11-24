@@ -1,3 +1,5 @@
+\newpage
+
 # Advanced R
 
 ## Introduction
@@ -99,11 +101,9 @@ Add headers with up to 6x `#` -- more headers = subheadings:
 
 ### Other Elements
 
-`superscript^2` superscript^2
+`--` for short--dash (a.k.a. 'n-dash'): --
 
-`--` for short--dash: --
-
-`---` for long --- dash: ---
+`---` for long --- dash (a.k.a. m-dash: ---
 
 ### Links
 
@@ -113,19 +113,19 @@ Links have a special format. The text you want the user to see goes in square br
 
 [Colautti Lab Website](https://colauttilab.github.io/)
 
-You can also use this to link a file in the same project folder:
+You can also use this with relative path names, for example to link a file in a folder called `images` inside of the project folder:
 
-`[Linked jpeg file](./ColauttiLabLogo.png)`:
+`[Linked .png file](./images/ColauttiLabLogo.png)`:
 
-[Linked jpeg file](./ColauttiLabLogo.png)
+[Linked .png file](./images/ColauttiLabLogo.png)
 
 ### Images
 
 Or you can embed the image directly by adding an exclamation point. You can leave the linked text blank or keep it to use as a caption.
 
-`![Linked jpeg file](./ColauttiLabLogo.png)`:
+`![Linked .png file](./images/ColauttiLabLogo.png)`:
 
-![Linked jpeg file](./ColauttiLabLogo.png)
+![Linked .png file](./images/ColauttiLabLogo.png)
 
 ### Lists and tables
 
@@ -311,11 +311,42 @@ Looks like this:
 
 ### Equations
 
-Insert equations using LaTeX. Here is a handy [cheat sheet](./latexsheet.pdf)
+Insert equations using LaTeX equations, which come in two forms:
 
-Use single dollar signs for in-line equations, like \$Y ~ X\$, which will print as $Y ~ X$
+1. Use single dollar signs for in-line equations, like `$Y = X$`, which will print as $Y = X$
 
-Use double dollar signs on a new line for full-line equations, for example:
+2. Use double dollar signs on a new line for full-line equations, like `$$Y = X$$`:
+
+$$Y = X $$
+You can use a variety of Greek letters by using the backslash character `\`. For upper-case Greek letters, just use an upper-case letter in the spelling. For example:
+
+  * `\lambda`: $\lambda$ OR `\Lambda` : $\Lambda$
+  * `\gamma`: $\gamma$ OR `\Gamma`: $\Gamma$
+  * `\delta`: $\delta$ OR `\Delta`: $\Delta$
+  * etc.
+
+> Omicron is an odd exception; simply the letter o, with no backslash `o`: $o$
+
+There are numerous other options but below is a quick rundown of some of the commonly used scripts. Create an R Markdown document and type each of these with either the inline `$` or new-line `$$`. Compare the rendered document with the input code:
+
+Script | Description | Code | Example
+-------|-------------|------|--------
+`_` | Subscript | `X_i` | $X_i$ 
+`^` | Superscript | `X^2` | $X^2$
+`\sim` | Predict | `Y \sim X` | $Y \sim X$
+`\times` | Multiply | `X \times Y` | $X \times Y$
+`\pm` | Plus or minus | `X \pm Y` | $X \pm Y$
+`\neq` | Note equal | `X \neq Y` | $X \neq Y$
+`\leq` | Less than or equal | `X \leq Y` | $X \leq Y$
+`\geq` | Greater than or equal | `X \geq Y` | $X \geq Y$
+`{}` | Group together | `X_{subscript}` | $X_{subscript}$
+`\frac` | Fraction | `\frac{X+1}{X-1}` | $\frac{X+1}{X-1}$
+`\sum` | Sum | `\sum_{x=1}^{K}` | $\sum_{x=1}^{K}$
+`\prod` | Product | `\prod_{x=1}^{K}` | $\prod_{x=1}^{K}$
+
+To see how curly brackets `{}` work, try removing them from the code above, and then re-create your R markdown output.
+
+Here are some more sophisticated examples. Again, try reproducing these in R markdown. If you don't get the same output, then check to see what is different with your code.
 
 ```{r, eval=F}
 $$\idotsint_V \mu(u_1,\dots,u_k) \,du_1 \dots du_k$$ 
@@ -335,6 +366,10 @@ will produce:
 
 $$\sum_{n=1}^{\infty} 2^{-n} = 1$$
 
+
+
+
+
 Notice the use of special characters with the backslash `\`, along with subscripts `_` and superscripts `_` with the super/subscripted text in curly brackets `{}`
 
 ***
@@ -342,11 +377,17 @@ Notice the use of special characters with the backslash `\`, along with subscrip
 ## Custom Functions
 
 ### General form:
+
+Don't type this out, but read through it. This is called pseudocode. The purpose is to give you a general sense of how to create functions. We have variables (var1 and var2) and we can assign default values (Default1 and Default2), then we put in a bunch of lines of code (Meat and potatoes script) and return an output.
+
 ```{r,eval=FALSE}
 functionName<-function(var1=Default1,var2=Default2){
   ## Meat and potatoes script
+  return(output)
 }
 ```
+
+You should already have a good sense of how functions work from all of the other tutorials/chapters. Now let's work through an example.
 
 ### Example function
 
@@ -372,6 +413,14 @@ Note: Nothing output when the funciton is run. This just loads the function into
 
 #### Run the function
 
+Try running the function on its own, with default values:
+
+```{r}
+my.function()
+```
+
+Now try specifying the input parameters and compare the output.
+
 ```{r}
 my.function(var1=10,var2=0.1)
 my.function(var1=c(1:10),var2=c(10:1))
@@ -382,7 +431,7 @@ my.function(var1=c(1:10),var2=c(10:1))
 Consider annotating long or complex script with `cat()` to help with troubleshooting. The `cat` function is similar to `print` but lets you print directly to screen rather than passing through a data object. Note that `\n` is a 'new line` character; try removing them and compare the output.
 
 ```{r}
-my.function<-function(var1=0,var2=0,verbose=FALSE){
+my.function<-function(var1=0,var2=0){
   cat("\nInput variables:\nvar1 =", var1,"\nvar2 =", var2,"\n")
   cat("\nCalculating functions...\n")
   cat("\nAdding...\n")    
@@ -414,11 +463,11 @@ my.function<-function(var1=0,var2=0,verbose=FALSE){
 my.function(var1=10,var2=0.1)
 ```
 
-> Better yet, make it an option:
+Printing text to the screen can slow down your function considerably. A good practice is to provide output as a user-defined option by adding a 'verbose' parameter and an if() statement.
 
 ```{r}
 my.function<-function(var1=0,var2=0,verbose=FALSE){
-  if (verbose==T){
+  if(verbose==T){
     cat("\nInput variables:\nvar1 =", var1,"\nvar2 =", var2,"\n")
     cat("\nCalculating functions...\n")
     cat("\nAdding...\n")    
@@ -426,25 +475,25 @@ my.function<-function(var1=0,var2=0,verbose=FALSE){
   
   add<-var1+var2
   
-  if (verbose==T){
+  if(verbose==T){
     cat("\nSubtracting...\n")
   }
   
   subt<-var1-var2
   
-  if (verbose==T){
+  if(verbose==T){
     cat("\nMultiplying...\n")
   }
   
   mult<-var1*var2
   
-  if (verbose==T){
+  if(verbose==T){
     cat("\nDividing...\n")
   }
   
   div<-var1/var2  
   
-  if (verbose==T){
+  if(verbose==T){
     cat("\nGenerating output...\n")
   }
   
@@ -471,19 +520,22 @@ If you have a custom function, theme, script, etc., that you use repeatedly:
   
   2. Load using `source("PathName.FileName.R")`
 
-    * e.g. `source("C:/Users/Colautti/Documents/RFunctions/myfunction.R")` if save
+    * e.g. `source("C:/Users/ColauttiLab/myfunction.R")` if save
 
 > Protip #3:
 
 We have already been using functions that somebody else wrote in R.
 
-To see 'under the hood' type a function without the bracktes:
+To see 'under the hood' type a function without the brackets.
+
+> Note: First run `install.packages("ggplot2")` if you don't already have it installed.
 
 ```{r}
 my.function
 library(ggplot2)
 qplot
 ```
+
 
 *** 
 
@@ -647,11 +699,14 @@ The first piece of documentation is the DESCRIPTION file. There are several fiel
   3. Change the `Author` to `Authors@R` and add yourself as the author and creator. 
 
 ```
-Authors@R: person("First Name", "Last Name", email="email@email.com", role=c("aut", cre))
+Authors@R: person("First Name", "Last Name", 
+        email="email@email.com", role=c("aut", cre))
 
 # Two authors
-Authors@R: c(person("First Name", "Last Name", email="email@email.com", role=c("aut", cre)),
-             person("Second person name", "second person last name", email="email@email.com", role="aut"))
+Authors@R: c(person("First Name", "Last Name", 
+        email="email@email.com", role=c("aut", cre)),
+             person("Second person name", "second person last name", 
+             email="email@email.com", role="aut"))
 
 ```
   4. Write a description: 
@@ -685,7 +740,9 @@ When writing your comments, follow this logic:
 ```
 #' Takes a DOI and returns references for the object.
 #'
-#' This function queries the Crossref API to obtain a data frame of references for the DOI. We use the paste0 function from base and the fromJSON function from jsonlite.
+#' This function queries the Crossref API to obtain a data frame 
+of references for the DOI. We use the paste0 function from base 
+and the fromJSON function from jsonlite.
 #'
 #' @param DOI String. Digital object identifier.
 #'
@@ -747,9 +804,9 @@ get_work_references<-function(DOI){
 
 ```
 
-Reinstall and you have a working package!
+Re-install and you have a working package!
 
-## Make it public
+### Make it public
 
 Before going public:
 

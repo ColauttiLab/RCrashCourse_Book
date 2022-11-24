@@ -1,4 +1,12 @@
+\newpage
+
 # Regular Expressions
+
+```{r, echo=F}
+library(knitr)
+opts_chunk$set(tidy.opts=list(width.cutoff=60),tidy=TRUE)
+options(width = 60)
+```
 
 ## Overview
 
@@ -26,7 +34,7 @@ There are four main functions that use regular expressions in R.
 
 `grep()` and `grepl()` are equivalent to 'find' in your favorite word processor
 
-They have the general form: `grep("find this pattern", in.this.object)`
+They have the general form: `gsub("find this pattern", in.this.object)`
 
 `grep()` outputs a vector with all the address locations (i.e. numbers) that match. Thus the output length is equal to the number of matches.
 
@@ -46,6 +54,8 @@ There are two other more advanced functions in R. These aren't covered in this t
 
 `gregexpr()` provides more detailed results about all matches
 
+> See ?regexpr and ?gregexpr for more info
+
 ### Examples
 
 Some examples can help to understand the differences among the four main functions. Let's start with a simple data frame of species names.
@@ -63,9 +73,16 @@ This returns cell addresses matching query. Note the vector length compared to t
 grep("a",Species)
 ```
 
+We can also see the specific values with the `value=T` parameter
+
+```{r}
+grep("a",Species, value=T)
+```
+
+
 ### `grepl()` 
 
-This returns a vector of `TRUE` (match) and `FALSE` (no match). Comapre this output with `grep()`.
+This returns a vector of `TRUE` (match) and `FALSE` (no match). Compare this output with `grep()`.
 
 ```{r}
 grepl("a",Species)
@@ -81,7 +98,7 @@ sub("l","L",Species)
 
 ### `gsub()`  
 
-This replaces all matches (in each cell). Compere this output to `sub()`.
+This replaces all matches (in each cell). Compare this output to `sub()`.
 
 ```{r}
 gsub("l","L",Species)
@@ -102,7 +119,7 @@ If that isn't clear. Just remember that you need two backslashes instead of one.
 
 ### `\\w`
 
-Instead of finding the letter `w`, the `\\w` is a **wildcard** character that represents any letter or digits.
+Instead of finding the letter `w`, the `\\w` is a **wildcard** character that represents any letter or digit. It also includes underscore `_` for some reason.
 
 ```{r}
 gsub("w","X","...which 1-100 words get replaced?")
@@ -130,8 +147,15 @@ gsub("\\s","X","...which 1-100  words get replaced?")
 This is a tab character. A lot of data files stored as text are tab-delimited (.tsv) as well as comma-delimited (.csv)
 
 ```{r}
-gsub("\\t","X","...which 1-100  words get replaced?")
+gsub("\\t","X","...which 1-100 \t words get replaced?")
 ```
+
+> Remember \t is a tab character:
+
+```{r}
+cat("A\t\t\tB C")
+```
+
 
 ### `\\d` 
 
@@ -190,7 +214,7 @@ gsub("w|e","X","...which 1-100  words get replaced?")
 
 ### `.` 
 
-This means any character except new line. This includes all of the `\\w` characters but also other characters like puncutation marks.
+The period is a wild card that means 'anything'. This includes all of the `\\w` characters but also other characters like puncutation marks.
 
 ```{r}
 gsub(".","X","...which 1-100  words get replaced?")
@@ -215,7 +239,7 @@ Now let's apply some of these special characters to see how they work.
 
 #### `+`
 
-Finds 1 or more matches
+Finds 'one or more' matches (i.e. at least one match)
 
 ```{r}
 sub("\\w+","X","...which 1-100 words get replaced?")
@@ -240,7 +264,7 @@ sub("\\w*","X","...which 1-100 words get replaced?")
 gsub("\\w*","X","...which 1-100 words get replaced?")
 ```
 
-In the `sub` command, it detects a `.` as the first character, indicating no match. It replaces the 'null' or `0` match at the beginning, which has the effect of adding a character. In the `gsub` command it repeats this before each `.` until it finds the letter `w`. Then it finds a group of `\\w` matches, replacing with a single star. Then a space, which is skipped, then a `-`, which is another null match, prompting another insert.
+In the `sub` command, it detects a `.` as the first character, indicating no match. It replaces the 'null' or `0` match at the beginning, which has the effect of adding a character. In the `gsub` command it repeats this before each `.` until it finds the letter `w`. Then it finds a group of `\\w` matches, replacing with a single `X`. Then a space, which is skipped, then a `-`, which is another null match, prompting another insert.
 
 
 ### `?` 
@@ -275,7 +299,7 @@ gsub("\\w*?","X","...which 1-100 words get replaced?")
 
 ### `{}`
 
-Curly brackets are used to specify a number of matches, expanding on the options even futher.
+Curly brackets are used to specify a number of matches, expanding on the options even further.
 
 ### `{n,m}` 
 
@@ -295,7 +319,7 @@ gsub("\\w{3}","X","...which 1-100 words get replaced?")
 
 ### `{n,}`
 
-Fomd $n$ or more matches
+Find $n$ or more matches
 
 ```{r}
 gsub("\\w{4,}","X","...which 1-100 words get replaced?")
@@ -303,7 +327,7 @@ gsub("\\w{4,}","X","...which 1-100 words get replaced?")
 
 ### {}?
 
-As above, we cau use `?` for the 'lazy' versions of these searches
+As above, we can use `?` for the 'lazy' versions of these searches
 
 ```{r}
 gsub("\\w{4,}?","X","...which 1-100 words get replaced?")
@@ -332,21 +356,21 @@ Use these characters to specify searches at the start `^` or end `$` of the inpu
 
 ### `^`
 
-Find species starting with the letter *s*
+Find species starting with the letter *a*
 
 ```{r}
-grep("^s",Species)
+grep("^a",Species)
 ```
 
 > IMPORTANT: `^` Also means 'negate' when used within `[]`
 
-Find species containing any letter other than *s*
+Find species containing any letter other than *a*
 
 ```{r}
 grep("[^a]",Species)
 ```
 
-Replace every letter except *s*
+Replace every letter except *a*
 
 ```{r}
 gsub("[^a]","X",Species)
@@ -447,7 +471,7 @@ AAchain[1:100]
 
 Let's try practicing with a couple of examples
 
-### Transect Data
+## Transect Data
 
 Regular expressions are also useful with data objects
 
@@ -463,19 +487,19 @@ head(Transect)
 
 > TIP: the object `letters` contains lower-case letter, while `LETTERS` contains upper case.
 
-#### Challenge 
+### Challenge 
 
 Use your knowledged gained above with substting data outlined in the [R Fundamentals Tutorial](https://colauttilab.github.io/RCrashCourse/1_fundamentals.html) to do the following:
 
   1. Subset only the columns that have an "A" in their name
   2. Subset the data for species "D"
 
-Take the time to do this on your own. It will take you a while and you will make a lot of mistakes. That's all part of the learning process. The longer you struglle, the faster you will learn. 
+Take the time to do this on your own. It will take you a while and you will make a lot of mistakes. That's all part of the learning process. The longer you struggle, the faster you will learn. 
 
 Now here is a more challenging example:
 
 
-### Genbank
+## Genbank
 
 Here is a line of code to import DNA from genbank. (The one line is broken up into three physical lines to make it easier to read)
 
@@ -493,16 +517,18 @@ print(Lythrum_18S)
 
 Notice that each line is read in as a separate cell in a vector, with sequences beginning with a number ending with 1. We can take advantage of this to extract just the sequence data
 
-#### Challenge
+### Challenge
 
 **Before proceeding** try to do the following:
 
   1. Isolate only the rows containing DNA sequences. This should include
-  
     a. Removing all of the characters that are not a, t, g, or c.
     b. Combining separate cells/lines into a single string. You can do this with using the `paste()` function with the `collapse=""` parameter 
-    
-  2. Convert lower-case to upper-case. To do this, you can use `gsub("([actg])","\\U\\1",Seq,perl=T)`. The `\\U\\\1` means 'paste brackets as upper-case, and is only available as a **Perl** command, which is accessible in gsub with the `perl=T` parameter.
+  2. Convert lower-case to upper-case. To do this, you can use:
+```{r, eval=F}
+gsub("([actg])","\\U\\1",Seq,perl=T)
+```
+  The `\\U\\\1` means 'paste brackets as upper-case, and is only available as a **Perl** command, which is accessible in gsub with the `perl=T` parameter.
   3. Replace start codons (ATG) with "-->START-->ATG"
   4. Replace stop codons (TAA or TAG or TGA) with TAA or TAG or TGA followed by ">--STOP--|"
 
@@ -514,7 +540,7 @@ A cool thing about regular expressions is that there is rarely a single right an
 
 ## Solutions
 
-### Transects
+## Transects
 
 You want to look at only transect A for the first 3 species:
 
@@ -522,51 +548,51 @@ You want to look at only transect A for the first 3 species:
 Transect[1:3,grep("A",names(Transect))]
 ```
 
-Subset the data for species "D":
+Subset the data for the first plot of each transect:
 
 ```{r}
 Transect[grep("1",names(Transect)),]
 ```
 
-### Genbank
+## Genbank
 
 Use `.*` with `()` to delete everything before the DNA sequence
 
-```{r}
+```{r, include=F}
 Seq<-gsub(".*(1 [gatc])","",Lythrum_18S)
 paste(Seq,collapse="")
 ```
 
 Use the `.*` and space with `+` to eliminate all text before the sequence :
 
-```{r}
+```{r, include=F}
 Seq<-gsub(".*ORIGIN +","",paste(Seq,collapse=""))
 Seq
 ```
 
 Elimminate spaces and the two `//` at the end
 
-```{r}
+```{r, include=F}
 Seq<-gsub(" |//","",Seq)
 Seq
 ```
 
 Capital letters look nicer, but requires a PERL qualifier `\\U` that is not standard in R
 
-```{r}
+```{r, include=F}
 Seq<-gsub("([actg])","\\U\\1",Seq,perl=T)
 print(Seq)
 ```
 
 Look for start codons?
 
-```{r}
+```{r, include=F}
 gsub("ATG","-->START-->ATG",Seq)
 ```
 
 Look for stop codons? 
 
-```{r}
+```{r, include=F}
 gsub("(TAA|TAG|TGA)","\\1>--STOP--|",Seq)
 ```
 
@@ -589,10 +615,10 @@ Use regular expressions to convert all email addresses to the standard format: n
 My.Seq<-sample(c("A","T","G","C"),1000,replace=T)
 ```
 
-    * Replace T with U
-    * Find all start codons (AUG) and stop codons (UAA, UAG, UGA)
-    * Find all open reading frames (hint: consider each sequence beginning with AUG and ending with a stop codon; how do you know if both sequences are in the same reading frame?)
-    * Count the length of bp for all open reading frames
+  * Replace T with U
+  * Find all start codons (AUG) and stop codons (UAA, UAG, UGA)
+  * Find all open reading frames (hint: consider each sequence beginning with AUG and ending with a stop codon; how do you know if both sequences are in the same reading frame?)
+  * Count the length of bp for all open reading frames
 
 ### 3. More online examples
 

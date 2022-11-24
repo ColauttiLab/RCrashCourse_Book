@@ -1,16 +1,18 @@
+\newpage
+
 # Advanced Visualizations
 
 ## Overview
 
-Before following this tutorial, you should be familiar with the [qplot() tutorial](https://colauttilab.github.io/RCrashCourse/2_qplot.html), and you should have lots of practice making graphs with different formatting options using `qplot`.
+Before continuing with this tutorial/chapter, you should be familiar with the [qplot() tutorial](https://colauttilab.github.io/RCrashCourse/2_qplot.html)/chapter, and you should have lots of practice making graphs with different formatting options using `qplot`.
 
-In this self-tutorial, we look at some more advanced options for visualizations by using the `ggplot` function. The 1`ggplot` function adds even more flexibiliity and possibilities to our visualizations.
+In this self-tutorial, we look at some more advanced options for visualizations by using the `ggplot` function. If you have a good feel for `plot`, then this will be an easy transition, with `ggplot` adding even more flexibility to our visualizations. This includes everything you will need to make professional-grade figures. 
 
-The [ggplot cheat sheet](https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf) is a downloadable pdf that provides a good summary and quick-reference guide for advanced graphics.
+The [ggplot 'cheat sheet'](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf) is a downloadable pdf that provides a good summary and quick-reference guide for advanced graphics. Other useful cheat sheets are available here: https://www.rstudio.com/resources/cheatsheets/
 
 ## Getting Started
 
-We'll load the ggplot2 library and set a custom theme as described in the [qplot Tutorial](https://colauttilab.github.io/RCrashCourse/2_qplot.html)
+First, we'll load the `ggplot2` library and set a custom theme as described in the [`qplot` Tutorial](https://colauttilab.github.io/RCrashCourse/2_qplot.html)
 
 ```{r}
 library(ggplot2)
@@ -18,9 +20,9 @@ source("http://bit.ly/theme_pub")
 theme_set(theme_pub())
 ```
 
-The `source` function loads an external file, in this case from the internet. The file is just a .R file with a custom function defining different aspects of the graph (e.g. text size, line width, etc.) You can open the link in a web browser or download and open in a text editor to see the file.
+The `source` function loads an external file, in this case from the internet. The file is just a script saved as .R file with a custom function defining different aspects of the graph (e.g. text size, line width, etc.) You can open the link in a web browser or download and open in a text editor to see the script
 
-The `theme_set()` command sets our custom theme (`theme_pub`) as the default plotting theme. Since the theme is a function in R, we need the extra brackets: `theme_pub()`
+The `theme_set()` command sets our custom theme (`theme_pub`) as the default plotting theme. Since the theme is a function in R, we need to include the brackets, even though there is nothing needed inside the function: `theme_pub()`
 
 <br>
 
@@ -30,13 +32,13 @@ The `theme_set()` command sets our custom theme (`theme_pub`) as the default plo
 
 ## Rules of thumb
 
-Standards of practice for published graphs in professional journals can vary depending on format and discipline, but there are a number of useful 'rules of thumb' to keep in mind. These are not hard and fast rules but helpful for new researchers who aren't sure how or where to start.
+Before we dig into the code, it's worth reviewing some more general graphical concepts. Standards of practice for published graphs in professional journals can vary depending on format (e.g. print vs online), audience, and historical precedent. Nevertheless, there are a number of useful 'rules of thumb' to keep in mind. These are not hard and fast rules but helpful for new researchers who aren't sure how or where to start. In making decisions, always think of your audience and remember that the main goal is to communicate information as clearly and efficientl as possible.
 
-### 1. Minimize 'ink'
+**1. Minimize 'ink'**
 
 In the old days, when most papers were actually printed and mailed to journal subscribers, black ink was expensive and printing in colour was very expensive. Printing is still expensive but of course most research articles are available online where there is no additional cost to colour or extra ink. However, the concept of minimizing ink (or pixels) can go a long way toward keeping a graph free from clutter and unnecessary distraction.
 
-### 2. Use space wisely
+**2. Use space wisely**
 
 Empty space is not necessarily bad, but ask yourself if it is necessary and what you want the reader to take away. Consider the next two graphs:
 
@@ -48,53 +50,53 @@ X<-as.factor(X)
 qplot(X,Y)
 ```
 
-> Above: Y-axis scaled to the data
 
 ```{r, echo=F}
 qplot(X,Y) + scale_y_continuous(limits=c(0,max(100)))
 ```
 
-> Above: Y-axis scaled between 0 and 100
+In the first example, the Y-axis is scaled to the data. In the second case, Y-axis scaled between 0 and 100.
 
-What are the benefits/drawbacks of scaling the axes? When might you choose to use one over ther other?
+What are the benefits/drawbacks of scaling the axes? When might you choose to use one over the other?
 
-### 3. Choose a colour palette
+**3. Choose a colour palette**
 
 Colour has three basic components
 
-  a. Hue -- the amount of red vs green vs blue light
-  b. Saturation -- how vivid the colour is 
-  c. Brightness -- the amount of white (vs black) in the colour
+  a. **Hue** -- the relative proportion of red vs green vs blue light
+  b. **Saturation** -- how vivid the colour is 
+  c. **Brightness** -- the amount of white (vs black) in the colour
+
+The abbreviation HSB is often used, or HSL (L = 'Lightness') or HSV (V = 'Value').
   
 In R these can be easily defined with the `rgb()` function. For example:
 
-`rgb(1,0,0)` -- a saturated red
-`rgb(0.1,0,0)` -- a dark red (low brightness, low saturation)
-`rgb(1,0.9,0.9)` -- a light red (high brightness, low saturation)
+  * `rgb(1,0,0)` -- a saturated red
+  * `rgb(0.1,0,0)` -- a dark red (low brightness, low saturation)
+  * `rgb(1,0.9,0.9)` -- a light red (high brightness, low saturation)
 
 Don't underestimate the impact of choosing a good colour palette, especially for presentations. Colour theory can get a bit overwhelming but here are a few good websites to help:
 
-  * Quickly generate your own palette using [coolors](https://coolors.co)
-  * Use a colour wheel to find complementary colours using [Adobe](https://color.adobe.com/create)
-  * Browse some pre-made palettes or create one from a picture [colorfavs](http://www.colorfavs.com)
+  * Quickly generate your own palette using Coolors: https://coolors.co
+  * Use a colour wheel to find complementary colours using Adobe : https://color.adobe.com/create
 
-### 4. Colours have meaning
+**4. Colours have meaning**
 
 What's wrong with this graph? 
 
 ```{r, echo=F}
 X<-rnorm(100)
 Y<-X+seq_along(X)
-D<-data.frame(Lat=X,Long=Y,Temp=Y/3)
-qplot(Lat,Long,colour=Temp, data=D) + 
+D<-data.frame(Temperature=Y,Location=X,Temp=Y/3)
+qplot(Location, Temperature,colour=Temp, data=D) + 
   scale_color_gradient(high="blue", low="red")
 ```
 
-Humans naturally associate colours with particular feelings. Be mindful of these associations when choosing a colour palette
+Technically, there is nothing wrong. But we naturally associate colours with particular feelings. In this case, intuitively we associate red with hot and blue with cold, which is the opposite of what is shown in this graph. Be mindful of these associations when choosing a colour palette
 
-Another important consideration is that not everyone sees colour the same way. About 5% to 10% of the population has colour blindness. In order to make colour graphs readable to everyone, you can use different 
+Another important consideration is that not everyone sees colour the same way. About 5% to 10% of the population has colour blindness. In order to make colour graphs readable to everyone, you should make sure to use colours that can still be interpreted when printed in greyscale.
 
-### 5. Maximize contrast
+**5. Maximize contrast**
 
 Colours that are too similar will be hard to distinguish
 
@@ -106,20 +108,25 @@ qplot(Lat,Long,colour=Precip, data=D) +
   scale_color_gradient(high="#56B4E9", low="#56B499")
 ```
 
-### 6. Keep relevant information
+Can you see the gradient of colours?
+
+**6. Keep relevant information**
 
 Make sure to include proper axis **labels** (i.e. names) and **tick marks** (i.e. numbers or categories showing the different values). These labels, along with the figure caption, should act as a stand-alone unit. The reader should be able to understand the figure without having to read through the rest of the paper.
 
-### 7. Choose the right graph
+**7. Choose the right graph**
 
-Often the same data can be presented in different ways but some are easier to interpret than others. Think carefully about the story you want to present and the main ideas you want your reader to get from your figures. Look at these two graphs that show the same data and see which one is more intuitive
+Often the same data can be presented in different ways but some are easier to interpret than others. Think carefully about the story you want to present and the main ideas you want your reader to get from your figures. Look at these two graphs that show the same data.
 
 ```{r}
-X<-rnorm(100)
-Y<-X+rnorm(100)
-qplot(c(X,Y), fill=c(rep("X",100), rep("Y",100)), posit="dodge")
-qplot(X,Y)
+ADat<-data.frame(X=rnorm(100), Trait="A")
+BDat<-data.frame(X=5 + rnorm(100) *5 + ADat$X * 5, Trait="B")
+PDat<-rbind(ADat,BDat)
+qplot(X, fill=Trait, posit="dodge", data=PDat)
+qplot(ADat$X, BDat$X)
 ```
+
+The first graph tells a story about the distributions -- the mean and variance of each trait. The second graph tells a story about the correlated relationship between trait A and trait B. One is not necessarily better than the other. It depends on the story you want to tell.
 
 <br>
 
@@ -129,7 +136,7 @@ qplot(X,Y)
 
 ## Example
 
-To get to know ggplot better, let's do a step-by-step example of a figure published in a [paper by Colautti & Lau](https://doi.org/10.1111/mec.13162) in the journal Molecular Ecology (2015)
+Now that we have gone over some basic graphing concepts, let's look at how to build a professional-grade figure. In fact, we'll reconstruct a figure published in a [paper by Colautti & Lau](https://doi.org/10.1111/mec.13162) in the journal Molecular Ecology (2015). 
 
 ### Setup
 
@@ -137,11 +144,11 @@ To get to know ggplot better, let's do a step-by-step example of a figure publis
 
 Download selection dataset from Colautti & Lau (2015), published in the journal **Molecular Ecology**: https://doi.org/10.1111/mec.13162
 
-The paper is a meta-analysis and review of evolution occurring during biological invasions. in this tutorial, we'll recreate Figure 2, which shows the result of a meta-analysis of selection gradients ($\beta$) and selection differentials ($s$). First, we'll just recreate the top panel, and then we'll look at ways to make more advanced multi-panel graphs like this one.
+The paper is a meta-analysis and review of evolution occurring during biological invasions. We will recreate Figure 2, which shows the result of a meta-analysis of selection gradients ($\beta$) and selection differentials ($s$). First, we'll just recreate the top panel, and then we'll look at ways to make more advanced multi-panel graphs like this.
 
 The data from the paper are archived on Dryad: https://datadryad.org/stash/dataset/doi:10.5061/dryad.gt678
 
-You could downoad the zip file and look for the file called `Selection_Data.csv` and save it to your working directory. 
+You could download the zip file and look for the file called `Selection_Data.csv` and save it to your working directory. 
 
 Or you can just download directly from this website:
 
@@ -176,7 +183,7 @@ We can see above the collector `KingsolverDiamond`, which represents a paper fro
 unique(SelData$Collector)
 ```
 
-**Species** is the study species, and **Native** is its stauts as a binary yes/no variable. **N** is the sample size and **Fitness.measure** is the specific trait that defines fitness. **Trait** is the trait on which selection was measured. Finally, $s$ is the **selection differential** and $\beta$ is the **selection gradient**. Note that these are slopes in units of relative fitness per trait standard deviation. This is explained in more detail below.
+**Species** is the study species, and **Native** is its status as a binary yes/no variable. **N** is the sample size and **Fitness.measure** is the specific trait that defines fitness. **Trait** is the trait on which selection was measured. Finally, $s$ is the **selection differential** and $\beta$ is the **selection gradient**. Note that these are slopes in units of relative fitness per trait standard deviation. This is explained in more detail below.
 
 ### Absolute Value
 
@@ -188,13 +195,13 @@ SelData$s<-abs(SelData$s)
 
 We'll also add a couple of columns with random variables that we can use later to explore additional plotting options. 
 
-First, a column of values sampled from a z-distribution (Gaussian distribution with mean = 0 and sd = 1)
+First, a column of values sampled from a z-distribution -- this is a Gaussian (a.k.a. 'normal') distribution with mean = 0 and sd = 1.
 
 ```{r}
 SelData$Rpoint<-rnorm(nrow(SelData))
 ```
 
-Second, a columnn of 1 and 0 sampled randomly with equal frequency (p = 0.5)
+Second, a columnn of 1 and 0 sampled randomly with equal frequency ($p = 0.5$)
 
 ```{r}
 SelData$Rgroup<-sample(c(0,1), nrow(SelData), replace=T)
@@ -203,27 +210,19 @@ SelData$Rgroup<-sample(c(0,1), nrow(SelData), replace=T)
 
 ### Missing values
 
-Note the missing data (denoted NA)
+Check for missing data (denoted NA)
 
 ```{r, eval=FALSE}
 print(SelData$s)
 ```
 
-We can subset to remove mising data
+We can subset to remove missing data
 
 ```{r}
 SelData<-SelData[!is.na(SelData$s),]
 ```
 
 Recall from the [R Fundamentals Tutorial](https://colauttilab.github.io/RCrashCourse/1_fundamentals.html) that `!` means 'not' or 'invert'
-
-Alternatively, we could use `filter` from dplyr
-
-```{r, eval=F}
-library(dplyr)
-SelData<-SelData %>%
-  filter(!is.na(s))
-```
 
 There is also has a convenient `drop_na` function in the `tidyr` package
 
@@ -241,25 +240,39 @@ SelData<-SelData %>%
 
 ## Measuring Selection
 
-A simple analysis of phenotypic selection as proposed by Lande & Arnold (1983) is just a linear model with **relative fitness** on the y-axis and the **standardized trait value** on the x-axis. 
+### Don't Panic!
+
+We're going to get a bit technical here. Don't worry if you don't completely understand all of the stuff below about measuring selection. Keep it for reference in case you decide you want to use it for your own research. For now, just try to understand it as well as you can and focus on the code used to producing the figures.
+
+
+A simple analysis of phenotypic selection was proposed by Lande & Arnold (1983) and provides a simple but powerful tool for measuring natural selection. It is just a linear model with **relative fitness** on the y-axis and the **standardized trait value** on the x-axis. 
 
 ### Relative Fitness
 
-**Fitness** can be measured in many ways, such as survival or lifetime seed or egg production. Use `unique(SelData$Fitness.measure)` to see the list of specific fitness measures used in these studies.
+**Fitness** can be measured in many ways, such as survival or lifetime seed or egg production. Check out the list of specific fitness measures used in these studies:
 
-**relative fitness** is just the observed or **absolute fitness** divided by the mean. **Absolute fitness** is usually denoted by the capital letter $W$ and **relative fitness** is usually represented by a lower-case $w$ or omega $\omega$. Expressing this in mathematical terms:
+```{r, eval = F}
+unique(SelData$Fitness.measure)
+```
+
+
+**Absolute fitness** is just the observed value (e.g. seed set or survival yes/no). **Relative fitness** is just the *absolute* fitness divided by the mean. **Absolute fitness** is usually denoted by the capital letter $W$ and **relative fitness** is usually represented by a lower-case $w$ or omega $\omega$. Expressing this in mathematical terms:
 
 $$ \omega = W_i/\bar W $$
 
 ### Trait Value
 
-A **Trait Value** is literally just the measured trait. Use `unique(SelData$Trait)` to see the list of specific traits that were measured in these studies. The **Standardized Trait Value** is the traits z-score. See the [Distributions Tutorial](https://colauttilab.github.io/RIntroStats/1_Distributions.html) for more information about z-scores. Since traits have different metrics, they are hard to compare: e.g. days to flower, egg biomass, foraging intensity, aggression. But standardizing traits to z-scores puts them all on the same scale for comparison. Specifically, the scale is in standard deviations from the mean.
+A **Trait Value** is literally just the measured trait. Use `unique(SelData$Trait)` to see the list of specific traits that were measured in these studies. The **Standardized Trait Value** is the traits z-score. See the [Distributions Tutorial](https://colauttilab.github.io/RIntroStats/1_Distributions.html) for more information about z-scores. To calculate the z-score, we take each value, subtract the mean, and then divide by the standard deviation.
+
+$$\frac{x_i-\bar X}{s}$$
+
+Since traits have different metrics, they are hard to compare: e.g. days to flower, egg biomass, foraging intensity, aggression. But standardizing traits to z-scores puts them all on the same scale for comparison. Specifically, the scale is in standard deviations from the mean.
 
 ### $s$ vs $\beta$
 
 Selection differentials ($s$) and selection gradients ($\beta$) measure selection using linear models but represent slightly different measurements. Linear models are covered in the [Linear Models Tutorial](https://colauttilab.github.io/RIntroStats/3_LinearModels.html).
 
-Both models use relative fitness ($\omega$) as the response variable (Y).
+Both models use relative fitness ($\omega$) as the response variable ($Y$).
 
 Selection differentials ($s$) measure selection on only a single trait, ignoring all other traits. In theory, the response to selection is a simple function of the genetic correlation between a trait and fitness. Some of this theory, with examples in R, is covered in the [Population Genetics Tutorials](https://colauttilab.github.io/PopGen/3_PopGenFUN_II.html#Natural_Selection).
 
@@ -276,26 +289,26 @@ Selection gradients ($\beta$) measure selection on a trait of interest while als
 
 ## `ggplot`  vs  `qplot`
 
-We can create the same graph using qplot and ggplot, just the syntax changes.
+We can create similargraph using `qplot` and ggplot, but the syntax can be quite different.
 
 ### Histogram
 
-Compare this `qplot`
+Let's start with a simple `qplot`
 
 ```{r, error=TRUE}
 BarPlot<-qplot(s, data=SelData, fill=Native, geom="bar")
 print(BarPlot)
 ```
 
-with this `ggplot`
+Now let's try with `ggplot`. We'll make it into an object that we can work with.
 
 ```{r, error=TRUE}
-BarPlot <-ggplot(aes(s, fill=Native), data=SelData) 
+BarPlot<-ggplot(aes(s, fill=Native), data=SelData)
 ```
 
 ### `aes`
 
-Note the use of the aesthetic funciton `aes()`. This defines the data that we want to use for our `ggplot` graph. We will see how we do this by adding layers to our plot, similar to the way old-timey cartoons were made by layering multiple clear pages of cellphane with painting on them. The `aes` function inside of the `ggplot` function defines that data that will be shared among all of the layers. In addition, we can have separate `aes` functions inside different `geom_` layers that define and restrict the plotting data to that specific layer. 
+Note the use of the aesthetic function `aes()`. This defines the data that we want to use for our `ggplot` graph. We will see how we do this by adding layers to our plot, similar to the way old-timey cartoons were made by layering multiple clear pages of cellphane with characters painted on them. The `aes` function inside of the `ggplot` function defines that data that will be shared among all of the layers. In addition, we can have separate `aes` functions inside different `geom_` layers that define and restrict the plotting data to that specific layer. 
 
 Let's look at the `ggplot` object so far:
 
@@ -303,9 +316,9 @@ Let's look at the `ggplot` object so far:
 print(BarPlot)
 ```
 
-No data! This is one key difference between `qplot` and `ggplot`. The former has default `geoms` that it applies depending on the type of input data. We can modify geoms with the `geom='NAME'` parameter in `qplot`, where 'NAME' is the specific name of the geom we want to use.
+No data! This is one key difference between `qplot` and `ggplot`. The former has default `geoms` that it applies depending on the type of input data. We can modify geoms with the `geom = "NAME"` parameter in `qplot`, where 'NAME' is the specific name of the geom we want to use. In the above `qplot` example we used `geom = "bar"`. 
 
-In `ggplot` we have to explictly define the geoms using `geom_NAME` where name is the specific name of the geom -- the same text that would go in quotation marks for the geom in `qplot`. The advantage of using `ggplot` is that its easier to creat multiple, overlapping layers with different geoms from types data sources.
+In `ggplot` we have to explictly add geoms as overlapping layers using `+ geom_NAME`, where name is the specific name of the geom -- the same text that would go in quotation marks for the geom in `qplot`. The advantage of using `ggplot` is that its easier to create multiple, overlapping layers with different geoms from types data sources.
 
 ### Layers 
 
@@ -316,21 +329,23 @@ BarPlot<- BarPlot + geom_bar()
 BarPlot
 ```
 
-Explore the components of our BarPlot object:
+Compare this graph and code to the above `qplot` figure.
+
+Let's explore the components of our BarPlot object:
 
 ```{r}
 summary(BarPlot)
 ```
 
-This shows us the columns of data available, the mapping for our x and y axes, and our fill colours. It also shows some of the functions and parameters used to generate the graph. At the bottom we see parameters for `geom_bar` and `stat_count`. Note that there are more parameters than the ones we defined. These are the **default parameters**.
+This shows us the columns of **data** available for plotting, the **mapping** for our x and y axes, and our **fill** colours. It also shows some of the functions and parameters used to generate the graph. At the bottom we see parameters for `geom_bar` and `stat_count`. Note that there are more parameters listed than what we explicitly put into the `ggplot()` function. These extra parameters are the **default parameters** for the function.
 
-### `stat_NAME`
+### `geom_` and `stat_`
 
-If geoms are the geometry of the shapes in the plt, stats are the statistics or mathematical functions that create the geoms. In the above case, the bars in `geom_bar` are created by counting the number of observations in each bin. The `stat_count` function is responsible for this calculation, and it is called by default when we use the `geom_bar` function.
+If *geoms* are the *geometry* of the shapes in the plot, *stats* are the *statistics* or mathematical functions that create the geoms. In the above case, the bars in `geom_bar` are created by counting the number of observations in each bin. The `stat_count` function is responsible for this calculation, and it is called by default when we use the `geom_bar` function.
 
-Just as we can change the geometry of the plotted shapes with `geom_NAME`, we can define different functions for generating shapes with `stat_NAME`. Luckily, there is a default stat for each geom, so we don't have to choose it unless we want something other than the default. 
+Ws we can change the geometry of the plotted shapes with `geom_<NAME>`, and we can define different functions for generating the geometric shapes with `stat_<NAME>` (in both cases <NAME> is a specific name like `bar` or `count`. To make things easier on us, there is a default *stat* for each *geom*, so in most cases we can just focus on which geometry we want for our graph, and use the ignore the *stat* (i.e. use the default). 
 
-For more information on the parameters and stast of `geom_bar()`
+For more information on the parameters and stast of `geom_bar()` or any geom, use the R help function.
 
 ```{r, eval=FALSE}
 ?geom_bar
@@ -338,7 +353,7 @@ For more information on the parameters and stast of `geom_bar()`
 
 ### Bivariate geom
 
-Let's explroe a few more plotting options. Here we'll use the random normal values we generated above so that we can make a bivariate plot:
+Let's explore a few more plotting options. Here we'll use the random normal values we generated above so that we can make a bivariate plot:
 
 ```{r}
 BivPlot<-ggplot(data=SelData, aes(x=s, y=Rpoint)) + 
@@ -356,9 +371,9 @@ print(BivPlot)
 
 ### `geom_smooth`
 
-A really handy feature of `ggplot` is the `geom_smooth` function with several options for calculating and plotting a statistical model to the observations.
+A really handy feature of `ggplot` is the `geom_smooth` function, which has several options for calculating and plotting a statistical model to the observations.
 
-Here's a simple linear regression slope:
+Here's a simple linear regression slope (lm = linear model):
 
 ```{r}
 BivPlot + 
@@ -399,7 +414,7 @@ An alternative would be to set up a data frame and keep track of values as separ
 
 ### Bootstrap
 
-The graph includes a bootstrap model to estimate the mean and variance for each group (native=yes vs no). Bootstrapping is covered in the [Bootstrapping and Randomization Tutorial](https://colauttilab.github.io/EcologyTutorials/bootstrap.html). The example below is not the most efficient approach but it applies the flow control concepts covered in the [R Fundamentals Tutorial](https://colauttilab.github.io/RCrashCourse/1_fundamentals.html)
+The graph includes a bootstrap model to estimate the mean and variance for each group ($native=yes$ vs $no$). Bootstrapping is covered in the [Bootstrapping and Randomization Tutorial](https://colauttilab.github.io/EcologyTutorials/bootstrap.html). The example below is not the most efficient approach but it applies the flow control concepts covered in the [R Fundamentals Tutorial](https://colauttilab.github.io/RCrashCourse/1_fundamentals.html)
 
 #### Data Setup
 
@@ -427,7 +442,7 @@ for (i in 1:IterN){
 }
 ```
 
-Note in the above code we use 'nested' functions. First we sample, then calculate the mean.
+Note in the above code we use 'nested' functions. First we `sample`, then calculate the `mean`.
 
 #### 95% CI
 
@@ -445,10 +460,10 @@ Each of the objects contains a number of values equal to our `Iter` variable def
 We use this number to index the vector with square brackets. We make sure to round to a whole number since we can't have a fractional cell position. 
 
 ```{r}
-CIs<-c(sort(NatSims)[round(IterN*0.025,0)], # Lower 2.5%
-       sort(NatSims)[round(IterN*0.975,0)], # Upper 97.5%
-       sort(IntSims)[round(IterN*0.025,0)], # Lower 2.5%
-       sort(IntSims)[round(IterN*0.975,0)]) # Upper 97.5%
+CIs<-c(NatSims[round(IterN*0.025,0)], # Lower 2.5%
+       NatSims[round(IterN*0.975,0)], # Upper 97.5%
+       IntSims[round(IterN*0.025,0)], # Lower 2.5%
+       IntSims[round(IterN*0.975,0)]) # Upper 97.5%
 ```
 
 Note that the output is a vector of length 4:
@@ -456,6 +471,10 @@ Note that the output is a vector of length 4:
 ```{r}
 print(CIs)
 ```
+
+Note: your numbers should be similar but won't be exact because each random sample will be slightly different.
+
+> What line could we add above t ensure that these numbers were exactly the same for everyone who ran this code?
 
 ### Plot data
 
@@ -465,7 +484,7 @@ We'll combine the separate bootstrap vectors into a single data.frame object to 
 HistData<-data.frame(s=SelData$s,Native=SelData$Native)
 ```
 
-Now we can add layers to the plot. We'll print out each layer as we go, so that we can see what each layer does. The coding is a bit complex here, so don't worry if it's hard to follow everything. The key thing to understand here is how the different geoms contribute to the final plot as individual 'layers'. 
+Now we can add layers to the plot. We'll print out each layer as we go, so that we can see what each layer adds to the overall graph. The coding is a bit complex here, so don't worry if it's hard to follow everything. The key thing to understand is how the different geoms contribute to the final plot. 
 
 ```{r}
 p <- ggplot() + theme_classic()
@@ -531,9 +550,9 @@ BivPlot + facet_wrap(vars(Year))
 
 ### `grid.extra` package
 
-Facets produce graphs with the same x- and y-axes. We might call these 'homogenous' plots because they use the same axes and they are all the same size. For publications though, we might want to includ 'heterogeneous' plots with different axes and different sizes. The `gridExtra` package provides options for this.
+Facets produce graphs that all have the same dimension and the same x- and y-axes. We might call these 'homogeneous' plots because they use a homogeneous format. For publications though, we might want to includ 'heterogeneous' plots with different axes and different sizes. The `gridExtra` package provides options for this.
 
-Install 'gridExtra' with `install.packages("gridExtra")`
+Install with `install.packages("gridExtra")` if you haven't installed it already, then load the library
 
 ```{r}
 library(gridExtra)
@@ -543,7 +562,7 @@ library(gridExtra)
 
 Use this to combine heterogeous ggplot objects into a single multi-panel plot.
 
-Note that this will print ghe graphs graphs down rows, then across columns, from top left to bottom right. You can use `nrow` and `ncol` to control the layout in a grid format. 
+Note that this will print graphs down rows, then across columns, from top left to bottom right. You can use `nrow` and `ncol` to control the layout in a grid format. 
 
 ```{r, warning=F, message=F}
 HistPlot<-p # Make a more meaningful name
@@ -555,7 +574,7 @@ grid.arrange(HistPlot,BivPlot,BarPlot,nrow=2)
 
 ### `grid` package
 
-What if we want to have graphs of different sizes? Or what if we want one figure to be inside another? We can make some even more advanced graphs using the `grid` package. 
+What if we want to have graphs of different sizes? Or what if we want one figure to be inside another? We can make some even more advanced graphs using the `grid` package. This is part of the base installation of R so you don't need to use `install.packages()` this time.
 
 ```{r}
 library(grid)
@@ -602,19 +621,27 @@ We can also use `pushViewport` to set up a grid for plotting on top of an existi
 
 First generate the 'background' plot. Note that you could alternatively load an image here to place in the background.
 
-```{r, warning=F, message=F}
+```{r, eval=F}
 HistPlot
 ```
 
 Next, overlay an invisible 4x4 grid layout (number of cells, will determine size/location of graph)
 
-```{r, warning=F, message=F}
+```{r, eval=F}
 pushViewport(viewport(layout = grid.layout(4, 4)))
 ```
 
 Finally, add the graph. In this case we want it only in the top two rows and the right-most two columns -- i.e. the top-right corner.
 
+```{r, eval=F}
+print(BivPlot, vp = viewport(layout.pos.row = 1:2, layout.pos.col = 3:4))
+```
+
+The final product:
+
 ```{r, warning=F, message=F}
+HistPlot
+pushViewport(viewport(layout = grid.layout(4, 4)))
 print(BivPlot, vp = viewport(layout.pos.row = 1:2, layout.pos.col = 3:4))
 ```
 
@@ -626,7 +653,7 @@ print(BivPlot, vp = viewport(layout.pos.row = 1:2, layout.pos.col = 3:4))
 
 ## Further Reading
 
-The 2009 book *ggplog2: Elegant Graphics for Data Analysis* by Hadly Wickham is the definitive guide to all things ggplot. 
+The 2009 book *ggplot2: Elegant Graphics for Data Analysis* by Hadly Wickham is the definitive guide to all things ggplot. 
 
 A physical copy is published by Springer
 http://link.springer.com/book/10.1007%2F978-0-387-98141-3
