@@ -1,3 +1,6 @@
+
+![R Crash Course Cover](./images/RCrashCourse_frontcover.jpg) ![R Crash Course Back](./images/RCrashCourse_back.jpg)
+
 # R Crash Course for Biologists
 
 This is the repository for the book *R Crash Course for Biologists*, which is available in several formats:
@@ -7,6 +10,15 @@ This is the repository for the book *R Crash Course for Biologists*, which is av
   * [A download in PDF format (free)](#Downloads)
   * [A download in ePUB format (free)](#Downloads)
   * [R markdown files for each chapter (free)](#Downloads)
+
+## Chapter Content
+  
+  1. R Fundamentals
+  2. Basic Graphics
+  3. Advanced Graphics
+  4. Regular Expressions
+  5. Intro to Data Science
+  6. Advanced (Markdown, Functions, Packages)
   
 ## Paperback Link
 
