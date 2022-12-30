@@ -1,3 +1,13 @@
+# R Crash Course for Biologists
+
+This is the repository for the book *R Crash Course for Biologists*, which is available in several formats:
+
+  * [Hardcover (Colour ~$40 USD)](#Hard-Cover-Link)
+  * [Paperback (B&W ~$20 USD)](#Paperback-Link)
+  * [Kindle eBook (~$10 USD)](#Kindle-Link)
+  * [A download in PDF format (free)](#Downloads)
+  * [A download in ePUB format (free)](#Downloads)
+  * [R markdown files for each chapter (free)](#Downloads)
 
 ![R Crash Course Cover](./images/RCrashCourse_frontcover.jpg) ![R Crash Course Back](./images/RCrashCourse_back.jpg)
 
@@ -23,9 +33,14 @@ This is the repository for the book *R Crash Course for Biologists*, which is av
   
 ## Hard Cover Link
 
+**Sorted alphabetically** 
+
+  * [Australia](https://www.amazon.com.au/dp/B0BCD698BQ?ref_=pe_3052080_397514860)
+  * [Brazil](https://www.amazon.com.br/dp/B0BCD698BQ?ref_=pe_3052080_397514860)
   * [Canada](https://www.amazon.ca/dp/B0BCD698BQ?ref_=pe_3052080_397514860)
   * [France](https://www.amazon.fr/dp/B0BCD698BQ?ref_=pe_3052080_397514860)
   * [Germany](https://www.amazon.de/dp/B0BCD698BQ?ref_=pe_3052080_397514860)
+ * [India](https://www.amazon.in/dp/B0BCD698BQ?ref_=pe_3052080_397514860)
   * [Italy](https://www.amazon.it/dp/B0BCD698BQ?ref_=pe_3052080_397514860)
   * [Mexico](https://www.amazon.com.mx/dp/B0BCD698BQ?ref_=pe_3052080_397514860)
   * [Netherlands](https://www.amazon.nl/dp/B0BCD698BQ?ref_=pe_3052080_397514860)
