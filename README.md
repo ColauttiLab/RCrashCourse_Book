@@ -5,8 +5,7 @@
 
 This is the repository for the book *R Crash Course for Biologists*, which is available in several formats:
 
-  * [Hardcover (Colour) if you have money to burn (~$40 USD)](#Hard-Cover-Link)
-  * [Paperback (B&W) book on Amazon (~$20 USD)](#Paperback-Link)
+  * [Paperback book on Amazon (~$20 USD)](#Paperback-Link)
   * [Kindle eBook on Amazon (~$10 USD)](#Kindle-Link)
   * [A download in PDF format (free)](#Downloads)
   * [A download in ePUB format (free)](#Downloads)
@@ -20,18 +19,6 @@ This is the repository for the book *R Crash Course for Biologists*, which is av
   4. Regular Expressions
   5. Intro to Data Science
   6. Advanced (Markdown, Functions, Packages)
-  
-## Hard Cover Link
-
-  * [Canada](https://www.amazon.ca/dp/B0BCD698BQ?ref_=pe_3052080_397514860)
-  * [France](https://www.amazon.fr/dp/B0BCD698BQ?ref_=pe_3052080_397514860)
-  * [Germany](https://www.amazon.de/dp/B0BCD698BQ?ref_=pe_3052080_397514860)
-  * [Italy](https://www.amazon.it/dp/B0BCD698BQ?ref_=pe_3052080_397514860)
-  * [Mexico](https://www.amazon.com.mx/dp/B0BCD698BQ?ref_=pe_3052080_397514860)
-  * [Netherlands](https://www.amazon.nl/dp/B0BCD698BQ?ref_=pe_3052080_397514860)
-  * [Spain](https://www.amazon.es/dp/B0BCD698BQ?ref_=pe_3052080_397514860)
-  * [USA](https://www.amazon.com/dp/B0BCD698BQ?ref_=pe_3052080_397514860)
-  * [UK](https://www.amazon.co.uk/dp/B0BCD698BQ?ref_=pe_3052080_397514860)
   
 ## Paperback Link
 
