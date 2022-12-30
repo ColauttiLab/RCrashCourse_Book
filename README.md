@@ -59,3 +59,4 @@ This is the repository for the book *R Crash Course for Biologists*, which is av
 Look in the file list here on GitHub for `RCrashCourse.pdf` or `RCrashCourse.epub`, or any of the specific `*.Rmd` chapters in R Markdown format.
 
 ![visitors](https://visitor-badge.glitch.me/badge?page_id=colauttilab.RCrashCourse_Book&left_color=green&right_color=red)
+(Note: ~8k visits from ~4k unique visitors on *GitHub insights* when badge was created)
