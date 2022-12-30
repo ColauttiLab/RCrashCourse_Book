@@ -15,9 +15,9 @@ This is the repository for the book *R Crash Course for Biologists*, which is av
 
 For the latest news, see:
 
-[![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?style=social&logo=Twitter&logoColor=white)](https://twitter.com/ColauttiLab)
+[![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?style=social&logo=Twitter)](https://twitter.com/ColauttiLab)
 
-[![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=social&logo=linkedin&logoColor=white)](www.linkedin.com/in/ColauttiLab)
+[![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=social&logo=linkedin)](www.linkedin.com/in/ColauttiLab)
 
 [EcoEvoGeno](https://EcoEvoGeno.org)
 
