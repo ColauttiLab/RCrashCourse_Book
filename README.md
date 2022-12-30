@@ -59,20 +59,9 @@ This is the repository for the book *R Crash Course for Biologists*, which is av
 Look in the file list here on GitHub for `RCrashCourse.pdf` or `RCrashCourse.epub`, or any of the specific `*.Rmd` chapters in R Markdown format.
 
 ## Visitors
-old
 
-![visitors](https://visitor-badge.glitch.me/badge?page_id=colauttilab.RCrashCourse_Book&left_color=green&right_color=red)
+**Total**: [![HitCount](https://hits.dwyl.com/colauttilab/RCrashCourse_Book.svg?style=flat-square)](http://hits.dwyl.com/colauttilab/RCrashCourse_Book)
 
-new
+**Unique**: [![HitCount](https://hits.dwyl.com/colauttilab/RCrashCourse_Book.svg?style=flat-square&show=unique)](http://hits.dwyl.com/colauttilab/RCrashCourse_Book)
 
-![Visits](https://img.shields.io/endpoint?color=88A825&style=plastic&url=https%3A%2F%2Fhits.dwyl.com%2Fcolauttilab%2FRCrashCourse_Book.svg%3Fstyle%3Dflat-square)
-
-![Unique](https://img.shields.io/endpoint?color=88A825&style=plastic&url=https%3A%2F%2Fhits.dwyl.com%2Fcolauttilab%2FRCrashCourse_Book.svg%3Fstyle%3Dflat-square%26show%3Dunique)
-
-[![Visits](https://hits.dwyl.com/colauttilab/RCrashCourse_Book.svg?style=flat-square)](http://hits.dwyl.com/colauttilab/RCrashCourse_Book)
-
-[![Unique](https://hits.dwyl.com/colauttilab/RCrashCourse_Book.svg?style=flat-square&show=unique)](http://hits.dwyl.com/colauttilab/RCrashCourse_Book)
-
-![Custom badge](https://img.shields.io/endpoint?color=88A825&style=plastic&url=https%3A%2F%2Fhits.dwyl.com%2Fcolauttilab%2FRCrashCourse_Book.json)
-
-(Note: ~8k visits from ~4k unique visitors on *GitHub insights* when badge was created)
+(**Note**: ~8k visits from ~4k unique visitors on *GitHub insights* when badge was created)
