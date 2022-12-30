@@ -9,18 +9,19 @@ This is the repository for the book *R Crash Course for Biologists*, which is av
   * [A download in ePUB format (free)](#Downloads)
   * [R markdown files for each chapter (free)](#Downloads)
 
+**Disclaimer**: This book is a work in progress. We are able to release this content for free (online) and at a limited cost (print + e-book) by avoiding large publishers and costly services including proofreaders and copy editors. Please expect more errors than a traditional publisher, and help us improve the content.
+
+**Support Us**: Book purchases support future content development including proofreading, language translation, and new print and online content. 
+
+For the latest news, see:
+
+[![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?style=social&logo=Twitter&logoColor=white)](https://twitter.com/ColauttiLab)
+
+[![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=social&logo=linkedin&logoColor=white)](www.linkedin.com/in/ColauttiLab)
+
+[EcoEvoGeno](https://EcoEvoGeno.org)
+
 ![R Crash Course Cover](./images/RCrashCourse_frontcover.jpg) ![R Crash Course Back](./images/RCrashCourse_back.jpg)
-
-# R Crash Course for Biologists
-
-This is the repository for the book *R Crash Course for Biologists*, which is available in several formats:
-
-  * [Hardcover (Colour ~$40 USD)](#Hard-Cover-Link)
-  * [Paperback (B&W ~$20 USD)](#Paperback-Link)
-  * [Kindle eBook (~$10 USD)](#Kindle-Link)
-  * [A download in PDF format (free)](#Downloads)
-  * [A download in ePUB format (free)](#Downloads)
-  * [R markdown files for each chapter (free)](#Downloads)
 
 ## Chapter Content
   
