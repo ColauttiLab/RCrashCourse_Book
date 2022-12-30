@@ -1,4 +1,5 @@
 
+![visitors](https://visitor-badge.glitch.me/badge?page_id=colauttilab.RCrashCourse_Book&left_color=green&right_color=red)
 ![R Crash Course Cover](./images/RCrashCourse_frontcover.jpg) ![R Crash Course Back](./images/RCrashCourse_back.jpg)
 
 # R Crash Course for Biologists
