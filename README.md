@@ -91,6 +91,4 @@ Look in the file list here on GitHub for `RCrashCourse.pdf` or `RCrashCourse.epu
 
 [![HitCount](https://hits.dwyl.com/colauttilab/RCrashCourse_Book.svg?style=flat-square)](http://hits.dwyl.com/colauttilab/RCrashCourse_Book) **Total Visits** since Dec 30, 2022
 
-[![HitCount](https://hits.dwyl.com/colauttilab/RCrashCourse_Book.svg?style=flat-square&show=unique)](http://hits.dwyl.com/colauttilab/RCrashCourse_Book) **Unique Visits** since Dec 30, 2022
-
 (**Note**: ~8k visits from ~4k unique visitors on *GitHub insights* before Dec 30, 2022)
