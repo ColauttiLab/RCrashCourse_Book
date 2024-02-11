@@ -2,9 +2,7 @@
 
 **NOTE**: This is the repository for the **first edition** of the book *R Crash Course for Biologists*
 
-The **second edition** is available for pre-order for summer 2024 release.
-
-The first edition is still available at a discounted price:
+The **second edition** is available for pre-order for summer 2024 release, but the first edition will still available at a discounted price:
 
   * [Hardcover (Colour ~$50 USD)](#Hard-Cover-Link)
   * [Paperback (B&W ~$20 USD)](#Paperback-Link)
@@ -15,7 +13,7 @@ The first edition is still available at a discounted price:
 
 **Disclaimer**: The *first edition* was a work in progress. We are able to release this content for free (online) and at a limited cost (print + e-book) by avoiding large publishers and costly services including proofreaders and copy editors. Please expect more errors than a traditional publisher. Help us improve the content by purchasing a copy, .
 
-**Support Us**: Book purchases support future content development including proofreading, language translation, and new print and online content. 
+**Support Us**: Book purchases support future content development including proofreading, language translation, and new print and online content. You can also make a donation through paypal: <https://www.paypal.me/ColauttiLab>
 
 For the latest news, see:
 
