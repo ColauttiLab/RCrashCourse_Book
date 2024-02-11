@@ -1,15 +1,19 @@
 # R Crash Course for Biologists
 
-This is the repository for the book *R Crash Course for Biologists*, which is available in several formats:
+**NOTE**: This is the repository for the **first edition** of the book *R Crash Course for Biologists*
 
-  * [Hardcover (Colour ~$40 USD)](#Hard-Cover-Link)
+The **second edition** is available for pre-order for summer 2024 release.
+
+The first edition is still available at a discounted price:
+
+  * [Hardcover (Colour ~$50 USD)](#Hard-Cover-Link)
   * [Paperback (B&W ~$20 USD)](#Paperback-Link)
   * [Kindle eBook (~$10 USD)](#Kindle-Link)
   * [A download in PDF format (free)](#Downloads)
   * [A download in ePUB format (free)](#Downloads)
   * [R markdown files for each chapter (free)](#Downloads)
 
-**Disclaimer**: This book is a work in progress. We are able to release this content for free (online) and at a limited cost (print + e-book) by avoiding large publishers and costly services including proofreaders and copy editors. Please expect more errors than a traditional publisher, and help us improve the content.
+**Disclaimer**: The *first edition* was a work in progress. We are able to release this content for free (online) and at a limited cost (print + e-book) by avoiding large publishers and costly services including proofreaders and copy editors. Please expect more errors than a traditional publisher. Help us improve the content by purchasing a copy, .
 
 **Support Us**: Book purchases support future content development including proofreading, language translation, and new print and online content. 
 
@@ -32,58 +36,62 @@ For the latest news, see:
   5. Intro to Data Science
   6. Advanced (Markdown, Functions, Packages)
   
-## Hard Cover Link
+## Hard Cover (Colour) Link
 
 **Sorted alphabetically** 
 
-  * [Australia](https://www.amazon.com.au/dp/B0BCD698BQ?ref_=pe_3052080_397514860)
-  * [Brazil](https://www.amazon.com.br/dp/B0BCD698BQ?ref_=pe_3052080_397514860)
-  * [Canada](https://www.amazon.ca/dp/B0BCD698BQ?ref_=pe_3052080_397514860)
-  * [France](https://www.amazon.fr/dp/B0BCD698BQ?ref_=pe_3052080_397514860)
-  * [Germany](https://www.amazon.de/dp/B0BCD698BQ?ref_=pe_3052080_397514860)
- * [India](https://www.amazon.in/dp/B0BCD698BQ?ref_=pe_3052080_397514860)
-  * [Italy](https://www.amazon.it/dp/B0BCD698BQ?ref_=pe_3052080_397514860)
-  * [Mexico](https://www.amazon.com.mx/dp/B0BCD698BQ?ref_=pe_3052080_397514860)
-  * [Netherlands](https://www.amazon.nl/dp/B0BCD698BQ?ref_=pe_3052080_397514860)
-  * [Spain](https://www.amazon.es/dp/B0BCD698BQ?ref_=pe_3052080_397514860)
-  * [USA](https://www.amazon.com/dp/B0BCD698BQ?ref_=pe_3052080_397514860)
-  * [UK](https://www.amazon.co.uk/dp/B0BCD698BQ?ref_=pe_3052080_397514860)
+  * [Australia](https://www.amazon.com.au/dp/B0BCD698BQ)
+  * [Brazil](https://www.amazon.com.br/dp/B0BCD698BQ)
+  * [Canada](https://www.amazon.ca/dp/B0BCD698BQ)
+  * [France](https://www.amazon.fr/dp/B0BCD698BQ)
+  * [Germany](https://www.amazon.de/dp/B0BCD698BQ)
+ * [India](https://www.amazon.in/dp/B0BCD698BQ)
+  * [Italy](https://www.amazon.it/dp/B0BCD698BQ)
+  * [Mexico](https://www.amazon.com.mx/dp/B0BCD698BQ)
+  * [Netherlands](https://www.amazon.nl/dp/B0BCD698BQ)
+  * [Spain](https://www.amazon.es/dp/B0BCD698BQ)
+  * [USA](https://www.amazon.com/dp/B0BCD698BQ)
+  * [UK](https://www.amazon.co.uk/dp/B0BCD698BQ)
   
 ## Paperback Link
 
 **Sorted alphabetically** 
 
-  * [Australia](https://www.amazon.com.au/dp/B0BMSZSVN7/ref=sr_1_1?crid=WWP8K5UVF1SK&keywords=R+Crash+Course+for+Biologists)
-  * [Brazil](https://www.amazon.com.br/dp/B0BMSZSVN7/ref=sr_1_1?crid=WWP8K5UVF1SK&keywords=R+Crash+Course+for+Biologists)
-  * [Canada](https://www.amazon.ca/dp/B0BMSZSVN7/ref=sr_1_1?crid=WWP8K5UVF1SK&keywords=R+Crash+Course+for+Biologists)
-  * [France](https://www.amazon.fr/dp/B0BMSZSVN7/ref=sr_1_1?crid=WWP8K5UVF1SK&keywords=R+Crash+Course+for+Biologists)
-  * [Germany](https://www.amazon.de/dp/B0BMSZSVN7/ref=sr_1_1?crid=WWP8K5UVF1SK&keywords=R+Crash+Course+for+Biologists)
-  * [India](https://www.amazon.in/dp/B0BMSZSVN7/ref=sr_1_1?crid=WWP8K5UVF1SK&keywords=R+Crash+Course+for+Biologists)
-  * [Italy](https://www.amazon.it/dp/B0BMSZSVN7/ref=sr_1_1?crid=WWP8K5UVF1SK&keywords=R+Crash+Course+for+Biologists)
-  * [Mexico](https://www.amazon.com.mx/dp/B0BMSZSVN7/ref=sr_1_1?crid=WWP8K5UVF1SK&keywords=R+Crash+Course+for+Biologists)
-  * [Netherlands](https://www.amazon.nl/dp/B0BMSZSVN7/ref=sr_1_1?crid=WWP8K5UVF1SK&keywords=R+Crash+Course+for+Biologists)
-  * [Spain](https://www.amazon.es/dp/B0BMSZSVN7/ref=sr_1_1?crid=WWP8K5UVF1SK&keywords=R+Crash+Course+for+Biologists)
-  * [USA](https://www.amazon.com/dp/B0BMSZSVN7/ref=sr_1_1?crid=WWP8K5UVF1SK&keywords=R+Crash+Course+for+Biologists)
-  * [UK](https://www.amazon.co.uk/dp/B0BMSZSVN7/ref=sr_1_1?crid=WWP8K5UVF1SK&keywords=R+Crash+Course+for+Biologists)
+  * [Australia](https://www.amazon.com.au/dp/B0BMSZSVN7)
+  * [Brazil](https://www.amazon.com.br/dp/B0BMSZSVN7)
+  * [Canada](https://www.amazon.ca/dp/B0BMSZSVN7)
+  * [France](https://www.amazon.fr/dp/B0BMSZSVN7)
+  * [Germany](https://www.amazon.de/dp/B0BMSZSVN7)
+  * [India](https://www.amazon.in/dp/B0BMSZSVN7)
+  * [Italy](https://www.amazon.it/dp/B0BMSZSVN7)
+  * [Mexico](https://www.amazon.com.mx/dp/B0BMSZSVN7)
+  * [Netherlands](https://www.amazon.nl/dp/B0BMSZSVN7)
+  * [Spain](https://www.amazon.es/dp/B0BMSZSVN7)
+  * [USA](https://www.amazon.com/dp/B0BMSZSVN7)
+  * [UK](https://www.amazon.co.uk/dp/B0BMSZSVN7)
   
 ## Kindle Link
 
 **Sorted alphabetically** 
 
-  * [Australia](https://www.amazon.com.au/Crash-Course-Biologists-bioinformatics-biostatistics-ebook/dp/B0BCDVRRF2)
-  * [Brazil](https://www.amazon.com.br/Crash-Course-Biologists-bioinformatics-biostatistics-ebook/dp/B0BCDVRRF2)
-  * [Canada](https://www.amazon.ca/Crash-Course-Biologists-bioinformatics-biostatistics-ebook/dp/B0BCDVRRF2)
-  * [France](https://www.amazon.fr/Crash-Course-Biologists-bioinformatics-biostatistics-ebook/dp/B0BCDVRRF2)
-  * [Germany](https://www.amazon.de/Crash-Course-Biologists-bioinformatics-biostatistics-ebook/dp/B0BCDVRRF2)
-  * [India](https://www.amazon.in/Crash-Course-Biologists-bioinformatics-biostatistics-ebook/dp/B0BCDVRRF2)
-  * [Italy](https://www.amazon.it/Crash-Course-Biologists-bioinformatics-biostatistics-ebook/dp/B0BCDVRRF2)
-  * [Mexico](https://www.amazon.com.mx/Crash-Course-Biologists-bioinformatics-biostatistics-ebook/dp/B0BCDVRRF2)
-  * [Netherlands](https://www.amazon.nl/Crash-Course-Biologists-bioinformatics-biostatistics-ebook/dp/B0BCDVRRF2)
-  * [Spain](https://www.amazon.es/Crash-Course-Biologists-bioinformatics-biostatistics-ebook/dp/B0BCDVRRF2)
-  * [USA](https://www.amazon.com/Crash-Course-Biologists-bioinformatics-biostatistics-ebook/dp/B0BCDVRRF2)
-  * [UK](https://www.amazon.co.uk/Crash-Course-Biologists-bioinformatics-biostatistics-ebook/dp/B0BCDVRRF2)
+  * [Australia](https://www.amazon.com.au/B0BCDVRRF2)
+  * [Brazil](https://www.amazon.com.br/dp/B0BCDVRRF2)
+  * [Canada](https://www.amazon.ca/dp/B0BCDVRRF2)
+  * [France](https://www.amazon.fr/dp/B0BCDVRRF2)
+  * [Germany](https://www.amazon.de/dp/B0BCDVRRF2)
+  * [India](https://www.amazon.in/dp/B0BCDVRRF2)
+  * [Italy](https://www.amazon.it/dp/B0BCDVRRF2)
+  * [Mexico](https://www.amazon.com.mx/dp/B0BCDVRRF2)
+  * [Netherlands](https://www.amazon.nl/dp/B0BCDVRRF2)
+  * [Spain](https://www.amazon.es/dp/B0BCDVRRF2)
+  * [USA](https://www.amazon.com/dp/B0BCDVRRF2)
+  * [UK](https://www.amazon.co.uk/dp/B0BCDVRRF2)
   
 ## Downloads
+
+Downloads are available on a 'pay what you can' basis. Donations provide extra support to students and early-career professionals and help to develop new content faster (e.g., proofreading, translations, layout, artwork).
+
+You can make a donation through paypal: <https://www.paypal.me/ColauttiLab>
 
 Look in the file list here on GitHub for `RCrashCourse.pdf` or `RCrashCourse.epub`, or any of the specific `*.Rmd` chapters in R Markdown format.
 
